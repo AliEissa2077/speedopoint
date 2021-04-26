@@ -204,7 +204,7 @@
         <widget class="QLineEdit" name="PasswordEntry"/>
        </item>
        <item>
-        <widget class="QPushButton" name="signupButton">
+        <widget class="QPushButton" name="SignupButton">
          <property name="text">
           <string>Sign Up</string>
          </property>

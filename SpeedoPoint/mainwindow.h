@@ -21,5 +21,7 @@ private:
 private slots:
     void SwitchLogin();
     void SwitchSignup();
+    void Login();
+    void Signup();
 };
 #endif // MAINWINDOW_H

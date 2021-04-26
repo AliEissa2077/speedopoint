@@ -50,7 +50,7 @@ public:
     QLineEdit *EmailEntry;
     QLabel *PassLabel;
     QLineEdit *PasswordEntry;
-    QPushButton *signupButton;
+    QPushButton *SignupButton;
     QPushButton *SignupSwitch;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -173,10 +173,10 @@ public:
 
         verticalLayout_3->addWidget(PasswordEntry);
 
-        signupButton = new QPushButton(verticalLayoutWidget_3);
-        signupButton->setObjectName(QString::fromUtf8("signupButton"));
+        SignupButton = new QPushButton(verticalLayoutWidget_3);
+        SignupButton->setObjectName(QString::fromUtf8("SignupButton"));
 
-        verticalLayout_3->addWidget(signupButton);
+        verticalLayout_3->addWidget(SignupButton);
 
         SignupSwitch = new QPushButton(verticalLayoutWidget_3);
         SignupSwitch->setObjectName(QString::fromUtf8("SignupSwitch"));
@@ -212,7 +212,7 @@ public:
         UsernameLabel->setText(QCoreApplication::translate("MainWindow", "Username", nullptr));
         emailLabel->setText(QCoreApplication::translate("MainWindow", "Email", nullptr));
         PassLabel->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
-        signupButton->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
+        SignupButton->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
         SignupSwitch->setText(QCoreApplication::translate("MainWindow", "Already have an account? Login", nullptr));
     } // retranslateUi
 
