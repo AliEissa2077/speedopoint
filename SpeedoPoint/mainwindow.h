@@ -17,5 +17,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void SwitchLogin();
+    void SwitchSignup();
 };
 #endif // MAINWINDOW_H

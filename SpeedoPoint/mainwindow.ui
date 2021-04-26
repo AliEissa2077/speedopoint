@@ -42,13 +42,16 @@
       </rect>
      </property>
     </widget>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="LoginFrame">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>330</x>
        <y>170</y>
        <width>391</width>
-       <height>201</height>
+       <height>271</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -63,12 +66,12 @@
         <x>50</x>
         <y>20</y>
         <width>291</width>
-        <height>169</height>
+        <height>215</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="loginLabel">
          <property name="font">
           <font>
            <weight>75</weight>
@@ -87,33 +90,34 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="emailLabel_2">
          <property name="text">
           <string>Email</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="EmailEntryLogin"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="PassLabel_2">
          <property name="text">
           <string>Password</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="PasswordEntryLogin"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
-         <property name="font">
-          <font>
-           <italic>false</italic>
-           <underline>true</underline>
-          </font>
+        <widget class="QPushButton" name="LoginButton">
+         <property name="text">
+          <string>Login</string>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="LoginSwitch">
          <property name="text">
           <string>New here? Sign Up</string>
          </property>
@@ -122,6 +126,103 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QFrame" name="SignUpFrame">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>170</y>
+       <width>391</width>
+       <height>311</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="verticalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>291</width>
+        <height>267</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="Signuplabel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Sign Up</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="UsernameLabel">
+         <property name="text">
+          <string>Username</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="UsernameEntry"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="emailLabel">
+         <property name="text">
+          <string>Email</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="EmailEntry"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="PassLabel">
+         <property name="text">
+          <string>Password</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="PasswordEntry"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="signupButton">
+         <property name="text">
+          <string>Sign Up</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="SignupSwitch">
+         <property name="text">
+          <string>Already have an account? Login</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <zorder>LoginFrame</zorder>
+    <zorder>LoginBackground</zorder>
+    <zorder>SignUpFrame</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
