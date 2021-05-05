@@ -239,7 +239,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QGraphicsView" name="graphicsView">
+    <widget class="QGraphicsView" name="ProgramBackground">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -249,7 +249,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="Speedopointtxt">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -281,13 +281,13 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
        <string>Flights</string>
       </attribute>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="fromtext">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -305,7 +305,7 @@
         <string>Fly From</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="FlighFrom">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -315,7 +315,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="FlightTo">
        <property name="geometry">
         <rect>
          <x>550</x>
@@ -325,7 +325,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="totext">
        <property name="geometry">
         <rect>
          <x>460</x>
@@ -343,7 +343,7 @@
         <string>To</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="TwoWay">
        <property name="geometry">
         <rect>
          <x>740</x>
@@ -356,7 +356,7 @@
         <string>Two-way flight</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="SearchFlights">
        <property name="geometry">
         <rect>
          <x>900</x>
@@ -369,7 +369,7 @@
         <string>Find</string>
        </property>
       </widget>
-      <widget class="QListWidget" name="listWidget">
+      <widget class="QListWidget" name="FlightListings">
        <property name="geometry">
         <rect>
          <x>170</x>
@@ -379,7 +379,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="sorttext">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -392,7 +392,7 @@
         <string>Sort by:</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_3">
+      <widget class="QComboBox" name="SortBy">
        <property name="geometry">
         <rect>
          <x>72</x>
@@ -407,7 +407,7 @@
       <attribute name="title">
        <string>Hotels</string>
       </attribute>
-      <widget class="QListWidget" name="listWidget_2">
+      <widget class="QListWidget" name="HotelListings">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -430,7 +430,7 @@
         <string>Select country</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_4">
+      <widget class="QComboBox" name="HotelCountry">
        <property name="geometry">
         <rect>
          <x>230</x>
@@ -440,7 +440,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="CityInput">
        <property name="geometry">
         <rect>
          <x>390</x>
@@ -466,7 +466,7 @@
         <string>City</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="SearchHotel">
        <property name="geometry">
         <rect>
          <x>900</x>
@@ -479,7 +479,7 @@
         <string>Search</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_5">
+      <widget class="QComboBox" name="personsNum">
        <property name="geometry">
         <rect>
          <x>570</x>
@@ -515,7 +515,7 @@
         <string>Sort</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_6">
+      <widget class="QComboBox" name="HotelSort">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -525,7 +525,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_2">
+      <widget class="QCheckBox" name="pool">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -538,7 +538,7 @@
         <string>Pool</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_3">
+      <widget class="QCheckBox" name="pets">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -551,7 +551,7 @@
         <string>Pets Allowed</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_4">
+      <widget class="QCheckBox" name="beach">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -564,7 +564,7 @@
         <string>Private beach</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_5">
+      <widget class="QCheckBox" name="breakfast">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -577,7 +577,7 @@
         <string>Breakfast</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_6">
+      <widget class="QCheckBox" name="dinner">
        <property name="geometry">
         <rect>
          <x>20</x>
