@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     QPushButton *signupbut = MainWindow::findChild<QPushButton *>("SignupButton");
     connect(signupbut, SIGNAL(released()), this, SLOT(Signup()));
+
+    MainWindow::findChild<QFrame *>("LoginScreen")->raise();
 }
 
 
