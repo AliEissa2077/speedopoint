@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QPushButton>
 #include <QtDebug>
+#include <QListWidget>
+#include "qtlisting.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +23,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(signupbut, SIGNAL(released()), this, SLOT(Signup()));
 
     MainWindow::findChild<QFrame *>("LoginScreen")->raise();
+
+    MainWindow::findChild<QFrame *>("Listings")->raise();
+
+
+    QtListing *listtest = new QtListing();  // adding an element to the list
+    MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
+    MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+
+    //QtListing *listtest = new QtListing(MainWindow::findChild<QListWidget *>("FlightListings"));
+
+
 }
 
 
