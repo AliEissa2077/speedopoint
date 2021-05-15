@@ -7,14 +7,15 @@
 class airline {
 private:
 	std::string name;
-	int rating;
-	int safetyrating;
+	float rating;
+	float safetyrating;
 	int pricerange;
+	int rating_counter;
 public:
 	airline();
-	airline(std::string name_, int rt, int srt, int range); // rt -> rating, srt-> safety rating
-	void setRating(int rt);
-	void setSRating(int srt);
+	airline(std::string name_, int range, float srt); 
+	void setRating(float rt, int num);
+	void setSRating(float srt);
 	void setRange(int range);
 	void setName(std::string name_);
 	int getRating();
