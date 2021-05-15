@@ -13,9 +13,10 @@ private:
 	float rating;
 	int priceRange;
 	bool pool;
+	int rating_counter;
 public:
 	hotel();
-	hotel(std::string, country ctry, int index, float rt, int range, bool pool_);
+	hotel(std::string name_, country ctry, int index, int range, bool pool_);
 	void updateRating(float rt);
 };
 
