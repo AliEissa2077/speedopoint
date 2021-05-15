@@ -9,5 +9,5 @@ public:
 	void deposit(float amt);
 	void pay(float amt);
 	int redeem();
-	void refund(Payment payment);
+	void refund(payment payment_);
 };
