@@ -1,3 +1,7 @@
+#pragma once
+#ifndef AIRLINE_H
+#define AIRLINE_H
+
 #include <string>
 
 class airline {
@@ -19,3 +23,5 @@ public:
 	std::string getName();
 	void updateRating(int rt); //updates rating after user gives review
 };
+
+#endif AIRLINE_H

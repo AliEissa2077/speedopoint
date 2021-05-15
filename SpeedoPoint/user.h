@@ -1,3 +1,7 @@
+#pragma once
+#ifndef USER_H
+#define USER_H
+
 #include <string>
 #include <vector>
 #include "reservation.h"
@@ -26,3 +30,5 @@ public:
 	void updatePoints(int pts);
 	void updateReservations(reservation reservation);
 };
+
+#endif USER_H

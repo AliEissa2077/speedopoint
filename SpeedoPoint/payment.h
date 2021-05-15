@@ -1,3 +1,8 @@
+#pragma once
+#ifndef PAYMENT_H
+#define PAYMENT_H
+
+
 #include "date.h"
 #include "user.h"
 #include <iostream>
@@ -14,3 +19,4 @@ public:
 	float getValue();
 	void showInvoice();
 };
+#endif PAYMENT_H

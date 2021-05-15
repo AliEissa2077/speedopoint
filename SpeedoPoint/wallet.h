@@ -1,3 +1,7 @@
+#pragma once
+#ifndef WALLET_H
+#define WALLET_H
+
 #include "payment.h"
 class wallet {
 private:
@@ -11,3 +15,5 @@ public:
 	int redeem();
 	void refund(payment payment_);
 };
+
+#endif WALLET_H

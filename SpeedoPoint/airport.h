@@ -1,3 +1,9 @@
+#pragma once
+#ifndef AIRPORT_H
+#define AIRPORT_H
+
+
+
 #include "country.h"
 
 class airport {
@@ -10,3 +16,4 @@ public:
 	country getCountry();
 	int getIndex();
 };
+#endif AIRPORT_H
