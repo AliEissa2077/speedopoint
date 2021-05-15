@@ -21,7 +21,7 @@ class hotellisting {
 	std::string roomType;
 public:
 	hotellisting();
-	hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, std::string roomtype);
+	hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
 	reservation reserve(user acc);
 
 };
