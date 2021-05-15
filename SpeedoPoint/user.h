@@ -8,7 +8,7 @@
 #include "flightticket.h"
 #include "cruisereservation.h"
 #include "wallet.h"
-
+#include <iostream>
 class user {
 private:
 	std::string username;
@@ -25,10 +25,10 @@ public:
 	void setPass(std::string pwd);
 	void changePass(std::string pwd);
 	std::string getName();
-	void printReservation();
 	int getPoints();
 	void updatePoints(int pts);
 	void updateReservations(reservation reservation);
+	void updateCruiseReservations(cruisereservation reservation);
 };
 
 #endif USER_H
