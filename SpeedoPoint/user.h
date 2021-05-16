@@ -13,7 +13,7 @@ class user {
 private:
 	std::string username;
 	std::string password;
-	wallet wallet;
+    wallet wallt;
 	std::vector<reservation> reservations;
 	std::vector<cruisereservation> cruisereservations;
 	int points;
@@ -28,8 +28,8 @@ public:
     bool checkPass(string pass);
 	int getPoints();
 	void updatePoints(int pts);
-	void updateReservations(reservation reservation);
-	void updateCruiseReservations(cruisereservation reservation);
+    void updateReservations(reservation r);
+    void updateCruiseReservations(cruisereservation r);
 };
 
 #endif USER_H

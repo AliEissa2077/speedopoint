@@ -5,6 +5,7 @@
 #include <string>
 
 class country {
+private:
 	std::string name;
 	bool banned;
 	std::vector<std::string> cities;

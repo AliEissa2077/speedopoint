@@ -1,4 +1,4 @@
-#pargma once
+#pragma once
 #ifndef STOP_H
 #define STOP_H
 #include "country.h"
@@ -9,12 +9,12 @@ private:
 	country loc;
 	int cityIndex;
 	stop* next;
-	airline airline;
+    airline airlne;
 	date time;
 public:
 	stop();
-	stop(country locatiuon, int index, airline airl, date date);
-	void add_stop(country locatiuon, int index, airline airl, date date);
+    stop(country locatiuon, int index, airline airl, date d);
+    void add_stop(country locatiuon, int index, airline airl, date d);
 };
 
 #endif STOP_H

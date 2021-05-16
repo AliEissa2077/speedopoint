@@ -15,6 +15,7 @@ SOURCES += \
     qtlisting.cpp
 
 HEADERS += \
+    airline.h \
     airport.h \
     country.h \
     cruise.h \
@@ -23,10 +24,16 @@ HEADERS += \
     datastore.h \
     date.h \
     flightlisting.h \
+    flightticket.h \
+    hotel.h \
     hotellisting.h \
     mainwindow.h \
+    payment.h \
     qtlisting.h \
-    user.h
+    reservation.h \
+    stop.h \
+    user.h \
+    wallet.h
 
 FORMS += \
     mainwindow.ui

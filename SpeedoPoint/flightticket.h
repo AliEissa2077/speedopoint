@@ -4,8 +4,11 @@
 #include "date.h"
 #include "airport.h"
 #include <string>
-#include "user.h"
+//#include "user.h"
 #include "payment.h"
+
+class user;
+
 class flightticket {
 private:
 	int adults;
@@ -18,12 +21,12 @@ private:
 	int max_baggage;
 	std::string ticketType;
 	bool refundable;
-	user acc;
+    user* acc;
 	payment payment;
 	int flight_duration;
 public:
 	flightticket();
-	flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user account, float dur);
+       flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user account, float dur);
 };
 
 

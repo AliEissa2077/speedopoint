@@ -10,6 +10,7 @@
 #include "user.h"
 
 class cruise {
+private:
 	date start;
 	date end;
 	std::string cruiseModel;
@@ -24,6 +25,8 @@ public:
 	cruise();
 	cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop stop, std::string type);
 	cruisereservation reserve(user acc);
+    int getPricePerPerson();
+    int getDuration();
 };
 
 #endif CRUISE_H

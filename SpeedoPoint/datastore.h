@@ -7,6 +7,8 @@
 #include "flightlisting.h"
 #include "cruise.h"
 
+using namespace std;
+
 template <typename T>
 struct Node {
   T data;
@@ -32,9 +34,9 @@ public:
     void sortRecurrC(Node<cruise>* n);
     bool userAuth(string uName, string uPass);
     void AddUser(user u);
-    vector<hotellisting> DisplayHotelsInLoc(string loc, string city);
-    vector<hotellisting> DisplayCruisesInLoc(string loc, string city);
-    vector<hotellisting> DisplayFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive);
+    vector<hotellisting> GetHotelsInLoc(string loc, string city);
+    vector<hotellisting> GetCruisesInLoc(string loc, string city);
+    vector<hotellisting> GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive);
 };
 
 #endif // DATASTORE_H

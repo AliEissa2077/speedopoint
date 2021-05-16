@@ -8,11 +8,11 @@
 
 class airport {
 private: 
-	country country;
+    country ctry;
 	int cityIndex;
 public:
 	airport();
-	airport(country ctry, int index);
+    airport(country count, int index);
 	country getCountry();
 	int getIndex();
 };

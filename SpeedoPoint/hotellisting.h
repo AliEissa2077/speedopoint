@@ -6,9 +6,11 @@
 #include <string>
 #include "reservation.h"
 #include "user.h"
+using namespace std;
 
 class hotellisting {
-	hotel hotel;
+private:
+    hotel htl;
 	country loc;
     int pricePerNight;
 	int cityIndex;
@@ -22,9 +24,11 @@ class hotellisting {
 	std::string roomType;
 public:
 	hotellisting();
-	hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
+    hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
 	reservation reserve(user acc);
     int getPricePerNight();
+    int getHotelRating();
+    bool verifyLoc(string l, string city); // if city is empty then ignore it
 
 };
 

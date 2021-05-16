@@ -26,16 +26,64 @@ void dataStore::SortListings() {
     sortRecurrF(FlightListingsHead);
     sortRecurrC(CruiseListingsHead);
 }
-void dataStore::sortRecurrH(Node<hotellisting>* h) {
-    while (h->prev != NULL) {
-        Node<hotellisting>* curr = h->prev;
+void dataStore::sortRecurrH(Node<hotellisting>* n) {
+    Node<hotellisting>* curr = n;
+    while (n->prev != NULL) {
+        curr = curr->prev;
+        if (curr->data.getPricePerNight() > n->data.getPricePerNight()) {
+            n->priceRankIndex = curr->priceRankIndex  - 1;
+        }
+        if (curr->data.getHotelRating() < n->data.getHotelRating()) {
+            n->ratingRankIndex = curr->ratingRankIndex  - 1;
+        }
 
     }
+    sortRecurrH(n->next);
 
 }
 void dataStore::sortRecurrF(Node<flightlisting>* n) {
+    Node<flightlisting>* curr = n;
+    while (n->prev != NULL) {
+        curr = curr->prev;
+        if (curr->data.getPriceperTraveller() > n->data.getPriceperTraveller()) {
+            n->priceRankIndex = curr->priceRankIndex  - 1;
+        }
+        if (curr->data.getAirlineRating() < n->data.getAirlineRating()) {
+            n->ratingRankIndex = curr->ratingRankIndex  - 1;
+        }
 
+    }
+    sortRecurrF(n->next);
 }
 void dataStore::sortRecurrC(Node<cruise>* n) {
+    Node<cruise>* curr = n;
+    while (n->prev != NULL) {
+        curr = curr->prev;
+        if (curr->data.getPricePerPerson() > n->data.getPricePerPerson()) {
+            n->priceRankIndex = curr->priceRankIndex  - 1;
+        }
+        if (curr->data.getDuration() < n->data.getDuration()) {
+            n->ratingRankIndex = curr->ratingRankIndex  - 1;
+        }
+
+    }
+    sortRecurrC(n->next);
+}
+
+
+vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city) {
+    Node<hotellisting>* curr = HotelListingsHead;
+    vector<hotellisting> output;
+    while (curr != NULL) {
+        if (curr->data.verifyLoc(loc, city)) {
+            output.push_back(curr->data);
+        }
+        curr = curr->next;
+    }
+}
+vector<hotellisting> dataStore::GetCruisesInLoc(string loc, string city) {
+
+}
+vector<hotellisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
 
 }

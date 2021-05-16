@@ -9,7 +9,7 @@
 #include "flightticket.h"
 class flightlisting {
 private:
-	airline airline;
+    airline airlne;
 	stop stops;
 	int stopnum;
 	date dep;
@@ -22,9 +22,10 @@ private:
 	int additionalBagPrice;
 public:
 	flightlisting();
-	flightlisting(airline air, stop stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice);
+    flightlisting(airline air, stop stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice);
 	flightticket reserve(user acc);
     int getPriceperTraveller();
+    int getAirlineRating();
 
 };
 
