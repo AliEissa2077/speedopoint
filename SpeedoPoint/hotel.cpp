@@ -22,3 +22,18 @@ void hotel::updateRating(float rt) {
 int hotel::getRating() {
     return rating;
 }
+bool hotel::getPool() {
+    return pool;
+}
+int hotel::getRatingsCount() {
+    return rating_counter;
+}
+int hotel::getPriceRange() {
+    return priceRange;
+}
+std::string hotel::getName() {
+    return name;
+}
+bool hotel::getBeach() {
+    return beach;
+}

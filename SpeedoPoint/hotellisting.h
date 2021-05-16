@@ -28,8 +28,15 @@ public:
 	reservation reserve(user acc);
     int getPricePerNight();
     int getHotelRating();
+    hotel getHotel();
     bool verifyLoc(string l, string city); // if city is empty then ignore it
-
+    bool getPets();
+    bool getDinner();
+    bool getRefundable();
+    int getMaxPersons();
+    bool getBfast();
+    bool getWifi();
+    int getArea();
 };
 
 

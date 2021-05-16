@@ -281,7 +281,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -775,6 +775,9 @@
      </property>
     </widget>
    </widget>
+   <zorder>LoginScreen</zorder>
+   <zorder>DetailsPage</zorder>
+   <zorder>Listings</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

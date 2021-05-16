@@ -34,7 +34,7 @@ public:
     void sortRecurrC(Node<cruise>* n);
     bool userAuth(string uName, string uPass);
     void AddUser(user u);
-    vector<hotellisting> GetHotelsInLoc(string loc, string city);
+    vector<hotellisting> GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner);
     vector<hotellisting> GetCruisesInLoc(string loc, string city);
     vector<hotellisting> GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive);
 };

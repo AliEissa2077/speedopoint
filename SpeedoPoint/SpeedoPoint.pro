@@ -16,7 +16,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     qtlisting.cpp \
-    uimanager.cpp \
     user.cpp
 
 HEADERS += \

@@ -13,6 +13,8 @@ public:
 	country();
 	country(std::string name_, bool ban);
 	void addCity(std::string city);
+    std::string getName();
+    std::vector<std::string> getCities();
 };
 
 #endif COUNTRY_H

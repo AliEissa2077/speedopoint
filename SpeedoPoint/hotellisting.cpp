@@ -25,9 +25,49 @@ reservation hotellisting::reserve(user acc){
 
 }
 
+bool hotellisting::verifyLoc(string l, string city) {
+    if (l.compare(loc.getName()) == 0) {
+        if (city.length() > 1) {
+            vector<string> list = loc.getCities();
+            for (int i = 0; i < list.size(); i++) {
+                if (city.compare(list[i]) == 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else return true;
+    }
+    else { return false;}
+}
+
 int hotellisting::getPricePerNight() {
     return pricePerNight;
 }
 int hotellisting::getHotelRating() {
     return htl.getRating();
+}
+hotel hotellisting::getHotel() {
+    return htl;
+}
+bool hotellisting::getPets() {
+    return pets;
+}
+bool hotellisting::getDinner() {
+    return dinner;
+}
+bool hotellisting::getRefundable() {
+    return refundable;
+}
+int hotellisting::getMaxPersons() {
+    return person;
+}
+bool hotellisting::getBfast() {
+    return bfast;
+}
+bool hotellisting::getWifi() {
+    return wifi;
+}
+int hotellisting::getArea() {
+    return area;
 }

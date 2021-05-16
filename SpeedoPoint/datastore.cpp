@@ -71,7 +71,45 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
 }
 
 
-vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city) {
+vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
+    Node<hotellisting>* curr = HotelListingsHead;
+    vector<hotellisting> output;
+    while (curr != NULL) {
+        if (curr->data.verifyLoc(loc, city)) {
+            bool valid = true;
+            if (pool) {
+                if (!curr->data.getHotel().getPool()) {
+                    valid = false;
+                }
+            }
+            if (pets) {
+                if (!curr->data.getPets()) {
+                    valid = false;
+                }
+            }
+            if (beach) {
+                if (!curr->data.getHotel().getBeach()) {
+                    valid = false;
+                }
+            }
+            if (bfast) {
+                if (!curr->data.getBfast()) {
+                    valid = false;
+                }
+            }
+            if (dinner) {
+                if (!curr->data.getDinner()) {
+                    valid = false;
+                }
+            }
+            if (valid) {
+                output.push_back(curr->data);
+            }
+        }
+        curr = curr->next;
+    }
+}
+vector<hotellisting> dataStore::GetCruisesInLoc(string loc, string city) {
     Node<hotellisting>* curr = HotelListingsHead;
     vector<hotellisting> output;
     while (curr != NULL) {
@@ -80,9 +118,6 @@ vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city) {
         }
         curr = curr->next;
     }
-}
-vector<hotellisting> dataStore::GetCruisesInLoc(string loc, string city) {
-
 }
 vector<hotellisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
 
