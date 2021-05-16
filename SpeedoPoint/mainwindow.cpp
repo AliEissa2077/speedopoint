@@ -4,6 +4,7 @@
 #include <QtDebug>
 #include <QListWidget>
 #include "qtlisting.h"
+//#include "user.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -83,6 +84,9 @@ void MainWindow::Signup() {
     //qDebug() << email;
     //qDebug() << pass;
     //qDebug() << usern;
+    //check database first
+
+    //user Newuser(usern, email, pass);
 
     // add info to database file
     // declare user

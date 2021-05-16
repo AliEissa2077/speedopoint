@@ -25,6 +25,7 @@ public:
 	void setPass(std::string pwd);
 	void changePass(std::string pwd);
 	std::string getName();
+    bool checkPass(string pass);
 	int getPoints();
 	void updatePoints(int pts);
 	void updateReservations(reservation reservation);

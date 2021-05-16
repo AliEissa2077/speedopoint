@@ -9,13 +9,24 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    datastore.cpp \
     main.cpp \
     mainwindow.cpp \
     qtlisting.cpp
 
 HEADERS += \
+    airport.h \
+    country.h \
+    cruise.h \
+    cruisecompany.h \
+    cruisereservation.h \
+    datastore.h \
+    date.h \
+    flightlisting.h \
+    hotellisting.h \
     mainwindow.h \
-    qtlisting.h
+    qtlisting.h \
+    user.h
 
 FORMS += \
     mainwindow.ui
@@ -24,3 +35,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    SpeedoPoint.pro.user
