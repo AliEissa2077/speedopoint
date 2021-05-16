@@ -12,7 +12,22 @@ hotellisting::hotellisting() {
 	pets = false;
 	roomType = "";
 }
-hotellisting::hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, std::string roomtype): hotel(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype) {
+
+hotellisting::hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype) {
+
+
 }
+
+
+
 reservation hotellisting::reserve(user acc){
+
+
+}
+
+int hotellisting::getPricePerNight() {
+    return pricePerNight;
+}
+int hotellisting::getHotelRating() {
+    return htl.getRating();
 }

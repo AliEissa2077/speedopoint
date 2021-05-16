@@ -7,7 +7,7 @@ airline::airline() {
 	pricerange = 0;
 	rating_counter = 0;
 }
-airline::airline(std::string name_, int range, int srt) : name(name_), pricerange(range), safetyrating(srt){
+airline::airline(std::string name_, int range, float srt) : name(name_), pricerange(range), safetyrating(srt){
 	rating = 0; //rating starts at 0 as no reviews yet
 	rating_counter = 0;
 } 

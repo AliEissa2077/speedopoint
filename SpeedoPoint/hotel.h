@@ -16,8 +16,9 @@ private:
 	int rating_counter;
 public:
 	hotel();
-    hotel(std::string name_, class country ctry, int index, int range, bool pool_);
+    hotel(std::string name_, country c, int index, int range, bool pool_);
 	void updateRating(float rt);
+    int getRating();
 };
 
 #endif HOTEL_H

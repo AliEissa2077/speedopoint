@@ -9,10 +9,15 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    airline.cpp \
     datastore.cpp \
+    hotel.cpp \
+    hotellisting.cpp \
     main.cpp \
     mainwindow.cpp \
-    qtlisting.cpp
+    qtlisting.cpp \
+    uimanager.cpp \
+    user.cpp
 
 HEADERS += \
     airline.h \

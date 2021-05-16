@@ -8,7 +8,7 @@ hotel::hotel() {
 	pool = false;
 	rating_counter = 0;
 }
-hotel::hotel(std::string name_, country ctry, int index,int range, bool pool_) : name(name_), country(ctry), cityIndex(index), priceRange(range), pool(pool_){
+hotel::hotel(std::string name_, country c, int index,int range, bool pool_) : name(name_), ctry(c), cityIndex(index), priceRange(range), pool(pool_){
 	rating = 0;
 	rating_counter = 0;
 }
@@ -17,4 +17,8 @@ void hotel::updateRating(float rt) {
 	float new_total_rating = total_rating + rt;
 	rating_counter++;
 	rating = new_total_rating / rating_counter;
+}
+
+int hotel::getRating() {
+    return rating;
 }

@@ -9,7 +9,7 @@ user::user() {
 user::user(std::string usrname, std::string pwd, std::string email_) : username(usrname), password(pwd), email(email_) {
 	points = 0;
 	wallet new_wallet(0);
-	wallet = new_wallet;
+    wallt = new_wallet;
 }
 void user::setName(std::string usrname) {
 	username = usrname;

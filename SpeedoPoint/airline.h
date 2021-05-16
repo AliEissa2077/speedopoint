@@ -13,7 +13,7 @@ private:
 	int rating_counter;
 public:
 	airline();
-	airline(std::string name_, int range, float srt); 
+    airline(std::string name_, int range, float srt);
 	void setRating(float rt, int num);
 	void setSRating(float srt);
 	void setRange(int range);
@@ -22,7 +22,7 @@ public:
 	int getSRating();
 	int getRange();
 	std::string getName();
-	void updateRating(int rt); //updates rating after user gives review
+    void updateRating(float rt); //updates rating after user gives review
 };
 
 #endif AIRLINE_H
