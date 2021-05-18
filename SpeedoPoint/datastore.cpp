@@ -51,6 +51,9 @@ void dataStore::sortRecurrF(Node<flightlisting>* n) {
         if (curr->data.getAirlineRating() < n->data.getAirlineRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
+        if (curr->data.getFlightTime() > n->data.getFlightTime()) {
+            n->DistRankIndex = curr->DistRankIndex  - 1;
+        }
 
     }
     sortRecurrF(n->next);

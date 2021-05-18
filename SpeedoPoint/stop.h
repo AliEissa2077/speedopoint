@@ -11,9 +11,10 @@ private:
 	stop* next;
     airline airlne;
 	date time;
+
 public:
 	stop();
-    stop(country locatiuon, int index, airline airl, date d);
+    stop(country location, int index, airline airl, date d);
     void add_stop(country locatiuon, int index, airline airl, date d);
 };
 
