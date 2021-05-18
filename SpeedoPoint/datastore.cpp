@@ -51,6 +51,9 @@ void dataStore::sortRecurrF(Node<flightlisting>* n) {
         if (curr->data.getAirlineRating() < n->data.getAirlineRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
+        if (curr->data.CalculateFlightDur() > n->data.CalculateFlightDur()) {
+            n->DistRankIndex = curr->DistRankIndex  - 1;
+        }
 
     }
     sortRecurrF(n->next);
@@ -66,6 +69,9 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
 
+    }
+    if (n->next == NULL) {
+        return;
     }
     sortRecurrC(n->next);
 }
