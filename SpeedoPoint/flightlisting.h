@@ -31,6 +31,8 @@ public:
     country getDepCountry();  // makes a new country objects with country name and one city in the vector (the airport city loc) and returns it
     country getArrCountry();  // +1
 
+    bool verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive);
+
 };
 
 

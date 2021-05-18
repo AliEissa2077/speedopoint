@@ -36,8 +36,17 @@ stop::stop(country location, int index, airline airl, date d)
 	cityIndex = index;
     airlne = airl;
 	time = d;
+    next = NULL;
 }
 
+void stop::add_stop(country location, int index, airline airl, date d) {
+    stop* newone = new stop(location, index, airl, d);
+    stop* curr = this;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = newone;
+}
 
 
 
