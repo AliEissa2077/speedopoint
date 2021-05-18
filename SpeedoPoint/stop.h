@@ -8,14 +8,19 @@ class stop {
 private:
 	country loc;
 	int cityIndex;
-	stop* next;
+
     airline airlne;
 	date time;
 
 public:
+    stop* next;
 	stop();
     stop(country location, int index, airline airl, date d);
     void add_stop(country locatiuon, int index, airline airl, date d);
+    date getTime();
+    airline getAirline();
+    int getIndex();
+    country getLoc();
 
 
 };

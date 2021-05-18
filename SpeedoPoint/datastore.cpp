@@ -132,9 +132,26 @@ vector<hotellisting> dataStore::GetFlightsInLoc(string locdep, string citydep, s
 float flightlisting::CalculateFlightDur() {
     return _CalculateFlightDur(stops);
 }
-float flightlisting::_CalculateFlightDur(stop* stp) {
-    if (stp ==NULL) {
-        return 0;
+
+/* FOR FLIGHTLISTING CPP
+float subtract(date d, date f) {
+    float var1 = 0;
+        var1 += d.day*24;
+        var1 += d.hour;
+        var1 += d.minute/60.0;
+
+        float var2 = f.day*24 + f.hour + f.minute / 60.0;
+        cout << var1;
+        cout <<endl;
+        return var2 - var1;
+}
+
+
+float _CalculateFlightDur(stop* stp) {
+    stop* last = stp;
+    while (last->next != NULL) {
+        last = last->next;
     }
-    return abs(_CalculateFlightDur(stp->next) - stp->time);
+    return abs(subtract(stp->getTime(), last->getTime()));
 } //recursive
+*/

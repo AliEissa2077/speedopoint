@@ -7,23 +7,23 @@
 
 
 
-country stop::getloc()
+country stop::getLoc()
 {
 	return loc;
 
 }
 
-int stop::getindex()
+int stop::getIndex()
 {
 	return cityIndex;
 }
 
-airline stop::getairl()
+airline stop::getAirline()
 {
-	reutrn airairline;
+    return airlne;
 }
 
-date stop::getd()
+date stop::getTime()
 {
 	return time;
 }
@@ -34,14 +34,10 @@ stop::stop(country location, int index, airline airl, date d)
 
 	loc = location;
 	cityIndex = index;
-	airline = airl;
+    airlne = airl;
 	time = d;
 }
 
 
 
 
-
-
-
-#endif STOP_H
