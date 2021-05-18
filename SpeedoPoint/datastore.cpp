@@ -128,3 +128,13 @@ vector<hotellisting> dataStore::GetCruisesInLoc(string loc, string city) {
 vector<hotellisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
 
 }
+
+float flightlisting::CalculateFlightDur() {
+    return _CalculateFlightDur(stops);
+}
+float flightlisting::_CalculateFlightDur(stop* stp) {
+    if (stp ==NULL) {
+        return 0;
+    }
+    return abs(_CalculateFlightDur(stp->next) - stp->time);
+} //recursive

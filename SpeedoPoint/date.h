@@ -13,6 +13,14 @@ private:
 public:
 	date();
 	date(int d, int m, int y, int h, int min);
+    float operator-(float inp) {
+        float var1 = 0;
+        var1 += day*24;
+        var1 += hour;
+        var1 += minute/60;
+        return inp - var1;
+    }
+
 };
 
 
