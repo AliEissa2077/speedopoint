@@ -16,6 +16,8 @@ public:
 	stop();
     stop(country location, int index, airline airl, date d);
     void add_stop(country locatiuon, int index, airline airl, date d);
+
+
 };
 
 #endif STOP_H
