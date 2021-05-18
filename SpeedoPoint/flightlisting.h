@@ -28,6 +28,8 @@ public:
     int getAirlineRating();
     int CalculateFlightDur();
     int _CalculateFlightDur(stop* stp); //recursive
+    country getDepCountry();  // makes a new country objects with country name and one city in the vector (the airport city loc) and returns it
+    country getArrCountry();  // +1
 
 };
 
