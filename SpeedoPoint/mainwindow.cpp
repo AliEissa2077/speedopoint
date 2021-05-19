@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     MainWindow::findChild<QFrame *>("Listings")->raise();
 
+    MainWindow::findChild<QFrame *>("loginFail")->setEnabled(false); // loginfail
+
 
     QtListing *listtest = new QtListing();  // adding an element to the list
     MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
@@ -65,11 +67,21 @@ void MainWindow::Login() {
     email = MainWindow::findChild<QLineEdit *>("EmailEntryLogin")->text();
     pass = MainWindow::findChild<QLineEdit *>("PasswordEntryLogin")->text();
 
+    bool verified = false;
     //qDebug() << email;
     //qDebug() << pass;
 
     // check with users database file
     // declare user as the database one
+    //*user temp = user found;
+
+    if (verified) {
+        MainWindow::findChild<QFrame *>("Listings")->raise();
+        //mainUser = temp;
+    }
+    else {
+        MainWindow::findChild<QFrame *>("loginFail")->setEnabled(true);
+    }
 
 }
 
@@ -90,6 +102,8 @@ void MainWindow::Signup() {
 
     // add info to database file
     // declare user
+
+    MainWindow::findChild<QFrame *>("Listings")->raise();
 
 }
 
