@@ -10,7 +10,9 @@ void payment::showInvoice()
 {
 
 }
+payment::payment() {
 
+}
 
 
 payment::payment(float amt, bool pymtType, date pytDate, user* user_)

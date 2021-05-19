@@ -134,10 +134,20 @@ void MainWindow::countryChange2(const QString &text) {
 }
 
 void MainWindow::DisplayFlights() {
-    vector<flightlisting> mylist = progData.GetFlightsInLoc(   ,   ,   ,   )
-    QtListing *listtest = new QtListing();  // adding an element to the list
-    MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-    MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+    QComboBox *ctrySelect = MainWindow::findChild<QComboBox *>("FlightFrom");
+    QComboBox *citydepselect = MainWindow::findChild<QComboBox *>("FromCitySelect");
+    QComboBox *arrctrySelect = MainWindow::findChild<QComboBox *>("FlightTo");
+    QComboBox *cityarrselect = MainWindow::findChild<QComboBox *>("ToCitySelect");
+
+    vector<flightlisting> mylist = progData.GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString());
+
+    for (int i = 0; i < mylist.size(); i++) {
+        QtListing *listtest = new QtListing(mylist[i]);  // adding an element to the list
+        MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
+        MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+    }
+
+
 }
 
 MainWindow::~MainWindow()

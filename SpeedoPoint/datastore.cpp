@@ -61,6 +61,7 @@ void dataStore::sortRecurrF(Node<flightlisting>* n) {
     }
     sortRecurrF(n->next);
 }
+/*  TEMPORARY COMMENT
 void dataStore::sortRecurrC(Node<cruise>* n) {
     Node<cruise>* curr = n;
     while (n->prev != NULL) {
@@ -78,7 +79,7 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
     }
     sortRecurrC(n->next);
 }
-
+*/
 
 vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
     Node<hotellisting>* curr = HotelListingsHead;

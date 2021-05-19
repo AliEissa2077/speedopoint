@@ -1,6 +1,8 @@
 #include "airport.h"
 
+airport::airport(){
 
+}
 
 country airport::getCountry()
 {

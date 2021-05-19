@@ -1,8 +1,10 @@
 debug/airline.o
 debug/airport.o
+debug/country.o
 debug/cruiseReservation.o
 debug/cruiseReservation.o
 debug/datastore.o
+debug/date.o
 debug/flightlisting.o
 debug/hotel.o
 debug/hotellisting.o
