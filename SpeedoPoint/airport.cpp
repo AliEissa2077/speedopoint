@@ -2,7 +2,7 @@
 
 
 
-/*void airport::getcountry()
+void airport::getcountry()
 {
 	return country;
 }
@@ -10,7 +10,7 @@
 int airport::getIndex()
 {
 	return index;
-}*/
+}
 
 
 
