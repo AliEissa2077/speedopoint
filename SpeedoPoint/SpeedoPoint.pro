@@ -12,6 +12,7 @@ SOURCES += \
     airline.cpp \
     airport.cpp \
     cruiseReservation.cpp \
+    cruiseReservation.cpp \
     datastore.cpp \
     flightlisting.cpp \
     hotel.cpp \
@@ -19,10 +20,10 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     payment.cpp \
+    payment.cpp \
     qtlisting.cpp \
     reservation.cpp \
     stop.cpp \
-    uimanager.cpp \
     user.cpp \
     wallet.cpp
 

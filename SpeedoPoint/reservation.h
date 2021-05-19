@@ -19,7 +19,9 @@ private:
     user* acc;
 public:
 	reservation();
-    reservation(hotellisting* list, date start, int num, payment payment_, user account);
+    reservation(hotellisting* list, date start, int num, payment payment_, user* account);
+
+    hotellisting* getListing();
 };
 
 

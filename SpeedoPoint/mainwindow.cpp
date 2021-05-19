@@ -95,7 +95,7 @@ void MainWindow::Signup() {
 
 }
 void countryChange1(const QString &text) {
-
+    qDebug() << "test " << text;
 }
 
 MainWindow::~MainWindow()

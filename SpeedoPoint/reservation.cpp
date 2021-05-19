@@ -1,20 +1,20 @@
 #include "reservation.h"
+#include "user.h"
 
 
 
 
-
-void reservation::getlisting()
+hotellisting* reservation::getListing()
 {
 	return listing;
 }
 
-reservation::reservation(hotellisting* list, date start, int num, payment payment_, user account)
+reservation::reservation(hotellisting* list, date start, int num, payment payment_, user* account)
 {
 	listing = list;
 	starting = start;
 	numDays = num;
-	payment = payment_;
+    paymnt = payment_;
 	acc = account;
 }
 

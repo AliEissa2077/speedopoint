@@ -22,39 +22,39 @@ flightticket reserve(user acc)
 
 }
 
-int getPriceperTraveller()
+int flightlisting::getPriceperTraveller()
 {
-	return price;
+    return pricepertraveller;
 }
 
-int getAirlineRating()
-{
-
-}
-
-float CalculateFlightDur()
+int flightlisting::getAirlineRating()
 {
 
 }
 
-float _CalculateFlightDur(stop* stp) //recursive
+float flightlisting::CalculateFlightDur()
+{
+
+}
+
+float flightlisting::_CalculateFlightDur(stop* stp) //recursive
 {
 
 
 }
 
-country getDepCountry() // makes a new country objects with country name and one city in the vector (the airport city loc) and returns it
+country flightlisting::getDepCountry() // makes a new country objects with country name and one city in the vector (the airport city loc) and returns it
 {
 
 }
 
-country getArrCountry() // +1
+country flightlisting::getArrCountry() // +1
 {
 
 }
 
 
-bool verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive)
+bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive)
 {
 
 }

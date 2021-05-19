@@ -2,14 +2,14 @@
 
 
 
-void airport::getcountry()
+country airport::getCountry()
 {
-	return country;
+    return ctry;
 }
 
 int airport::getIndex()
 {
-	return index;
+    return cityIndex;
 }
 
 
