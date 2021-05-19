@@ -17,6 +17,7 @@ SOURCES += \
     datastore.cpp \
     date.cpp \
     flightlisting.cpp \
+    flightticket.cpp \
     hotel.cpp \
     hotellisting.cpp \
     main.cpp \
