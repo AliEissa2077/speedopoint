@@ -9,7 +9,7 @@ private:
 public:
 	wallet();
 	wallet(float amt); // amt -> amount to initalize wallet with
-	float getAmoount();
+    float getAmount();
 	void deposit(float amt);
 	void pay(float amt);
 	int redeem();

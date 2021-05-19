@@ -1,10 +1,11 @@
 debug/airline.o
+debug/airport.o
 debug/datastore.o
 debug/hotel.o
 debug/hotellisting.o
 debug/main.o
 debug/mainwindow.o
 debug/qtlisting.o
-debug/uimanager.o
+debug/stop.o
 debug/user.o
 debug/moc_mainwindow.o

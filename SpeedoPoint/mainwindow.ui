@@ -315,7 +315,7 @@
       <widget class="QComboBox" name="FlighFrom">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>150</x>
          <y>20</y>
          <width>131</width>
          <height>31</height>
@@ -425,9 +425,9 @@
       <widget class="QComboBox" name="FlightTo">
        <property name="geometry">
         <rect>
-         <x>550</x>
+         <x>510</x>
          <y>20</y>
-         <width>131</width>
+         <width>101</width>
          <height>31</height>
         </rect>
        </property>
@@ -602,7 +602,7 @@
       <widget class="QComboBox" name="SortBy">
        <property name="geometry">
         <rect>
-         <x>72</x>
+         <x>70</x>
          <y>80</y>
          <width>81</width>
          <height>22</height>
@@ -628,6 +628,26 @@
          <string>Distance</string>
         </property>
        </item>
+      </widget>
+      <widget class="QComboBox" name="FromCitySelect">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>20</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="ToCitySelect">
+       <property name="geometry">
+        <rect>
+         <x>630</x>
+         <y>20</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="Hotels">
@@ -1057,7 +1077,7 @@
      <x>0</x>
      <y>0</y>
      <width>1098</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
