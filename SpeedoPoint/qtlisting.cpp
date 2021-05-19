@@ -36,19 +36,19 @@ QtListing::QtListing()
 
 
 }
-QtListing::QtListing(flightlisting* inp)
+QtListing::QtListing(flightlisting inp)
 {
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getAirline().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepCityIndex()]  + " " + inp->getDepCountry().getName() + " To " + inp->getArrCountry().getCities()[inp->getArrCityIndex()]  + " " + inp->getArrCountry().getName());
+    QString secondaryt = QString::fromStdString(inp.getDepCountry().getCities()[inp.getDepCityIndex()]  + " " + inp.getDepCountry().getName() + " To " + inp.getArrCountry().getCities()[inp.getArrCityIndex()]  + " " + inp.getArrCountry().getName());
 
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString tertia = QString::fromStdString("Dep time:" + inp->getDepTime() + "Arrival time:" + inp->getArrTime());
+    QString tertia = QString::fromStdString("Dep time:" + inp.getDepTime() + "Arrival time:" + inp.getArrTime());
 
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
