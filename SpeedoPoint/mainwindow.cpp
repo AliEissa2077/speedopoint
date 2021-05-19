@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QPushButton *test = MainWindow::findChild<QPushButton *>("LoginSwitch");
     QPushButton *test2 = MainWindow::findChild<QPushButton *>("SignupSwitch");
+
     connect(test, SIGNAL(released()), this, SLOT(SwitchSignup()));
     connect(test2, SIGNAL(released()), this, SLOT(SwitchLogin()));
 
@@ -36,7 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //QtListing *listtest = new QtListing(MainWindow::findChild<QListWidget *>("FlightListings"));
 
-
+    QComboBox *fromcountrys = MainWindow::findChild<QComboBox *>("FlightFrom");
+    connect(fromcountrys, SIGNAL(QComboBox::currentTextChanged(const QString &text)), this, SLOT(countryChange1(const QString &text)));
 }
 
 
@@ -104,6 +106,9 @@ void MainWindow::Signup() {
     // declare user
 
     MainWindow::findChild<QFrame *>("Listings")->raise();
+
+}
+void countryChange1(const QString &text) {
 
 }
 

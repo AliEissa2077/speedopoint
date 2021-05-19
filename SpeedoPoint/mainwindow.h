@@ -26,5 +26,8 @@ private slots:
     void SwitchSignup();
     void Login();
     void Signup();
+
+    void countryChange1(const QString &text);
+
 };
 #endif // MAINWINDOW_H

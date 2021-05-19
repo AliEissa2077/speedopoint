@@ -11,14 +11,20 @@ CONFIG += c++11
 SOURCES += \
     airline.cpp \
     airport.cpp \
+    cruiseReservation.cpp \
     datastore.cpp \
+    flightlisting.cpp \
     hotel.cpp \
     hotellisting.cpp \
     main.cpp \
     mainwindow.cpp \
+    payment.cpp \
     qtlisting.cpp \
+    reservation.cpp \
     stop.cpp \
-    user.cpp
+    uimanager.cpp \
+    user.cpp \
+    wallet.cpp
 
 HEADERS += \
     airline.h \
