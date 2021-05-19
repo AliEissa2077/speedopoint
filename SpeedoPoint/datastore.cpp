@@ -119,6 +119,7 @@ vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool poo
         curr = curr->next;
     }
 }
+/*  TEMPORARY COMMENT
 vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
     Node<cruise>* curr = CruiseListingsHead;
     vector<cruise> output;
@@ -129,6 +130,7 @@ vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
         curr = curr->next;
     }
 }
+*/
 vector<flightlisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
     Node<flightlisting>* curr = FlightListingsHead;
     vector<flightlisting> output;
