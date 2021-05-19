@@ -6,6 +6,7 @@
 #include "hotellisting.h"
 #include "flightlisting.h"
 #include "cruise.h"
+#include "filesystem.h"
 
 using namespace std;
 
