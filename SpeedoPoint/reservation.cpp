@@ -9,6 +9,12 @@ hotellisting* reservation::getListing()
 	return listing;
 }
 
+reservation::reservation()
+{
+
+}
+
+
 reservation::reservation(hotellisting* list, date start, int num, payment payment_, user* account)
 {
 	listing = list;

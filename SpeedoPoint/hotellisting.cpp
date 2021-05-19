@@ -1,7 +1,8 @@
 #include "hotellisting.h"
 #include "date.h"
 
-hotellisting::hotellisting() {
+hotellisting::hotellisting()
+{
 	cityIndex = -1;
 	area = -1;
 	wifi = false;
@@ -13,24 +14,51 @@ hotellisting::hotellisting() {
 	roomType = "";
 }
 
-hotellisting::hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype) {
-
+hotellisting::hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype)
+{
+    htl = hot;
+    loc = location;
+    cityIndex = index;
+    area = area_;
+    wifi = wifi_;
+    bfast = breakfast;
+    person = numPeople;
+    refundable = refund;
+    dinner = dinner_;
+    pets = pet;
+    std::string roomType = roomtype;
 
 }
 
 
 
-reservation hotellisting::reserve(user acc){
+reservation hotellisting::reserve(user acc)
+{
+  /* 
 
+    while (curr->next != NULL)
+    {
+        curr = curr->next;
+    }
+    reservation* result = new hotellisting(adults, children);
+
+    return reservation;
+
+  */
 
 }
 
-bool hotellisting::verifyLoc(string l, string city) {
-    if (l.compare(loc.getName()) == 0) {
-        if (city.length() > 1) {
+bool hotellisting::verifyLoc(string l, string city)
+{
+    if (l.compare(loc.getName()) == 0)
+    {
+        if (city.length() > 1) 
+        {
             vector<string> list = loc.getCities();
-            for (int i = 0; i < list.size(); i++) {
-                if (city.compare(list[i]) == 0) {
+            for (int i = 0; i < list.size(); i++) 
+            {
+                if (city.compare(list[i]) == 0) 
+                {
                     return true;
                 }
             }
@@ -41,33 +69,43 @@ bool hotellisting::verifyLoc(string l, string city) {
     else { return false;}
 }
 
-int hotellisting::getPricePerNight() {
+int hotellisting::getPricePerNight()
+{
     return pricePerNight;
 }
-int hotellisting::getHotelRating() {
+int hotellisting::getHotelRating() 
+{
     return htl.getRating();
 }
-hotel hotellisting::getHotel() {
+hotel hotellisting::getHotel()
+{
     return htl;
 }
-bool hotellisting::getPets() {
+bool hotellisting::getPets()
+{
     return pets;
 }
-bool hotellisting::getDinner() {
+bool hotellisting::getDinner()
+{
     return dinner;
 }
-bool hotellisting::getRefundable() {
+bool hotellisting::getRefundable()
+{
     return refundable;
 }
-int hotellisting::getMaxPersons() {
+int hotellisting::getMaxPersons() 
+{
     return person;
 }
-bool hotellisting::getBfast() {
+bool hotellisting::getBfast() 
+{
     return bfast;
 }
-bool hotellisting::getWifi() {
+bool hotellisting::getWifi() 
+{
     return wifi;
 }
-int hotellisting::getArea() {
+int hotellisting::getArea() 
+{
     return area;
 }
