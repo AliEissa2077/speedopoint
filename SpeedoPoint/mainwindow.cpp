@@ -68,6 +68,9 @@ MainWindow::MainWindow(QWidget *parent)
     QComboBox *cruisectry = MainWindow::findChild<QComboBox *>("CruiseCountry");
     connect(cruisectry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeHotel(QString, "CruiseCitySelect")));
 
+    QPushButton *detailsback = MainWindow::findChild<QPushButton *>("DetailsBack");
+    connect(detailsback, SIGNAL(released()), this, SLOT(DetailsBack()));
+
 }
 
 void MainWindow::SwitchLogin() {
@@ -282,8 +285,8 @@ void MainWindow::DisplayHotels() {
                 }
             }
             QtListing *listtest = new QtListing(min->data);  // adding an element to the list
-            MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+            MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
 
             mylist.erase(mylist.begin() + index);
         }
@@ -291,8 +294,8 @@ void MainWindow::DisplayHotels() {
     else {
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
-            MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+            MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
     }
 }
@@ -335,8 +338,8 @@ void MainWindow::DisplayCruises() {
                 }
             }
             QtListing *listtest = new QtListing(min->data);  // adding an element to the list
-            MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+            MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
 
             mylist.erase(mylist.begin() + index);
         }
@@ -344,10 +347,14 @@ void MainWindow::DisplayCruises() {
     else {
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
-            MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+            MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
     }
+}
+
+void MainWindow::DetailsBack() {
+    MainWindow::findChild<QFrame *>("Listings")->raise();
 }
 
 

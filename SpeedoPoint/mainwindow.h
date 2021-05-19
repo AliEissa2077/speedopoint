@@ -37,7 +37,8 @@ private slots:
     void DisplayCruises();
 
     void SortFlights(const QString &text);
-    void SortHotels(const QString &text)
+    void SortHotels(const QString &text);
+    void DetailsBack();
 
 };
 #endif // MAINWINDOW_H

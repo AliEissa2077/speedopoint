@@ -9,7 +9,7 @@
 #include <QLayout>
 #include "flightlisting.h"
 
-class QtListing
+class QtListing : public QObject
 {
 public:
     QListWidgetItem* item;
@@ -22,6 +22,9 @@ public:
     QtListing(QWidget* source);
     QListWidgetItem* getitem();
     QWidget *getwidget();
+
+private slots:
+    void detailsButton();
 };
 
 #endif // QTLISTING_H

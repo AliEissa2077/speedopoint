@@ -57,6 +57,9 @@ QtListing::QtListing(flightlisting inp)
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
     testbut->setText("Details");
+
+    connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
+
     QHBoxLayout *widgetLayout = new QHBoxLayout();
     widgetLayout->addWidget(widgetText);
     widgetLayout->addSpacerItem(spacer);
@@ -94,6 +97,49 @@ QtListing::QtListing(hotellisting inp)
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
     testbut->setText("Details");
+
+    connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
+
+    QHBoxLayout *widgetLayout = new QHBoxLayout();
+    widgetLayout->addWidget(widgetText);
+    widgetLayout->addSpacerItem(spacer);
+    widgetLayout->addWidget(secondarytxt);
+    widgetLayout->addSpacerItem(spacer1);
+    widgetLayout->addWidget(tertiarytxt);
+    widgetLayout->addSpacerItem(spacer2);
+    widgetLayout->addSpacerItem(spacer2);
+
+    widgetLayout->addWidget(testbut, Qt::AlignRight);
+    widgetLayout->addStretch();
+    //widgetLayout->addStretch();
+    widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
+    widget->setLayout(widgetLayout);
+    temp->setSizeHint(widget->sizeHint());
+    item = temp;
+    wid = widget;
+}
+
+QtListing::QtListing(cruise inp)
+{
+    QListWidgetItem* temp = new QListWidgetItem();
+    QWidget *widget = new QWidget();
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getHotel().getName())); // primary text
+    QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    QString secondaryt = QString::fromStdString(inp.getLoc().getCities()[inp.getCityIndex()]  + " " + inp.getLoc().getName() + " Price: " + to_string(inp.getPricePerNight()) + "LE ");
+
+    QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
+    QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    QString tertia = QString::fromStdString("Rating:" + to_string(inp.getHotelRating()));
+
+    QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
+    QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QPushButton *testbut = new QPushButton();
+    testbut->setText("Details");
+
+    connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
+
     QHBoxLayout *widgetLayout = new QHBoxLayout();
     widgetLayout->addWidget(widgetText);
     widgetLayout->addSpacerItem(spacer);
@@ -119,6 +165,15 @@ QtListing::QtListing(QWidget* source)
     //butTest = new QPushButton(frame);
     //butTest->move(50, 10);
     //butTest->setGeometry(10, 10, 50, 10);
+
+
+}
+
+void QtListing::detailsButton() {
+    //set data to text boxes
+
+
+    QtListing::findChild<QFrame *>("DetailsPage")->raise();
 
 
 }
