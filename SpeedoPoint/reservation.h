@@ -14,12 +14,14 @@ private:
     hotellisting* listing;
 	date starting;
 	int numDays;
+    int adults;
+    int children;
     hotel htl;
     payment paymnt;
     user* acc;
 public:
 	reservation();
-    reservation(hotellisting* list, date start, int num, payment payment_, user* account);
+    reservation(hotellisting* list, date start, int num, payment payment_, user* account, int adult, int child);
 
     hotellisting* getListing();
 };

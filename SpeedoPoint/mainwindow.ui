@@ -288,7 +288,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -1320,7 +1320,7 @@
       <string>SpeedOPoint</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="BackButton">
+    <widget class="QPushButton" name="DetailsBack">
      <property name="geometry">
       <rect>
        <x>20</x>

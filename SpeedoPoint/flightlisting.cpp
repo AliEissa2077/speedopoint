@@ -1,4 +1,5 @@
 #include "flightlisting.h"
+#include <QMessageBox>
 
 flightlisting::flightlisting() {
 
@@ -19,14 +20,32 @@ flightlisting::flightlisting(airline air, stop* stp, int sptnum, date departure,
 
 }
 
-flightticket* flightlisting::reserve(user* acc, int adults, int children, bool oneway, bool refund)
+flightticket* flightlisting::reserve(user* acc, int adults, int children, bool oneway, bool refund, date d)
 {
+    QMessageBox* msgbx = new QMessageBox(0);
+
+    QMessageBox::StandardButton reply;
+    msgbx->exec();
+
+    int deduct = 0;
+    reply = QMessageBox::question(msgbx, "Redeem", "Do you want to Redeem your " + QString::number(acc->getPoints()) + " points?",
+        QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        deduct = acc->redeem();
+    }
+
+    if (deduct > (pricepertraveller*adults + pricepertraveller/2 * children)) {
+        deduct = (pricepertraveller*adults + pricepertraveller/2 * children);
+    }
+
     stop * curr = stops;
     while (curr->next != NULL) {
         curr = curr->next;
     }
-    flightticket* result; // = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refund, acc, CalculateFlightDur());
+    payment newp((pricepertraveller*adults + pricepertraveller/2 * children)- deduct, 0, d, acc);
+    flightticket* result = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refund, acc, CalculateFlightDur(), newp);
 
+    acc->updatePoints(((pricepertraveller*adults + pricepertraveller/2 * children) - deduct) / 4);
     return result;
 }
 

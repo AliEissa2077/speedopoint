@@ -15,12 +15,14 @@ reservation::reservation()
 }
 
 
-reservation::reservation(hotellisting* list, date start, int num, payment payment_, user* account)
+reservation::reservation(hotellisting* list, date start, int num, payment payment_, user* account, int adult, int child)
 {
 	listing = list;
 	starting = start;
 	numDays = num;
     paymnt = payment_;
 	acc = account;
+    adults = adult;
+    children = child;
 }
 

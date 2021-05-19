@@ -1,5 +1,6 @@
 #include "hotellisting.h"
 #include "date.h"
+#include <QMessageBox>
 
 hotellisting::hotellisting()
 {
@@ -32,19 +33,36 @@ hotellisting::hotellisting(hotel hot, country location, int index, int area_, bo
 
 
 
-reservation hotellisting::reserve(user acc)
+reservation* hotellisting::reserve(user* acc, date d, int days, int adults, int children)
 {
-  /* 
+    /*QMessageBox Msgbox;
+    Msgbox.setText("would you like to redeem your "+acc->getPoints() + " Points?");
+    Msgbox.exec();*/
 
-    while (curr->next != NULL)
-    {
-        curr = curr->next;
+    QMessageBox* msgbx = new QMessageBox(0);
+
+    QMessageBox::StandardButton reply;
+    msgbx->exec();
+
+    int deduct = 0;
+    reply = QMessageBox::question(msgbx, "Redeem", "Do you want to Redeem your " + QString::number(acc->getPoints()) + " points?",
+        QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        deduct = acc->redeem();
     }
-    reservation* result = new hotellisting(adults, children);
 
-    return reservation;
+    if (deduct > pricePerNight*days + 1) {
+        deduct = pricePerNight*days + 1;
+    }
+    payment newp(pricePerNight*days + 1 - deduct, 0, d, acc);
 
-  */
+    reservation* result = new reservation(this, d, days, newp, acc, adults, children);
+
+    acc->updatePoints((pricePerNight*days + 1 - deduct) / 4);
+    return result;
+
+
 
 }
 

@@ -44,3 +44,6 @@ bool user::checkPass(string pass) {
     }
     return false;
 }
+int user::redeem() {
+    return wallt.redeem();
+}

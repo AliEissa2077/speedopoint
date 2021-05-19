@@ -22,11 +22,11 @@ private:
 	std::string ticketType;
 	bool refundable;
     user* acc;
-	payment payment;
+    payment paymnt;
 	int flight_duration;
 public:
 	flightticket();
-    flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user* account, float dur);
+    flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user* account, float dur, payment pay);
 };
 
 
