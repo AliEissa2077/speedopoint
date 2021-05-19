@@ -3,13 +3,14 @@
 #define STOP_H
 #include "country.h"
 #include "airline.h"
+#include "airport.h"
 #include "date.h"
 class stop {
 private:
 	country loc;
 	int cityIndex;
-
-    airline airlne;
+    airport aPort;
+    //airline airlne;
 	date time;
 
 public:
@@ -18,7 +19,7 @@ public:
     stop(country location, int index, airline airl, date d);
     void add_stop(country locatiuon, int index, airline airl, date d);
     date getTime();
-    airline getAirline();
+    airport getAirport();
     int getIndex();
     country getLoc();
 

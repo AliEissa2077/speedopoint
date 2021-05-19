@@ -1,5 +1,5 @@
 #include "datastore.h"
-/*
+
 dataStore::dataStore()
 {
     //import from file or data base and store into vector and linked lists
@@ -128,7 +128,7 @@ vector<hotellisting> dataStore::GetCruisesInLoc(string loc, string city) {
 vector<hotellisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
 
 }
-
+/*
  FOR FLIGHTLISTING CPP
 float flightlisting::CalculateFlightDur() {
     return _CalculateFlightDur(stops);

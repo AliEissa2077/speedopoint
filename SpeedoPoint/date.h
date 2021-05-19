@@ -20,6 +20,11 @@ public:
         var1 += minute/60;
         return inp - var1;
     }
+    int getYear();
+    int getMonth();
+    int getDay();
+    int getHour();
+    int getMinute();
 
 };
 

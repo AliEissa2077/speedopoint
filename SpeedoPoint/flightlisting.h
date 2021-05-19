@@ -15,7 +15,7 @@ private:
 	date dep;
 	date arr;
 	int pricepertraveller;
-	std::string cabin;
+    std::string cabin; //business, economy
 	std::string plane;
 	int carronW;
 	int checkedBaggageW;
@@ -23,13 +23,14 @@ private:
 public:
 	flightlisting();
     flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice);
-	flightticket reserve(user acc);
+    flightticket* reserve(user* acc, int adults, int children, bool oneway, bool refund);
     int getPriceperTraveller();
     int getAirlineRating();
     float CalculateFlightDur();
     float _CalculateFlightDur(stop* stp); //recursive
     country getDepCountry();  // makes a new country objects with country name and one city in the vector (the airport city loc) and returns it
     country getArrCountry();  // +1
+    float subtract(date d, date f);
 
     bool verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive);
 
