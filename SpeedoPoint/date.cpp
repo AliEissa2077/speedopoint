@@ -35,3 +35,11 @@ date::date(int d, int m, int y, int h, int min)
     hour = h;
 
 }
+
+date::date(int d, int m, int y)
+{
+    day = d;
+    month = m;
+    year = y;
+
+}
