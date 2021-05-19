@@ -1,5 +1,7 @@
 #include "qtlisting.h"
 #include "flightlisting.h"
+#include "hotellisting.h"
+#include "cruise.h"
 
 
 QtListing::QtListing()
@@ -36,6 +38,7 @@ QtListing::QtListing()
 
 
 }
+
 QtListing::QtListing(flightlisting inp)
 {
     QListWidgetItem* temp = new QListWidgetItem();
@@ -71,10 +74,43 @@ QtListing::QtListing(flightlisting inp)
     temp->setSizeHint(widget->sizeHint());
     item = temp;
     wid = widget;
+}
 
+QtListing::QtListing(hotellisting inp)
+{
+    QListWidgetItem* temp = new QListWidgetItem();
+    QWidget *widget = new QWidget();
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getHotel().getName())); // primary text
+    QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+    QString secondaryt = QString::fromStdString(inp.getLoc().getCities()[inp.getCityIndex()]  + " " + inp.getLoc().getName() + " Price: " + to_string(inp.getPricePerNight()) + "LE ");
 
+    QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
+    QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+    QString tertia = QString::fromStdString("Rating:" + to_string(inp.getHotelRating()));
+
+    QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
+    QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QPushButton *testbut = new QPushButton();
+    testbut->setText("Details");
+    QHBoxLayout *widgetLayout = new QHBoxLayout();
+    widgetLayout->addWidget(widgetText);
+    widgetLayout->addSpacerItem(spacer);
+    widgetLayout->addWidget(secondarytxt);
+    widgetLayout->addSpacerItem(spacer1);
+    widgetLayout->addWidget(tertiarytxt);
+    widgetLayout->addSpacerItem(spacer2);
+    widgetLayout->addSpacerItem(spacer2);
+
+    widgetLayout->addWidget(testbut, Qt::AlignRight);
+    widgetLayout->addStretch();
+    //widgetLayout->addStretch();
+    widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
+    widget->setLayout(widgetLayout);
+    temp->setSizeHint(widget->sizeHint());
+    item = temp;
+    wid = widget;
 }
 
 QtListing::QtListing(QWidget* source)

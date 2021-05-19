@@ -1,6 +1,7 @@
 #include "payment.h"
 
 
+
 float payment::getValue()
 {
 	return amount;

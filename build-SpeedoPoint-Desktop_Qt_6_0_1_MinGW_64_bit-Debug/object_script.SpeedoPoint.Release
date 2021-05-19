@@ -2,15 +2,14 @@ release/airline.o
 release/airport.o
 release/country.o
 release/cruiseReservation.o
-release/cruiseReservation.o
 release/datastore.o
 release/date.o
 release/flightlisting.o
+release/flightticket.o
 release/hotel.o
 release/hotellisting.o
 release/main.o
 release/mainwindow.o
-release/payment.o
 release/payment.o
 release/qtlisting.o
 release/reservation.o

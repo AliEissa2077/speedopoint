@@ -19,6 +19,7 @@ public:
 private:
     Ui::MainWindow *ui;
     dataStore progData;
+    int sort = 0;
 
 private slots:
     void SwitchLogin();
@@ -26,9 +27,17 @@ private slots:
     void Login();
     void Signup();
 
-    void countryChange1(const QString &text);
-    void countryChange2(const QString &text);
+    void countryChange1(const QString &text, QString type);
+    void countryChange2(const QString &text, QString type);
+    void countryChangeHotel(const QString &text, QString type);
+    void countryChangeCruise(const QString &text, QString type);
+    void SortCruises(const QString &text);
     void DisplayFlights();
+    void DisplayHotels();
+    void DisplayCruises();
+
+    void SortFlights(const QString &text);
+    void SortHotels(const QString &text)
 
 };
 #endif // MAINWINDOW_H

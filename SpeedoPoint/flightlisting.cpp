@@ -25,7 +25,7 @@ flightticket* flightlisting::reserve(user* acc, int adults, int children, bool o
     while (curr->next != NULL) {
         curr = curr->next;
     }
-    flightticket* result = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refund, acc, CalculateFlightDur());
+    flightticket* result; // = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refund, acc, CalculateFlightDur());
 
     return result;
 }
