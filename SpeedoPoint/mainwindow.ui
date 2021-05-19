@@ -288,7 +288,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -686,6 +686,106 @@
          <height>21</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>Argentina</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Austria</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Bahamas</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Bahrain</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Belgium</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Bolivia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Brazil</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Canada</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Chile</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Costa Rica</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Egypt</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Estonia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Finland</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>France</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Germany </string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Greece</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Italy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Japan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Niger</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Palestine</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLineEdit" name="CityInput">
        <property name="geometry">
@@ -1077,7 +1177,7 @@
      <x>0</x>
      <y>0</y>
      <width>1098</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
