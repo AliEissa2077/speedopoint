@@ -16,8 +16,8 @@ private:
 public:
     stop* next;
 	stop();
-    stop(country location, int index, airline airl, date d);
-    void add_stop(country locatiuon, int index, airline airl, date d);
+    stop(country location, int index, airport airl, date d);
+    void add_stop(country locatiuon, int index, airport airl, date d);
     date getTime();
     airport getAirport();
     int getIndex();

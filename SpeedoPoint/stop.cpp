@@ -18,9 +18,9 @@ int stop::getIndex()
 	return cityIndex;
 }
 
-airline stop::getAirline()
+airport stop::getAirport()
 {
-    return airlne;
+    return aPort;
 }
 
 date stop::getTime()
@@ -29,17 +29,17 @@ date stop::getTime()
 }
 
 
-stop::stop(country location, int index, airline airl, date d)
+stop::stop(country location, int index, airport airl, date d)
 {
 
 	loc = location;
 	cityIndex = index;
-    airlne = airl;
+    aPort = airl;
 	time = d;
     next = NULL;
 }
 
-void stop::add_stop(country location, int index, airline airl, date d) {
+void stop::add_stop(country location, int index, airport airl, date d) {
     stop* newone = new stop(location, index, airl, d);
     stop* curr = this;
     while (curr->next != NULL) {
