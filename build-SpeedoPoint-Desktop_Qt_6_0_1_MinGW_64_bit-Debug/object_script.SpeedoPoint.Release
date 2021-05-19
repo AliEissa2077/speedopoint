@@ -1,11 +1,10 @@
 release/airline.o
-release/airport.o
 release/datastore.o
 release/hotel.o
 release/hotellisting.o
 release/main.o
 release/mainwindow.o
 release/qtlisting.o
-release/stop.o
+release/uimanager.o
 release/user.o
 release/moc_mainwindow.o

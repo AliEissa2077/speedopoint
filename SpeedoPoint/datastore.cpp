@@ -115,9 +115,9 @@ vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool poo
         curr = curr->next;
     }
 }
-vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
-    Node<cruise>* curr = CruiseListingsHead;
-    vector<cruise> output;
+vector<hotellisting> dataStore::GetCruisesInLoc(string loc, string city) {
+    Node<hotellisting>* curr = HotelListingsHead;
+    vector<hotellisting> output;
     while (curr != NULL) {
         if (curr->data.verifyLoc(loc, city)) {
             output.push_back(curr->data);
@@ -125,15 +125,8 @@ vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
         curr = curr->next;
     }
 }
-vector<flightlisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
-    Node<flightlisting>* curr = FlightListingsHead;
-    vector<flightlisting> output;
-    while (curr != NULL) {
-        if (curr->data.verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive)) {
-            output.push_back(curr->data);
-        }
-        curr = curr->next;
-    }
+vector<hotellisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
+
 }
 
 /* FOR FLIGHTLISTING CPP
