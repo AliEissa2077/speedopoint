@@ -6,6 +6,7 @@
 class wallet {
 private:
 	float amount;
+    int points;
 public:
 	wallet();
 	wallet(float amt); // amt -> amount to initalize wallet with

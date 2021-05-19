@@ -1,9 +1,5 @@
 #include "country.h"
 
-country::country()
-{
-
-}
 
 
 country::country(std::string name_, bool ban)

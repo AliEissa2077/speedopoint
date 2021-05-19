@@ -1,8 +1,10 @@
 release/airline.o
 release/airport.o
+release/country.o
 release/cruiseReservation.o
 release/cruiseReservation.o
 release/datastore.o
+release/date.o
 release/flightlisting.o
 release/hotel.o
 release/hotellisting.o

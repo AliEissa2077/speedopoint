@@ -61,6 +61,7 @@ void dataStore::sortRecurrF(Node<flightlisting>* n) {
     }
     sortRecurrF(n->next);
 }
+/*  TEMPORARY COMMENT
 void dataStore::sortRecurrC(Node<cruise>* n) {
     Node<cruise>* curr = n;
     while (n->prev != NULL) {
@@ -78,7 +79,7 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
     }
     sortRecurrC(n->next);
 }
-
+*/
 
 vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
     Node<hotellisting>* curr = HotelListingsHead;
@@ -118,6 +119,7 @@ vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool poo
         curr = curr->next;
     }
 }
+/*  TEMPORARY COMMENT
 vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
     Node<cruise>* curr = CruiseListingsHead;
     vector<cruise> output;
@@ -128,6 +130,7 @@ vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
         curr = curr->next;
     }
 }
+*/
 vector<flightlisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
     Node<flightlisting>* curr = FlightListingsHead;
     vector<flightlisting> output;

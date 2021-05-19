@@ -10,7 +10,7 @@ private:
 	bool banned;
 	std::vector<std::string> cities;
 public:
-	country();
+    country(){}
 	country(std::string name_, bool ban);
 	void addCity(std::string city);
     std::string getName();

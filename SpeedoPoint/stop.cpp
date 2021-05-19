@@ -31,7 +31,6 @@ date stop::getTime()
 
 stop::stop(country location, int index, airport airl, date d)
 {
-
 	loc = location;
 	cityIndex = index;
     aPort = airl;

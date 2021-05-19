@@ -1,11 +1,9 @@
 #include "wallet.h"
 
 
-
-
-
-
-
+wallet::wallet(float amt) {
+    amount = amt;
+}
 wallet::wallet()
 {
 	amount = 0;

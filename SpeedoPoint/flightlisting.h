@@ -21,7 +21,7 @@ private:
 	int checkedBaggageW;
 	int additionalBagPrice;
 public:
-	flightlisting();
+    flightlisting();
     flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice);
     flightticket* reserve(user* acc, int adults, int children, bool oneway, bool refund);
     int getPriceperTraveller();

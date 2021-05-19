@@ -11,10 +11,13 @@ CONFIG += c++11
 SOURCES += \
     airline.cpp \
     airport.cpp \
+    country.cpp \
     cruiseReservation.cpp \
     cruiseReservation.cpp \
     datastore.cpp \
+    date.cpp \
     flightlisting.cpp \
+    flightticket.cpp \
     hotel.cpp \
     hotellisting.cpp \
     main.cpp \
