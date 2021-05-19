@@ -16,6 +16,8 @@ public:
     QWidget* wid;
     QPushButton *butTest;
     QtListing();
+    QtListing(hotellisting inp);
+    QtListing(cruise inp);
     QtListing(flightlisting inp);
     QtListing(QWidget* source);
     QListWidgetItem* getitem();

@@ -29,6 +29,8 @@ public:
     int getPricePerNight();
     int getHotelRating();
     hotel getHotel();
+    country getLoc();
+    int getCityIndex();
     bool verifyLoc(string l, string city); // if city is empty then ignore it
     bool getPets();
     bool getDinner();

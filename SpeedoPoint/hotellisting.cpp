@@ -109,3 +109,10 @@ int hotellisting::getArea()
 {
     return area;
 }
+country hotellisting::getLoc() {
+    return loc;
+}
+int hotellisting::getCityIndex() {
+    return cityIndex;
+}
+

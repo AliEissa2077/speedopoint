@@ -6,9 +6,13 @@ dataStore::dataStore(filesystem filesystem)
     // sort indeces start as the node count
 
 
-
-
-    // load countries
+<<<<<<< HEAD
+=======
+    HotelListingsHead = NULL;
+    FlightListingsHead = NULL;
+    CruiseListingsHead = NULL;
+>>>>>>> dbd3f0109d14e6544a856270681351d0a4a826ea
+ // load countries
     string country = filesystem.getCountries();
     ifstream c(country);
     c.open();
@@ -27,6 +31,9 @@ dataStore::dataStore(filesystem filesystem)
     }
     c.close();
     
+
+
+
 
 
 
@@ -55,9 +62,13 @@ bool dataStore::userAuth(string uName, string uPass) {
 void dataStore::SortListings() {
     sortRecurrH(HotelListingsHead);
     sortRecurrF(FlightListingsHead);
-    sortRecurrC(CruiseListingsHead);
+    //sortRecurrC(CruiseListingsHead);
 }
 void dataStore::sortRecurrH(Node<hotellisting>* n) {
+    if (n ==NULL) {
+        return;
+    }
+
     Node<hotellisting>* curr = n;
     while (n->prev != NULL) {
         curr = curr->prev;
@@ -69,10 +80,14 @@ void dataStore::sortRecurrH(Node<hotellisting>* n) {
         }
 
     }
-    sortRecurrH(n->next);
-
+    if (n->next != NULL) {
+        sortRecurrH(n->next);
+    }
 }
 void dataStore::sortRecurrF(Node<flightlisting>* n) {
+    if (n ==NULL) {
+        return;
+    }
     Node<flightlisting>* curr = n;
     while (n->prev != NULL) {
         curr = curr->prev;
@@ -87,10 +102,15 @@ void dataStore::sortRecurrF(Node<flightlisting>* n) {
         }
 
     }
-    sortRecurrF(n->next);
+    if (n->next != NULL) {
+        sortRecurrF(n->next);
+    }
 }
 /*  TEMPORARY COMMENT
 void dataStore::sortRecurrC(Node<cruise>* n) {
+    if (n ==NULL) {
+        return;
+    }
     Node<cruise>* curr = n;
     while (n->prev != NULL) {
         curr = curr->prev;
@@ -105,15 +125,17 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
     if (n->next == NULL) {
         return;
     }
-    sortRecurrC(n->next);
+    if (n->next != NULL) {
+        sortRecurrC(n->next);
+    }
 }
 */
 
-vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
+vector<Node<hotellisting>*> dataStore::GetHotelsInLoc(string loc, string city, int persons, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
     Node<hotellisting>* curr = HotelListingsHead;
-    vector<hotellisting> output;
+    vector<Node<hotellisting>*> output;
     while (curr != NULL) {
-        if (curr->data.verifyLoc(loc, city)) {
+        if (curr->data.verifyLoc(loc, city) && curr->data.getMaxPersons() <= persons) {
             bool valid = true;
             if (pool) {
                 if (!curr->data.getHotel().getPool()) {
@@ -141,33 +163,113 @@ vector<hotellisting> dataStore::GetHotelsInLoc(string loc, string city, bool poo
                 }
             }
             if (valid) {
-                output.push_back(curr->data);
+                output.push_back(curr);
             }
         }
         curr = curr->next;
     }
+    return output;
 }
 /*  TEMPORARY COMMENT
-vector<cruise> dataStore::GetCruisesInLoc(string loc, string city) {
+vector<Node<cruise>*> dataStore::GetCruisesInLoc(string loc, string city) {
     Node<cruise>* curr = CruiseListingsHead;
-    vector<cruise> output;
+    vector<Node<cruise>*> output;
     while (curr != NULL) {
         if (curr->data.verifyLoc(loc, city)) {
-            output.push_back(curr->data);
+            output.push_back(curr);
         }
         curr = curr->next;
     }
+    return output;
 }
 */
-vector<flightlisting> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
+vector<Node<flightlisting>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
     Node<flightlisting>* curr = FlightListingsHead;
-    vector<flightlisting> output;
+    vector<Node<flightlisting>*> output;
     while (curr != NULL) {
         if (curr->data.verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive)) {
-            output.push_back(curr->data);
+            output.push_back(curr);
         }
         curr = curr->next;
     }
+    return output;
+}
+
+vector<flightlisting> dataStore::GetSortedFlights(int type) {
+    Node<flightlisting>* curr = FlightListingsHead; //1 price : 2 rating : 3 distance
+    vector<flightlisting> output;
+    int index = 0;
+    while (curr != NULL) {
+        if (type == 1) {
+            if (index == curr->priceRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        if (type == 2) {
+            if (index == curr->ratingRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        curr = curr->next;
+    }
+    return output;
+}
+
+vector<cruise> dataStore::GetSortedCruises(int type) {
+    Node<cruise>* curr = CruiseListingsHead; //1 price : 2 rating : 3 distance
+    vector<cruise> output;
+    int index = 0;
+    while (curr != NULL) {
+        if (type == 1) {
+            if (index == curr->priceRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        if (type == 2) {
+            if (index == curr->ratingRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        if (type == 3) {
+            if (index == curr->DistRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        curr = curr->next;
+    }
+    return output;
+}
+vector<hotellisting> dataStore::GetSortedHotels(int type) {
+    Node<hotellisting>* curr = HotelListingsHead; //1 price : 2 rating : 3 distance
+    vector<hotellisting> output;
+    int index = 0;
+    while (curr != NULL) {
+        if (type == 1) {
+            if (index == curr->priceRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        if (type == 2) {
+            if (index == curr->ratingRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        if (type == 3) {
+            if (index == curr->DistRankIndex) {
+                output.push_back(curr->data);
+                index++;
+            }
+        }
+        curr = curr->next;
+    }
+    return output;
 }
 /*
  FOR FLIGHTLISTING CPP
