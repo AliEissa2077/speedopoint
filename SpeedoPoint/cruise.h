@@ -27,6 +27,7 @@ public:
 	cruisereservation reserve(user acc);
     int getPricePerPerson();
     int getDuration();
+    bool verifyLoc(string ctry, string city);
 };
 
 #endif CRUISE_H
