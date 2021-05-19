@@ -38,3 +38,9 @@ void user::updateReservations(reservation reservation) {
 void user::updateCruiseReservations(cruisereservation reservation) {
 	cruisereservations.push_back(reservation);
 }
+bool user::checkPass(string pass) {
+    if (pass.compare(password) == 0) {
+        return true;
+    }
+    return false;
+}

@@ -12,6 +12,7 @@ private:
 	int minute;
 public:
     date(){}
+    date(int d, int m, int y);
 	date(int d, int m, int y, int h, int min);
     float operator-(float inp) {
         float var1 = 0;
