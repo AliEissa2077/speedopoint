@@ -29,7 +29,13 @@ public:
     float CalculateFlightDur();
     float _CalculateFlightDur(stop* stp); //recursive
     country getDepCountry();  // makes a new country objects with country name and one city in the vector (the airport city loc) and returns it
+    int getDepCityIndex();
+    int getArrCityIndex();
+
+    string getDepTime();
+    string getArrTime();
     country getArrCountry();  // +1
+    airline getAirline();
     float subtract(date d, date f);
 
     bool verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive);

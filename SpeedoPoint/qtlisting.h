@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QLayout>
+#include "flightlisting.h"
 
 class QtListing
 {
@@ -15,6 +16,7 @@ public:
     QWidget* wid;
     QPushButton *butTest;
     QtListing();
+    QtListing(flightlisting* inp);
     QtListing(QWidget* source);
     QListWidgetItem* getitem();
     QWidget *getwidget();

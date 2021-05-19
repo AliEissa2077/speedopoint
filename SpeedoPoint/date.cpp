@@ -1,25 +1,13 @@
 #include "date.h"
 
-date::date()
-{
+int getYear();
+int getMonth();
+int getDay();
+int getHour();
+int getMinute();
 
-}
 
-date::date(int d, int m, int y, int h, int min)
-{
-	day = d;
-	month = m;
-	year = y;
-	hour = h;
-	minute = min;
-}
 
-date::date(int d, int m, int y)
-{
-	day = d;
-	month = m;
-	year = y;
-}
 
 int date::getYear()
 {
@@ -44,4 +32,9 @@ int date::getHour()
 int date::getMinute()
 {
 	return minute;
+}
+
+date::date(int d, int m, int y, int h, int min)
+{
+
 }

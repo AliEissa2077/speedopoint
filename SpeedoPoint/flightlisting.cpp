@@ -81,7 +81,33 @@ country flightlisting::getArrCountry() // +1
     return curr->getLoc();
 
 }
+airline flightlisting::getAirline() {
+    return airlne;
+}
 
+int flightlisting::getDepCityIndex() {
+    return stops->getIndex();
+}
+int flightlisting::getArrCityIndex() {
+    stop * curr = stops;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+
+    return curr->getIndex();
+}
+string flightlisting::getDepTime() {
+    string result;
+    result += to_string(dep.getHour()) + ":" + to_string(dep.getMinute());
+    result += " " + to_string(dep.getDay()) + "/" + to_string(dep.getMonth()) + "/" + to_string(dep.getYear()) + " ";
+    return result;
+}
+string flightlisting::getArrTime() {
+    string result;
+    result += to_string(arr.getHour()) + ":" + to_string(arr.getMinute());
+    result += " " + to_string(arr.getDay()) + "/" + to_string(arr.getMonth()) + "/" + to_string(arr.getYear()) + " ";
+    return result;
+}
 
 bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive)
 {
