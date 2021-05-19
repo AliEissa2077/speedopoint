@@ -12,6 +12,9 @@ void dataStore::AddUser(user u) {
     users.push_back(u);
     // write into file;
 }
+vector<country> dataStore::getCountries() {
+    return countries;
+}
 bool dataStore::userAuth(string uName, string uPass) {
     for (int i = 0; i < users.size(); i++) {
         if (uName.compare(users[i].getName()) == 0) {

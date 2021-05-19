@@ -4,7 +4,7 @@
 #include <QtDebug>
 #include <QListWidget>
 #include "qtlisting.h"
-//#include "user.h"
+#include "user.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -92,10 +92,18 @@ void MainWindow::Signup() {
 
     // add info to database file
     // declare user
+    //if verified
+    //user newU(usern.toStdString(), pass.toStdString(), email.toStdString());
 
 }
-void countryChange1(const QString &text) {
+void MainWindow::countryChange1(const QString &text) {
     qDebug() << "test " << text;
+    vector<country> temp = progData.getCountries();
+    for (int i = 0; i < temp.size(); i++) {
+        if (temp[i].getName().compare(text.toStdString()) == 0) {
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("FlightFrom");
+        }
+    }
 }
 
 MainWindow::~MainWindow()

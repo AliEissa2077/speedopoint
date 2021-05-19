@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "datastore.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    dataStore progData;
 
 private slots:
     void SwitchLogin();

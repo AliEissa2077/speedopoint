@@ -23,9 +23,11 @@ class dataStore
 {
 private:
     vector<user> users;
+    vector<country> countries;
     Node<hotellisting>* HotelListingsHead;
     Node<flightlisting>* FlightListingsHead;
     Node<cruise>* CruiseListingsHead;
+
 public:
     dataStore();
     void SortListings();
@@ -34,6 +36,7 @@ public:
     void sortRecurrC(Node<cruise>* n);
     bool userAuth(string uName, string uPass);
     void AddUser(user u);
+    vector<country> getCountries();
     vector<hotellisting> GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner);
     vector<cruise> GetCruisesInLoc(string loc, string city);
     vector<flightlisting> GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive);
