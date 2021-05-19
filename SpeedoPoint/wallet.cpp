@@ -8,10 +8,10 @@
 
 wallet::wallet()
 {
-	amt = 0;
+	amount = 0;
 }
 
-float wallet::getamount()
+float wallet::getAmount()
 {
 	return amount;
 }
@@ -28,12 +28,12 @@ void wallet::pay(float amt)
 
 int wallet::redeem()
 {
-	amount = 
+	// amount = 
 }
 
 void wallet::refund(payment payment_)
 {
-	amount = amount + payment_.getValue;  //--> deletes reservation from account (ADD LATER) 
+	amount = amount + payment_.getValue();  //--> deletes reservation from account (ADD LATER) 
 }
 
 
