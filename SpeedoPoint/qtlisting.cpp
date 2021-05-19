@@ -1,4 +1,5 @@
 #include "qtlisting.h"
+#include "flightlisting.h"
 
 
 QtListing::QtListing()
@@ -10,6 +11,46 @@ QtListing::QtListing()
     QLabel *secondarytxt =  new QLabel("Secondary"); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QLabel *tertiarytxt =  new QLabel("Tertiary"); // tertiary text info
+    QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QPushButton *testbut = new QPushButton();
+    testbut->setText("Details");
+    QHBoxLayout *widgetLayout = new QHBoxLayout();
+    widgetLayout->addWidget(widgetText);
+    widgetLayout->addSpacerItem(spacer);
+    widgetLayout->addWidget(secondarytxt);
+    widgetLayout->addSpacerItem(spacer1);
+    widgetLayout->addWidget(tertiarytxt);
+    widgetLayout->addSpacerItem(spacer2);
+    widgetLayout->addSpacerItem(spacer2);
+
+    widgetLayout->addWidget(testbut, Qt::AlignRight);
+    widgetLayout->addStretch();
+    //widgetLayout->addStretch();
+    widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
+    widget->setLayout(widgetLayout);
+    temp->setSizeHint(widget->sizeHint());
+    item = temp;
+    wid = widget;
+
+
+
+
+}
+QtListing::QtListing(flightlisting* inp)
+{
+    QListWidgetItem* temp = new QListWidgetItem();
+    QWidget *widget = new QWidget();
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
+    QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepCityIndex()]  + " " + inp->getDepCountry().getName() + " To " + inp->getArrCountry().getCities()[inp->getArrCityIndex()]  + " " + inp->getArrCountry().getName());
+
+    QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
+    QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    QString tertia = QString::fromStdString("Dep time:" + inp->getDepTime() + "Arrival time:" + inp->getArrTime());
+
+    QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
     testbut->setText("Details");

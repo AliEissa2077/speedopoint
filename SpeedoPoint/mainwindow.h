@@ -27,6 +27,8 @@ private slots:
     void Signup();
 
     void countryChange1(const QString &text);
+    void countryChange2(const QString &text);
+    void DisplayFlights();
 
 };
 #endif // MAINWINDOW_H

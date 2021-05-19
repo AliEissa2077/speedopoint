@@ -37,9 +37,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     QComboBox *fromcountrys = MainWindow::findChild<QComboBox *>("FlightFrom");
     connect(fromcountrys, SIGNAL(QComboBox::currentTextChanged(const QString &text)), this, SLOT(countryChange1(const QString &text)));
+
+    QComboBox *tocountrys = MainWindow::findChild<QComboBox *>("FlightTo");
+    connect(fromcountrys, SIGNAL(QComboBox::currentTextChanged(const QString &text)), this, SLOT(countryChange2(const QString &text)));
+
+    QPushButton *flightsearch = MainWindow::findChild<QPushButton *>("SearchFlights");
+    connect(flightsearch, SIGNAL(released()), this, SLOT(DisplayFlights()));
+
 }
-
-
 
 void MainWindow::SwitchLogin() {
     MainWindow::findChild<QFrame *>("SignUpFrame")->setEnabled(false);
@@ -50,6 +55,7 @@ void MainWindow::SwitchLogin() {
     MainWindow::findChild<QFrame *>("LoginFrame")->setHidden(false);
 
 }
+
 void MainWindow::SwitchSignup() {
 
 
@@ -61,6 +67,7 @@ void MainWindow::SwitchSignup() {
     MainWindow::findChild<QFrame *>("SignUpFrame")->setHidden(false);
 
 }
+
 void MainWindow::Login() {
     QString email;
     QString pass;
@@ -96,14 +103,41 @@ void MainWindow::Signup() {
     //user newU(usern.toStdString(), pass.toStdString(), email.toStdString());
 
 }
+
 void MainWindow::countryChange1(const QString &text) {
     qDebug() << "test " << text;
     vector<country> temp = progData.getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
-            QComboBox *cities = MainWindow::findChild<QComboBox *>("FlightFrom");
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("FromCitySelect");
+            cities->clear();
+            for (int n =0; n < temp[i].getCities().size(); n++) {
+                cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
+            }
+            return;
         }
     }
+}
+void MainWindow::countryChange2(const QString &text) {
+    qDebug() << "test " << text;
+    vector<country> temp = progData.getCountries();
+    for (int i = 0; i < temp.size(); i++) {
+        if (temp[i].getName().compare(text.toStdString()) == 0) {
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("ToCitySelect");
+            cities->clear();
+            for (int n =0; n < temp[i].getCities().size(); n++) {
+                cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
+            }
+            return;
+        }
+    }
+}
+
+void MainWindow::DisplayFlights() {
+    vector<flightlisting> mylist = progData.GetFlightsInLoc(   ,   ,   ,   )
+    QtListing *listtest = new QtListing();  // adding an element to the list
+    MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
+    MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
 }
 
 MainWindow::~MainWindow()
