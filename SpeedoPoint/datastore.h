@@ -30,7 +30,7 @@ private:
     Node<cruise>* CruiseListingsHead;
 
 public:
-    dataStore();
+    dataStore(filesystem filesystem);
     void SortListings();
     void sortRecurrH(Node<hotellisting>* n);
     void sortRecurrF(Node<flightlisting>* n);

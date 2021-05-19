@@ -1,9 +1,37 @@
 #include "datastore.h"
 
-dataStore::dataStore()
+dataStore::dataStore(filesystem filesystem)
 {
     //import from file or data base and store into vector and linked lists
     // sort indeces start as the node count
+
+
+
+
+    // load countries
+    string country = filesystem.getCountries();
+    ifstream c(country);
+    c.open();
+    string cline;
+    while (getline(c, cline)) {
+        string name; 
+        bool banned;
+        stringstream ss(cline);
+        cline >> name >> banned;
+        string city;
+        country country(name, banned);
+        while (cline >> city) {
+            country.addCity(city);
+        }
+        countries.push_back(country);
+    }
+    c.close();
+    
+
+
+
+
+
     SortListings();
 
 }
