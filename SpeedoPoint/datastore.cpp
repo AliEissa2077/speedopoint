@@ -1,7 +1,7 @@
 #include "datastore.h"
 #include "user.h"
 #include <bits/stdc++.h>
-dataStore::dataStore(fileSystem filesystem)
+dataStore::dataStore(fileSystem filesy)
 {
     HotelListingsHead = NULL;
     FlightListingsHead = NULL;
@@ -11,9 +11,9 @@ dataStore::dataStore(fileSystem filesystem)
     // sort indeces start as the node count
 
     //load users 
-    string user_ = filesystem.getUsers();
+    string user_ = filesy.getUsers();
     ifstream u(user_);
-    u.open();
+    //u.open();
     while (!u.eof()) {
         string username;
         string pwd;
@@ -26,7 +26,7 @@ dataStore::dataStore(fileSystem filesystem)
 
 
     // load countries
-    string country_ = filesystem.getCountries();
+    string country_ = filesy.getCountries();
     ifstream c(country_);
     //c.open();
     while (!c.eof()) {
@@ -49,7 +49,7 @@ dataStore::dataStore(fileSystem filesystem)
 
     //load hotels
 
-    string hotel_ = filesystem.getHotels();
+    string hotel_ = filesy.getHotels();
     ifstream h(hotel_);
     //h.open();
     while (!h.eof()) {
@@ -72,7 +72,7 @@ dataStore::dataStore(fileSystem filesystem)
 
     // load hotellisting
 
-    string hlisting = filesystem.getHotelListing();
+    string hlisting = filesy.getHotelListing();
     ifstream hl(hlisting);
     //hl.open();
     while (!hl.eof()) {
@@ -137,7 +137,7 @@ dataStore::dataStore(fileSystem filesystem)
 
 
 
-    string flightfile = filesystem.getFlights();
+    string flightfile = filesy.getFlights();
     ifstream f(flightfile);
     //f.open();
     string fline;

@@ -33,7 +33,7 @@ private:
 
 public:
     dataStore();
-    dataStore(fileSystem filesys);
+    dataStore(fileSystem filesy);
     void SortListings();
     void sortRecurrH(Node<hotellisting>* n);
     void sortRecurrF(Node<flightlisting>* n);

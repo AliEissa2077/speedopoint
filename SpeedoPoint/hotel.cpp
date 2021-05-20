@@ -38,7 +38,7 @@ bool hotel::getBeach() {
     return beach;
 }
 country hotel::getCountry() {
-	return country;
+    return ctry;
 }
 int hotel::getIndex() {
 	return cityIndex;
