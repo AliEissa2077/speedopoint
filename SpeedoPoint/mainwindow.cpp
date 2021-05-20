@@ -227,7 +227,8 @@ void MainWindow::DisplayFlights() {
                 }
 
             }
-            QtListing *listtest = new QtListing(min->data);  // adding an element to the list
+            QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
+            listtest->setMainProg(this);
             MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
             MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
 
@@ -237,7 +238,8 @@ void MainWindow::DisplayFlights() {
     }
     else {
         for (int n = 0; n < mylist.size(); n++) {
-            QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
+            QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
+            listtest->setMainProg(this);
             MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
             MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
@@ -284,7 +286,8 @@ void MainWindow::DisplayHotels() {
                     }
                 }
             }
-            QtListing *listtest = new QtListing(min->data);  // adding an element to the list
+            QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
+            listtest->setMainProg(this);
             MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
             MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
 
@@ -293,7 +296,8 @@ void MainWindow::DisplayHotels() {
     }
     else {
         for (int n = 0; n < mylist.size(); n++) {
-            QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
+            QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
+            listtest->setMainProg(this);
             MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
             MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
@@ -337,7 +341,8 @@ void MainWindow::DisplayCruises() {
                     }
                 }
             }
-            QtListing *listtest = new QtListing(min->data);  // adding an element to the list
+            QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
+            listtest->setMainProg(this);
             MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
             MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
 
@@ -346,7 +351,8 @@ void MainWindow::DisplayCruises() {
     }
     else {
         for (int n = 0; n < mylist.size(); n++) {
-            QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
+            QtListing *listtest = new QtListing(mylist[n]->data,  mylist[n]->initialIndex);  // adding an element to the list
+            listtest->setMainProg(this);
             MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
             MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
@@ -360,8 +366,19 @@ void MainWindow::DetailsBack() {
 void MainWindow::SetCurrlisting(QtListing* l) {
     currentListing = l;
 }
-void MainWindow::deleteListing(int type, int index) {
+void MainWindow::deleteListing() {
+    int type = currentListing->getType();
+    int index = currentListing->getIndex();
 
+    if (type == 1) {
+        progData.deleteHlisting(index);
+    }
+    else if (type == 2) {
+        progData.deleteFlisting(index);
+    }
+    else if (type == 3) {
+        progData.deleteClisting(index);
+    }
 }
 
 

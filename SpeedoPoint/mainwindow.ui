@@ -1431,7 +1431,7 @@
       <string>Secondary 2</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="Book">
      <property name="geometry">
       <rect>
        <x>890</x>
@@ -1450,9 +1450,6 @@
      </property>
     </widget>
    </widget>
-   <zorder>LoginScreen</zorder>
-   <zorder>DetailsPage</zorder>
-   <zorder>Listings</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

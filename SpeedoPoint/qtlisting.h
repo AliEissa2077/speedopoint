@@ -11,24 +11,31 @@
 #include "hotellisting.h"
 #include "cruise.h"
 
+class MainWindow;
+
 class QtListing : public QObject
 {
 private:
-    hotellisting hlisting;
-    cruise clisting;
-    flightlisting flisting;
+    MainWindow* mainProg;
+    hotellisting* hlisting;
+    cruise* clisting;
+    flightlisting* flisting;
     int Ind;
 public:
     QListWidgetItem* item;
     QWidget* wid;
     QPushButton *butTest;
     QtListing();
-    QtListing(hotellisting inp, int index);
-    QtListing(cruise inp, int index);
-    QtListing(flightlisting inp, int index);
+    QtListing(hotellisting* inp, int index);
+    QtListing(cruise* inp, int index);
+    QtListing(flightlisting* inp, int index);
     QtListing(QWidget* source);
     QListWidgetItem* getitem();
     QWidget *getwidget();
+
+    void setMainProg(MainWindow* m);
+    int getIndex();
+    int getType();
 
 private slots:
     void detailsButton();

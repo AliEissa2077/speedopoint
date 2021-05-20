@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void SetCurrlisting(QtListing* l);
-    void deleteListing(int type, int index);
+    void deleteListing();
     ~MainWindow();
 
 private:

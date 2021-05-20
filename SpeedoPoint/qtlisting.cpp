@@ -2,6 +2,7 @@
 #include "flightlisting.h"
 #include "hotellisting.h"
 #include "cruise.h"
+#include "mainwindow.h"
 
 
 QtListing::QtListing()
@@ -39,21 +40,21 @@ QtListing::QtListing()
 
 }
 
-QtListing::QtListing(flightlisting inp, int index)
+QtListing::QtListing(flightlisting* inp, int index)
 {
     Ind = index;
     flisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getAirline().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString secondaryt = QString::fromStdString(inp.getDepCountry().getCities()[inp.getDepCityIndex()]  + " " + inp.getDepCountry().getName() + " To " + inp.getArrCountry().getCities()[inp.getArrCityIndex()]  + " " + inp.getArrCountry().getName());
+    QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepCityIndex()]  + " " + inp->getDepCountry().getName() + " To " + inp->getArrCountry().getCities()[inp.getArrCityIndex()]  + " " + inp->getArrCountry().getName());
 
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString tertia = QString::fromStdString("Dep time:" + inp.getDepTime() + "Arrival time:" + inp.getArrTime());
+    QString tertia = QString::fromStdString("Dep time:" + inp->getDepTime() + "Arrival time:" + inp->getArrTime());
 
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -81,21 +82,21 @@ QtListing::QtListing(flightlisting inp, int index)
     wid = widget;
 }
 
-QtListing::QtListing(hotellisting inp, int index)
+QtListing::QtListing(hotellisting* inp, int index)
 {
     Ind = index;
     hlisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getHotel().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getHotel().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString secondaryt = QString::fromStdString(inp.getLoc().getCities()[inp.getCityIndex()]  + " " + inp.getLoc().getName() + " Price: " + to_string(inp.getPricePerNight()) + "LE ");
+    QString secondaryt = QString::fromStdString(inp->getLoc().getCities()[inp->getCityIndex()]  + " " + inp->getLoc().getName() + " Price: " + to_string(inp->getPricePerNight()) + "LE ");
 
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString tertia = QString::fromStdString("Rating:" + to_string(inp.getHotelRating()));
+    QString tertia = QString::fromStdString("Rating:" + to_string(inp->getHotelRating()));
 
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -123,21 +124,21 @@ QtListing::QtListing(hotellisting inp, int index)
     wid = widget;
 }
 
-QtListing::QtListing(cruise inp, int index)
+QtListing::QtListing(cruise* inp, int index)
 {
     Ind = index;
     clisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getHotel().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getHotel().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString secondaryt = QString::fromStdString(inp.getLoc().getCities()[inp.getCityIndex()]  + " " + inp.getLoc().getName() + " Price: " + to_string(inp.getPricePerNight()) + "LE ");
+    QString secondaryt = QString::fromStdString(inp->getLoc().getCities()[inp->getCityIndex()]  + " " + inp->getLoc().getName() + " Price: " + to_string(inp->getPricePerNight()) + "LE ");
 
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString tertia = QString::fromStdString("Rating:" + to_string(inp.getHotelRating()));
+    QString tertia = QString::fromStdString("Rating:" + to_string(inp->getHotelRating()));
 
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -181,6 +182,8 @@ void QtListing::detailsButton() {
 
     QtListing::findChild<QFrame *>("DetailsPage")->raise();
 
+    mainProg->SetCurrlisting(this);
+
 
 }
 
@@ -191,3 +194,21 @@ QWidget* QtListing::getwidget() {
     return wid;
 }
 
+void QtListing::setMainProg(MainWindow* m) {
+    mainProg = m;
+}
+int QtListing::getType() {
+    if (hlisting != NULL) {
+        return 1;
+    }
+    else if (flisting != NULL) {
+        return 2;
+    }
+    else if (clisting != NULL) {
+        return 3;
+    }
+
+}
+int QtListing::getIndex() {
+    return Ind;
+}
