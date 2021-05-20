@@ -15,46 +15,140 @@ dataStore::dataStore(filesystem filesystem)
         string pwd;
         string email;
         stringstream ss(uline);
-        ss >> username >> pwd >> email;
+        ss << username << pwd << email;
         user user__(username, pwd, email);
         users.push_back(user__);
     }
     u.close();
 
 
-    //load hotels
-
-    string hotel_ =  file
-
-
-
-
-
-
-
-
-
-
-
-
     // load countries
-    string country = filesystem.getCountries();
-    ifstream c(country);
+    string country_ = filesystem.getCountries();
+    ifstream c(country_);
     c.open();
     string cline;
     while (getline(c, cline)) {
         string name;
         bool banned;
         stringstream ss(cline);
-        ss >> name >> banned;
+        ss << name << banned;
         string city;
-        country country(name, banned);
-        while (cline >> city) {
-            country.addCity(city);
+        country country__(name, banned);
+        while (cline << city) {
+            country__.addCity(city);
         }
-        countries.push_back(country);
+        countries.push_back(country__);
     }
     c.close();
+
+
+
+    //load hotels
+
+    string hotel_ = filesystem.getHotels();
+    ifstream h(hotel_);
+    h.open();
+    string hline;
+    while (getline(h, hline)) {
+        string name;
+        string country;
+        int index;
+        int range;
+        bool pool;
+        stringstream ss(hline);
+        hline << name << country << index << range << pool;
+        country ctry;
+        for (auto x : countries) {
+            if (country == x.getName()) {
+                ctry = x;
+            }
+        }
+        hotel h1(name, ctry, index, range, pool);
+        hotels.push_back(h1);
+    }
+    h.close();
+
+    // load hotellisting
+
+    string hlisting = filesystem.getHotelListing();
+    ifstream hl(hlisting);
+    hl.open();
+    string hlline;
+    while (getline(hl, hlline)) {
+        stringstream ss(hlline);
+        string hname;
+        hlline << hname;
+        hotel h;
+        for (auto x : hotels) {
+            if (hname == x.getName()) {
+                h = x;
+            }
+        }
+        country ctry = h.getCountry();
+        int index = h.getIndex();
+        int area;
+        int price;
+        bool wifi;
+        bool bfast;
+        int num;
+        bool refund;
+        bool dinner;
+        bool pet;
+        string roomtype;
+        hlline << area << price << wifi << bfast << num << refund << dinner << pet;
+        hotellisting* hotellisting;
+        hotellisting = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+        // append to linked lsit
+
+
+    }
+    hl.close();
+
+    // load flighttickets 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    string flightfile = filesystem.getFlights();
+    ifstream f(flightfile);
+    f.open();
+    string fline;
+    while (getline(f, fline)) {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <<<<<<< HEAD
 =======
