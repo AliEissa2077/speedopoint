@@ -1,27 +1,52 @@
 #include "datastore.h"
-
+#include "user.h"
 dataStore::dataStore(filesystem filesystem)
 {
     //import from file or data base and store into vector and linked lists
     // sort indeces start as the node count
 
+    //load users 
+    string user_ = filesystem.getUsers();
+    ifstream u(user_);
+    u.open();
+    string uline;
+    while (getline(u, uline)) {
+        string username;
+        string pwd;
+        string email;
+        stringstream ss(uline);
+        ss >> username >> pwd >> email;
+        user user__(username, pwd, email);
+        users.push_back(user__);
+    }
+    u.close();
 
-<<<<<<< HEAD
-=======
-    HotelListingsHead = NULL;
-    FlightListingsHead = NULL;
-    CruiseListingsHead = NULL;
->>>>>>> dbd3f0109d14e6544a856270681351d0a4a826ea
- // load countries
+
+    //load hotels
+
+    string hotel_ =  file
+
+
+
+
+
+
+
+
+
+
+
+
+    // load countries
     string country = filesystem.getCountries();
     ifstream c(country);
     c.open();
     string cline;
     while (getline(c, cline)) {
-        string name; 
+        string name;
         bool banned;
         stringstream ss(cline);
-        cline >> name >> banned;
+        ss >> name >> banned;
         string city;
         country country(name, banned);
         while (cline >> city) {
@@ -30,15 +55,14 @@ dataStore::dataStore(filesystem filesystem)
         countries.push_back(country);
     }
     c.close();
-    
 
-
-
-
-
-
-
-
+<<<<<<< HEAD
+=======
+    HotelListingsHead = NULL;
+    FlightListingsHead = NULL;
+    CruiseListingsHead = NULL;
+>>>>>>> dbd3f0109d14e6544a856270681351d0a4a826ea
+ 
     SortListings();
 
 }

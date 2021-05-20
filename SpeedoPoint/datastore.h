@@ -25,6 +25,7 @@ class dataStore
 private:
     vector<user> users;
     vector<country> countries;
+    vector<hotel> hotels;
     Node<hotellisting>* HotelListingsHead;
     Node<flightlisting>* FlightListingsHead;
     Node<cruise>* CruiseListingsHead;
