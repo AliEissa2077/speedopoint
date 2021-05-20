@@ -42,10 +42,10 @@ qDebug() << "test ";
     //QtListing *listtest = new QtListing(MainWindow::findChild<QListWidget *>("FlightListings"));
 
     QComboBox *fromcountrys = MainWindow::findChild<QComboBox *>("FlightFrom");
-    connect(fromcountrys, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChange1(QString, "FromCitySelect")));
+    connect(fromcountrys, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChange1(QString)));
 
     QComboBox *tocountrys = MainWindow::findChild<QComboBox *>("FlightTo");
-    connect(tocountrys, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChange2(QString, "ToCitySelect")));
+    connect(tocountrys, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChange2(QString)));
 
     QPushButton *flightsearch = MainWindow::findChild<QPushButton *>("SearchFlights");
     connect(flightsearch, SIGNAL(released()), this, SLOT(DisplayFlights()));
@@ -61,7 +61,7 @@ qDebug() << "test ";
     connect(hotelSort, SIGNAL(currentTextChanged(QString)), this, SLOT(SortHotels(QString)));
 
     QComboBox *hotelctry = MainWindow::findChild<QComboBox *>("HotelCountry");
-    connect(hotelctry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeHotel(QString, "HotelCitySelect")));
+    connect(hotelctry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeHotel(QString)));
 
 
     QPushButton *cruisesearch = MainWindow::findChild<QPushButton *>("SearchCruise");
@@ -71,7 +71,7 @@ qDebug() << "test ";
     connect(cruisesort, SIGNAL(currentTextChanged(QString)), this, SLOT(SortCruises(QString)));
 
     QComboBox *cruisectry = MainWindow::findChild<QComboBox *>("CruiseCountry");
-    connect(cruisectry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeHotel(QString, "CruiseCitySelect")));
+    connect(cruisectry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeCruise(QString)));
 
     QPushButton *detailsback = MainWindow::findChild<QPushButton *>("DetailsBack");
     connect(detailsback, SIGNAL(released()), this, SLOT(DetailsBack()));
@@ -158,12 +158,12 @@ void MainWindow::Signup() {
 
 }
 
-void MainWindow::countryChange1(const QString &text, QString type) {
+void MainWindow::countryChange1(const QString &text) {
     qDebug() << "test " << text;
     vector<country> temp = progData.getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
-            QComboBox *cities = MainWindow::findChild<QComboBox *>(type);
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("FromCitySelect");
             cities->clear();
             for (int n =0; n < temp[i].getCities().size(); n++) {
                 cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
@@ -173,14 +173,44 @@ void MainWindow::countryChange1(const QString &text, QString type) {
     }
 }
 
-void MainWindow::countryChange2(const QString &text, QString type) {
-    countryChange1(text, type);
+void MainWindow::countryChange2(const QString &text) {
+    vector<country> temp = progData.getCountries();
+    for (int i = 0; i < temp.size(); i++) {
+        if (temp[i].getName().compare(text.toStdString()) == 0) {
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("ToCitySelect");
+            cities->clear();
+            for (int n =0; n < temp[i].getCities().size(); n++) {
+                cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
+            }
+            return;
+        }
+    }
 }
-void MainWindow::countryChangeHotel(const QString &text, QString type) {
-    countryChange1(text, type);
+void MainWindow::countryChangeHotel(const QString &text) {
+    vector<country> temp = progData.getCountries();
+    for (int i = 0; i < temp.size(); i++) {
+        if (temp[i].getName().compare(text.toStdString()) == 0) {
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("HotelCitySelect");
+            cities->clear();
+            for (int n =0; n < temp[i].getCities().size(); n++) {
+                cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
+            }
+            return;
+        }
+    }
 }
-void MainWindow::countryChangeCruise(const QString &text, QString type) {
-    countryChange1(text, type);
+void MainWindow::countryChangeCruise(const QString &text) {
+    vector<country> temp = progData.getCountries();
+    for (int i = 0; i < temp.size(); i++) {
+        if (temp[i].getName().compare(text.toStdString()) == 0) {
+            QComboBox *cities = MainWindow::findChild<QComboBox *>("CruiseCitySelect");
+            cities->clear();
+            for (int n =0; n < temp[i].getCities().size(); n++) {
+                cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
+            }
+            return;
+        }
+    }
 }
 void MainWindow::SortFlights(const QString &text) {
     if (text.compare(QString::fromStdString("Price")) == 0) {

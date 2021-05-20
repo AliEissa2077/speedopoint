@@ -555,9 +555,9 @@ public:
         Book->setGeometry(QRect(890, 130, 101, 41));
         Book->setFont(font5);
         MainWindow->setCentralWidget(centralwidget);
-        Listings->raise();
         DetailsPage->raise();
         LoginScreen->raise();
+        Listings->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -568,7 +568,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        Tabs->setCurrentIndex(0);
+        Tabs->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

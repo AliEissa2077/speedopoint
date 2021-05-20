@@ -32,10 +32,10 @@ private slots:
     void Login();
     void Signup();
 
-    void countryChange1(const QString &text, QString type);
-    void countryChange2(const QString &text, QString type);
-    void countryChangeHotel(const QString &text, QString type);
-    void countryChangeCruise(const QString &text, QString type);
+    void countryChange1(const QString &text);
+    void countryChange2(const QString &text);
+    void countryChangeHotel(const QString &text);
+    void countryChangeCruise(const QString &text);
     void SortCruises(const QString &text);
     void DisplayFlights();
     void DisplayHotels();
