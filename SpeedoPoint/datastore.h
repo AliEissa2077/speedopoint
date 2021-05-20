@@ -27,7 +27,7 @@ struct Node {
 class dataStore
 {
 private:
-    vector<user> users;
+    vector<user*> users;
     vector<country> countries;
     vector<hotel> hotels;
     Node<hotellisting*>* HotelListingsHead;
@@ -42,7 +42,7 @@ public:
     void sortRecurrF(Node<flightlisting*>* n);
     void sortRecurrC(Node<cruise*>* n);
     bool userAuth(string uName, string uPass);
-    void AddUser(user u);
+    void AddUser(user* u);
     vector<country> getCountries();
     vector<Node<hotellisting*>*> GetHotelsInLoc(string loc, string city, int persons, bool pool, bool pets, bool beach, bool bfast, bool dinner);
     vector<Node<cruise*>*> GetCruisesInLoc(string loc, string city);
@@ -55,6 +55,9 @@ public:
     void deleteHlisting(int index);
     void deleteFlisting(int index);
     void deleteClisting(int index);
+
+    user* verifyUser(string email, string pass);
+    bool UserExists(string email);
 };
 
 #endif // DATASTORE_H

@@ -24,6 +24,7 @@ private:
     dataStore progData;
     int sort = 0;
     QtListing* currentListing;
+    user* curUser;
 
 private slots:
     void SwitchLogin();
@@ -43,6 +44,8 @@ private slots:
     void SortFlights(const QString &text);
     void SortHotels(const QString &text);
     void DetailsBack();
+
+    void bookListing();
 
 };
 #endif // MAINWINDOW_H

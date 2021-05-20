@@ -224,12 +224,19 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QLabel" name="SignupFail">
+         <property name="text">
+          <string>User Already Exists</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
-    <zorder>SignUpFrame</zorder>
-    <zorder>LoginBackground</zorder>
     <zorder>LoginFrame</zorder>
+    <zorder>LoginBackground</zorder>
+    <zorder>SignUpFrame</zorder>
    </widget>
    <widget class="QFrame" name="Listings">
     <property name="geometry">
@@ -1450,6 +1457,9 @@
      </property>
     </widget>
    </widget>
+   <zorder>Listings</zorder>
+   <zorder>LoginScreen</zorder>
+   <zorder>DetailsPage</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

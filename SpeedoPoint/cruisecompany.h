@@ -13,6 +13,10 @@ public:
 	cruisecompany();
 	cruisecompany(std::string name_, int rt, int srt, int range);
 	void updateRating(int rt);
+    std::string getName();
+    int getRating();
+    int getPriceRange();
+    int getSafety();
 };
 
 

@@ -18,3 +18,16 @@ void cruisecompany::updateRating(int rt)
     ratingcount++;
     rating = ((rating *(ratingcount - 1)) + rt) / ratingcount;
 }
+
+std::string cruisecompany::getName() {
+    return name;
+}
+int cruisecompany::getRating() {
+    return rating;
+}
+int cruisecompany::getPriceRange() {
+    return priceRange;
+}
+int cruisecompany::getSafety() {
+    return safetyRating;
+}

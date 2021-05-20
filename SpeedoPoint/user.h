@@ -31,6 +31,7 @@ public:
     void updateReservations(reservation r);
     void updateCruiseReservations(cruisereservation r);
     int redeem();
+    string getEmail();
 };
 
 #endif USER_H

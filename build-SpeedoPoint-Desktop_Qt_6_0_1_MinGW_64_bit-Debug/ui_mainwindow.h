@@ -57,6 +57,7 @@ public:
     QLineEdit *PasswordEntry;
     QPushButton *SignupButton;
     QPushButton *SignupSwitch;
+    QLabel *SignupFail;
     QFrame *Listings;
     QGraphicsView *ProgramBackground;
     QLabel *Speedopointtxt;
@@ -249,9 +250,14 @@ public:
 
         verticalLayout_3->addWidget(SignupSwitch);
 
-        SignUpFrame->raise();
-        LoginBackground->raise();
+        SignupFail = new QLabel(verticalLayoutWidget_3);
+        SignupFail->setObjectName(QString::fromUtf8("SignupFail"));
+
+        verticalLayout_3->addWidget(SignupFail);
+
         LoginFrame->raise();
+        LoginBackground->raise();
+        SignUpFrame->raise();
         Listings = new QFrame(centralwidget);
         Listings->setObjectName(QString::fromUtf8("Listings"));
         Listings->setGeometry(QRect(0, -1, 1101, 581));
@@ -549,6 +555,9 @@ public:
         Book->setGeometry(QRect(890, 130, 101, 41));
         Book->setFont(font5);
         MainWindow->setCentralWidget(centralwidget);
+        Listings->raise();
+        LoginScreen->raise();
+        DetailsPage->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -580,6 +589,7 @@ public:
         PassLabel->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         SignupButton->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
         SignupSwitch->setText(QCoreApplication::translate("MainWindow", "Already have an account? Login", nullptr));
+        SignupFail->setText(QCoreApplication::translate("MainWindow", "User Already Exists", nullptr));
         Speedopointtxt->setText(QCoreApplication::translate("MainWindow", "SpeedOPoint", nullptr));
         fromtext->setText(QCoreApplication::translate("MainWindow", "Fly From", nullptr));
         FlightFrom->setItemText(0, QCoreApplication::translate("MainWindow", "Argentina", nullptr));

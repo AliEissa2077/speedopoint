@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    MainWindow::findChild<QFrame *>("LoginFail")->setEnabled(false);
+    MainWindow::findChild<QFrame *>("SignupFail")->setEnabled(false);
 
     QPushButton *test = MainWindow::findChild<QPushButton *>("LoginSwitch");
     QPushButton *test2 = MainWindow::findChild<QPushButton *>("SignupSwitch");
@@ -71,6 +73,10 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *detailsback = MainWindow::findChild<QPushButton *>("DetailsBack");
     connect(detailsback, SIGNAL(released()), this, SLOT(DetailsBack()));
 
+    QPushButton *bookbut = MainWindow::findChild<QPushButton *>("Book");
+    connect(bookbut, SIGNAL(released()), this, SLOT(bookListing()));
+
+
 }
 
 void MainWindow::SwitchLogin() {
@@ -106,8 +112,13 @@ void MainWindow::Login() {
 
     // check with users database file
     // declare user as the database one
-
-    MainWindow::findChild<QFrame *>("Listings")->raise();
+    curUser = progData.verifyUser(email.toStdString() , pass.toStdString() );
+    if (curUser == NULL) {
+        MainWindow::findChild<QFrame *>("LoginFail")->setEnabled(true);
+    }
+    else {
+        MainWindow::findChild<QFrame *>("Listings")->raise();
+    }
 
 }
 
@@ -123,6 +134,15 @@ void MainWindow::Signup() {
     //qDebug() << pass;
     //qDebug() << usern;
     //check database first
+    if (progData.UserExists(email.toStdString())) {
+         MainWindow::findChild<QFrame *>("SignupFail")->setEnabled(true);
+    }
+    else {
+        user* u = new user(usern.toStdString(), pass.toStdString(), email.toStdString());
+        progData.AddUser(u);
+        curUser = u;
+        MainWindow::findChild<QFrame *>("Listings")->raise();
+    }
 
     //user Newuser(usern, email, pass);
 
@@ -130,7 +150,7 @@ void MainWindow::Signup() {
     // declare user
     //if verified
     //user newU(usern.toStdString(), pass.toStdString(), email.toStdString());
-    MainWindow::findChild<QFrame *>("Listings")->raise();
+
 
 
 }
@@ -365,6 +385,9 @@ void MainWindow::DetailsBack() {
 
 void MainWindow::SetCurrlisting(QtListing* l) {
     currentListing = l;
+}
+void MainWindow::bookListing() {
+
 }
 void MainWindow::deleteListing() {
     int type = currentListing->getType();

@@ -18,7 +18,7 @@ dataStore::dataStore()
         string pwd;
         string email;
         u >> username >> pwd >> email;
-        user user__(username, pwd, email);
+        user* user__ = new user(username, pwd, email);
         users.push_back(user__);
     }
     u.close();
@@ -160,7 +160,7 @@ dataStore::dataStore()
 
 }
 
-void dataStore::AddUser(user u) {
+void dataStore::AddUser(user* u) {
     users.push_back(u);
     // write into file;
 }
@@ -169,8 +169,8 @@ vector<country> dataStore::getCountries() {
 }
 bool dataStore::userAuth(string uName, string uPass) {
     for (int i = 0; i < users.size(); i++) {
-        if (uName.compare(users[i].getName()) == 0) {
-            return users[i].checkPass(uPass);
+        if (uName.compare(users[i]->getName()) == 0) {
+            return users[i]->checkPass(uPass);
         }
     }
     return false;
@@ -287,19 +287,19 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
     }
     return output;
 }
-/*  TEMPORARY COMMENT
-vector<Node<cruise>*> dataStore::GetCruisesInLoc(string loc, string city) {
-    Node<cruise>* curr = CruiseListingsHead;
-    vector<Node<cruise>*> output;
+/*  TEMPORARY COMMENT */
+vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
+    Node<cruise*>* curr = CruiseListingsHead;
+    vector<Node<cruise*>*> output;
     while (curr != NULL) {
-        if (curr->data.verifyLoc(loc, city)) {
+        if (curr->data->verifyLoc(loc, city)) {
             output.push_back(curr);
         }
         curr = curr->next;
     }
     return output;
 }
-*/
+
 vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
@@ -388,34 +388,7 @@ vector<hotellisting*> dataStore::GetSortedHotels(int type) {
     }
     return output;
 }
-/*
- FOR FLIGHTLISTING CPP
-float flightlisting::CalculateFlightDur() {
-    return _CalculateFlightDur(stops);
-}
 
-
-float subtract(date d, date f) {
-    float var1 = 0;
-        var1 += d.day*24;
-        var1 += d.hour;
-        var1 += d.minute/60.0;
-
-        float var2 = f.day*24 + f.hour + f.minute / 60.0;
-        cout << var1;
-        cout <<endl;
-        return var2 - var1;
-}
-
-
-float _CalculateFlightDur(stop* stp) {
-    stop* last = stp;
-    while (last->next != NULL) {
-        last = last->next;
-    }
-    return abs(subtract(stp->getTime(), last->getTime()));
-} //recursive
-*/
 
 void dataStore::deleteHlisting(int index) {
     Node<hotellisting*>* curr = HotelListingsHead;
@@ -457,4 +430,21 @@ void dataStore::deleteClisting(int index) {
         }
         curr = curr->next;
     }
+}
+user* dataStore::verifyUser(string email, string pass) {
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i]->checkPass(pass) && users[i]->getEmail().compare(email) == 0) {
+            return users[i];
+        }
+    }
+    return NULL;
+}
+
+bool dataStore::UserExists(string email) {
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i]->getEmail().compare(email) == 0) {
+            return true;
+        }
+    }
+    return false;
 }

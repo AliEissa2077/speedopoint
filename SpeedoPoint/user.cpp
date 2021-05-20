@@ -47,3 +47,7 @@ bool user::checkPass(string pass) {
 int user::redeem() {
     return wallt.redeem();
 }
+
+string user::getEmail() {
+    return email;
+}
