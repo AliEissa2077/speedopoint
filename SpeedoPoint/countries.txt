@@ -1,0 +1,21 @@
+Argentina      0             Buenos Aires   Mendoza       Cordoba       
+Austria        0             Vienna         Graz          Linz          
+Bahamas        0             Nassau         Freeport      March Harbour 
+Bahrain        1             Manama         Hamad Town    Riffa         
+Belgium        0             Brussels       Bruges        Ghent         
+Bolivia        0             Sucre          Potosi        La Paz        
+Brazil         1             Brasilia       Manaus        Sau Paulo     
+Canada         0             Ottawa         Toronto       Montreal     
+Chile          0             Santiago       Valparaiso    Arica        
+Costa Rica    0             San Jose       Cartago       Jaco         
+Egypt         1             Cairo          Alexandria    Shobra       
+Estonia       0             Tallinn        Tartu         Narva         
+Finland       0             Helsinki       Tampere       Espoo         
+France        1             Paris          Marseille     Strasbourg   
+Germany       1             Berlin         Munich        Cologne       
+Greece        0             Athens         Thessaloniki  Chania        
+Italy         0             Rome           Venice        Florence     
+Japan         0             Tokyo          Kyoto         Osaka         
+Niger         0             Niamey         Zinder        Agadez        
+Palestine     1             Gaza           Khan Yunis    Jabalia      
+

@@ -44,7 +44,7 @@ public:
     QLineEdit *PasswordEntryLogin;
     QPushButton *LoginButton;
     QPushButton *LoginSwitch;
-    QLabel *loginFail;
+    QLabel *LoginFail;
     QFrame *SignUpFrame;
     QWidget *verticalLayoutWidget_3;
     QVBoxLayout *verticalLayout_3;
@@ -185,10 +185,10 @@ public:
 
         verticalLayout->addWidget(LoginSwitch);
 
-        loginFail = new QLabel(verticalLayoutWidget);
-        loginFail->setObjectName(QString::fromUtf8("loginFail"));
+        LoginFail = new QLabel(verticalLayoutWidget);
+        LoginFail->setObjectName(QString::fromUtf8("LoginFail"));
 
-        verticalLayout->addWidget(loginFail);
+        verticalLayout->addWidget(LoginFail);
 
         SignUpFrame = new QFrame(LoginScreen);
         SignUpFrame->setObjectName(QString::fromUtf8("SignUpFrame"));
@@ -556,8 +556,8 @@ public:
         Book->setFont(font5);
         MainWindow->setCentralWidget(centralwidget);
         Listings->raise();
-        LoginScreen->raise();
         DetailsPage->raise();
+        LoginScreen->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -582,7 +582,7 @@ public:
         PassLabel_2->setText(QCoreApplication::translate("MainWindow", "Password", nullptr));
         LoginButton->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         LoginSwitch->setText(QCoreApplication::translate("MainWindow", "New here? Sign Up", nullptr));
-        loginFail->setText(QCoreApplication::translate("MainWindow", "Login failed. Please try again.", nullptr));
+        LoginFail->setText(QCoreApplication::translate("MainWindow", "Login failed. Please try again.", nullptr));
         Signuplabel->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
         UsernameLabel->setText(QCoreApplication::translate("MainWindow", "Username", nullptr));
         emailLabel->setText(QCoreApplication::translate("MainWindow", "Email", nullptr));

@@ -51,3 +51,6 @@ int user::redeem() {
 string user::getEmail() {
     return email;
 }
+string user::getPassword() {
+    return password;
+}

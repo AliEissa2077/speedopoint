@@ -12,15 +12,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    MainWindow::findChild<QFrame *>("LoginFail")->setEnabled(false);
-    MainWindow::findChild<QFrame *>("SignupFail")->setEnabled(false);
-
+    currentListing = NULL;
+    curUser = NULL;
+    qDebug() << "test ";
+    MainWindow::findChild<QLabel *>("LoginFail")->hide();
+    MainWindow::findChild<QLabel *>("SignupFail")->hide();
+qDebug() << "test ";
     QPushButton *test = MainWindow::findChild<QPushButton *>("LoginSwitch");
     QPushButton *test2 = MainWindow::findChild<QPushButton *>("SignupSwitch");
 
     connect(test, SIGNAL(released()), this, SLOT(SwitchSignup()));
     connect(test2, SIGNAL(released()), this, SLOT(SwitchLogin()));
-
+qDebug() << "test ";
     QPushButton *loginbut = MainWindow::findChild<QPushButton *>("LoginButton");
     connect(loginbut, SIGNAL(released()), this, SLOT(Login()));
 
@@ -32,9 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
     //MainWindow::findChild<QFrame *>("Listings")->raise();
 
 
-    QtListing *listtest = new QtListing();  // adding an element to the list
+    /*QtListing *listtest = new QtListing();  // adding an element to the list
     MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-    MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+    MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());*/
 
     //QtListing *listtest = new QtListing(MainWindow::findChild<QListWidget *>("FlightListings"));
 
@@ -50,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     QComboBox *flightsort = MainWindow::findChild<QComboBox *>("SortBy");
     connect(flightsort, SIGNAL(currentTextChanged(QString)), this, SLOT(SortFlights(QString)));
 
-
+qDebug() << "test ";
     QPushButton *hotelSearch = MainWindow::findChild<QPushButton *>("SearchHotel");
     connect(hotelSearch, SIGNAL(released()), this, SLOT(DisplayHotels()));
 
@@ -76,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *bookbut = MainWindow::findChild<QPushButton *>("Book");
     connect(bookbut, SIGNAL(released()), this, SLOT(bookListing()));
 
-
+qDebug() << "test ";
 }
 
 void MainWindow::SwitchLogin() {
@@ -114,7 +117,7 @@ void MainWindow::Login() {
     // declare user as the database one
     curUser = progData.verifyUser(email.toStdString() , pass.toStdString() );
     if (curUser == NULL) {
-        MainWindow::findChild<QFrame *>("LoginFail")->setEnabled(true);
+        MainWindow::findChild<QLabel *>("LoginFail")->show();
     }
     else {
         MainWindow::findChild<QFrame *>("Listings")->raise();
@@ -135,7 +138,7 @@ void MainWindow::Signup() {
     //qDebug() << usern;
     //check database first
     if (progData.UserExists(email.toStdString())) {
-         MainWindow::findChild<QFrame *>("SignupFail")->setEnabled(true);
+         MainWindow::findChild<QLabel *>("SignupFail")->show();
     }
     else {
         user* u = new user(usern.toStdString(), pass.toStdString(), email.toStdString());

@@ -124,7 +124,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="loginFail">
+        <widget class="QLabel" name="LoginFail">
          <property name="text">
           <string>Login failed. Please try again.</string>
          </property>
@@ -1458,8 +1458,8 @@
     </widget>
    </widget>
    <zorder>Listings</zorder>
-   <zorder>LoginScreen</zorder>
    <zorder>DetailsPage</zorder>
+   <zorder>LoginScreen</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

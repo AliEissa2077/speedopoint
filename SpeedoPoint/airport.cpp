@@ -3,6 +3,11 @@
 airport::airport(){
 
 }
+airport::airport(std::string airport_name, country count, int index) {
+    ctry = count;
+    cityIndex = index;
+    name= airport_name;
+}
 
 country airport::getCountry()
 {

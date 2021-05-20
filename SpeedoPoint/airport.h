@@ -8,11 +8,12 @@
 
 class airport {
 private: 
+    std::string name;
     country ctry;
 	int cityIndex;
 public:
 	airport();
-    airport(country count, int index);
+    airport(std::string airport_name, country count, int index);
 	country getCountry();
 	int getIndex();
 };

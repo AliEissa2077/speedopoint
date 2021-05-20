@@ -8,6 +8,8 @@
 #include "cruise.h"
 #include "filesystem.h"
 #include "country.h"
+#include "airline.h"
+#include "airport.h"
 
 using namespace std;
 
@@ -30,6 +32,8 @@ private:
     vector<user*> users;
     vector<country> countries;
     vector<hotel> hotels;
+    vector<airline> airlines;
+    vector<airport> airports;
     Node<hotellisting*>* HotelListingsHead;
     Node<flightlisting*>* FlightListingsHead;
     Node<cruise*>* CruiseListingsHead;

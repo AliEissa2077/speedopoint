@@ -1,11 +1,16 @@
 #include "datastore.h"
 #include "user.h"
+#include <QDebug>
+#include <fstream>
+//#include <bits/stdc++.h>
+#include <sstream>
 dataStore::dataStore()
 {
 
     HotelListingsHead = NULL;
     FlightListingsHead = NULL;
     CruiseListingsHead = NULL;
+
     //import from file or data base and store into vector and linked lists
     // sort indeces start as the node count
 
@@ -13,36 +18,43 @@ dataStore::dataStore()
     string user_ = "users.txt";
     ifstream u(user_);
     //u.open();
-    while (!u.eof()) {
-        string username;
-        string pwd;
-        string email;
-        u >> username >> pwd >> email;
-        user* user__ = new user(username, pwd, email);
-        users.push_back(user__);
+    if (u.is_open()) {
+        while (!u.eof()) {
+            string username;
+            string pwd;
+            string email;
+            u >> username >> pwd >> email;
+            user* user__ = new user(username, pwd, email);
+            users.push_back(user__);
+        }
+        u.close();
     }
-    u.close();
 
 
     // load countries
     string country_ = "countries.txt";
     ifstream c(country_);
-    //c.open();
-    while (!c.eof()) {
-        string name;
-        bool banned;
-        string c1;
-        string c2;
-        string c3;
-        c >> name >> banned >> c1 >> c2 >> c3;
-        string city;
-        country country__(name, banned);
-        country__.addCity(c1);
-        country__.addCity(c2);
-        country__.addCity(c3);
-        countries.push_back(country__);
+    //c.open(country_);
+    if (c.is_open()) {
+        qDebug() << "went in";
+        string temp;
+        while (getline(c, temp)) {
+            stringstream ss(temp);
+            string name;
+            bool banned;
+            string c1;
+            string c2;
+            string c3;
+            ss >> name >> banned >> c1 >> c2 >> c3;
+            string city;
+            country country__(name, banned);
+            country__.addCity(c1);
+            country__.addCity(c2);
+            country__.addCity(c3);
+            countries.push_back(country__);
+        }
+        c.close();
     }
-    c.close();
 
 
 
@@ -51,23 +63,25 @@ dataStore::dataStore()
     string hotel_ = "hotels.txt";
     ifstream h(hotel_);
     //h.open();
-    while (!h.eof()) {
-        string name;
-        string country_;
-        int index;
-        int range;
-        bool pool;
-        h >> name >> country_ >> index >> range >> pool;
-        country ctry;
-        for (auto x : countries) {
-            if (country_.compare(x.getName()) == 0) {
-                ctry = x;
+    if (h.is_open()) {
+        while (!h.eof()) {
+            string name;
+            string country_;
+            int index;
+            int range;
+            bool pool;
+            h >> name >> country_ >> index >> range >> pool;
+            country ctry;
+            for (auto x : countries) {
+                if (country_.compare(x.getName()) == 0) {
+                    ctry = x;
+                }
             }
+            hotel h1(name, ctry, index, range, pool);
+            hotels.push_back(h1);
         }
-        hotel h1(name, ctry, index, range, pool);
-        hotels.push_back(h1);
+        h.close();
     }
-    h.close();
 
     // load hotellisting
     int Iindex = 0;
@@ -75,62 +89,91 @@ dataStore::dataStore()
     string hlisting = "hl.txt";
     ifstream hl(hlisting);
     //hl.open();
-    while (!hl.eof()) {
-        string hname;
-        hl >> hname;
-        hotel h;
-        for (auto x : hotels) {
-            if (hname == x.getName()) {
-                h = x;
+    if (hl.is_open()) {
+        while (!hl.eof()) {
+            string hname;
+            hl >> hname;
+            hotel h;
+            for (auto x : hotels) {
+                if (hname == x.getName()) {
+                    h = x;
+                }
             }
-        }
-        country ctry = h.getCountry();
-        int index = h.getIndex();
-        int area;
-        int price;
-        bool wifi;
-        bool bfast;
-        int num;
-        bool refund;
-        bool dinner;
-        bool pet;
-        string roomtype;
-        hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
+            country ctry = h.getCountry();
+            int index = h.getIndex();
+            int area;
+            int price;
+            bool wifi;
+            bool bfast;
+            int num;
+            bool refund;
+            bool dinner;
+            bool pet;
+            string roomtype;
+            hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
 
-        //hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
-        hotellisting* hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
-        // append to linked lsit
+            //hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+            hotellisting* hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+            // append to linked lsit
 
 
-        if (HotelListingsHead == NULL) {
-            HotelListingsHead = new Node<hotellisting*>;
-            HotelListingsHead->data = hotl;
-            HotelListingsHead->initialIndex = Iindex;
-            Iindex++;
-        }
-        else {
-            Node<hotellisting*>* curr = HotelListingsHead;
-            while (curr->next != NULL) {
-                curr = curr->next;
+            if (HotelListingsHead == NULL) {
+                HotelListingsHead = new Node<hotellisting*>;
+                HotelListingsHead->data = hotl;
+                HotelListingsHead->initialIndex = Iindex;
+                Iindex++;
             }
-            curr->next = new Node<hotellisting*>;
-            curr->next->data = hotl;
-            curr->next->initialIndex = Iindex;
-            Iindex++;
+            else {
+                Node<hotellisting*>* curr = HotelListingsHead;
+                while (curr->next != NULL) {
+                    curr = curr->next;
+                }
+                curr->next = new Node<hotellisting*>;
+                curr->next->data = hotl;
+                curr->next->initialIndex = Iindex;
+                Iindex++;
+            }
+
+
         }
-
-
+        hl.close();
     }
-    hl.close();
 
     // load flighttickets 
     Iindex = 0;
 
-    string flightfile = "flights.txt";
-    ifstream f(flightfile);
-    //f.open();
-    while (!f.eof()) {
+    string airlne = "airline.txt";
+    ifstream afile(airlne);
+    if (afile.is_open()) {
+        while (!afile.eof()) {
+            string name;
+            int range;
+            float srt;
+            afile >> name >> range >> srt;
+            airline airl(name, range, srt);
+            airlines.push_back(airl); // add vector named airlines type airline to header
+        }
+        afile.close();
+    }
 
+    string airportfile = "airports.txt";
+    ifstream air(airportfile);
+    if (air.is_open()) {
+        while (!air.eof()) {
+                string ctry;
+                string airport_name;
+                air >> ctry;
+                country cntry;
+                for (auto x : countries) {
+                    if (x.getName() == ctry) {
+                        cntry = x;
+                    }
+                }
+                int index;
+                air >> index;
+                airports.push_back(airport(airport_name, cntry, index)); // change airport.h and airport.cpp
+            }
+            air.close();
     }
 
 
@@ -155,14 +198,25 @@ dataStore::dataStore()
 
 
 
- 
+
     SortListings();
 
+
+    // for testing
+    qDebug() << "here";
+    for (int i = 0; i < countries[0].getCities().size(); i++) {
+        qDebug() << QString::fromStdString(countries[0].getCities()[i]);
+    }
 }
 
 void dataStore::AddUser(user* u) {
     users.push_back(u);
+
     // write into file;
+    string user_data = u->getName() + "\t" + u->getPassword() + "\t" + u->getEmail(); // add getpassword and getemail;
+    ofstream usersf("users.txt", ios::app);
+    usersf << user_data;
+    usersf.close();
 }
 vector<country> dataStore::getCountries() {
     return countries;
