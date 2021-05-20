@@ -90,9 +90,11 @@ dataStore::dataStore()
     ifstream hl(hlisting);
     //hl.open();
     if (hl.is_open()) {
-        while (!hl.eof()) {
+        string line;
+        while (getline(hl, line)) {
+            stringstream ss(line);
             string hname;
-            hl >> hname;
+            ss >> hname;
             hotel h;
             for (auto x : hotels) {
                 if (hname == x.getName()) {
@@ -110,10 +112,10 @@ dataStore::dataStore()
             bool dinner;
             bool pet;
             string roomtype;
-            hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
+            ss >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
 
-            //hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
             hotellisting* hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+            //hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
             // append to linked lsit
 
 
@@ -142,16 +144,19 @@ dataStore::dataStore()
     // load flighttickets 
     Iindex = 0;
 
+    // load airlines
     string airlne = "airline.txt";
     ifstream afile(airlne);
     if (afile.is_open()) {
-        while (!afile.eof()) {
+        string line1;
+        while (getline(afile, line1)) {
+            stringstream ssa(line1);
             string name;
             int range;
             float srt;
-            afile >> name >> range >> srt;
-            airline airl(name, range, srt);
-            airlines.push_back(airl); // add vector named airlines type airline to header
+            ssa >> name >> range >> srt;
+            airline airline(name, range, srt);
+            airlines.push_back(airline); // add vector named airlines type airline to header
         }
         afile.close();
     }
@@ -159,21 +164,23 @@ dataStore::dataStore()
     string airportfile = "airports.txt";
     ifstream air(airportfile);
     if (air.is_open()) {
-        while (!air.eof()) {
-                string ctry;
-                string airport_name;
-                air >> ctry;
-                country cntry;
-                for (auto x : countries) {
-                    if (x.getName() == ctry) {
-                        cntry = x;
-                    }
+        string line2;
+        while (getline(air, line2)) {
+            stringstream ssair(line2);
+            string ctry;
+            string airport_name;
+            ssair >> airport_name >> ctry;
+            country cntry;
+            for (auto x : countries) {
+                if (x.getName() == ctry) {
+                    cntry = x;
                 }
-                int index;
-                air >> index;
-                airports.push_back(airport(airport_name, cntry, index)); // change airport.h and airport.cpp
             }
-            air.close();
+            int index;
+            ssair >> index;
+            airports.push_back(airport(airport_name, cntry, index));
+        }
+        air.close();
     }
 
 

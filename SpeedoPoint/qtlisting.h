@@ -32,6 +32,9 @@ public:
     QtListing(QWidget* source);
     QListWidgetItem* getitem();
     QWidget *getwidget();
+    hotellisting* getHListing();
+    flightlisting* getFListing();
+    cruise* getCListing();
 
     void setMainProg(MainWindow* m);
     int getIndex();

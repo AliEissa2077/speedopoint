@@ -420,6 +420,13 @@ void MainWindow::SetCurrlisting(QtListing* l) {
     currentListing = l;
 }
 void MainWindow::bookListing() {
+    if (currentListing->getType() == 1) {
+        hotellisting* htllist = currentListing->getHListing();
+        htllist->reserve(curUser, )
+
+    }
+       (user* acc, int adults, int children, bool oneway, bool refund, date d
+    currentListing->getlisting(currentListing->getType())->reserve(curUser, )
 
 }
 void MainWindow::deleteListing() {

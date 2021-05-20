@@ -181,6 +181,9 @@ void QtListing::detailsButton() {
 
 
     QtListing::findChild<QFrame *>("DetailsPage")->raise();
+    if (getType() == 1) {
+
+    }
 
     mainProg->SetCurrlisting(this);
 
@@ -208,6 +211,16 @@ int QtListing::getType() {
         return 3;
     }
 
+}
+hotellisting* QtListing::getHListing() {
+    return hlisting;
+
+}
+flightlisting* QtListing::getFListing() {
+    return flisting;
+}
+cruise* QtListing::getCListing() {
+    return clisting;
 }
 int QtListing::getIndex() {
     return Ind;
