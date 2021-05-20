@@ -1,19 +1,14 @@
 #include "datastore.h"
 #include "user.h"
-#include <bits/stdc++.h>
-dataStore::dataStore(fileSystem filesy)
+dataStore::dataStore()
 {
-    HotelListingsHead = NULL;
-    FlightListingsHead = NULL;
-    CruiseListingsHead = NULL;
-
     //import from file or data base and store into vector and linked lists
     // sort indeces start as the node count
 
     //load users 
-    string user_ = filesy.getUsers();
+    string user_ = "users.txt";
     ifstream u(user_);
-    //u.open();
+    u.open();
     while (!u.eof()) {
         string username;
         string pwd;
@@ -26,9 +21,9 @@ dataStore::dataStore(fileSystem filesy)
 
 
     // load countries
-    string country_ = filesy.getCountries();
+    string country_ = "countries.txt";
     ifstream c(country_);
-    //c.open();
+    c.open();
     while (!c.eof()) {
         string name;
         bool banned;
@@ -49,9 +44,9 @@ dataStore::dataStore(fileSystem filesy)
 
     //load hotels
 
-    string hotel_ = filesy.getHotels();
+    string hotel_ = "hotels.txt";
     ifstream h(hotel_);
-    //h.open();
+    h.open();
     while (!h.eof()) {
         string name;
         string country_;
@@ -61,7 +56,7 @@ dataStore::dataStore(fileSystem filesy)
         h >> name >> country_ >> index >> range >> pool;
         country ctry;
         for (auto x : countries) {
-            if (country_.compare(x.getName()) == 0) {
+            if (country == x.getName()) {
                 ctry = x;
             }
         }
@@ -72,12 +67,12 @@ dataStore::dataStore(fileSystem filesy)
 
     // load hotellisting
 
-    string hlisting = filesy.getHotelListing();
+    string hlisting = "hl.txt";
     ifstream hl(hlisting);
-    //hl.open();
+    hl.open();
     while (!hl.eof()) {
         string hname;
-        hl >> hname;
+        hlline << hname;
         hotel h;
         for (auto x : hotels) {
             if (hname == x.getName()) {
@@ -96,24 +91,9 @@ dataStore::dataStore(fileSystem filesy)
         bool pet;
         string roomtype;
         hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
-        hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
-        //hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+        hotellisting* hotellisting_;
+        hotellisting_ = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
         // append to linked lsit
-
-
-        if (HotelListingsHead == NULL) {
-            HotelListingsHead = new Node<hotellisting>;
-            HotelListingsHead->data = hotl;
-        }
-        else {
-            Node<hotellisting>* curr = HotelListingsHead;
-            while (curr->next != NULL) {
-                curr = curr->next;
-            }
-            curr->next = new Node<hotellisting>;
-            curr->next->data = hotl;
-        }
-
 
 
     }
@@ -122,26 +102,10 @@ dataStore::dataStore(fileSystem filesy)
     // load flighttickets 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    string flightfile = filesy.getFlights();
+    string flightfile = "flights.txt";
     ifstream f(flightfile);
-    //f.open();
-    string fline;
-    while (getline(f, fline)) {
+    f.open();
+    while (!f.eof()) {
 
     }
 
@@ -165,8 +129,12 @@ dataStore::dataStore(fileSystem filesy)
 
 
 
-
-
+<<<<<<< HEAD
+=======
+    HotelListingsHead = NULL;
+    FlightListingsHead = NULL;
+    CruiseListingsHead = NULL;
+>>>>>>> dbd3f0109d14e6544a856270681351d0a4a826ea
  
     SortListings();
 
