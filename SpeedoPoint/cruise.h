@@ -8,7 +8,9 @@
 #include "stop.h"
 #include "cruisereservation.h"
 #include "user.h"
-
+#include "user.h"
+#include "country.h"
+#include "reservation.h"
 
 class cruise {
 private:
