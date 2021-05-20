@@ -15,6 +15,7 @@ class MainWindow;
 
 class QtListing : public QObject
 {
+
 private:
     MainWindow* mainProg;
     hotellisting* hlisting;
@@ -39,6 +40,7 @@ public:
     void setMainProg(MainWindow* m);
     int getIndex();
     int getType();
+    ~QtListing();
 
 private slots:
     void detailsButton();

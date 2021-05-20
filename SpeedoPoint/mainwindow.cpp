@@ -154,7 +154,7 @@ void MainWindow::Signup() {
         progData->AddUser(u);
         curUser = u;
         MainWindow::findChild<QFrame *>("Listings")->raise();
-        MainWindow::findChild<QFrame *>("DetailsPage")->raise();
+        //MainWindow::findChild<QFrame *>("DetailsPage")->raise();
         MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
     }
 
@@ -248,6 +248,7 @@ void MainWindow::SortHotels(const QString &text) {
     else {
         sort = 0;
     }
+    //qDebug() << "test " << sort;
 }
 void MainWindow::SortCruises(const QString &text) {
     SortHotels(text);
@@ -321,7 +322,26 @@ void MainWindow::DisplayHotels() {
     QCheckBox *dinner = MainWindow::findChild<QCheckBox *>("dinner");
 
     vector<Node<hotellisting*>*> mylist = progData->GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
-    qDebug() << "test " << mylist.size();
+
+    //MainWindow::findChild<QListWidget *>("HotelListings")->clear();
+
+    QListWidget* mListWidget = MainWindow::findChild<QListWidget *>("HotelListings");
+
+    //mListWidget->clear();
+
+    int num = mListWidget->count();
+    QListWidgetItem *item = NULL;
+    for (int i = 0; i < num; i++) {
+        item = mListWidget->takeItem(0);
+        //delete item;
+    }
+
+
+
+    mListWidget->repaint();
+
+    qDebug() << "testw " << mListWidget->count();
+    qDebug() << pool->isChecked() << pets->isChecked() << beach->isChecked() << bkfast->isChecked() << dinner->isChecked();
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
@@ -351,22 +371,45 @@ void MainWindow::DisplayHotels() {
                     }
                 }
             }
+            qDebug() << "test ";
             QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
             listtest->setMainProg(this);
-            MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
-
+            if (listtest->getitem() == NULL) {
+                qDebug() << "isnull ";
+            }
+            mListWidget->insertItem(0, listtest->getitem());
+            if (listtest->getitem() == NULL) {
+                qDebug() << "isnull ";
+            }
+            mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
+            qDebug() << "test ";
             mylist.erase(mylist.begin() + index);
         }
     }
     else {
         for (int n = 0; n < mylist.size(); n++) {
-            QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
-            listtest->setMainProg(this);
-            MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+            if (mylist[n] != NULL) {
+                qDebug() << "thi is it ";
+                QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
+                listings.push_back(listtest);
+                listtest->setMainProg(this);
+                qDebug() << "test ";
+                mListWidget->insertItem(0, listtest->getitem());
+
+                try {
+                    mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
+                }
+                catch(...) {
+                    qDebug() << "error ";
+                }
+
+                mListWidget->repaint();
+
+            }
         }
+
     }
+    qDebug() << "testy ";
 }
 
 void MainWindow::DisplayCruises() {

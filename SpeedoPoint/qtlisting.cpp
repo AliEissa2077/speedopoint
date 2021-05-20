@@ -241,3 +241,10 @@ cruise* QtListing::getCListing() {
 int QtListing::getIndex() {
     return Ind;
 }
+QtListing::~QtListing() {
+    delete flisting;
+    delete clisting;
+    delete mainProg;
+    delete hlisting;
+
+}

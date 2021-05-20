@@ -259,10 +259,10 @@ dataStore::dataStore()
 
 
     // for testing
-    qDebug() << "here";
+    //qDebug() << "here";
     Node<hotellisting*>* curr = HotelListingsHead;
     while (curr != NULL) {
-        qDebug() << QString::fromStdString(curr->data->getLoc().getName());
+        //qDebug() << QString::fromStdString(curr->data->getLoc().getName());
         curr = curr->next;
     }
 }
@@ -364,7 +364,8 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
     Node<hotellisting*>* curr = HotelListingsHead;
     vector<Node<hotellisting*>*> output;
     while (curr != NULL) {
-        if (curr->data->verifyLoc(loc, city) && curr->data->getMaxPersons() <= persons) {
+        //qDebug() << curr->data->verifyLoc(loc, city) << "loc verify";
+        if (curr->data->verifyLoc(loc, city) && curr->data->getMaxPersons() >= persons) {
             bool valid = true;
             if (pool) {
                 if (!curr->data->getHotel().getPool()) {
@@ -389,9 +390,11 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
             if (dinner) {
                 if (!curr->data->getDinner()) {
                     valid = false;
+                    qDebug() << "chc";
                 }
             }
             if (valid) {
+                qDebug() << "chc";
                 output.push_back(curr);
             }
         }
@@ -495,6 +498,9 @@ vector<hotellisting*> dataStore::GetSortedHotels(int type) {
                 output.push_back(curr->data);
                 index++;
             }
+        }
+        else {
+            output.push_back(curr->data);
         }
         curr = curr->next;
     }
