@@ -97,23 +97,23 @@ dataStore::dataStore()
         string roomtype;
         hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
 
-        hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
-        //hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+        //hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+        hotellisting* hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
         // append to linked lsit
 
 
         if (HotelListingsHead == NULL) {
-            HotelListingsHead = new Node<hotellisting>;
+            HotelListingsHead = new Node<hotellisting*>;
             HotelListingsHead->data = hotl;
             HotelListingsHead->initialIndex = Iindex;
             Iindex++;
         }
         else {
-            Node<hotellisting>* curr = HotelListingsHead;
+            Node<hotellisting*>* curr = HotelListingsHead;
             while (curr->next != NULL) {
                 curr = curr->next;
             }
-            curr->next = new Node<hotellisting>;
+            curr->next = new Node<hotellisting*>;
             curr->next->data = hotl;
             curr->next->initialIndex = Iindex;
             Iindex++;
@@ -181,18 +181,18 @@ void dataStore::SortListings() {
     sortRecurrF(FlightListingsHead);
     //sortRecurrC(CruiseListingsHead);
 }
-void dataStore::sortRecurrH(Node<hotellisting>* n) {
+void dataStore::sortRecurrH(Node<hotellisting*>* n) {
     if (n ==NULL) {
         return;
     }
 
-    Node<hotellisting>* curr = n;
+    Node<hotellisting*>* curr = n;
     while (n->prev != NULL) {
         curr = curr->prev;
-        if (curr->data.getPricePerNight() > n->data.getPricePerNight()) {
+        if (curr->data->getPricePerNight() > n->data->getPricePerNight()) {
             n->priceRankIndex = curr->priceRankIndex  - 1;
         }
-        if (curr->data.getHotelRating() < n->data.getHotelRating()) {
+        if (curr->data->getHotelRating() < n->data->getHotelRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
 
@@ -201,20 +201,20 @@ void dataStore::sortRecurrH(Node<hotellisting>* n) {
         sortRecurrH(n->next);
     }
 }
-void dataStore::sortRecurrF(Node<flightlisting>* n) {
+void dataStore::sortRecurrF(Node<flightlisting*>* n) {
     if (n ==NULL) {
         return;
     }
-    Node<flightlisting>* curr = n;
+    Node<flightlisting*>* curr = n;
     while (n->prev != NULL) {
         curr = curr->prev;
-        if (curr->data.getPriceperTraveller() > n->data.getPriceperTraveller()) {
+        if (curr->data->getPriceperTraveller() > n->data->getPriceperTraveller()) {
             n->priceRankIndex = curr->priceRankIndex  - 1;
         }
-        if (curr->data.getAirlineRating() < n->data.getAirlineRating()) {
+        if (curr->data->getAirlineRating() < n->data->getAirlineRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
-        if (curr->data.CalculateFlightDur() > n->data.CalculateFlightDur()) {
+        if (curr->data->CalculateFlightDur() > n->data->CalculateFlightDur()) {
             n->DistRankIndex = curr->DistRankIndex  - 1;
         }
 
@@ -248,34 +248,34 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
 }
 */
 
-vector<Node<hotellisting>*> dataStore::GetHotelsInLoc(string loc, string city, int persons, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
-    Node<hotellisting>* curr = HotelListingsHead;
-    vector<Node<hotellisting>*> output;
+vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, int persons, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
+    Node<hotellisting*>* curr = HotelListingsHead;
+    vector<Node<hotellisting*>*> output;
     while (curr != NULL) {
-        if (curr->data.verifyLoc(loc, city) && curr->data.getMaxPersons() <= persons) {
+        if (curr->data->verifyLoc(loc, city) && curr->data->getMaxPersons() <= persons) {
             bool valid = true;
             if (pool) {
-                if (!curr->data.getHotel().getPool()) {
+                if (!curr->data->getHotel().getPool()) {
                     valid = false;
                 }
             }
             if (pets) {
-                if (!curr->data.getPets()) {
+                if (!curr->data->getPets()) {
                     valid = false;
                 }
             }
             if (beach) {
-                if (!curr->data.getHotel().getBeach()) {
+                if (!curr->data->getHotel().getBeach()) {
                     valid = false;
                 }
             }
             if (bfast) {
-                if (!curr->data.getBfast()) {
+                if (!curr->data->getBfast()) {
                     valid = false;
                 }
             }
             if (dinner) {
-                if (!curr->data.getDinner()) {
+                if (!curr->data->getDinner()) {
                     valid = false;
                 }
             }
@@ -300,11 +300,11 @@ vector<Node<cruise>*> dataStore::GetCruisesInLoc(string loc, string city) {
     return output;
 }
 */
-vector<Node<flightlisting>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
-    Node<flightlisting>* curr = FlightListingsHead;
-    vector<Node<flightlisting>*> output;
+vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
+    Node<flightlisting*>* curr = FlightListingsHead;
+    vector<Node<flightlisting*>*> output;
     while (curr != NULL) {
-        if (curr->data.verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive)) {
+        if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive)) {
             output.push_back(curr);
         }
         curr = curr->next;
@@ -312,9 +312,9 @@ vector<Node<flightlisting>*> dataStore::GetFlightsInLoc(string locdep, string ci
     return output;
 }
 
-vector<flightlisting> dataStore::GetSortedFlights(int type) {
-    Node<flightlisting>* curr = FlightListingsHead; //1 price : 2 rating : 3 distance
-    vector<flightlisting> output;
+vector<flightlisting*> dataStore::GetSortedFlights(int type) {
+    Node<flightlisting*>* curr = FlightListingsHead; //1 price : 2 rating : 3 distance
+    vector<flightlisting*> output;
     int index = 0;
     while (curr != NULL) {
         if (type == 1) {
@@ -334,9 +334,9 @@ vector<flightlisting> dataStore::GetSortedFlights(int type) {
     return output;
 }
 
-vector<cruise> dataStore::GetSortedCruises(int type) {
-    Node<cruise>* curr = CruiseListingsHead; //1 price : 2 rating : 3 distance
-    vector<cruise> output;
+vector<cruise*> dataStore::GetSortedCruises(int type) {
+    Node<cruise*>* curr = CruiseListingsHead; //1 price : 2 rating : 3 distance
+    vector<cruise*> output;
     int index = 0;
     while (curr != NULL) {
         if (type == 1) {
@@ -361,9 +361,9 @@ vector<cruise> dataStore::GetSortedCruises(int type) {
     }
     return output;
 }
-vector<hotellisting> dataStore::GetSortedHotels(int type) {
-    Node<hotellisting>* curr = HotelListingsHead; //1 price : 2 rating : 3 distance
-    vector<hotellisting> output;
+vector<hotellisting*> dataStore::GetSortedHotels(int type) {
+    Node<hotellisting*>* curr = HotelListingsHead; //1 price : 2 rating : 3 distance
+    vector<hotellisting*> output;
     int index = 0;
     while (curr != NULL) {
         if (type == 1) {
@@ -418,10 +418,10 @@ float _CalculateFlightDur(stop* stp) {
 */
 
 void dataStore::deleteHlisting(int index) {
-    Node<hotellisting>* curr = HotelListingsHead;
+    Node<hotellisting*>* curr = HotelListingsHead;
     while (curr != NULL) {
         if (curr->next->initialIndex == index) {
-            Node<hotellisting>* temp = curr->next;
+            Node<hotellisting*>* temp = curr->next;
             curr->next = curr->next->next;
             curr->next->prev = curr->next ;
             //delete temp;
@@ -432,10 +432,10 @@ void dataStore::deleteHlisting(int index) {
 
 }
 void dataStore::deleteFlisting(int index) {
-    Node<flightlisting>* curr = FlightListingsHead;
+    Node<flightlisting*>* curr = FlightListingsHead;
     while (curr != NULL) {
         if (curr->next->initialIndex == index) {
-            Node<flightlisting>* temp = curr->next;
+            Node<flightlisting*>* temp = curr->next;
             curr->next = curr->next->next;
             curr->next->prev = curr->next ;
             //delete temp;
@@ -446,10 +446,10 @@ void dataStore::deleteFlisting(int index) {
 
 }
 void dataStore::deleteClisting(int index) {
-    Node<cruise>* curr = CruiseListingsHead;
+    Node<cruise*>* curr = CruiseListingsHead;
     while (curr != NULL) {
         if (curr->next->initialIndex == index) {
-            Node<cruise>* temp = curr->next;
+            Node<cruise*>* temp = curr->next;
             curr->next = curr->next->next;
             curr->next->prev = curr->next ;
             //delete temp;

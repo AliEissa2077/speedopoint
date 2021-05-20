@@ -1,16 +1,18 @@
 #include "cruisereservation.h"
+#include "cruise.h"
+#include "user.h"
 
 cruisereservation::cruisereservation()
 {
 
 }
 
-cruisereservation::cruisereservation(cruise crs, payment pay, int ad, int child, user user)
+cruisereservation::cruisereservation(cruise* crs, payment pay, int ad, int child, user* u)
 {
 	cruze = crs;
 	paymnt = pay;
 	adults = ad;
 	children = child;
-	acc = user;
+    acc = u;
 
 }

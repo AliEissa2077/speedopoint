@@ -15,5 +15,6 @@ cruisecompany::cruisecompany(std::string name_, int rt, int srt, int range)
 
 void cruisecompany::updateRating(int rt)
 {
-	rating = rating + rt;
+    ratingcount++;
+    rating = ((rating *(ratingcount - 1)) + rt) / ratingcount;
 }

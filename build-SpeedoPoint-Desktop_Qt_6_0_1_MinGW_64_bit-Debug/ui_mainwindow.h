@@ -112,7 +112,7 @@ public:
     QLabel *Features;
     QLabel *SecondaryInfo;
     QLabel *SecondaryInfo2;
-    QPushButton *pushButton;
+    QPushButton *Book;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -544,14 +544,11 @@ public:
         SecondaryInfo2->setObjectName(QString::fromUtf8("SecondaryInfo2"));
         SecondaryInfo2->setGeometry(QRect(224, 286, 341, 171));
         SecondaryInfo2->setFont(font5);
-        pushButton = new QPushButton(DetailsPage);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(890, 130, 101, 41));
-        pushButton->setFont(font5);
+        Book = new QPushButton(DetailsPage);
+        Book->setObjectName(QString::fromUtf8("Book"));
+        Book->setGeometry(QRect(890, 130, 101, 41));
+        Book->setFont(font5);
         MainWindow->setCentralWidget(centralwidget);
-        LoginScreen->raise();
-        DetailsPage->raise();
-        Listings->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -728,7 +725,7 @@ public:
         Features->setText(QCoreApplication::translate("MainWindow", "Features", nullptr));
         SecondaryInfo->setText(QCoreApplication::translate("MainWindow", "Secondary", nullptr));
         SecondaryInfo2->setText(QCoreApplication::translate("MainWindow", "Secondary 2", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Book now", nullptr));
+        Book->setText(QCoreApplication::translate("MainWindow", "Book now", nullptr));
     } // retranslateUi
 
 };

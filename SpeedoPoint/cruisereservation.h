@@ -1,9 +1,9 @@
 #pragma once
 #ifndef CRUISERESERVATION_H
 #define CRUISERESERVATION_H
-#include "cruise.h"
+//#include "cruise.h"
 #include "payment.h"
-#include "user.h"
+//#include "user.h"
 
 class cruise;
 class user;
@@ -17,7 +17,7 @@ private:
     user* acc;
 public:
 	cruisereservation();
-    cruisereservation(cruise crs, payment pay, int ad, int child, user user);
+    cruisereservation(cruise* crs, payment pay, int ad, int child, user* user);
 };
 
 

@@ -196,11 +196,11 @@ void MainWindow::DisplayFlights() {
     QComboBox *arrctrySelect = MainWindow::findChild<QComboBox *>("FlightTo");
     QComboBox *cityarrselect = MainWindow::findChild<QComboBox *>("ToCitySelect");
 
-    vector<Node<flightlisting>*> mylist = progData.GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString());
+    vector<Node<flightlisting*>*> mylist = progData.GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString());
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
-        Node<flightlisting>* min;
+        Node<flightlisting*>* min;
         if (mylist.size() > 0) {
             min = mylist[0];
         }
@@ -256,11 +256,11 @@ void MainWindow::DisplayHotels() {
     QCheckBox *bkfast = MainWindow::findChild<QCheckBox *>("breakfast");
     QCheckBox *dinner = MainWindow::findChild<QCheckBox *>("dinner");
 
-    vector<Node<hotellisting>*> mylist = progData.GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
+    vector<Node<hotellisting*>*> mylist = progData.GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
-        Node<hotellisting>* min;
+        Node<hotellisting*>* min;
         if (mylist.size() > 0) {
             min = mylist[0];
         }
@@ -311,11 +311,11 @@ void MainWindow::DisplayCruises() {
     //QCheckBox *pool = MainWindow::findChild<QCheckBox *>("pool_2");
     //QCheckBox *pets = MainWindow::findChild<QCheckBox *>("pets_2");
 
-    vector<Node<cruise>*> mylist = progData.GetCruisesInLoc(ctrySelect->currentText().toStdString(), crzcity->currentText().toStdString());
+    vector<Node<cruise*>*> mylist = progData.GetCruisesInLoc(ctrySelect->currentText().toStdString(), crzcity->currentText().toStdString());
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
-        Node<cruise>* min;
+        Node<cruise*>* min;
         if (mylist.size() > 0) {
             min = mylist[0];
         }

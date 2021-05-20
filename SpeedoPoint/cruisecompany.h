@@ -8,6 +8,7 @@ private:
 	int rating;
 	int safetyRating;
 	int priceRange;
+    int ratingcount;
 public:
 	cruisecompany();
 	cruisecompany(std::string name_, int rt, int srt, int range);

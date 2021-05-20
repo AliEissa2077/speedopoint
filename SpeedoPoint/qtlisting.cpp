@@ -49,7 +49,7 @@ QtListing::QtListing(flightlisting* inp, int index)
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepCityIndex()]  + " " + inp->getDepCountry().getName() + " To " + inp->getArrCountry().getCities()[inp.getArrCityIndex()]  + " " + inp->getArrCountry().getName());
+    QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepCityIndex()]  + " " + inp->getDepCountry().getName() + " To " + inp->getArrCountry().getCities()[inp->getArrCityIndex()]  + " " + inp->getArrCountry().getName());
 
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);

@@ -1,7 +1,9 @@
 release/airline.o
 release/airport.o
 release/country.o
+release/cruise.o
 release/cruiseReservation.o
+release/cruisecompany.o
 release/datastore.o
 release/date.o
 release/filesystem.o

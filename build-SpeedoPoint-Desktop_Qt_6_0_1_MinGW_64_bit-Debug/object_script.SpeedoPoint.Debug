@@ -1,7 +1,9 @@
 debug/airline.o
 debug/airport.o
 debug/country.o
+debug/cruise.o
 debug/cruiseReservation.o
+debug/cruisecompany.o
 debug/datastore.o
 debug/date.o
 debug/filesystem.o
