@@ -70,6 +70,7 @@ dataStore::dataStore()
     h.close();
 
     // load hotellisting
+    int Iindex = 0;
 
     string hlisting = "hl.txt";
     ifstream hl(hlisting);
@@ -104,6 +105,8 @@ dataStore::dataStore()
         if (HotelListingsHead == NULL) {
             HotelListingsHead = new Node<hotellisting>;
             HotelListingsHead->data = hotl;
+            HotelListingsHead->initialIndex = Iindex;
+            Iindex++;
         }
         else {
             Node<hotellisting>* curr = HotelListingsHead;
@@ -112,6 +115,8 @@ dataStore::dataStore()
             }
             curr->next = new Node<hotellisting>;
             curr->next->data = hotl;
+            curr->next->initialIndex = Iindex;
+            Iindex++;
         }
 
 
@@ -119,7 +124,7 @@ dataStore::dataStore()
     hl.close();
 
     // load flighttickets 
-
+    Iindex = 0;
 
     string flightfile = "flights.txt";
     ifstream f(flightfile);
@@ -411,3 +416,21 @@ float _CalculateFlightDur(stop* stp) {
     return abs(subtract(stp->getTime(), last->getTime()));
 } //recursive
 */
+
+void dataStore::deleteHlisting(int index) {
+    Node<hotellisting>* curr = HotelListingsHead;
+    for (int i = 0; i < index - 1; i++) {
+        curr = curr->next;
+    }
+    Node<hotellisting>* temp = curr->next;
+    curr->next = curr->next->next;
+    curr->next->prev = curr->next ;
+    //delete temp;
+    temp = NULL;
+}
+void dataStore::deleteFlisting(int index) {
+
+}
+void dataStore::deleteClisting(int index) {
+
+}

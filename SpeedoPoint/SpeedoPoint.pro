@@ -14,6 +14,7 @@ SOURCES += \
     country.cpp \
     cruise.cpp \
     cruiseReservation.cpp \
+    cruisecompany.cpp \
     datastore.cpp \
     date.cpp \
     filesystem.cpp \

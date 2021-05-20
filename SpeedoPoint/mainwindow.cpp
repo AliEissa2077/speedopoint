@@ -357,6 +357,12 @@ void MainWindow::DetailsBack() {
     MainWindow::findChild<QFrame *>("Listings")->raise();
 }
 
+void MainWindow::SetCurrlisting(QtListing* l) {
+    currentListing = l;
+}
+void MainWindow::deleteListing(int type, int index) {
+
+}
 
 
 MainWindow::~MainWindow()

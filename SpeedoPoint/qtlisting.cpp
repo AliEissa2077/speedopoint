@@ -39,8 +39,9 @@ QtListing::QtListing()
 
 }
 
-QtListing::QtListing(flightlisting inp)
+QtListing::QtListing(flightlisting inp, int index)
 {
+    Ind = index;
     flisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
@@ -80,8 +81,9 @@ QtListing::QtListing(flightlisting inp)
     wid = widget;
 }
 
-QtListing::QtListing(hotellisting inp)
+QtListing::QtListing(hotellisting inp, int index)
 {
+    Ind = index;
     hlisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
@@ -121,8 +123,10 @@ QtListing::QtListing(hotellisting inp)
     wid = widget;
 }
 
-QtListing::QtListing(cruise inp)
+QtListing::QtListing(cruise inp, int index)
 {
+    Ind = index;
+    clisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getHotel().getName())); // primary text

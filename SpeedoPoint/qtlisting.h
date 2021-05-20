@@ -17,14 +17,15 @@ private:
     hotellisting hlisting;
     cruise clisting;
     flightlisting flisting;
+    int Ind;
 public:
     QListWidgetItem* item;
     QWidget* wid;
     QPushButton *butTest;
     QtListing();
-    QtListing(hotellisting inp);
-    QtListing(cruise inp);
-    QtListing(flightlisting inp);
+    QtListing(hotellisting inp, int index);
+    QtListing(cruise inp, int index);
+    QtListing(flightlisting inp, int index);
     QtListing(QWidget* source);
     QListWidgetItem* getitem();
     QWidget *getwidget();

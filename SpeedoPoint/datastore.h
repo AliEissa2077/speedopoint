@@ -14,6 +14,9 @@ using namespace std;
 template <typename T>
 struct Node {
   T data;
+
+  int initialIndex;
+
   int priceRankIndex;
   int ratingRankIndex;
   int DistRankIndex;
@@ -48,6 +51,10 @@ public:
     vector<flightlisting> GetSortedFlights(int type);
     vector<cruise> GetSortedCruises(int type);
     vector<hotellisting> GetSortedHotels(int type);
+
+    void deleteHlisting(int index);
+    void deleteFlisting(int index);
+    void deleteClisting(int index);
 };
 
 #endif // DATASTORE_H

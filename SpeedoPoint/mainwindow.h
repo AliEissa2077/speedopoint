@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "datastore.h"
+#include "qtlisting.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,12 +15,15 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void SetCurrlisting(QtListing* l);
+    void deleteListing(int type, int index);
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
     dataStore progData;
     int sort = 0;
+    QtListing* currentListing;
 
 private slots:
     void SwitchLogin();
