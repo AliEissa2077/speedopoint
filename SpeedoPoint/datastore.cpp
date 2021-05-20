@@ -9,13 +9,11 @@ dataStore::dataStore(filesystem filesystem)
     string user_ = filesystem.getUsers();
     ifstream u(user_);
     u.open();
-    string uline;
-    while (getline(u, uline)) {
+    while (!u.eof()) {
         string username;
         string pwd;
         string email;
-        stringstream ss(uline);
-        ss << username << pwd << email;
+        u<< username << pwd << email;
         user user__(username, pwd, email);
         users.push_back(user__);
     }
