@@ -64,18 +64,14 @@ cruisecompany cruise::getCompany()
 
 bool cruise::verifyLoc(string loc, string city)
 {
-	if (loc.compare(loc.getName()) == 0)
+    if (loc.compare(stops->getLoc().getName()) == 0)
 	{
 		if (city.length() > 1)
 		{
-			vector<string> list = loc.getCities();
-			for (int i = 0; i < list.size(); i++)
-			{
-				if (city.compare(list[i]) == 0)
-				{
-					return true;
-				}
-			}
+            if (city.compare(stops->getLoc().getCities()[stops->getIndex()]) == 0)
+            {
+                return true;
+            }
 			return false;
 		}
 		else return true;
