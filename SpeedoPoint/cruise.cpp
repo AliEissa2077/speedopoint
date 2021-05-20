@@ -5,7 +5,7 @@ cruise::cruise()
 
 }
 
-cruise::cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop stop, std::string type)
+cruise::cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type)
 {
 	start = start_;
 	end = end_;
@@ -14,7 +14,7 @@ cruise::cruise(date start_, date end_, std::string model, int price, country dep
 	depCountry = dep;
 	arrCountry = arr;
 	arrivalCityIndex = index;
-	stops = stop;
+    stops = stp;
 	std::string suiteType = type;
 
 }
@@ -27,7 +27,7 @@ int cruise::getPricePerPerson()
 
 int cruise::getDuration()
 {
-	return (end - start);
+    return subtract(start, end);
 }
 country cruise::getDepCountry()
 {
@@ -45,6 +45,16 @@ country cruise::getArrCountry()
 int cruise::getArrIndex()
 {
 	return arrivalCityIndex;
+}
+float cruise::subtract(date d, date f) {
+    float var1 = 0;
+        var1 += d.getMonth() * 30;
+        var1 += d.getDay();
+
+
+        float var2 = f.getMonth()*30 + f.getDay();
+
+        return var2 - var1;
 }
 
 cruisecompany cruise::getCompany()

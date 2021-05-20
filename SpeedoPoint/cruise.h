@@ -25,7 +25,7 @@ private:
 	std::string suiteType;
 public:
 	cruise();
-	cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop stop, std::string type);
+    cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type);
 	cruisereservation reserve(user acc);
     int getPricePerPerson();
     int getDuration();
@@ -34,6 +34,7 @@ public:
     country getArrCountry();
     int getArrIndex();
     cruisecompany getCompany();
+    float subtract(date d, date f);
 
     bool verifyLoc(string loc, string city);
 };

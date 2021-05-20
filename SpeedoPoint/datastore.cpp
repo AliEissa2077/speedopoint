@@ -419,18 +419,42 @@ float _CalculateFlightDur(stop* stp) {
 
 void dataStore::deleteHlisting(int index) {
     Node<hotellisting>* curr = HotelListingsHead;
-    for (int i = 0; i < index - 1; i++) {
+    while (curr != NULL) {
+        if (curr->next->initialIndex == index) {
+            Node<hotellisting>* temp = curr->next;
+            curr->next = curr->next->next;
+            curr->next->prev = curr->next ;
+            //delete temp;
+            temp = NULL;
+        }
         curr = curr->next;
     }
-    Node<hotellisting>* temp = curr->next;
-    curr->next = curr->next->next;
-    curr->next->prev = curr->next ;
-    //delete temp;
-    temp = NULL;
+
 }
 void dataStore::deleteFlisting(int index) {
+    Node<flightlisting>* curr = FlightListingsHead;
+    while (curr != NULL) {
+        if (curr->next->initialIndex == index) {
+            Node<flightlisting>* temp = curr->next;
+            curr->next = curr->next->next;
+            curr->next->prev = curr->next ;
+            //delete temp;
+            temp = NULL;
+        }
+        curr = curr->next;
+    }
 
 }
 void dataStore::deleteClisting(int index) {
-
+    Node<cruise>* curr = CruiseListingsHead;
+    while (curr != NULL) {
+        if (curr->next->initialIndex == index) {
+            Node<cruise>* temp = curr->next;
+            curr->next = curr->next->next;
+            curr->next->prev = curr->next ;
+            //delete temp;
+            temp = NULL;
+        }
+        curr = curr->next;
+    }
 }
