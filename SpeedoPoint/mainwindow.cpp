@@ -422,11 +422,36 @@ void MainWindow::SetCurrlisting(QtListing* l) {
 void MainWindow::bookListing() {
     if (currentListing->getType() == 1) {
         hotellisting* htllist = currentListing->getHListing();
-        htllist->reserve(curUser, )
+        date d(MainWindow::findChild<QLineEdit *>("Hdays")->text().toInt(), MainWindow::findChild<QLineEdit *>("Hmonth")->text().toInt(), MainWindow::findChild<QLineEdit *>("Hyear")->text().toInt());
+
+        //(user* acc, date d, int days, int adults, int children)
+        reservation* r = htllist->reserve(curUser, d, MainWindow::findChild<QComboBox *>("Hdaysnum")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hchild")->currentText().toInt());
+        curUser->updateReservations(r);
+
+        deleteListing();
+    }
+    else if (currentListing->getType() == 2) {
+        flightlisting* flist = currentListing->getFListing();
+        date d(MainWindow::findChild<QLineEdit *>("Fday")->text().toInt(), MainWindow::findChild<QLineEdit *>("Fmonth")->text().toInt(), MainWindow::findChild<QLineEdit *>("Fyear")->text().toInt(), MainWindow::findChild<QLineEdit *>("Fhour")->text().toInt(), MainWindow::findChild<QLineEdit *>("Fminute")->text().toInt());
+
+        date d2(MainWindow::findChild<QLineEdit *>("FdayR")->text().toInt(), MainWindow::findChild<QLineEdit *>("FmonthR")->text().toInt(), MainWindow::findChild<QLineEdit *>("FyearR")->text().toInt());
+        //(user* acc, int adults, int children, date d, date d2)
+        flightticket* r;
+
+        if (flist->isOneW()) {
+            r = flist->reserve(curUser, MainWindow::findChild<QComboBox *>("Hadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hchild")->currentText().toInt(), d);
+        }
+        else {
+            r = flist->reserve(curUser, MainWindow::findChild<QComboBox *>("Hadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hchild")->currentText().toInt(), d, d2);
+        }
+        curUser->updateTickets(r);
+
+        deleteListing();
+    }
+    else if (currentListing->getType() == 3) {
 
     }
-       (user* acc, int adults, int children, bool oneway, bool refund, date d
-    currentListing->getlisting(currentListing->getType())->reserve(curUser, )
+
 
 }
 void MainWindow::deleteListing() {

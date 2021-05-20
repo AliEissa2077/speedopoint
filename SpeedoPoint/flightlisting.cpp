@@ -5,7 +5,7 @@
 flightlisting::flightlisting() {
 
 }
-flightlisting::flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice)
+flightlisting::flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew)
 {
 	airlne = air;
 	stops = stp;
@@ -18,10 +18,12 @@ flightlisting::flightlisting(airline air, stop* stp, int sptnum, date departure,
 	carronW = carryOn;
 	checkedBaggageW = CheckedW;
 	additionalBagPrice = additionalWPrice;
+    refundable = ref;
+    oneway = onew;
 
 }
 
-flightticket* flightlisting::reserve(user* acc, int adults, int children, bool oneway, bool refund, date d)
+flightticket* flightlisting::reserve(user* acc, int adults, int children, date d)
 {
     QMessageBox* msgbx = new QMessageBox(0);
 
@@ -44,7 +46,35 @@ flightticket* flightlisting::reserve(user* acc, int adults, int children, bool o
         curr = curr->next;
     }
     payment newp((pricepertraveller*adults + pricepertraveller/2 * children)- deduct, 0, d, acc);
-    flightticket* result = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refund, acc, CalculateFlightDur(), newp);
+    flightticket* result = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refundable, acc, CalculateFlightDur(), newp);
+
+    acc->updatePoints(((pricepertraveller*adults + pricepertraveller/2 * children) - deduct) / 4);
+    return result;
+}
+flightticket* flightlisting::reserve(user* acc, int adults, int children, date d, date d2) {
+    QMessageBox* msgbx = new QMessageBox(0);
+
+    QMessageBox::StandardButton reply;
+    msgbx->exec();
+
+    int deduct = 0;
+    reply = QMessageBox::question(msgbx, "Redeem", "Do you want to Redeem your " + QString::number(acc->getPoints()) + " points?",
+        QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        deduct = acc->redeem();
+    }
+
+    if (deduct > (pricepertraveller*adults + pricepertraveller/2 * children)) {
+        deduct = (pricepertraveller*adults + pricepertraveller/2 * children);
+    }
+
+    stop * curr = stops;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    payment newp((pricepertraveller*adults + pricepertraveller/2 * children)- deduct, 0, d, acc);
+    flightticket* result = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refundable, acc, CalculateFlightDur(), newp);
+    result->setReturn(d2);
 
     acc->updatePoints(((pricepertraveller*adults + pricepertraveller/2 * children) - deduct) / 4);
     return result;
@@ -136,7 +166,7 @@ bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string lo
         curr = curr->next;
     }
 
-    if (locdep.compare(stops->getLoc().getName()) != 0 || locdep.compare(curr->getLoc().getName()) != 0) {
+    if (locdep.compare(stops->getLoc().getName()) != 0 || locArrive.compare(curr->getLoc().getName()) != 0) {
         return false;
     }
     if (citydep.length() > 1) {
@@ -144,10 +174,17 @@ bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string lo
             return false;
         }
     }
+
     if (cityArrive.length() > 1) {
         if (locdep.compare(curr->getLoc().getCities()[curr->getIndex()]) != 0) {
             return false;
         }
     }
     return true;
+}
+bool flightlisting::isRefundable() {
+    return refundable;
+}
+bool flightlisting::isOneW() {
+    return oneway;
 }

@@ -20,3 +20,6 @@ flightticket::flightticket(int ad, int child, bool oneway, date dep, date arr, a
     paymnt = pay;
 	flight_duration = dur;
 }
+void flightticket::setReturn(date d) {
+    returnTime = d;
+}

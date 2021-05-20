@@ -14,8 +14,9 @@ private:
 	std::string username;
 	std::string password;
     wallet wallt;
-	std::vector<reservation> reservations;
-	std::vector<cruisereservation> cruisereservations;
+    std::vector<reservation*> reservations;
+    std::vector<flightticket*> tickets;
+    std::vector<cruisereservation*> cruisereservations;
 	int points;
 	std::string email;
 public:
@@ -28,8 +29,9 @@ public:
     bool checkPass(string pass);
 	int getPoints();
 	void updatePoints(int pts);
-    void updateReservations(reservation r);
-    void updateCruiseReservations(cruisereservation r);
+    void updateReservations(reservation* r);
+    void updateTickets(flightticket* t);
+    void updateCruiseReservations(cruisereservation* r);
     int redeem();
     string getEmail();
     string getPassword();

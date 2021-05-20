@@ -20,10 +20,13 @@ private:
 	int carronW;
 	int checkedBaggageW;
 	int additionalBagPrice;
+    bool refundable;
+    bool oneway;
 public:
     flightlisting();
-    flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice);
-    flightticket* reserve(user* acc, int adults, int children, bool oneway, bool refund, date d);
+    flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew);
+    flightticket* reserve(user* acc, int adults, int children, date d);
+    flightticket* reserve(user* acc, int adults, int children, date d, date d2);
     int getPriceperTraveller();
     int getAirlineRating();
     float CalculateFlightDur();
@@ -37,6 +40,8 @@ public:
     country getArrCountry();  // +1
     airline getAirline();
     float subtract(date d, date f);
+    bool isOneW();
+    bool isRefundable();
 
     bool verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive);
 

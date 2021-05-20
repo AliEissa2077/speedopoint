@@ -64,13 +64,15 @@ dataStore::dataStore()
     ifstream h(hotel_);
     //h.open();
     if (h.is_open()) {
-        while (!h.eof()) {
+        string line3;
+        while (getline(h, line3)) {
             string name;
             string country_;
+            stringstream ssh(line3);
             int index;
             int range;
             bool pool;
-            h >> name >> country_ >> index >> range >> pool;
+            ssh >> name >> country_ >> index >> range >> pool;
             country ctry;
             for (auto x : countries) {
                 if (country_.compare(x.getName()) == 0) {
@@ -361,11 +363,11 @@ vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
     return output;
 }
 
-vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive) {
+vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew) {
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
     while (curr != NULL) {
-        if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive)) {
+        if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
         }
         curr = curr->next;

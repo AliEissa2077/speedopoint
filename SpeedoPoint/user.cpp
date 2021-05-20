@@ -32,11 +32,14 @@ void user::updatePoints(int pts) {
 		points += pts;
 	}
 }
-void user::updateReservations(reservation reservation) {
-	reservations.push_back(reservation);
+void user::updateReservations(reservation* r) {
+    reservations.push_back(r);
 }
-void user::updateCruiseReservations(cruisereservation reservation) {
-	cruisereservations.push_back(reservation);
+void user::updateCruiseReservations(cruisereservation* r) {
+    cruisereservations.push_back(r);
+}
+void user::updateTickets(flightticket* t) {
+    tickets.push_back(t);
 }
 bool user::checkPass(string pass) {
     if (pass.compare(password) == 0) {

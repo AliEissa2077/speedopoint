@@ -182,7 +182,17 @@ void QtListing::detailsButton() {
 
     QtListing::findChild<QFrame *>("DetailsPage")->raise();
     if (getType() == 1) {
-
+        QtListing::findChild<QFrame *>("HReserve")->show();
+        QtListing::findChild<QFrame *>("HReserve")->raise();
+        QtListing::findChild<QFrame *>("FReserve")->hide();
+        QtListing::findChild<QFrame *>("CReserve")->hide();
+    }
+    if (getType() == 2) {
+        QtListing::findChild<QFrame *>("FReserve")->show();
+        QtListing::findChild<QFrame *>("FReserve")->raise();
+        QtListing::findChild<QFrame *>("HReserve")->hide();
+        QtListing::findChild<QFrame *>("CReserve")->hide();
+        QtListing::findChild<QFrame *>("twoway")->setEnabled(!flisting->isOneW());
     }
 
     mainProg->SetCurrlisting(this);

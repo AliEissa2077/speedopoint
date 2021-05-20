@@ -16,6 +16,8 @@ private:
 	bool one_way;
 	date departure;
 	date arrival;
+
+    date returnTime;
 	airport from;
 	airport to;
 	int max_baggage;
@@ -27,6 +29,7 @@ private:
 public:
 	flightticket();
     flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user* account, float dur, payment pay);
+    void setReturn(date d);
 };
 
 
