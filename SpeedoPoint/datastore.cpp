@@ -93,8 +93,8 @@ dataStore::dataStore(filesystem filesystem)
         bool pet;
         string roomtype;
         hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
-        hotellisting* hotellisting;
-        hotellisting = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+        hotellisting* hotellisting_;
+        hotellisting_ = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
         // append to linked lsit
 
 
