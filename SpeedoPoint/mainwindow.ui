@@ -1939,6 +1939,129 @@
       </widget>
      </widget>
     </widget>
+    <widget class="QFrame" name="HReserve_2">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>220</y>
+       <width>431</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QComboBox" name="Hadults_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>73</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="Hchild_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>50</y>
+        <width>73</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Number of Adults</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Number of Children</string>
+      </property>
+     </widget>
+    </widget>
+    <zorder>FReserve</zorder>
     <zorder>HReserve</zorder>
     <zorder>ProgramBackground_2</zorder>
     <zorder>Speedopointtxt_2</zorder>
@@ -1950,7 +2073,7 @@
     <zorder>SecondaryInfo</zorder>
     <zorder>SecondaryInfo2</zorder>
     <zorder>Book</zorder>
-    <zorder>FReserve</zorder>
+    <zorder>HReserve_2</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

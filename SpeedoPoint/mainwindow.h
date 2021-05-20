@@ -47,5 +47,7 @@ private slots:
 
     void bookListing();
 
+    void DepositAcc();
+
 };
 #endif // MAINWINDOW_H

@@ -426,6 +426,10 @@ void MainWindow::bookListing() {
 
         //(user* acc, date d, int days, int adults, int children)
         reservation* r = htllist->reserve(curUser, d, MainWindow::findChild<QComboBox *>("Hdaysnum")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hchild")->currentText().toInt());
+        if (r == NULL) {
+            return;
+        }
+
         curUser->updateReservations(r);
 
         deleteListing();
@@ -444,12 +448,27 @@ void MainWindow::bookListing() {
         else {
             r = flist->reserve(curUser, MainWindow::findChild<QComboBox *>("Hadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hchild")->currentText().toInt(), d, d2);
         }
+        if (r == NULL) {
+            return;
+        }
         curUser->updateTickets(r);
 
         deleteListing();
     }
     else if (currentListing->getType() == 3) {
+        cruise* htllist = currentListing->getCListing();
+        date d(MainWindow::findChild<QLineEdit *>("Hdays")->text().toInt(), MainWindow::findChild<QLineEdit *>("Hmonth")->text().toInt(), MainWindow::findChild<QLineEdit *>("Hyear")->text().toInt());
 
+        //(user* acc, int adults, int children)
+        cruisereservation* r = htllist->reserve(curUser, MainWindow::findChild<QComboBox *>("Cadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Cchild")->currentText().toInt());
+        if (r == NULL) {
+            return;
+        }
+
+
+        curUser->updateCruiseReservations(r);
+
+        deleteListing();
     }
 
 
@@ -467,6 +486,10 @@ void MainWindow::deleteListing() {
     else if (type == 3) {
         progData.deleteClisting(index);
     }
+}
+
+void MainWindow::DepositAcc() {
+
 }
 
 

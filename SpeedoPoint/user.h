@@ -35,6 +35,7 @@ public:
     int redeem();
     string getEmail();
     string getPassword();
+    wallet getWallet();
 };
 
 #endif USER_H

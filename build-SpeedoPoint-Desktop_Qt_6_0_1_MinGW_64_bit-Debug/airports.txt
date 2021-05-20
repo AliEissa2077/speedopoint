@@ -1,0 +1,20 @@
+MinistroInternationalAirport Argentina 2
+ViennaInternationalAirport Austria 0                                 
+PindlingInternationalAirport Bahamas 1                
+BahrainInternationalAirport Bahrain 0                                
+ZaventumAirport Belgium 2                                            
+SucreInternationalAirport Bolivia 1                        
+KubitschekInternationalAirport Brazil 0       
+OttawaInternationalAirport Canada 0              
+BenítezInternationalAirport Chilie 1                 
+SanJoseInternational Airport CostaRica 0                              
+CairoInternationalAirport Egypt 0                                 
+TallinnAirport Estonia 0                                
+Helsinki-VantaaAirport Finland 0                                     
+ParisCharlesAirport France 0                             
+BerlinInternationalAirport Germany 0           
+AthensInternationalAirport Greece 0          
+FiumicinoInternationalAirport Italy 2                        
+NaritaInternationalAirport Japan 1                                
+HamaniInternationalAirport Niger 2                         
+YasserInternationalAirport Palestine 1                      

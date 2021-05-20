@@ -52,6 +52,15 @@ flightticket* flightlisting::reserve(user* acc, int adults, int children, date d
     return result;
 }
 flightticket* flightlisting::reserve(user* acc, int adults, int children, date d, date d2) {
+    QMessageBox* confirm = new QMessageBox(0);
+    QMessageBox::StandardButton reply1;
+    confirm->exec();
+    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricepertraveller*adults + pricepertraveller/2 * children) + "LE" + " from Wallet: " + QString::number(acc->getWallet().getAmount()),
+        QMessageBox::Yes | QMessageBox::No);
+    if (reply1 == QMessageBox::No) {
+        return NULL;
+    }
+
     QMessageBox* msgbx = new QMessageBox(0);
 
     QMessageBox::StandardButton reply;
@@ -73,6 +82,7 @@ flightticket* flightlisting::reserve(user* acc, int adults, int children, date d
         curr = curr->next;
     }
     payment newp((pricepertraveller*adults + pricepertraveller/2 * children)- deduct, 0, d, acc);
+    acc->getWallet().pay((pricepertraveller*adults + pricepertraveller/2 * children)- deduct);
     flightticket* result = new flightticket(adults, children, oneway, dep, arr, stops->getAirport(), curr->getAirport(), cabin, refundable, acc, CalculateFlightDur(), newp);
     result->setReturn(d2);
 

@@ -57,3 +57,6 @@ string user::getEmail() {
 string user::getPassword() {
     return password;
 }
+wallet user::getWallet() {
+    return wallt;
+}

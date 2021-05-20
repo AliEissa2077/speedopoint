@@ -28,7 +28,7 @@ private:
 public:
 	cruise();
     cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type);
-	cruisereservation reserve(user acc);
+    cruisereservation* reserve(user* acc, int adult, int child);
     int getPricePerPerson();
     int getDuration();
     country getDepCountry();
