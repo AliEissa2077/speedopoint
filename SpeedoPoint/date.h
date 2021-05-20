@@ -14,7 +14,6 @@ public:
     date(){}
     date(int d, int m, int y);
 	date(int d, int m, int y, int h, int min);
-    date(int d, int m, int y);
     float operator-(float inp) {
         float var1 = 0;
         var1 += day*24;

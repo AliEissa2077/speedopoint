@@ -23,7 +23,7 @@ private:
 public:
     flightlisting();
     flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice);
-    flightticket* reserve(user* acc, int adults, int children, bool oneway, bool refund);
+    flightticket* reserve(user* acc, int adults, int children, bool oneway, bool refund, date d);
     int getPriceperTraveller();
     int getAirlineRating();
     float CalculateFlightDur();

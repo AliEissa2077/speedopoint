@@ -13,7 +13,6 @@ SOURCES += \
     airport.cpp \
     country.cpp \
     cruiseReservation.cpp \
-    cruiseReservation.cpp \
     datastore.cpp \
     date.cpp \
     flightlisting.cpp \
@@ -22,7 +21,6 @@ SOURCES += \
     hotellisting.cpp \
     main.cpp \
     mainwindow.cpp \
-    payment.cpp \
     payment.cpp \
     qtlisting.cpp \
     reservation.cpp \

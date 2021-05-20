@@ -4,18 +4,18 @@ using namespace std;
 
 class filesystem {
 private:
-	fstream user;
-	fstream countries;
-	fstream hotels;
-	fstream flights;
-	fstream cruises;
+	string user;
+	string countries;
+	string hotels;
+	string flights;
+	string cruises;
 public:
-	filesystem() {};
+	filesystem();
 	filesystem(string users, string country, string hotel, string flight, string cruise);
-	fstream getUsers();
-	fstream getCountries();
-	fstream getHotels();
-	fstream getFlights();
-	fstream getCruises();
+	string getUsers();
+	string getCountries();
+	string getHotels();
+	string getFlights();
+	string getCruises();
 	void addUser(string data);
 };

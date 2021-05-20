@@ -26,7 +26,9 @@ void wallet::pay(float amt)
 
 int wallet::redeem()
 {
-	// amount = 
+    int temp = amount;
+    amount = 0;
+    return temp;
 }
 
 void wallet::refund(payment payment_)

@@ -5,6 +5,7 @@
 #include <QListWidget>
 #include "qtlisting.h"
 #include "user.h"
+#include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     MainWindow::findChild<QFrame *>("LoginScreen")->raise();
 
-    MainWindow::findChild<QFrame *>("Listings")->raise();
+    //MainWindow::findChild<QFrame *>("Listings")->raise();
 
 
     QtListing *listtest = new QtListing();  // adding an element to the list
@@ -36,13 +37,39 @@ MainWindow::MainWindow(QWidget *parent)
     //QtListing *listtest = new QtListing(MainWindow::findChild<QListWidget *>("FlightListings"));
 
     QComboBox *fromcountrys = MainWindow::findChild<QComboBox *>("FlightFrom");
-    connect(fromcountrys, SIGNAL(QComboBox::currentTextChanged(const QString &text)), this, SLOT(countryChange1(const QString &text)));
+    connect(fromcountrys, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChange1(QString, "FromCitySelect")));
 
     QComboBox *tocountrys = MainWindow::findChild<QComboBox *>("FlightTo");
-    connect(fromcountrys, SIGNAL(QComboBox::currentTextChanged(const QString &text)), this, SLOT(countryChange2(const QString &text)));
+    connect(tocountrys, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChange2(QString, "ToCitySelect")));
 
     QPushButton *flightsearch = MainWindow::findChild<QPushButton *>("SearchFlights");
     connect(flightsearch, SIGNAL(released()), this, SLOT(DisplayFlights()));
+
+    QComboBox *flightsort = MainWindow::findChild<QComboBox *>("SortBy");
+    connect(flightsort, SIGNAL(currentTextChanged(QString)), this, SLOT(SortFlights(QString)));
+
+
+    QPushButton *hotelSearch = MainWindow::findChild<QPushButton *>("SearchHotel");
+    connect(hotelSearch, SIGNAL(released()), this, SLOT(DisplayHotels()));
+
+    QComboBox *hotelSort = MainWindow::findChild<QComboBox *>("HotelSort");
+    connect(hotelSort, SIGNAL(currentTextChanged(QString)), this, SLOT(SortHotels(QString)));
+
+    QComboBox *hotelctry = MainWindow::findChild<QComboBox *>("HotelCountry");
+    connect(hotelctry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeHotel(QString, "HotelCitySelect")));
+
+
+    QPushButton *cruisesearch = MainWindow::findChild<QPushButton *>("SearchCruise");
+    connect(cruisesearch, SIGNAL(released()), this, SLOT(DisplayCruises()));
+
+    QComboBox *cruisesort = MainWindow::findChild<QComboBox *>("CruiseSort");
+    connect(cruisesort, SIGNAL(currentTextChanged(QString)), this, SLOT(SortCruises(QString)));
+
+    QComboBox *cruisectry = MainWindow::findChild<QComboBox *>("CruiseCountry");
+    connect(cruisectry, SIGNAL(currentTextChanged(QString)), this, SLOT(countryChangeHotel(QString, "CruiseCitySelect")));
+
+    QPushButton *detailsback = MainWindow::findChild<QPushButton *>("DetailsBack");
+    connect(detailsback, SIGNAL(released()), this, SLOT(DetailsBack()));
 
 }
 
@@ -80,6 +107,8 @@ void MainWindow::Login() {
     // check with users database file
     // declare user as the database one
 
+    MainWindow::findChild<QFrame *>("Listings")->raise();
+
 }
 
 void MainWindow::Signup() {
@@ -101,15 +130,17 @@ void MainWindow::Signup() {
     // declare user
     //if verified
     //user newU(usern.toStdString(), pass.toStdString(), email.toStdString());
+    MainWindow::findChild<QFrame *>("Listings")->raise();
+
 
 }
 
-void MainWindow::countryChange1(const QString &text) {
+void MainWindow::countryChange1(const QString &text, QString type) {
     qDebug() << "test " << text;
     vector<country> temp = progData.getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
-            QComboBox *cities = MainWindow::findChild<QComboBox *>("FromCitySelect");
+            QComboBox *cities = MainWindow::findChild<QComboBox *>(type);
             cities->clear();
             for (int n =0; n < temp[i].getCities().size(); n++) {
                 cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
@@ -118,20 +149,46 @@ void MainWindow::countryChange1(const QString &text) {
         }
     }
 }
-void MainWindow::countryChange2(const QString &text) {
-    qDebug() << "test " << text;
-    vector<country> temp = progData.getCountries();
-    for (int i = 0; i < temp.size(); i++) {
-        if (temp[i].getName().compare(text.toStdString()) == 0) {
-            QComboBox *cities = MainWindow::findChild<QComboBox *>("ToCitySelect");
-            cities->clear();
-            for (int n =0; n < temp[i].getCities().size(); n++) {
-                cities->addItem(QString::fromStdString(temp[i].getCities()[n]));
-            }
-            return;
-        }
+
+void MainWindow::countryChange2(const QString &text, QString type) {
+    countryChange1(text, type);
+}
+void MainWindow::countryChangeHotel(const QString &text, QString type) {
+    countryChange1(text, type);
+}
+void MainWindow::countryChangeCruise(const QString &text, QString type) {
+    countryChange1(text, type);
+}
+void MainWindow::SortFlights(const QString &text) {
+    if (text.compare(QString::fromStdString("Price")) == 0) {
+        sort = 1;
+    }
+    else if (text.compare(QString::fromStdString("Rating")) == 0) {
+        sort = 2;
+    }
+    else if (text.compare(QString::fromStdString("Distance")) == 0) {
+        sort = 3;
+    }
+    else {
+        sort = 0;
     }
 }
+
+void MainWindow::SortHotels(const QString &text) {
+    if (text.compare(QString::fromStdString("Price")) == 0) {
+        sort = 1;
+    }
+    else if (text.compare(QString::fromStdString("Rating")) == 0) {
+        sort = 2;
+    }
+    else {
+        sort = 0;
+    }
+}
+void MainWindow::SortCruises(const QString &text) {
+    SortHotels(text);
+}
+
 
 void MainWindow::DisplayFlights() {
     QComboBox *ctrySelect = MainWindow::findChild<QComboBox *>("FlightFrom");
@@ -139,16 +196,168 @@ void MainWindow::DisplayFlights() {
     QComboBox *arrctrySelect = MainWindow::findChild<QComboBox *>("FlightTo");
     QComboBox *cityarrselect = MainWindow::findChild<QComboBox *>("ToCitySelect");
 
-    vector<flightlisting> mylist = progData.GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString());
+    vector<Node<flightlisting>*> mylist = progData.GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString());
+    //qDebug() << "test " << sort;
+    if (sort > 0) {
+        int index = 0;
+        Node<flightlisting>* min;
+        if (mylist.size() > 0) {
+            min = mylist[0];
+        }
+        while(!mylist.empty()) {
+            for (int n = 0; n < mylist.size(); n++) {
 
-    for (int i = 0; i < mylist.size(); i++) {
-        QtListing *listtest = new QtListing(mylist[i]);  // adding an element to the list
-        MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
-        MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+                if (sort == 1) {
+                    if (min->priceRankIndex > mylist[n]->priceRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+                if (sort == 2) {
+                    if (min->ratingRankIndex > mylist[n]->ratingRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+                if (sort == 3) {
+                    if (min->DistRankIndex > mylist[n]->DistRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+
+            }
+            QtListing *listtest = new QtListing(min->data);  // adding an element to the list
+            MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+
+            mylist.erase(mylist.begin() + index);
+
+        }
     }
-
-
+    else {
+        for (int n = 0; n < mylist.size(); n++) {
+            QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
+            MainWindow::findChild<QListWidget *>("FlightListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("FlightListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+        }
+    }
 }
+
+void MainWindow::DisplayHotels() {
+    QComboBox *ctrySelect = MainWindow::findChild<QComboBox *>("HotelCountry");
+    QComboBox *htlcity = MainWindow::findChild<QComboBox *>("HotelCitySelect");
+    QComboBox *persons = MainWindow::findChild<QComboBox *>("HotelPersonsNum");
+    QCheckBox *pool = MainWindow::findChild<QCheckBox *>("pool");
+    QCheckBox *pets = MainWindow::findChild<QCheckBox *>("pets");
+    QCheckBox *beach = MainWindow::findChild<QCheckBox *>("beach");
+    QCheckBox *bkfast = MainWindow::findChild<QCheckBox *>("breakfast");
+    QCheckBox *dinner = MainWindow::findChild<QCheckBox *>("dinner");
+
+    vector<Node<hotellisting>*> mylist = progData.GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
+    //qDebug() << "test " << sort;
+    if (sort > 0) {
+        int index = 0;
+        Node<hotellisting>* min;
+        if (mylist.size() > 0) {
+            min = mylist[0];
+        }
+        while(!mylist.empty()) {
+            for (int n = 0; n < mylist.size(); n++) {
+
+                if (sort == 1) {
+                    if (min->priceRankIndex > mylist[n]->priceRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+                if (sort == 2) {
+                    if (min->ratingRankIndex > mylist[n]->ratingRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+                if (sort == 3) {
+                    if (min->DistRankIndex > mylist[n]->DistRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+            }
+            QtListing *listtest = new QtListing(min->data);  // adding an element to the list
+            MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+
+            mylist.erase(mylist.begin() + index);
+        }
+    }
+    else {
+        for (int n = 0; n < mylist.size(); n++) {
+            QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
+            MainWindow::findChild<QListWidget *>("HotelListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("HotelListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+        }
+    }
+}
+
+void MainWindow::DisplayCruises() {
+    QComboBox *ctrySelect = MainWindow::findChild<QComboBox *>("CruiseCountry");
+    QComboBox *crzcity = MainWindow::findChild<QComboBox *>("CruiseCitySelect");
+    //QComboBox *persons = MainWindow::findChild<QComboBox *>("CruisePersonsNum");
+    //QCheckBox *pool = MainWindow::findChild<QCheckBox *>("pool_2");
+    //QCheckBox *pets = MainWindow::findChild<QCheckBox *>("pets_2");
+
+    vector<Node<cruise>*> mylist = progData.GetCruisesInLoc(ctrySelect->currentText().toStdString(), crzcity->currentText().toStdString());
+    //qDebug() << "test " << sort;
+    if (sort > 0) {
+        int index = 0;
+        Node<cruise>* min;
+        if (mylist.size() > 0) {
+            min = mylist[0];
+        }
+        while(!mylist.empty()) {
+            for (int n = 0; n < mylist.size(); n++) {
+
+                if (sort == 1) {
+                    if (min->priceRankIndex > mylist[n]->priceRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+                if (sort == 2) {
+                    if (min->ratingRankIndex > mylist[n]->ratingRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+                if (sort == 3) {
+                    if (min->DistRankIndex > mylist[n]->DistRankIndex) {
+                        min = mylist[n];
+                        index = n;
+                    }
+                }
+            }
+            QtListing *listtest = new QtListing(min->data);  // adding an element to the list
+            MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+
+            mylist.erase(mylist.begin() + index);
+        }
+    }
+    else {
+        for (int n = 0; n < mylist.size(); n++) {
+            QtListing *listtest = new QtListing(mylist[n]->data);  // adding an element to the list
+            MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
+            MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+        }
+    }
+}
+
+void MainWindow::DetailsBack() {
+    MainWindow::findChild<QFrame *>("Listings")->raise();
+}
+
+
 
 MainWindow::~MainWindow()
 {

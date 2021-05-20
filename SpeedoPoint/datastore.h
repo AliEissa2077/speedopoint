@@ -6,6 +6,7 @@
 #include "hotellisting.h"
 #include "flightlisting.h"
 #include "cruise.h"
+#include "filesystem.h"
 
 using namespace std;
 
@@ -15,8 +16,8 @@ struct Node {
   int priceRankIndex;
   int ratingRankIndex;
   int DistRankIndex;
-  Node *next;
-  Node* prev;
+  Node *next = NULL;
+  Node* prev = NULL;
 };
 
 class dataStore
@@ -29,7 +30,7 @@ private:
     Node<cruise>* CruiseListingsHead;
 
 public:
-    dataStore();
+    dataStore(filesystem filesystem);
     void SortListings();
     void sortRecurrH(Node<hotellisting>* n);
     void sortRecurrF(Node<flightlisting>* n);
@@ -37,9 +38,13 @@ public:
     bool userAuth(string uName, string uPass);
     void AddUser(user u);
     vector<country> getCountries();
-    vector<hotellisting> GetHotelsInLoc(string loc, string city, bool pool, bool pets, bool beach, bool bfast, bool dinner);
-    vector<cruise> GetCruisesInLoc(string loc, string city);
-    vector<flightlisting> GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive);
+    vector<Node<hotellisting>*> GetHotelsInLoc(string loc, string city, int persons, bool pool, bool pets, bool beach, bool bfast, bool dinner);
+    vector<Node<cruise>*> GetCruisesInLoc(string loc, string city);
+    vector<Node<flightlisting>*> GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive);
+
+    vector<flightlisting> GetSortedFlights(int type);
+    vector<cruise> GetSortedCruises(int type);
+    vector<hotellisting> GetSortedHotels(int type);
 };
 
 #endif // DATASTORE_H

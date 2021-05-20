@@ -17,9 +17,10 @@ private:
 	int pricePerPerson;
 	cruisecompany company;
 	country depCountry;
+    int depCityIndex;
 	country arrCountry;
 	int arrivalCityIndex;
-	stop stops;
+    stop* stops;
 	std::string suiteType;
 public:
 	cruise();
@@ -27,6 +28,12 @@ public:
 	cruisereservation reserve(user acc);
     int getPricePerPerson();
     int getDuration();
+    country getDepCountry();
+    int getDepIndex();
+    country getArrCountry();
+    int getArrIndex();
+    cruisecompany getCompany();
+
     bool verifyLoc(string loc, string city);
 };
 

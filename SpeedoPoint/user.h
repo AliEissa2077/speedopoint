@@ -30,6 +30,7 @@ public:
 	void updatePoints(int pts);
     void updateReservations(reservation r);
     void updateCruiseReservations(cruisereservation r);
+    int redeem();
 };
 
 #endif USER_H
