@@ -1,6 +1,7 @@
 #include "hotellisting.h"
 #include "date.h"
 #include <QMessageBox>
+#include "user.h"
 
 hotellisting::hotellisting()
 {

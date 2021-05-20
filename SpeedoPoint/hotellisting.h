@@ -8,6 +8,8 @@
 #include "user.h"
 using namespace std;
 
+
+
 class hotellisting {
 private:
     hotel htl;

@@ -4,6 +4,7 @@ debug/country.o
 debug/cruiseReservation.o
 debug/datastore.o
 debug/date.o
+debug/filesystem.o
 debug/flightlisting.o
 debug/flightticket.o
 debug/hotel.o

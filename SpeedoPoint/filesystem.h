@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-class filesystem {
+class fileSystem {
 private:
 	string user;
 	string countries;
@@ -13,8 +13,8 @@ private:
 	string cruiselisting;
 	string flightlisting;
 public:
-	filesystem();
-	filesystem(string users, string country, string hotel, string flight, string cruise, string hl, string cl, string fl);
+    fileSystem();
+    fileSystem(string users, string country, string hotel, string flight, string cruise, string hl, string cl, string fl);
 	string getUsers();
 	string getCountries();
 	string getHotels();

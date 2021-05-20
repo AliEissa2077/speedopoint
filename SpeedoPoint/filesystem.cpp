@@ -1,7 +1,7 @@
-#include "filesystem.h"
+#include "fileSystem.h"
 
-filesystem::filesystem() {}
-filesystem::filesystem(string users, string country, string hotel, string flight, string cruise, string hl, string cl, string fl) {
+fileSystem::fileSystem() {}
+fileSystem::fileSystem(string users, string country, string hotel, string flight, string cruise, string hl, string cl, string fl) {
 	user = users;
 	countries = country;
 	hotels = hotel;
@@ -11,33 +11,33 @@ filesystem::filesystem(string users, string country, string hotel, string flight
 	cruiselisting = cl;
 	flightlisting = fl;
 }
-string filesystem::getUsers() {
+string fileSystem::getUsers() {
 	return user;
 }
-string filesystem::getCountries() {
+string fileSystem::getCountries() {
 	return countries;
 }
-string filesystem::getHotels() {
+string fileSystem::getHotels() {
 	return hotels;
 }
-string filesystem::getFlights() {
+string fileSystem::getFlights() {
 	return flights;
 }
-string filesystem::getCruises() {
+string fileSystem::getCruises() {
 	return cruises;
 }
-string filesystem::getHotelListing() {
+string fileSystem::getHotelListing() {
 	return hotellisting;
 }
-string filesystem::getCruiseListing() {
+string fileSystem::getCruiseListing() {
 	return cruiselisting;
 }
-string filesystem::getFlightListing() {
+string fileSystem::getFlightListing() {
 	return flightlisting;
 }
-void filesystem::addUser(string data) {
+void fileSystem::addUser(string data) {
 	ofstream outfile(user, ios::app);
-	outfile.open();
+    outfile.open(user);
 	outfile << data;
 	outfile.close();
 }
