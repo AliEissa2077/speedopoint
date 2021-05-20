@@ -13,7 +13,7 @@ dataStore::dataStore(filesystem filesystem)
         string username;
         string pwd;
         string email;
-        u<< username << pwd << email;
+        u >> username >> pwd >> email;
         user user__(username, pwd, email);
         users.push_back(user__);
     }
