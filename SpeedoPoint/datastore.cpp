@@ -143,7 +143,7 @@ dataStore::dataStore()
         hl.close();
     }
 
-    // load flighttickets 
+
     Iindex = 0;
 
     // load airlines
@@ -186,8 +186,55 @@ dataStore::dataStore()
     }
 
 
+    Iindex = 0;
+    // load flighttickets
+    string flightfile = "flights.txt";
+    ifstream f(flightfile);
+    //f.open();
+    string line4;
+    if (f.is_open()) {
+        while (getline(f, line4)) {
+            stringstream ssf(line4);
+            string al;
+            ssf >> al;
+            airline airln;
+            for (auto x : airlines) {
+                if (x.getName() == al) {
+                    airln = x;
+                }
+            }
+            int stpnum;
+            int depy, depm, depd, deph, depmin, arry, arrm, arrd, arrh, arrmin, price;
+            string cabin, plane_model;
+            int carryon, checkedW, additionalw;
+            bool refundable, oneway;
+            ssf >> stpnum >> depy >> depm >> depd >> deph >> depmin >> arry >> arrm >> arrd >> arrh >> arrmin >> price >> cabin >> plane_model >> carryon >> checkedW >> additionalw >> refundable >> oneway;
+            date dep(depd, depm, depy, deph, depmin);
+            date arr(arrd, arrm, arry, arrh, arrm);
+            flightlisting* flist = new flightlisting(airln, NULL, stpnum, dep, arr, price, cabin, plane_model, carryon, checkedW, additionalw, refundable, oneway);
 
+            // add it to linked list
 
+            if (FlightListingsHead == NULL) {
+                FlightListingsHead = new Node<flightlisting*>;
+                FlightListingsHead->data = flist;
+                FlightListingsHead->initialIndex = Iindex;
+                Iindex++;
+            }
+            else {
+                Node<flightlisting*>* curr = FlightListingsHead;
+                while (curr->next != NULL) {
+                    curr = curr->next;
+                }
+                curr->next = new Node<flightlisting*>;
+                curr->next->data = flist;
+                curr->next->initialIndex = Iindex;
+                Iindex++;
+            }
+        }
+
+        f.close();
+    }
 
 
 
@@ -213,8 +260,10 @@ dataStore::dataStore()
 
     // for testing
     qDebug() << "here";
-    for (int i = 0; i < countries[0].getCities().size(); i++) {
-        qDebug() << QString::fromStdString(countries[0].getCities()[i]);
+    Node<hotellisting*>* curr = HotelListingsHead;
+    while (curr != NULL) {
+        qDebug() << QString::fromStdString(curr->data->getLoc().getName());
+        curr = curr->next;
     }
 }
 

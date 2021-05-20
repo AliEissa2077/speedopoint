@@ -295,7 +295,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -654,6 +654,19 @@
          <width>91</width>
          <height>31</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="Refundable">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>110</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Two-way flight</string>
        </property>
       </widget>
      </widget>
@@ -1939,7 +1952,7 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QFrame" name="HReserve_2">
+    <widget class="QFrame" name="CReserve">
      <property name="geometry">
       <rect>
        <x>610</x>
@@ -1954,7 +1967,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QComboBox" name="Hadults_2">
+     <widget class="QComboBox" name="Cadults">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -1994,7 +2007,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="Hchild_2">
+     <widget class="QComboBox" name="Cchild">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -2061,6 +2074,45 @@
       </property>
      </widget>
     </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>910</x>
+       <y>10</y>
+       <width>55</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Wallet:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="WalletAmount">
+     <property name="geometry">
+      <rect>
+       <x>960</x>
+       <y>10</y>
+       <width>55</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>9999</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deposit">
+     <property name="geometry">
+      <rect>
+       <x>910</x>
+       <y>40</y>
+       <width>61</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Deposit</string>
+     </property>
+    </widget>
     <zorder>FReserve</zorder>
     <zorder>HReserve</zorder>
     <zorder>ProgramBackground_2</zorder>
@@ -2073,8 +2125,14 @@
     <zorder>SecondaryInfo</zorder>
     <zorder>SecondaryInfo2</zorder>
     <zorder>Book</zorder>
-    <zorder>HReserve_2</zorder>
+    <zorder>CReserve</zorder>
+    <zorder>label_17</zorder>
+    <zorder>WalletAmount</zorder>
+    <zorder>deposit</zorder>
    </widget>
+   <zorder>LoginScreen</zorder>
+   <zorder>DetailsPage</zorder>
+   <zorder>Listings</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

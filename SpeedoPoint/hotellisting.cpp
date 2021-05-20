@@ -41,7 +41,7 @@ reservation* hotellisting::reserve(user* acc, date d, int days, int adults, int 
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
     confirm->exec();
-    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerNight*(days + 1)) + "LE" + " from Wallet: " + QString::number(acc->getWallet().getAmount()),
+    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerNight*(days + 1)) + "LE" + " from Wallet: " + QString::number(acc->getWallet()->getAmount()),
         QMessageBox::Yes | QMessageBox::No);
     if (reply1 == QMessageBox::No) {
         return NULL;
@@ -68,7 +68,7 @@ reservation* hotellisting::reserve(user* acc, date d, int days, int adults, int 
     }
     payment newp(pricePerNight*(days + 1) - deduct, 0, d, acc);
 
-    acc->getWallet().pay(pricePerNight*(days + 1) - deduct);
+    acc->getWallet()->pay(pricePerNight*(days + 1) - deduct);
     reservation* result = new reservation(this, d, days, newp, acc, adults, children);
 
     acc->updatePoints((pricePerNight*(days + 1) - deduct) / 4);

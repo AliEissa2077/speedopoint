@@ -8,8 +8,7 @@ user::user() {
 }
 user::user(std::string usrname, std::string pwd, std::string email_) : username(usrname), password(pwd), email(email_) {
 	points = 0;
-	wallet new_wallet(0);
-    wallt = new_wallet;
+    wallt = new wallet(0);
 }
 void user::setName(std::string usrname) {
 	username = usrname;
@@ -48,7 +47,7 @@ bool user::checkPass(string pass) {
     return false;
 }
 int user::redeem() {
-    return wallt.redeem();
+    return wallt->redeem();
 }
 
 string user::getEmail() {
@@ -57,6 +56,6 @@ string user::getEmail() {
 string user::getPassword() {
     return password;
 }
-wallet user::getWallet() {
+wallet* user::getWallet() {
     return wallt;
 }

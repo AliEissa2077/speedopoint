@@ -23,7 +23,7 @@ cruisereservation* cruise::reserve(user* acc, int adult, int child) {
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
     confirm->exec();
-    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerPerson*adult + pricePerPerson/2 * child) + "LE" + " from Wallet: " + QString::number(acc->getWallet().getAmount()),
+    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerPerson*adult + pricePerPerson/2 * child) + "LE" + " from Wallet: " + QString::number(acc->getWallet()->getAmount()),
         QMessageBox::Yes | QMessageBox::No);
     if (reply1 == QMessageBox::No) {
         return NULL;
@@ -47,7 +47,7 @@ cruisereservation* cruise::reserve(user* acc, int adult, int child) {
     }
 
     payment newp((pricePerPerson*adult + pricePerPerson/2 * child)- deduct, 0, start, acc);
-    acc->getWallet().pay((pricePerPerson*adult + pricePerPerson/2 * child)- deduct);
+    acc->getWallet()->pay((pricePerPerson*adult + pricePerPerson/2 * child)- deduct);
 
     cruisereservation*  test = new cruisereservation(this, newp, adult, child, acc);
 

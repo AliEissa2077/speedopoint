@@ -6,6 +6,8 @@
 #include "qtlisting.h"
 #include "user.h"
 #include <algorithm>
+#include <QInputDialog>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     currentListing = NULL;
     curUser = NULL;
+    progData = new dataStore();
     qDebug() << "test ";
     MainWindow::findChild<QLabel *>("LoginFail")->hide();
     MainWindow::findChild<QLabel *>("SignupFail")->hide();
@@ -79,7 +82,12 @@ qDebug() << "test ";
     QPushButton *bookbut = MainWindow::findChild<QPushButton *>("Book");
     connect(bookbut, SIGNAL(released()), this, SLOT(bookListing()));
 
-qDebug() << "test ";
+
+    QPushButton *depbut = MainWindow::findChild<QPushButton *>("deposit");
+    connect(depbut, SIGNAL(released()), this, SLOT(DepositAcc()));
+
+
+
 }
 
 void MainWindow::SwitchLogin() {
@@ -115,12 +123,13 @@ void MainWindow::Login() {
 
     // check with users database file
     // declare user as the database one
-    curUser = progData.verifyUser(email.toStdString() , pass.toStdString() );
+    curUser = progData->verifyUser(email.toStdString() , pass.toStdString() );
     if (curUser == NULL) {
         MainWindow::findChild<QLabel *>("LoginFail")->show();
     }
     else {
         MainWindow::findChild<QFrame *>("Listings")->raise();
+        MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
     }
 
 }
@@ -137,14 +146,16 @@ void MainWindow::Signup() {
     //qDebug() << pass;
     //qDebug() << usern;
     //check database first
-    if (progData.UserExists(email.toStdString())) {
+    if (progData->UserExists(email.toStdString())) {
          MainWindow::findChild<QLabel *>("SignupFail")->show();
     }
     else {
         user* u = new user(usern.toStdString(), pass.toStdString(), email.toStdString());
-        progData.AddUser(u);
+        progData->AddUser(u);
         curUser = u;
         MainWindow::findChild<QFrame *>("Listings")->raise();
+        MainWindow::findChild<QFrame *>("DetailsPage")->raise();
+        MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
     }
 
     //user Newuser(usern, email, pass);
@@ -160,7 +171,7 @@ void MainWindow::Signup() {
 
 void MainWindow::countryChange1(const QString &text) {
     qDebug() << "test " << text;
-    vector<country> temp = progData.getCountries();
+    vector<country> temp = progData->getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
             QComboBox *cities = MainWindow::findChild<QComboBox *>("FromCitySelect");
@@ -174,7 +185,7 @@ void MainWindow::countryChange1(const QString &text) {
 }
 
 void MainWindow::countryChange2(const QString &text) {
-    vector<country> temp = progData.getCountries();
+    vector<country> temp = progData->getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
             QComboBox *cities = MainWindow::findChild<QComboBox *>("ToCitySelect");
@@ -187,7 +198,7 @@ void MainWindow::countryChange2(const QString &text) {
     }
 }
 void MainWindow::countryChangeHotel(const QString &text) {
-    vector<country> temp = progData.getCountries();
+    vector<country> temp = progData->getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
             QComboBox *cities = MainWindow::findChild<QComboBox *>("HotelCitySelect");
@@ -200,7 +211,7 @@ void MainWindow::countryChangeHotel(const QString &text) {
     }
 }
 void MainWindow::countryChangeCruise(const QString &text) {
-    vector<country> temp = progData.getCountries();
+    vector<country> temp = progData->getCountries();
     for (int i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
             QComboBox *cities = MainWindow::findChild<QComboBox *>("CruiseCitySelect");
@@ -249,7 +260,7 @@ void MainWindow::DisplayFlights() {
     QComboBox *arrctrySelect = MainWindow::findChild<QComboBox *>("FlightTo");
     QComboBox *cityarrselect = MainWindow::findChild<QComboBox *>("ToCitySelect");
 
-    vector<Node<flightlisting*>*> mylist = progData.GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString());
+    vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), MainWindow::findChild<QCheckBox *>("OneWay")->isChecked());
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
@@ -309,7 +320,8 @@ void MainWindow::DisplayHotels() {
     QCheckBox *bkfast = MainWindow::findChild<QCheckBox *>("breakfast");
     QCheckBox *dinner = MainWindow::findChild<QCheckBox *>("dinner");
 
-    vector<Node<hotellisting*>*> mylist = progData.GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
+    vector<Node<hotellisting*>*> mylist = progData->GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
+    qDebug() << "test " << mylist.size();
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
@@ -364,7 +376,7 @@ void MainWindow::DisplayCruises() {
     //QCheckBox *pool = MainWindow::findChild<QCheckBox *>("pool_2");
     //QCheckBox *pets = MainWindow::findChild<QCheckBox *>("pets_2");
 
-    vector<Node<cruise*>*> mylist = progData.GetCruisesInLoc(ctrySelect->currentText().toStdString(), crzcity->currentText().toStdString());
+    vector<Node<cruise*>*> mylist = progData->GetCruisesInLoc(ctrySelect->currentText().toStdString(), crzcity->currentText().toStdString());
     //qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
@@ -478,18 +490,27 @@ void MainWindow::deleteListing() {
     int index = currentListing->getIndex();
 
     if (type == 1) {
-        progData.deleteHlisting(index);
+        progData->deleteHlisting(index);
     }
     else if (type == 2) {
-        progData.deleteFlisting(index);
+        progData->deleteFlisting(index);
     }
     else if (type == 3) {
-        progData.deleteClisting(index);
+        progData->deleteClisting(index);
     }
 }
 
 void MainWindow::DepositAcc() {
 
+    bool ok;
+    QString text = QInputDialog::getText(this, tr("Deposit money"),
+                                         tr("Amount:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
+    if (ok && !text.isEmpty())
+        curUser->getWallet()->deposit(text.toFloat());
+
+    qDebug() << curUser->getWallet()->getAmount();
+    MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
 }
 
 

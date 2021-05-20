@@ -13,7 +13,7 @@ class user {
 private:
 	std::string username;
 	std::string password;
-    wallet wallt;
+    wallet* wallt;
     std::vector<reservation*> reservations;
     std::vector<flightticket*> tickets;
     std::vector<cruisereservation*> cruisereservations;
@@ -35,7 +35,7 @@ public:
     int redeem();
     string getEmail();
     string getPassword();
-    wallet getWallet();
+    wallet* getWallet();
 };
 
 #endif USER_H

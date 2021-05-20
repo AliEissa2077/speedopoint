@@ -21,7 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    dataStore progData;
+    dataStore* progData;
     int sort = 0;
     QtListing* currentListing;
     user* curUser;
