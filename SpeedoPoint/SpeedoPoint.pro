@@ -15,6 +15,7 @@ SOURCES += \
     cruiseReservation.cpp \
     datastore.cpp \
     date.cpp \
+    filesystem.cpp \
     flightlisting.cpp \
     flightticket.cpp \
     hotel.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     cruisereservation.h \
     datastore.h \
     date.h \
+    filesystem.h \
     flightlisting.h \
     flightticket.h \
     hotel.h \

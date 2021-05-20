@@ -7,6 +7,7 @@
 #include "flightlisting.h"
 #include "cruise.h"
 #include "filesystem.h"
+#include "country.h"
 
 using namespace std;
 
@@ -31,7 +32,8 @@ private:
     Node<cruise>* CruiseListingsHead;
 
 public:
-    dataStore(filesystem filesystem);
+    dataStore();
+    dataStore(fileSystem filesys);
     void SortListings();
     void sortRecurrH(Node<hotellisting>* n);
     void sortRecurrF(Node<flightlisting>* n);

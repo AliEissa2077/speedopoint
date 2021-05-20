@@ -4,6 +4,7 @@ release/country.o
 release/cruiseReservation.o
 release/datastore.o
 release/date.o
+release/filesystem.o
 release/flightlisting.o
 release/flightticket.o
 release/hotel.o

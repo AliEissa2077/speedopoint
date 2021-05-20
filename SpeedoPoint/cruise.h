@@ -9,6 +9,7 @@
 #include "cruisereservation.h"
 #include "user.h"
 
+
 class cruise {
 private:
 	date start;
