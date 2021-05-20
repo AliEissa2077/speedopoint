@@ -26,17 +26,18 @@ dataStore::dataStore(filesystem filesystem)
     string country_ = filesystem.getCountries();
     ifstream c(country_);
     c.open();
-    string cline;
-    while (getline(c, cline)) {
+    while (!c.eof()) {
         string name;
         bool banned;
-        stringstream ss(cline);
-        ss << name << banned;
+        string c1;
+        string c2;
+        string c3;
+        c >> name >> banned >> c1 >> c2 >> c3;
         string city;
         country country__(name, banned);
-        while (cline << city) {
-            country__.addCity(city);
-        }
+        country__.addCity(c1);
+        country__.addCity(c2);
+        country__.addCity(c3);
         countries.push_back(country__);
     }
     c.close();
@@ -48,15 +49,13 @@ dataStore::dataStore(filesystem filesystem)
     string hotel_ = filesystem.getHotels();
     ifstream h(hotel_);
     h.open();
-    string hline;
-    while (getline(h, hline)) {
+    while (!h.eof()) {
         string name;
-        string country;
+        string country_;
         int index;
         int range;
         bool pool;
-        stringstream ss(hline);
-        hline << name << country << index << range << pool;
+        h >> name >> country_ >> index >> range >> pool;
         country ctry;
         for (auto x : countries) {
             if (country == x.getName()) {
@@ -73,9 +72,7 @@ dataStore::dataStore(filesystem filesystem)
     string hlisting = filesystem.getHotelListing();
     ifstream hl(hlisting);
     hl.open();
-    string hlline;
-    while (getline(hl, hlline)) {
-        stringstream ss(hlline);
+    while (!hl.eof()) {
         string hname;
         hlline << hname;
         hotel h;
@@ -95,7 +92,7 @@ dataStore::dataStore(filesystem filesystem)
         bool dinner;
         bool pet;
         string roomtype;
-        hlline << area << price << wifi << bfast << num << refund << dinner << pet;
+        hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
         hotellisting* hotellisting;
         hotellisting = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
         // append to linked lsit
