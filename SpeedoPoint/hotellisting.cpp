@@ -11,17 +11,19 @@ hotellisting::hotellisting()
 	bfast = false;
 	person = -1;
 	refundable = false;
+    pricePerNight = 0;
 	dinner = false;
 	pets = false;
 	roomType = "";
 }
 
-hotellisting::hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype)
+hotellisting::hotellisting(hotel hot, country location, int price, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype)
 {
     htl = hot;
     loc = location;
     cityIndex = index;
     area = area_;
+    pricePerNight = price;
     wifi = wifi_;
     bfast = breakfast;
     person = numPeople;

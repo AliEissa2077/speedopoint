@@ -37,3 +37,9 @@ std::string hotel::getName() {
 bool hotel::getBeach() {
     return beach;
 }
+country hotel::getCountry() {
+	return country;
+}
+int hotel::getIndex() {
+	return cityIndex;
+}

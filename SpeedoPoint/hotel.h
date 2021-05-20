@@ -24,7 +24,9 @@ public:
     bool getBeach();
     int getRatingsCount();
     int getPriceRange();
+    country getCountry();
     std::string getName();
+    int getIndex();
 };
 
 #endif HOTEL_H

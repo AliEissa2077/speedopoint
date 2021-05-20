@@ -26,7 +26,7 @@ private:
 	std::string roomType;
 public:
 	hotellisting();
-    hotellisting(hotel hot, country location, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
+    hotellisting(hotel hot, country location, int price, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
     reservation* reserve(user* acc, date d, int days, int adults, int children);
     int getPricePerNight();
     int getHotelRating();
