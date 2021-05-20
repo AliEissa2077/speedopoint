@@ -8,9 +8,15 @@
 #include <QHBoxLayout>
 #include <QLayout>
 #include "flightlisting.h"
+#include "hotellisting.h"
+#include "cruise.h"
 
 class QtListing : public QObject
 {
+private:
+    hotellisting hlisting;
+    cruise clisting;
+    flightlisting flisting;
 public:
     QListWidgetItem* item;
     QWidget* wid;

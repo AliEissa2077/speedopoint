@@ -41,6 +41,7 @@ QtListing::QtListing()
 
 QtListing::QtListing(flightlisting inp)
 {
+    flisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getAirline().getName())); // primary text
@@ -81,6 +82,7 @@ QtListing::QtListing(flightlisting inp)
 
 QtListing::QtListing(hotellisting inp)
 {
+    hlisting = inp;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp.getHotel().getName())); // primary text

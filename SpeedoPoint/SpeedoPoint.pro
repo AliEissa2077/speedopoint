@@ -12,6 +12,7 @@ SOURCES += \
     airline.cpp \
     airport.cpp \
     country.cpp \
+    cruise.cpp \
     cruiseReservation.cpp \
     datastore.cpp \
     date.cpp \
