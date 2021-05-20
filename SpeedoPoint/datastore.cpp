@@ -2,13 +2,17 @@
 #include "user.h"
 dataStore::dataStore()
 {
+
+    HotelListingsHead = NULL;
+    FlightListingsHead = NULL;
+    CruiseListingsHead = NULL;
     //import from file or data base and store into vector and linked lists
     // sort indeces start as the node count
 
     //load users 
     string user_ = "users.txt";
     ifstream u(user_);
-    u.open();
+    //u.open();
     while (!u.eof()) {
         string username;
         string pwd;
@@ -23,7 +27,7 @@ dataStore::dataStore()
     // load countries
     string country_ = "countries.txt";
     ifstream c(country_);
-    c.open();
+    //c.open();
     while (!c.eof()) {
         string name;
         bool banned;
@@ -46,7 +50,7 @@ dataStore::dataStore()
 
     string hotel_ = "hotels.txt";
     ifstream h(hotel_);
-    h.open();
+    //h.open();
     while (!h.eof()) {
         string name;
         string country_;
@@ -56,7 +60,7 @@ dataStore::dataStore()
         h >> name >> country_ >> index >> range >> pool;
         country ctry;
         for (auto x : countries) {
-            if (country == x.getName()) {
+            if (country_.compare(x.getName()) == 0) {
                 ctry = x;
             }
         }
@@ -69,10 +73,10 @@ dataStore::dataStore()
 
     string hlisting = "hl.txt";
     ifstream hl(hlisting);
-    hl.open();
+    //hl.open();
     while (!hl.eof()) {
         string hname;
-        hlline << hname;
+        hl >> hname;
         hotel h;
         for (auto x : hotels) {
             if (hname == x.getName()) {
@@ -91,9 +95,24 @@ dataStore::dataStore()
         bool pet;
         string roomtype;
         hl >> area >> price >> wifi >> bfast >> num >> refund >> dinner >> pet;
-        hotellisting* hotellisting_;
-        hotellisting_ = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+
+        hotellisting hotl(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
+        //hotl = new hotellisting(h, ctry, price, index, area, wifi, bfast, num, refund, dinner, pet, roomtype);
         // append to linked lsit
+
+
+        if (HotelListingsHead == NULL) {
+            HotelListingsHead = new Node<hotellisting>;
+            HotelListingsHead->data = hotl;
+        }
+        else {
+            Node<hotellisting>* curr = HotelListingsHead;
+            while (curr->next != NULL) {
+                curr = curr->next;
+            }
+            curr->next = new Node<hotellisting>;
+            curr->next->data = hotl;
+        }
 
 
     }
@@ -104,7 +123,7 @@ dataStore::dataStore()
 
     string flightfile = "flights.txt";
     ifstream f(flightfile);
-    f.open();
+    //f.open();
     while (!f.eof()) {
 
     }
@@ -129,12 +148,8 @@ dataStore::dataStore()
 
 
 
-<<<<<<< HEAD
-=======
-    HotelListingsHead = NULL;
-    FlightListingsHead = NULL;
-    CruiseListingsHead = NULL;
->>>>>>> dbd3f0109d14e6544a856270681351d0a4a826ea
+
+
  
     SortListings();
 
