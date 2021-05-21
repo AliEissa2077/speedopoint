@@ -25,7 +25,7 @@ struct Node {
   Node *next = NULL;
   Node* prev = NULL;
 };
-
+//djikistra, sorting, updating rating, cancelation, invoices, user page
 class dataStore
 {
 private:

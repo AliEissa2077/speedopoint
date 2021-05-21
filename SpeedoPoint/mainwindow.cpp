@@ -151,9 +151,10 @@ void MainWindow::Signup() {
          MainWindow::findChild<QLabel *>("SignupFail")->show();
     }
     else {
-        user* u = new user(usern.toStdString(), pass.toStdString(), email.toStdString());
-        progData->AddUser(u);
-        curUser = u;
+        //user* u =
+
+        curUser = new user(usern.toStdString(), pass.toStdString(), email.toStdString());
+        progData->AddUser(curUser);
         MainWindow::findChild<QFrame *>("Listings")->raise();
         //MainWindow::findChild<QFrame *>("DetailsPage")->raise();
         MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
