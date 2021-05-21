@@ -103,7 +103,7 @@ QtListing::QtListing(hotellisting* inp, int index)
     QPushButton *testbut = new QPushButton();
     testbut->setText("Details");
 
-    connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
+    QtListing::connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
 
     QHBoxLayout *widgetLayout = new QHBoxLayout();
     widgetLayout->addWidget(widgetText);
@@ -179,26 +179,29 @@ QtListing::QtListing(QWidget* source)
 void QtListing::detailsButton() {
     //set data to text boxes
 
-
-    QtListing::findChild<QFrame *>("DetailsPage")->raise();
+    qDebug() << "yesy";
+    mainProg->updateWallet();
+    mainProg->findChild<QFrame *>("DetailsPage")->raise();
+    qDebug() << "yesy";
     if (getType() == 1) {
-        QtListing::findChild<QFrame *>("HReserve")->show();
-        QtListing::findChild<QFrame *>("HReserve")->raise();
-        QtListing::findChild<QFrame *>("FReserve")->hide();
-        QtListing::findChild<QFrame *>("CReserve")->hide();
+        qDebug() << "yesy";
+        mainProg->findChild<QFrame *>("HReserve")->show();
+        mainProg->findChild<QFrame *>("HReserve")->raise();
+        mainProg->findChild<QFrame *>("FReserve")->hide();
+        mainProg->findChild<QFrame *>("CReserve")->hide();
     }
     else if (getType() == 2) {
-        QtListing::findChild<QFrame *>("FReserve")->show();
-        QtListing::findChild<QFrame *>("FReserve")->raise();
-        QtListing::findChild<QFrame *>("HReserve")->hide();
-        QtListing::findChild<QFrame *>("CReserve")->hide();
-        QtListing::findChild<QFrame *>("twoway")->setEnabled(!flisting->isOneW());
+        mainProg->findChild<QFrame *>("FReserve")->show();
+        mainProg->findChild<QFrame *>("FReserve")->raise();
+        mainProg->findChild<QFrame *>("HReserve")->hide();
+        mainProg->findChild<QFrame *>("CReserve")->hide();
+        mainProg->findChild<QFrame *>("twoway")->setEnabled(!flisting->isOneW());
     }
     else if (getType() == 3) {
-        QtListing::findChild<QFrame *>("CReserve")->show();
-        QtListing::findChild<QFrame *>("CReserve")->raise();
-        QtListing::findChild<QFrame *>("HReserve")->hide();
-        QtListing::findChild<QFrame *>("FReserve")->hide();
+        mainProg->findChild<QFrame *>("CReserve")->show();
+        mainProg->findChild<QFrame *>("CReserve")->raise();
+        mainProg->findChild<QFrame *>("HReserve")->hide();
+        mainProg->findChild<QFrame *>("FReserve")->hide();
     }
 
     mainProg->SetCurrlisting(this);
@@ -218,6 +221,7 @@ void QtListing::setMainProg(MainWindow* m) {
 }
 int QtListing::getType() {
     if (hlisting != NULL) {
+        qDebug() << "yesy";
         return 1;
     }
     else if (flisting != NULL) {

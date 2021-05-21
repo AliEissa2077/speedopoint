@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <QInputDialog>
 #include <QDir>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -261,8 +262,9 @@ void MainWindow::DisplayFlights() {
     QComboBox *arrctrySelect = MainWindow::findChild<QComboBox *>("FlightTo");
     QComboBox *cityarrselect = MainWindow::findChild<QComboBox *>("ToCitySelect");
 
+    qDebug() << "test " << sort;
     vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), MainWindow::findChild<QCheckBox *>("OneWay")->isChecked());
-    //qDebug() << "test " << sort;
+    qDebug() << "test " << sort;
     if (sort > 0) {
         int index = 0;
         Node<flightlisting*>* min;
@@ -270,6 +272,7 @@ void MainWindow::DisplayFlights() {
             min = mylist[0];
         }
         while(!mylist.empty()) {
+            qDebug() << "test " << sort;
             for (int n = 0; n < mylist.size(); n++) {
 
                 if (sort == 1) {
@@ -332,8 +335,11 @@ void MainWindow::DisplayHotels() {
     int num = mListWidget->count();
     QListWidgetItem *item = NULL;
     for (int i = 0; i < num; i++) {
-        item = mListWidget->takeItem(0);
-        //delete item;
+        item = mListWidget->item(0);
+        //delete mListWidget->itemWidget(item);
+        //mListWidget->editItem(item);
+
+        //item = mListWidget->takeItem(0);
     }
 
 
@@ -394,14 +400,13 @@ void MainWindow::DisplayHotels() {
                 listings.push_back(listtest);
                 listtest->setMainProg(this);
                 qDebug() << "test ";
+
                 mListWidget->insertItem(0, listtest->getitem());
 
-                try {
-                    mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
-                }
-                catch(...) {
-                    qDebug() << "error ";
-                }
+                mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
+
+                //delete mListWidget->takeItem(1);
+
 
                 mListWidget->repaint();
 
@@ -476,8 +481,10 @@ void MainWindow::SetCurrlisting(QtListing* l) {
 }
 void MainWindow::bookListing() {
     if (currentListing->getType() == 1) {
+        qDebug() << "book but press";
         hotellisting* htllist = currentListing->getHListing();
         date d(MainWindow::findChild<QLineEdit *>("Hdays")->text().toInt(), MainWindow::findChild<QLineEdit *>("Hmonth")->text().toInt(), MainWindow::findChild<QLineEdit *>("Hyear")->text().toInt());
+
 
         //(user* acc, date d, int days, int adults, int children)
         reservation* r = htllist->reserve(curUser, d, MainWindow::findChild<QComboBox *>("Hdaysnum")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hadults")->currentText().toInt(), MainWindow::findChild<QComboBox *>("Hchild")->currentText().toInt());
@@ -486,8 +493,9 @@ void MainWindow::bookListing() {
         }
 
         curUser->updateReservations(r);
-
+        qDebug() << "before delet list";
         deleteListing();
+
     }
     else if (currentListing->getType() == 2) {
         flightlisting* flist = currentListing->getFListing();
@@ -533,7 +541,9 @@ void MainWindow::deleteListing() {
     int index = currentListing->getIndex();
 
     if (type == 1) {
+        qDebug() << "list del";
         progData->deleteHlisting(index);
+        qDebug() << "list del";
     }
     else if (type == 2) {
         progData->deleteFlisting(index);
@@ -541,6 +551,17 @@ void MainWindow::deleteListing() {
     else if (type == 3) {
         progData->deleteClisting(index);
     }
+
+
+    QMessageBox* confirm = new QMessageBox(0);
+    QMessageBox::StandardButton reply1;
+    //confirm->exec();
+    reply1 = QMessageBox::information(confirm, "Success!", "Reservation made successfully!",
+        QMessageBox::Ok);
+    if (reply1 == QMessageBox::Ok) {
+        DetailsBack();
+    }
+
 }
 
 void MainWindow::DepositAcc() {
@@ -553,6 +574,9 @@ void MainWindow::DepositAcc() {
         curUser->getWallet()->deposit(text.toFloat());
 
     qDebug() << curUser->getWallet()->getAmount();
+    MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
+}
+void MainWindow::updateWallet() {
     MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
 }
 

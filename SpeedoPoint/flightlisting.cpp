@@ -25,10 +25,19 @@ flightlisting::flightlisting(airline air, stop* stp, int sptnum, date departure,
 
 flightticket* flightlisting::reserve(user* acc, int adults, int children, date d)
 {
+    QMessageBox* confirm = new QMessageBox(0);
+    QMessageBox::StandardButton reply1;
+    //confirm->exec();
+    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number((pricepertraveller*adults + pricepertraveller/2 * children)) + "LE" + " from Wallet: " + QString::number(acc->getWallet()->getAmount()),
+        QMessageBox::Yes | QMessageBox::No);
+    if (reply1 == QMessageBox::No) {
+        return NULL;
+    }
+
     QMessageBox* msgbx = new QMessageBox(0);
 
     QMessageBox::StandardButton reply;
-    msgbx->exec();
+    //msgbx->exec();
 
     int deduct = 0;
     reply = QMessageBox::question(msgbx, "Redeem", "Do you want to Redeem your " + QString::number(acc->getPoints()) + " points?",

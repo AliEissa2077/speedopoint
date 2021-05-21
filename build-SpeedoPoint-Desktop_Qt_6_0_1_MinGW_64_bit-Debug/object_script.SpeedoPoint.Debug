@@ -20,3 +20,4 @@ debug/stop.o
 debug/user.o
 debug/wallet.o
 debug/moc_mainwindow.o
+debug/moc_qtlisting.o

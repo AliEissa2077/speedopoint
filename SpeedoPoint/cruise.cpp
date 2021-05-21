@@ -22,7 +22,7 @@ cruise::cruise(date start_, date end_, std::string model, int price, country dep
 cruisereservation* cruise::reserve(user* acc, int adult, int child) {
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
-    confirm->exec();
+    //confirm->exec();
     reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerPerson*adult + pricePerPerson/2 * child) + "LE" + " from Wallet: " + QString::number(acc->getWallet()->getAmount()),
         QMessageBox::Yes | QMessageBox::No);
     if (reply1 == QMessageBox::No) {
@@ -33,7 +33,7 @@ cruisereservation* cruise::reserve(user* acc, int adult, int child) {
     QMessageBox* msgbx = new QMessageBox(0);
 
     QMessageBox::StandardButton reply;
-    msgbx->exec();
+    //msgbx->exec();
 
     int deduct = 0;
     reply = QMessageBox::question(msgbx, "Redeem", "Do you want to Redeem your " + QString::number(acc->getPoints()) + " points?",

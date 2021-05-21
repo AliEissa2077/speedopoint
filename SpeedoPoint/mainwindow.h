@@ -17,6 +17,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     void SetCurrlisting(QtListing* l);
     void deleteListing();
+    void updateWallet();
     ~MainWindow();
 
 private:

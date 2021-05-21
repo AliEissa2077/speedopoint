@@ -15,7 +15,7 @@ class MainWindow;
 
 class QtListing : public QObject
 {
-
+    Q_OBJECT
 private:
     MainWindow* mainProg;
     hotellisting* hlisting;

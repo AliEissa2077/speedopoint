@@ -511,12 +511,32 @@ vector<hotellisting*> dataStore::GetSortedHotels(int type) {
 void dataStore::deleteHlisting(int index) {
     Node<hotellisting*>* curr = HotelListingsHead;
     while (curr != NULL) {
-        if (curr->next->initialIndex == index) {
-            Node<hotellisting*>* temp = curr->next;
-            curr->next = curr->next->next;
-            curr->next->prev = curr->next ;
-            //delete temp;
-            temp = NULL;
+        if (curr->initialIndex == index) {
+            Node<hotellisting*>* temp = curr;
+            //qDebug() << "found it";
+            if (curr->prev != NULL) {
+                if (curr->next != NULL) {
+                    curr->prev->next = curr->next;
+                    curr->prev->next->prev = curr->prev ;
+                }
+                else {
+                    curr->prev->next = NULL;
+
+                }
+            }
+            if (curr->next != NULL) {
+                if (curr->prev != NULL) {
+                    curr->next->prev = curr->prev;
+                    curr->next->prev->next = curr->next;
+                }
+                else {
+                    curr->next->prev = NULL;
+                    HotelListingsHead = curr->next;
+                }
+            }
+            delete temp;
+            //temp = NULL;
+            return;
         }
         curr = curr->next;
     }
@@ -527,10 +547,29 @@ void dataStore::deleteFlisting(int index) {
     while (curr != NULL) {
         if (curr->next->initialIndex == index) {
             Node<flightlisting*>* temp = curr->next;
-            curr->next = curr->next->next;
-            curr->next->prev = curr->next ;
-            //delete temp;
-            temp = NULL;
+            if (curr->prev != NULL) {
+                if (curr->next != NULL) {
+                    curr->prev->next = curr->next;
+                    curr->prev->next->prev = curr->prev ;
+                }
+                else {
+                    curr->prev->next = NULL;
+
+                }
+            }
+            if (curr->next != NULL) {
+                if (curr->prev != NULL) {
+                    curr->next->prev = curr->prev;
+                    curr->next->prev->next = curr->next;
+                }
+                else {
+                    curr->next->prev = NULL;
+                    FlightListingsHead = curr->next;
+                }
+            }
+            delete temp;
+            //temp = NULL;
+            return;
         }
         curr = curr->next;
     }
@@ -541,10 +580,29 @@ void dataStore::deleteClisting(int index) {
     while (curr != NULL) {
         if (curr->next->initialIndex == index) {
             Node<cruise*>* temp = curr->next;
-            curr->next = curr->next->next;
-            curr->next->prev = curr->next ;
-            //delete temp;
-            temp = NULL;
+            if (curr->prev != NULL) {
+                if (curr->next != NULL) {
+                    curr->prev->next = curr->next;
+                    curr->prev->next->prev = curr->prev ;
+                }
+                else {
+                    curr->prev->next = NULL;
+
+                }
+            }
+            if (curr->next != NULL) {
+                if (curr->prev != NULL) {
+                    curr->next->prev = curr->prev;
+                    curr->next->prev->next = curr->next;
+                }
+                else {
+                    curr->next->prev = NULL;
+                    CruiseListingsHead = curr->next;
+                }
+            }
+            delete temp;
+            //temp = NULL;
+            return;
         }
         curr = curr->next;
     }

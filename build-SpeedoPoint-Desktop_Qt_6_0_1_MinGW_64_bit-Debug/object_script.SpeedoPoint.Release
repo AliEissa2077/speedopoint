@@ -20,3 +20,4 @@ release/stop.o
 release/user.o
 release/wallet.o
 release/moc_mainwindow.o
+release/moc_qtlisting.o
