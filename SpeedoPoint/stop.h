@@ -11,19 +11,17 @@ private:
 	int cityIndex;
     airport aPort;
     //airline airlne;
-	date time;
+	//date time;
 
 public:
     stop* next;
 	stop();
-    stop(country location, int index, airport airl, date d);
-    void add_stop(country locatiuon, int index, airport airl, date d);
+    stop(country location, int index, airport airl);
+    void add_stop(country locatiuon, int index, airport airl);
     date getTime();
     airport getAirport();
     int getIndex();
     country getLoc();
-
-
 };
 
 #endif STOP_H

@@ -5,16 +5,17 @@
 flightlisting::flightlisting() {
 
 }
-flightlisting::flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew)
+flightlisting::flightlisting(string code_, airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew)
 {
+    code = code_;
 	airlne = air;
 	stops = stp;
 	stopnum = sptnum;
 	dep = departure;
 	arr = arrival;
 	pricepertraveller = price;
-	std::string cabin = cabin_;
-	std::string plane = planeModel;
+	cabin = cabin_;
+	plane = planeModel;
 	carronW = carryOn;
 	checkedBaggageW = CheckedW;
 	additionalBagPrice = additionalWPrice;

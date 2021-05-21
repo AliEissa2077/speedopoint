@@ -194,8 +194,48 @@ dataStore::dataStore()
     string line4;
     if (f.is_open()) {
         while (getline(f, line4)) {
+            string stopfile = "stops.txt";
+            ifstream s(stopfile);
             stringstream ssf(line4);
             string al;
+            string code;
+            ssf >> code;
+            string line5;
+            int stpnum;
+            stop* stps = NULL;
+            while (getline(s, line5)) {
+                stringstream sss(line5);
+                string cd;
+                sss >> cd;
+                if (code == cd) {
+                    sss >> stpnum;
+                    for (int i = 0; i < stpnum; i++) {
+                        string ctry; 
+                        sss >> ctry;
+                        country ct;
+                        for (auto x : countries) {
+                            if (ctry == x.getName()) {
+                                ct = x;
+                            }
+                        }
+                        int index;
+                        sss >> index;
+                        string at;
+                        airport aport;
+                        for (auto x : airports) {
+                            if (at == x.getName()) {
+                                aport = x;
+                            }
+                        }
+                        if (stps == NULL) {
+                            stps = new stop(ct, index, aport);
+                        }
+                        else {
+                            stps->add_stop(ct, index, aport);
+                        }
+                    }
+                }
+            }
             ssf >> al;
             airline airln;
             for (auto x : airlines) {
@@ -203,7 +243,6 @@ dataStore::dataStore()
                     airln = x;
                 }
             }
-            int stpnum;
             int depy, depm, depd, deph, depmin, arry, arrm, arrd, arrh, arrmin, price;
             string cabin, plane_model;
             int carryon, checkedW, additionalw;
@@ -211,7 +250,7 @@ dataStore::dataStore()
             ssf >> stpnum >> depy >> depm >> depd >> deph >> depmin >> arry >> arrm >> arrd >> arrh >> arrmin >> price >> cabin >> plane_model >> carryon >> checkedW >> additionalw >> refundable >> oneway;
             date dep(depd, depm, depy, deph, depmin);
             date arr(arrd, arrm, arry, arrh, arrm);
-            flightlisting* flist = new flightlisting(airln, NULL, stpnum, dep, arr, price, cabin, plane_model, carryon, checkedW, additionalw, refundable, oneway);
+            flightlisting* flist = new flightlisting(airln, stps, stpnum, dep, arr, price, cabin, plane_model, carryon, checkedW, additionalw, refundable, oneway);
 
             // add it to linked list
 
@@ -231,6 +270,7 @@ dataStore::dataStore()
                 curr->next->initialIndex = Iindex;
                 Iindex++;
             }
+            s.close();
         }
 
         f.close();
