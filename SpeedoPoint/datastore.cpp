@@ -332,9 +332,22 @@ bool dataStore::userAuth(string uName, string uPass) {
 }
 
 void dataStore::SortListings() {
+    qDebug() << "sorting";
+    Node<hotellisting*>* curr = HotelListingsHead;
+    while (curr->next != NULL) {
+        curr =curr->next;
+    }
+    Node<cruise*>* curr1 = CruiseListingsHead;
+    while (curr->next != NULL) {
+        curr1 =curr1->next;
+    }
+    Node<flightlisting*>* curr2 = FlightListingsHead;
+    while (curr2->next != NULL) {
+        curr2 =curr2->next;
+    }
     sortRecurrH(HotelListingsHead);
-    sortRecurrF(FlightListingsHead);
-    //sortRecurrC(CruiseListingsHead);
+    sortRecurrF(curr2);
+    sortRecurrC(curr1);
 }
 void dataStore::sortRecurrH(Node<hotellisting*>* n) {
     if (n ==NULL) {
@@ -342,14 +355,17 @@ void dataStore::sortRecurrH(Node<hotellisting*>* n) {
     }
 
     Node<hotellisting*>* curr = n;
-    while (n->prev != NULL) {
-        curr = curr->prev;
+    curr = curr->prev;
+    while (curr != NULL) {
+
+        qDebug() << "sorting" << curr->data->getPricePerNight() << n->data->getPricePerNight();
         if (curr->data->getPricePerNight() > n->data->getPricePerNight()) {
             n->priceRankIndex = curr->priceRankIndex  - 1;
         }
         if (curr->data->getHotelRating() < n->data->getHotelRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
+        curr = curr->prev;
 
     }
     if (n->next != NULL) {
@@ -378,18 +394,18 @@ void dataStore::sortRecurrF(Node<flightlisting*>* n) {
         sortRecurrF(n->next);
     }
 }
-/*  TEMPORARY COMMENT
-void dataStore::sortRecurrC(Node<cruise>* n) {
+//  TEMPORARY COMMENT
+void dataStore::sortRecurrC(Node<cruise*>* n) {
     if (n ==NULL) {
         return;
     }
-    Node<cruise>* curr = n;
+    Node<cruise*>* curr = n;
     while (n->prev != NULL) {
         curr = curr->prev;
-        if (curr->data.getPricePerPerson() > n->data.getPricePerPerson()) {
+        if (curr->data->getPricePerPerson() > n->data->getPricePerPerson()) {
             n->priceRankIndex = curr->priceRankIndex  - 1;
         }
-        if (curr->data.getDuration() < n->data.getDuration()) {
+        if (curr->data->getDuration() < n->data->getDuration()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
         }
 
@@ -401,7 +417,7 @@ void dataStore::sortRecurrC(Node<cruise>* n) {
         sortRecurrC(n->next);
     }
 }
-*/
+
 
 vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, int persons, bool pool, bool pets, bool beach, bool bfast, bool dinner) {
     Node<hotellisting*>* curr = HotelListingsHead;

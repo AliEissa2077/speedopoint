@@ -356,8 +356,9 @@ void MainWindow::DisplayHotels() {
             min = mylist[0];
         }
         while(!mylist.empty()) {
+            min = mylist[0];
             for (int n = 0; n < mylist.size(); n++) {
-
+                qDebug() << min->priceRankIndex <<"to " << mylist[n]->priceRankIndex;
                 if (sort == 1) {
                     if (min->priceRankIndex > mylist[n]->priceRankIndex) {
                         min = mylist[n];
@@ -377,16 +378,12 @@ void MainWindow::DisplayHotels() {
                     }
                 }
             }
-            qDebug() << "test ";
+            qDebug() << "test " << mylist.size();
             QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
             listtest->setMainProg(this);
-            if (listtest->getitem() == NULL) {
-                qDebug() << "isnull ";
-            }
+
             mListWidget->insertItem(0, listtest->getitem());
-            if (listtest->getitem() == NULL) {
-                qDebug() << "isnull ";
-            }
+
             mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
             qDebug() << "test ";
             mylist.erase(mylist.begin() + index);

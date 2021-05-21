@@ -19,9 +19,9 @@ struct Node {
 
   int initialIndex;
 
-  int priceRankIndex;
-  int ratingRankIndex;
-  int DistRankIndex;
+  int priceRankIndex = 20;
+  int ratingRankIndex = 20;
+  int DistRankIndex = 20;
   Node *next = NULL;
   Node* prev = NULL;
 };
