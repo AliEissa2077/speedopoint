@@ -9,6 +9,7 @@
 #include "flightticket.h"
 class flightlisting {
 private:
+    string code;
     airline airlne;
     stop* stops;
 	int stopnum;
@@ -24,7 +25,7 @@ private:
     bool oneway;
 public:
     flightlisting();
-    flightlisting(airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew);
+    flightlisting(string code_, airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew);
     flightticket* reserve(user* acc, int adults, int children, date d);
     flightticket* reserve(user* acc, int adults, int children, date d, date d2);
     int getPriceperTraveller();

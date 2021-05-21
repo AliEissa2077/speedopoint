@@ -15,6 +15,7 @@ public:
 	airport();
     airport(std::string airport_name, country count, int index);
 	country getCountry();
+	string getName();
 	int getIndex();
 };
 #endif AIRPORT_H
