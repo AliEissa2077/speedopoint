@@ -11,7 +11,7 @@ private:
 	int cityIndex;
     airport aPort;
     //airline airlne;
-	//date time;
+    date time;
 
 public:
     stop* next;

@@ -29,16 +29,16 @@ date stop::getTime()
 }
 
 
-stop::stop(country location, int index, airport airl, date d)
+stop::stop(country location, int index, airport airl)
 {
 	loc = location;
 	cityIndex = index;
     aPort = airl;
-	time = d;
+    //time = d;
     next = NULL;
 }
 
-void stop::add_stop(country location, int index, airport airl, date d) {
+void stop::add_stop(country location, int index, airport airl) {
     stop* newone = new stop(location, index, airl, d);
     stop* curr = this;
     while (curr->next != NULL) {

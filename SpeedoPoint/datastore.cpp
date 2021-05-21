@@ -250,7 +250,8 @@ dataStore::dataStore()
             ssf >> stpnum >> depy >> depm >> depd >> deph >> depmin >> arry >> arrm >> arrd >> arrh >> arrmin >> price >> cabin >> plane_model >> carryon >> checkedW >> additionalw >> refundable >> oneway;
             date dep(depd, depm, depy, deph, depmin);
             date arr(arrd, arrm, arry, arrh, arrm);
-            flightlisting* flist = new flightlisting(airln, stps, stpnum, dep, arr, price, cabin, plane_model, carryon, checkedW, additionalw, refundable, oneway);
+            //string code = "codetest";
+            flightlisting* flist = new flightlisting(code, airln, stps, stpnum, dep, arr, price, cabin, plane_model, carryon, checkedW, additionalw, refundable, oneway);
 
             // add it to linked list
 

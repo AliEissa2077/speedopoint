@@ -19,7 +19,7 @@ int airport::getIndex()
     return cityIndex;
 }
 
-string airport::getName() {
+std::string airport::getName() {
     return name;
 }
 
