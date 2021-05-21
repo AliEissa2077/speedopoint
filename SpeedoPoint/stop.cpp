@@ -1,12 +1,4 @@
 #include "stop.h"
-
-
-
-
-
-
-
-
 country stop::getLoc()
 {
 	return loc;
@@ -29,17 +21,17 @@ date stop::getTime()
 }
 
 
-stop::stop(country location, int index, airport airl)
+stop(country location, int index, airport airl, date dt)
 {
 	loc = location;
 	cityIndex = index;
     aPort = airl;
-    //time = d;
+    time = dt;
     next = NULL;
 }
 
-void stop::add_stop(country location, int index, airport airl) {
-    stop* newone = new stop(location, index, airl, d);
+void stop::add_stop(country location, int index, airport airl, date dt) {
+    stop* newone = new stop(location, index, airl, dt);
     stop* curr = this;
     while (curr->next != NULL) {
         curr = curr->next;

@@ -228,10 +228,12 @@ dataStore::dataStore()
                             }
                         }
                         if (stps == NULL) {
-                            stps = new stop(ct, index, aport);
+                            date dt;
+                            stps = new stop(ct, index, aport, dt);
                         }
                         else {
-                            stps->add_stop(ct, index, aport);
+                            date dt;
+                            stps->add_stop(ct, index, aport, dt);
                         }
                     }
                 }
