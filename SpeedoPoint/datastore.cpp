@@ -192,10 +192,10 @@ dataStore::dataStore()
     ifstream f(flightfile);
     //f.open();
     string line4;
-    string stopfile = "stops.txt";
-    ifstream s(stopfile);
     if (f.is_open()) {
         while (getline(f, line4)) {
+            string stopfile = "stops.txt";
+            ifstream s(stopfile);
             stringstream ssf(line4);
             string al;
             string code;
@@ -270,6 +270,7 @@ dataStore::dataStore()
                 curr->next->initialIndex = Iindex;
                 Iindex++;
             }
+            s.close();
         }
 
         f.close();
