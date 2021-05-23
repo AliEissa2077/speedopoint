@@ -295,7 +295,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -2163,9 +2163,36 @@
     <zorder>WalletAmount</zorder>
     <zorder>deposit</zorder>
    </widget>
-   <zorder>LoginScreen</zorder>
-   <zorder>DetailsPage</zorder>
+   <widget class="QFrame" name="UserPage">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-1</y>
+      <width>1091</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QGraphicsView" name="background">
+     <property name="geometry">
+      <rect>
+       <x>-5</x>
+       <y>-9</y>
+       <width>1101</width>
+       <height>571</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
    <zorder>Listings</zorder>
+   <zorder>DetailsPage</zorder>
+   <zorder>LoginScreen</zorder>
+   <zorder>UserPage</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

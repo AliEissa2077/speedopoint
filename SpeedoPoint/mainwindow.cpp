@@ -264,20 +264,17 @@ public:
         if (sortt == 1) {
             if (A->priceRankIndex < B->priceRankIndex)
                 return A > B;
-            else
-                return B > A;
+
         }
         if (sortt == 2) {
             if (A->ratingRankIndex < B->ratingRankIndex)
                 return A > B;
-            else
-                return B > A;
+
         }
         if (sortt == 3) {
             if (A->DistRankIndex < B->DistRankIndex)
                 return A > B;
-            else
-                return B > A;
+
         }
     }
 };
@@ -298,6 +295,10 @@ void MainWindow::DisplayFlights() {
     }
 
     vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), MainWindow::findChild<QCheckBox *>("OneWay")->isChecked());
+
+    if (mylist.empty()) {
+        return;
+    }
 
     if (sort > 0) {
 
