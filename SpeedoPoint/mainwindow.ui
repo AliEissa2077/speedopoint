@@ -295,7 +295,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -668,6 +668,17 @@
        <property name="text">
         <string>Two-way flight</string>
        </property>
+      </widget>
+      <widget class="QWidget" name="verticalLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>80</y>
+         <width>851</width>
+         <height>351</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="flightlist"/>
       </widget>
      </widget>
      <widget class="QWidget" name="Hotels">
@@ -1300,6 +1311,17 @@
        <property name="text">
         <string>City</string>
        </property>
+      </widget>
+      <widget class="QWidget" name="verticalLayoutWidget_5">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>60</y>
+         <width>891</width>
+         <height>351</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="cruiselist"/>
       </widget>
      </widget>
     </widget>

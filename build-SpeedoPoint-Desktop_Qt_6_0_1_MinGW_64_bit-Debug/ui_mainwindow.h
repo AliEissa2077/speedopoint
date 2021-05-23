@@ -75,6 +75,8 @@ public:
     QComboBox *FromCitySelect;
     QComboBox *ToCitySelect;
     QCheckBox *Refundable;
+    QWidget *verticalLayoutWidget_4;
+    QVBoxLayout *flightlist;
     QWidget *Hotels;
     QListWidget *HotelListings;
     QLabel *label_5;
@@ -106,6 +108,8 @@ public:
     QLabel *label_12;
     QLabel *label_11;
     QLabel *label_9;
+    QWidget *verticalLayoutWidget_5;
+    QVBoxLayout *cruiselist;
     QFrame *DetailsPage;
     QGraphicsView *ProgramBackground_2;
     QLabel *Speedopointtxt_2;
@@ -405,6 +409,12 @@ public:
         Refundable = new QCheckBox(Flights);
         Refundable->setObjectName(QString::fromUtf8("Refundable"));
         Refundable->setGeometry(QRect(30, 110, 111, 31));
+        verticalLayoutWidget_4 = new QWidget(Flights);
+        verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
+        verticalLayoutWidget_4->setGeometry(QRect(170, 80, 851, 351));
+        flightlist = new QVBoxLayout(verticalLayoutWidget_4);
+        flightlist->setObjectName(QString::fromUtf8("flightlist"));
+        flightlist->setContentsMargins(0, 0, 0, 0);
         Tabs->addTab(Flights, QString());
         Hotels = new QWidget();
         Hotels->setObjectName(QString::fromUtf8("Hotels"));
@@ -484,7 +494,7 @@ public:
         HotelCitySelect->setGeometry(QRect(400, 20, 73, 22));
         verticalLayoutWidget_2 = new QWidget(Hotels);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(160, 90, 581, 271));
+        verticalLayoutWidget_2->setGeometry(QRect(140, 70, 891, 351));
         testlist = new QVBoxLayout(verticalLayoutWidget_2);
         testlist->setObjectName(QString::fromUtf8("testlist"));
         testlist->setContentsMargins(0, 0, 0, 0);
@@ -556,6 +566,12 @@ public:
         label_9 = new QLabel(Cruises);
         label_9->setObjectName(QString::fromUtf8("label_9"));
         label_9->setGeometry(QRect(362, 10, 31, 21));
+        verticalLayoutWidget_5 = new QWidget(Cruises);
+        verticalLayoutWidget_5->setObjectName(QString::fromUtf8("verticalLayoutWidget_5"));
+        verticalLayoutWidget_5->setGeometry(QRect(140, 60, 891, 351));
+        cruiselist = new QVBoxLayout(verticalLayoutWidget_5);
+        cruiselist->setObjectName(QString::fromUtf8("cruiselist"));
+        cruiselist->setContentsMargins(0, 0, 0, 0);
         Tabs->addTab(Cruises, QString());
         DetailsPage = new QFrame(centralwidget);
         DetailsPage->setObjectName(QString::fromUtf8("DetailsPage"));
@@ -792,7 +808,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        Tabs->setCurrentIndex(1);
+        Tabs->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

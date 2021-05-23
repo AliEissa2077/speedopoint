@@ -36,7 +36,6 @@ dataStore::dataStore()
     ifstream c(country_);
     //c.open(country_);
     if (c.is_open()) {
-        qDebug() << "went in";
         string temp;
         while (getline(c, temp)) {
             stringstream ss(temp);
@@ -72,7 +71,8 @@ dataStore::dataStore()
             int index;
             int range;
             bool pool;
-            ssh >> name >> country_ >> index >> range >> pool;
+            float rating;
+            ssh >> name >> country_ >> index >> range >> pool >> rating;
             country ctry;
             for (auto x : countries) {
                 if (country_.compare(x.getName()) == 0) {
@@ -80,6 +80,9 @@ dataStore::dataStore()
                 }
             }
             hotel h1(name, ctry, index, range, pool);
+            for (int i = 0 ; i < 10; i++) {
+                h1.updateRating(rating);
+            }
             hotels.push_back(h1);
         }
         h.close();
@@ -337,7 +340,6 @@ void dataStore::SortListings() {
     //qDebug() << "sorting";
 
     sortRecurrH(HotelListingsHead->next);
-    qDebug() << "got here";
     //sortRecurrF(curr2);
     //sortRecurrC(curr1);
 }
@@ -352,14 +354,19 @@ void dataStore::sortRecurrH(Node<hotellisting*>* n) {
     }
     while (curr != NULL) {
 
-        qDebug() << "sorting 1" << curr->data->getPricePerNight() << n->data->getPricePerNight();
         if (curr->data->getPricePerNight() > n->data->getPricePerNight()) {
             n->priceRankIndex = curr->priceRankIndex  - 1;
             qDebug() <<"edited";
         }
+        else if (n->priceRankIndex == curr->priceRankIndex) {
+            n->priceRankIndex+=2;
+        }
         if (curr->data->getHotelRating() < n->data->getHotelRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
             qDebug() <<"edited";
+        }
+        else if (n->ratingRankIndex == curr->ratingRankIndex) {
+            n->ratingRankIndex--;
         }
         curr = curr->prev;
 

@@ -18,6 +18,7 @@ public:
     void SetCurrlisting(QtListing* l);
     void deleteListing();
     void updateWallet();
+    int getSort() {return sort;}
     ~MainWindow();
 
 private:
