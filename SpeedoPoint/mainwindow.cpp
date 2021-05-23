@@ -88,6 +88,8 @@ qDebug() << "test ";
     connect(depbut, SIGNAL(released()), this, SLOT(DepositAcc()));
 
 
+    MainWindow::findChild<QVBoxLayout *>("testlist")->setAlignment(Qt::AlignTop);
+
 
 }
 
@@ -214,7 +216,7 @@ void MainWindow::countryChangeHotel(const QString &text) {
 }
 void MainWindow::countryChangeCruise(const QString &text) {
     vector<country> temp = progData->getCountries();
-    for (int i = 0; i < temp.size(); i++) {
+    for (std::vector<int>::size_type i = 0; i < temp.size(); i++) {
         if (temp[i].getName().compare(text.toStdString()) == 0) {
             QComboBox *cities = MainWindow::findChild<QComboBox *>("CruiseCitySelect");
             cities->clear();
@@ -330,14 +332,28 @@ void MainWindow::DisplayHotels() {
     //MainWindow::findChild<QListWidget *>("HotelListings")->clear();
 
     QListWidget* mListWidget = MainWindow::findChild<QListWidget *>("HotelListings");
+    //testlist
+    QVBoxLayout* testlist = MainWindow::findChild<QVBoxLayout *>("testlist");
 
     //mListWidget->clear();
 
     int num = mListWidget->count();
-    QListWidgetItem *item = NULL;
-    for (int i = 0; i < num; i++) {
-        item = mListWidget->item(0);
-        //delete mListWidget->itemWidget(item);
+    //QListWidgetItem *item = NULL;
+    for (int i = 0; i < listings.size(); i++) {
+        //mListWidget->removeItemWidget(mListWidget->item(i));
+        //mListWidget->item(i)->setVisible(false);
+
+
+        //QWidget *item = testlist->wid(I)
+        testlist->removeWidget(listings[i]->getwidget());
+        listings[i]->getwidget()->setVisible(false);
+
+        //delete listings[i]->getwidget());
+        //listings[i]->setnull();
+        //delete listings[i];
+
+
+        //remove(mListWidget->takeItem(i))
         //mListWidget->editItem(item);
 
         //item = mListWidget->takeItem(0);
@@ -345,7 +361,6 @@ void MainWindow::DisplayHotels() {
 
 
 
-    mListWidget->repaint();
 
     qDebug() << "testw " << mListWidget->count();
     qDebug() << pool->isChecked() << pets->isChecked() << beach->isChecked() << bkfast->isChecked() << dinner->isChecked();
@@ -356,7 +371,8 @@ void MainWindow::DisplayHotels() {
         if (mylist.size() > 0) {
             min = mylist[0];
         }
-        while(!mylist.empty()) {
+        int testval = 0;
+        while(testval < mylist.size()) {
             min = mylist[0];
             for (int n = 0; n < mylist.size(); n++) {
                 qDebug() << min->priceRankIndex <<"to " << mylist[n]->priceRankIndex;
@@ -383,30 +399,37 @@ void MainWindow::DisplayHotels() {
             QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
             listtest->setMainProg(this);
 
-            mListWidget->insertItem(0, listtest->getitem());
+            //mListWidget->insertItem(0, listtest->getitem());
 
-            mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
+            mListWidget->item(testval)->setSizeHint(listtest->getwidget()->sizeHint());
+            mListWidget->setItemWidget(mListWidget->item(testval), listtest->getwidget());
+            testval++;
             qDebug() << "test ";
-            mylist.erase(mylist.begin() + index);
+            //mylist.erase(mylist.begin() + index);
         }
     }
     else {
-        for (int n = 0; n < mylist.size(); n++) {
+        for (std::vector<int>::size_type n = 0; n < mylist.size(); n++) {
             if (mylist[n] != NULL) {
                 qDebug() << "thi is it ";
                 QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
                 listings.push_back(listtest);
                 listtest->setMainProg(this);
-                qDebug() << "test ";
+                qDebug() << "tertw4oijhoi45st ";
 
-                mListWidget->insertItem(0, listtest->getitem());
+                //mListWidget->insertItem(0, listtest->getitem());
+                //mListWidget->item(n)->setSizeHint(listtest->getwidget()->sizeHint());
+                testlist->addWidget(listtest->getwidget());
 
-                mListWidget->setItemWidget(listtest->getitem(), listtest->getwidget());
+
+                //mListWidget->item(n)->setSizeHint(listtest->getwidget()->sizeHint());
+                //mListWidget->setItemWidget(mListWidget->item(n), listtest->getwidget());
+
 
                 //delete mListWidget->takeItem(1);
 
 
-                mListWidget->repaint();
+                //mListWidget->repaint();
 
             }
         }

@@ -91,6 +91,8 @@ public:
     QCheckBox *breakfast;
     QCheckBox *dinner;
     QComboBox *HotelCitySelect;
+    QWidget *verticalLayoutWidget_2;
+    QVBoxLayout *testlist;
     QWidget *Cruises;
     QComboBox *CruiseCitySelect;
     QComboBox *CruisePersonsNum;
@@ -480,6 +482,12 @@ public:
         HotelCitySelect = new QComboBox(Hotels);
         HotelCitySelect->setObjectName(QString::fromUtf8("HotelCitySelect"));
         HotelCitySelect->setGeometry(QRect(400, 20, 73, 22));
+        verticalLayoutWidget_2 = new QWidget(Hotels);
+        verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
+        verticalLayoutWidget_2->setGeometry(QRect(160, 90, 581, 271));
+        testlist = new QVBoxLayout(verticalLayoutWidget_2);
+        testlist->setObjectName(QString::fromUtf8("testlist"));
+        testlist->setContentsMargins(0, 0, 0, 0);
         Tabs->addTab(Hotels, QString());
         Cruises = new QWidget();
         Cruises->setObjectName(QString::fromUtf8("Cruises"));
@@ -784,7 +792,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        Tabs->setCurrentIndex(2);
+        Tabs->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

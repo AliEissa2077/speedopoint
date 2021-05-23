@@ -125,6 +125,7 @@ dataStore::dataStore()
                 HotelListingsHead = new Node<hotellisting*>;
                 HotelListingsHead->data = hotl;
                 HotelListingsHead->initialIndex = Iindex;
+                HotelListingsHead->prev = NULL;
                 Iindex++;
             }
             else {
@@ -135,6 +136,7 @@ dataStore::dataStore()
                 curr->next = new Node<hotellisting*>;
                 curr->next->data = hotl;
                 curr->next->initialIndex = Iindex;
+                curr->next->prev = curr;
                 Iindex++;
             }
 
@@ -305,7 +307,7 @@ dataStore::dataStore()
     //qDebug() << "here";
     Node<hotellisting*>* curr = HotelListingsHead;
     while (curr != NULL) {
-        //qDebug() << QString::fromStdString(curr->data->getLoc().getName());
+        qDebug() << curr->data->getPricePerNight();
         curr = curr->next;
     }
 }
@@ -332,38 +334,32 @@ bool dataStore::userAuth(string uName, string uPass) {
 }
 
 void dataStore::SortListings() {
-    qDebug() << "sorting";
-    Node<hotellisting*>* curr = HotelListingsHead;
-    while (curr->next != NULL) {
-        curr =curr->next;
-    }
-    Node<cruise*>* curr1 = CruiseListingsHead;
-    while (curr->next != NULL) {
-        curr1 =curr1->next;
-    }
-    Node<flightlisting*>* curr2 = FlightListingsHead;
-    while (curr2->next != NULL) {
-        curr2 =curr2->next;
-    }
-    sortRecurrH(HotelListingsHead);
-    sortRecurrF(curr2);
-    sortRecurrC(curr1);
+    //qDebug() << "sorting";
+
+    sortRecurrH(HotelListingsHead->next);
+    qDebug() << "got here";
+    //sortRecurrF(curr2);
+    //sortRecurrC(curr1);
 }
 void dataStore::sortRecurrH(Node<hotellisting*>* n) {
-    if (n ==NULL) {
+    if (n == NULL) {
         return;
     }
 
     Node<hotellisting*>* curr = n;
-    curr = curr->prev;
+    if (curr->prev != NULL) {
+        curr = curr->prev;
+    }
     while (curr != NULL) {
 
-        qDebug() << "sorting" << curr->data->getPricePerNight() << n->data->getPricePerNight();
+        qDebug() << "sorting 1" << curr->data->getPricePerNight() << n->data->getPricePerNight();
         if (curr->data->getPricePerNight() > n->data->getPricePerNight()) {
             n->priceRankIndex = curr->priceRankIndex  - 1;
+            qDebug() <<"edited";
         }
         if (curr->data->getHotelRating() < n->data->getHotelRating()) {
             n->ratingRankIndex = curr->ratingRankIndex  - 1;
+            qDebug() <<"edited";
         }
         curr = curr->prev;
 

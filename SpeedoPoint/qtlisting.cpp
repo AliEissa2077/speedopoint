@@ -31,7 +31,7 @@ QtListing::QtListing()
     //widgetLayout->addStretch();
     widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
     widget->setLayout(widgetLayout);
-    temp->setSizeHint(widget->sizeHint());
+    //temp->setSizeHint(widget->sizeHint());
     item = temp;
     wid = widget;
 
@@ -44,7 +44,7 @@ QtListing::QtListing(flightlisting* inp, int index)
 {
     Ind = index;
     flisting = inp;
-    QListWidgetItem* temp = new QListWidgetItem();
+    //QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -77,8 +77,8 @@ QtListing::QtListing(flightlisting* inp, int index)
     //widgetLayout->addStretch();
     widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
     widget->setLayout(widgetLayout);
-    temp->setSizeHint(widget->sizeHint());
-    item = temp;
+    //temp->setSizeHint(widget->sizeHint());
+    //item = temp;
     wid = widget;
 }
 
@@ -86,7 +86,7 @@ QtListing::QtListing(hotellisting* inp, int index)
 {
     Ind = index;
     hlisting = inp;
-    QListWidgetItem* temp = new QListWidgetItem();
+    //QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getHotel().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -119,8 +119,8 @@ QtListing::QtListing(hotellisting* inp, int index)
     //widgetLayout->addStretch();
     widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
     widget->setLayout(widgetLayout);
-    temp->setSizeHint(widget->sizeHint());
-    item = temp;
+    //temp->setSizeHint(widget->sizeHint());
+    //item = temp;
     wid = widget;
 }
 
@@ -251,4 +251,7 @@ QtListing::~QtListing() {
     delete mainProg;
     delete hlisting;
 
+}
+void QtListing::setnull() {
+    wid = NULL;
 }

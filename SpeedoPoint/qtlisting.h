@@ -40,6 +40,7 @@ public:
     void setMainProg(MainWindow* m);
     int getIndex();
     int getType();
+    void setnull();
     ~QtListing();
 
 private slots:

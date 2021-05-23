@@ -1,6 +1,7 @@
 HiltonBuenosAires 80 100 1 1 1 0 1 1  
 HiltonBuenosAires 180 430 1 0 2 1 1 0     
-HiltonBuenosAires 240 330 0 0 0 1 0 0    
+HiltonBuenosAires 180 420 1 0 2 1 1 0     
+HiltonBuenosAires 240 330 1 0 0 1 1 0    
 MeliaVienna 190 400 1 1 2 0 0 0                
 RosewoodBahaMar 150 56 1 0 2 0 0 0           
 WyndhamGrandManama 140 90 1 1 1 1 0 1       
