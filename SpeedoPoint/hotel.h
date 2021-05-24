@@ -19,7 +19,7 @@ public:
 	hotel();
     hotel(std::string name_, country c, int index, int range, bool pool_);
 	void updateRating(float rt);
-    int getRating();
+    float getRating();
     bool getPool();
     bool getBeach();
     int getRatingsCount();

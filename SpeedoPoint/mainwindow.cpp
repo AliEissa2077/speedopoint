@@ -260,22 +260,23 @@ class cmp {
 public:
     bool operator() (Node<T*>* A, Node<T*>* B)
     {
-        qDebug() << sortt << "sortt";
+        //qDebug() << sortt << "sortt";
         if (sortt == 1) {
-            if (A->priceRankIndex < B->priceRankIndex)
-                return A > B;
+            if (A->priceRankIndex > B->priceRankIndex)
+                return true;
 
         }
         if (sortt == 2) {
-            if (A->ratingRankIndex < B->ratingRankIndex)
-                return A > B;
+            if (A->ratingRankIndex > B->ratingRankIndex)
+                return true;
 
         }
         if (sortt == 3) {
             if (A->DistRankIndex < B->DistRankIndex)
-                return A > B;
+                return true;
 
         }
+        return false;
     }
 };
 
@@ -293,8 +294,7 @@ void MainWindow::DisplayFlights() {
         testlist->removeWidget(listings[i]->getwidget());
         listings[i]->getwidget()->setVisible(false);
     }
-
-    vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), MainWindow::findChild<QCheckBox *>("OneWay")->isChecked());
+    vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), !MainWindow::findChild<QCheckBox *>("TwoWay")->isChecked());
 
     if (mylist.empty()) {
         return;
@@ -338,6 +338,7 @@ void MainWindow::DisplayHotels() {
     QCheckBox *bkfast = MainWindow::findChild<QCheckBox *>("breakfast");
     QCheckBox *dinner = MainWindow::findChild<QCheckBox *>("dinner");
 
+    qDebug() << htlcity->currentText();
     vector<Node<hotellisting*>*> mylist = progData->GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
 
     //MainWindow::findChild<QListWidget *>("HotelListings")->clear();

@@ -314,7 +314,7 @@ dataStore::dataStore()
     //qDebug() << "here";
     Node<hotellisting*>* curr = HotelListingsHead;
     while (curr != NULL) {
-        //qDebug() << curr->data->getPricePerNight();
+        qDebug() << curr->data->getHotelRating();
         curr = curr->next;
     }
 }
@@ -344,9 +344,8 @@ void dataStore::SortListings() {
     //qDebug() << "sorting";
 
     sortRecurrH(HotelListingsHead);
-    //sortRecurrH(HotelListingsHead);
-    //sortRecurrF(curr2);
-    //sortRecurrC(curr1);
+    sortRecurrF(FlightListingsHead);
+    sortRecurrC(CruiseListingsHead);
 }
 void dataStore::sortRecurrH(Node<hotellisting*>* n) {
     if (n == NULL) {
@@ -363,7 +362,6 @@ void dataStore::sortRecurrH(Node<hotellisting*>* n) {
             int temp = curr->priceRankIndex;
             curr->priceRankIndex = n->priceRankIndex;
             n->priceRankIndex = temp;
-            qDebug() <<"edited";
             sortRecurrH(HotelListingsHead);
             //return;
         }
@@ -372,8 +370,6 @@ void dataStore::sortRecurrH(Node<hotellisting*>* n) {
             int temp = curr->ratingRankIndex;
             curr->ratingRankIndex = n->ratingRankIndex;
             n->ratingRankIndex = temp;
-            //n->ratingRankIndex = curr->ratingRankIndex  - 1;
-            qDebug() <<"edited";
         }
         curr = curr->prev;
     }
@@ -386,16 +382,25 @@ void dataStore::sortRecurrF(Node<flightlisting*>* n) {
         return;
     }
     Node<flightlisting*>* curr = n;
-    while (n->prev != NULL) {
+    if (curr->prev != NULL) {
         curr = curr->prev;
+    }
+    while (n->prev != NULL) {
         if (curr->data->getPriceperTraveller() > n->data->getPriceperTraveller()) {
-            n->priceRankIndex = curr->priceRankIndex  - 1;
+            int temp = curr->priceRankIndex;
+            curr->priceRankIndex = n->priceRankIndex;
+            n->priceRankIndex = temp;
+            sortRecurrF(FlightListingsHead);
         }
         if (curr->data->getAirlineRating() < n->data->getAirlineRating()) {
-            n->ratingRankIndex = curr->ratingRankIndex  - 1;
+            int temp = curr->ratingRankIndex;
+            curr->ratingRankIndex = n->ratingRankIndex;
+            n->ratingRankIndex = temp;
         }
         if (curr->data->CalculateFlightDur() > n->data->CalculateFlightDur()) {
-            n->DistRankIndex = curr->DistRankIndex  - 1;
+            int temp = curr->DistRankIndex;
+            curr->DistRankIndex = n->DistRankIndex;
+            n->DistRankIndex = temp;
         }
 
     }
@@ -409,13 +414,20 @@ void dataStore::sortRecurrC(Node<cruise*>* n) {
         return;
     }
     Node<cruise*>* curr = n;
-    while (n->prev != NULL) {
+    if (curr->prev != NULL) {
         curr = curr->prev;
+    }
+    while (n->prev != NULL) {
         if (curr->data->getPricePerPerson() > n->data->getPricePerPerson()) {
-            n->priceRankIndex = curr->priceRankIndex  - 1;
+            int temp = curr->priceRankIndex;
+            curr->priceRankIndex = n->priceRankIndex;
+            n->priceRankIndex = temp;
+            sortRecurrC(CruiseListingsHead);
         }
         if (curr->data->getDuration() < n->data->getDuration()) {
-            n->ratingRankIndex = curr->ratingRankIndex  - 1;
+            int temp = curr->ratingRankIndex;
+            curr->ratingRankIndex = n->ratingRankIndex;
+            n->ratingRankIndex = temp;
         }
 
     }
@@ -487,6 +499,7 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
     while (curr != NULL) {
+        qDebug() << "got here";
         if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
         }

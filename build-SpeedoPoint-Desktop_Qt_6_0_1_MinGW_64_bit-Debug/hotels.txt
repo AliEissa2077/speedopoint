@@ -1,16 +1,16 @@
-HiltonBuenosAires Argentina 0 3.2      
-Marriot Argentina 0 3.2    
-MeliaVienna Austria 0 4               
-RosewoodBahaMar Bahamas 2 5        
-WyndhamGrandManama Bahrain 1 2.5   
-WarwickBrussels Belgium 0 1.5         
-MiPuebloSamary Bolivia 1 2         
-CullinanHplusPremium Brazil 0 3   
+HiltonBuenosAires Argentina 0 2 0 3.2      
+Marriot Argentina 0 1 0 2.2    
+MeliaVienna Austria 0 2 1 4               
+RosewoodBahaMar Bahamas 2 2 1 5        
+WyndhamGrandManama Bahrain 1 3 1 2.5   
+WarwickBrussels Belgium 0 1 0 1.5         
+MiPuebloSamary Bolivia 1  1 1 2         
+CullinanHplusPremium Brazil 0 2 1 3   
 FairmontChateauLaurier Canada 0 4.1
-IbisSantiagoEstacion Chile 1  4.6  
-FairmontSanJose CostaRica 1 1.2       
-JWMarriot Egypt 0 4.3               
-HiltonTallinnPark Estonia 2 3.2    
+IbisSantiagoEstacion Chile 1 3 0 4.6  
+FairmontSanJose CostaRica 1 1 1 1.2       
+JWMarriot Egypt 0  2 1 4.3               
+HiltonTallinnPark Estonia 2 2 0 3.2    
 ClarionHotelHelsinki Finland 2 1.5   
 HotelRitzParis France 0 2.7            
 SanaBerlin Germany 0 3.4               

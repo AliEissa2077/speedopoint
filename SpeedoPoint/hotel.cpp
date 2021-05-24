@@ -19,7 +19,7 @@ void hotel::updateRating(float rt) {
 	rating = new_total_rating / rating_counter;
 }
 
-int hotel::getRating() {
+float hotel::getRating() {
     return rating;
 }
 bool hotel::getPool() {

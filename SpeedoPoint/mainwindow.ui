@@ -295,7 +295,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -666,7 +666,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Two-way flight</string>
+        <string>Refundable</string>
        </property>
       </widget>
       <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1440,8 +1440,8 @@
       <rect>
        <x>70</x>
        <y>230</y>
-       <width>81</width>
-       <height>181</height>
+       <width>111</width>
+       <height>221</height>
       </rect>
      </property>
      <property name="text">
@@ -1454,7 +1454,7 @@
        <x>220</x>
        <y>220</y>
        <width>391</width>
-       <height>51</height>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -1464,24 +1464,6 @@
      </property>
      <property name="text">
       <string>Secondary</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="SecondaryInfo2">
-     <property name="geometry">
-      <rect>
-       <x>224</x>
-       <y>286</y>
-       <width>341</width>
-       <height>171</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Secondary 2</string>
      </property>
     </widget>
     <widget class="QPushButton" name="Book">
@@ -2156,7 +2138,6 @@
     <zorder>PricingInfo</zorder>
     <zorder>Features</zorder>
     <zorder>SecondaryInfo</zorder>
-    <zorder>SecondaryInfo2</zorder>
     <zorder>Book</zorder>
     <zorder>CReserve</zorder>
     <zorder>label_17</zorder>
@@ -2189,10 +2170,10 @@
      </property>
     </widget>
    </widget>
-   <zorder>Listings</zorder>
-   <zorder>DetailsPage</zorder>
    <zorder>LoginScreen</zorder>
    <zorder>UserPage</zorder>
+   <zorder>Listings</zorder>
+   <zorder>DetailsPage</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

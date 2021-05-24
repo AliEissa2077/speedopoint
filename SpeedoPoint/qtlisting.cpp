@@ -25,9 +25,9 @@ QtListing::QtListing()
     widgetLayout->addWidget(tertiarytxt);
     widgetLayout->addSpacerItem(spacer2);
     widgetLayout->addSpacerItem(spacer2);
-
-    widgetLayout->addWidget(testbut, Qt::AlignRight);
     widgetLayout->addStretch();
+    widgetLayout->addWidget(testbut, Qt::AlignRight);
+    //widgetLayout->addStretch();
     //widgetLayout->addStretch();
     widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
     widget->setLayout(widgetLayout);
@@ -71,9 +71,9 @@ QtListing::QtListing(flightlisting* inp, int index)
     widgetLayout->addWidget(tertiarytxt);
     widgetLayout->addSpacerItem(spacer2);
     widgetLayout->addSpacerItem(spacer2);
-
-    widgetLayout->addWidget(testbut, Qt::AlignRight);
     widgetLayout->addStretch();
+    widgetLayout->addWidget(testbut, Qt::AlignRight);
+    //widgetLayout->addStretch();
     //widgetLayout->addStretch();
     widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
     widget->setLayout(widgetLayout);
@@ -113,9 +113,9 @@ QtListing::QtListing(hotellisting* inp, int index)
     widgetLayout->addWidget(tertiarytxt);
     widgetLayout->addSpacerItem(spacer2);
     widgetLayout->addSpacerItem(spacer2);
-
-    widgetLayout->addWidget(testbut, Qt::AlignRight);
     widgetLayout->addStretch();
+    widgetLayout->addWidget(testbut, Qt::AlignRight);
+
     //widgetLayout->addStretch();
     widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
     widget->setLayout(widgetLayout);
@@ -178,11 +178,60 @@ QtListing::QtListing(QWidget* source)
 
 void QtListing::detailsButton() {
     //set data to text boxes
+    QString primary;
+    QString secondary;
+    QString location;
+    QString details;
+    QString pricing;
+    if (getType() == 1) {
+        primary = QString::fromStdString(hlisting->getHotel().getName());
+        location = QString::fromStdString(hlisting->getHotel().getCountry().getCities()[hlisting->getHotel().getIndex()] + ", " + hlisting->getHotel().getCountry().getName());
+        secondary = "Area: " + QString::number(hlisting->getArea()) + "Meters Square";
+        pricing = QString::number(hlisting->getPricePerNight()) + " LE Per Night";
+        details = "Pool: ";
+        details += hlisting->getHotel().getPool() ? "yes" : "no";
+        details += '\n';
+        details += "Beach: ";
+        details += hlisting->getHotel().getBeach() ? "yes" : "no";
+        details += '\n';
+        details += "Pets Allowed: ";
+        details += hlisting->getPets() ? "yes" : "no";
+        details += '\n';
+        details += "Breakfast: ";
+        details += hlisting->getBfast() ? "yes" : "no";
+        details += '\n';
+        details += "Dinner: ";
+        details += hlisting->getDinner() ? "yes" : "no";
+        details += '\n';
+        details += "Max Persons: ";
+        details += QString::number(hlisting->getMaxPersons());
+        details += '\n';
+    }
+    if (getType() == 2) {
+        primary = QString::fromStdString(flisting->getAirline().getName());
+        location = QString::fromStdString(flisting->getDepCountry().getCities()[flisting->getDepCityIndex()] + ", " + flisting->getArrCountry().getName() + " To " + flisting->getArrCountry().getCities()[flisting->getArrCityIndex()] + ", " + flisting->getArrCountry().getName());
+        secondary = QString::fromStdString("Time: " + flisting->getDepTime());
+        pricing = QString::number(flisting->getPriceperTraveller()) + " LE Per Traveller";
+        details = "Rating: " + QString::number(flisting->getAirlineRating());
+    }
+    if (getType() == 3) {
+        primary = QString::fromStdString(clisting->getCompany().getName());
+        location = QString::fromStdString(clisting->getDepCountry().getCities()[clisting->getDepIndex()] + ", " + clisting->getDepCountry().getName() + " To " + clisting->getArrCountry().getCities()[clisting->getArrIndex()] + ", " + clisting->getArrCountry().getName());
+        secondary = "Duration: " + QString::number(clisting->getDuration()) + " Days";
+        pricing = QString::number(clisting->getPricePerPerson()) + " LE Per Traveller";
+        details = "Rating: " + QString::number(clisting->getCompany().getRating());
+        details += '\n';
+        details += "Safety Rating: " + QString::number(clisting->getCompany().getSafety());
+    }
+    mainProg->findChild<QLabel *>("PrimaryText")->setText(primary);
+    mainProg->findChild<QLabel *>("DetailInfo1")->setText(location);
+    mainProg->findChild<QLabel *>("SecondaryInfo")->setText(secondary);
+    mainProg->findChild<QLabel *>("PricingInfo")->setText(pricing);
+    mainProg->findChild<QLabel *>("Features")->setText(details);
 
-    qDebug() << "yesy";
     mainProg->updateWallet();
     mainProg->findChild<QFrame *>("DetailsPage")->raise();
-    qDebug() << "yesy";
+
     if (getType() == 1) {
         qDebug() << "yesy";
         mainProg->findChild<QFrame *>("HReserve")->show();

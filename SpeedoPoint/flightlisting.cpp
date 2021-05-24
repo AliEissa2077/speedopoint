@@ -181,11 +181,13 @@ string flightlisting::getArrTime() {
 
 bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive)
 {
+    if (stops == NULL) {
+        return false;
+    }
     stop * curr = stops;
     while (curr->next != NULL) {
         curr = curr->next;
     }
-
     if (locdep.compare(stops->getLoc().getName()) != 0 || locArrive.compare(curr->getLoc().getName()) != 0) {
         return false;
     }

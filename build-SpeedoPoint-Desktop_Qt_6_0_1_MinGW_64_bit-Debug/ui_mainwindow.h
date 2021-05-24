@@ -119,7 +119,6 @@ public:
     QLabel *PricingInfo;
     QLabel *Features;
     QLabel *SecondaryInfo;
-    QLabel *SecondaryInfo2;
     QPushButton *Book;
     QFrame *HReserve;
     QLineEdit *Hdays;
@@ -157,6 +156,8 @@ public:
     QLabel *label_17;
     QLabel *WalletAmount;
     QPushButton *deposit;
+    QFrame *UserPage;
+    QGraphicsView *background;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -606,14 +607,10 @@ public:
         Features->setGeometry(QRect(70, 230, 81, 181));
         SecondaryInfo = new QLabel(DetailsPage);
         SecondaryInfo->setObjectName(QString::fromUtf8("SecondaryInfo"));
-        SecondaryInfo->setGeometry(QRect(220, 220, 391, 51));
+        SecondaryInfo->setGeometry(QRect(220, 220, 391, 221));
         QFont font5;
         font5.setPointSize(10);
         SecondaryInfo->setFont(font5);
-        SecondaryInfo2 = new QLabel(DetailsPage);
-        SecondaryInfo2->setObjectName(QString::fromUtf8("SecondaryInfo2"));
-        SecondaryInfo2->setGeometry(QRect(224, 286, 341, 171));
-        SecondaryInfo2->setFont(font5);
         Book = new QPushButton(DetailsPage);
         Book->setObjectName(QString::fromUtf8("Book"));
         Book->setGeometry(QRect(890, 130, 101, 41));
@@ -788,16 +785,24 @@ public:
         PricingInfo->raise();
         Features->raise();
         SecondaryInfo->raise();
-        SecondaryInfo2->raise();
         Book->raise();
         CReserve->raise();
         label_17->raise();
         WalletAmount->raise();
         deposit->raise();
+        UserPage = new QFrame(centralwidget);
+        UserPage->setObjectName(QString::fromUtf8("UserPage"));
+        UserPage->setGeometry(QRect(0, -1, 1091, 551));
+        UserPage->setFrameShape(QFrame::StyledPanel);
+        UserPage->setFrameShadow(QFrame::Raised);
+        background = new QGraphicsView(UserPage);
+        background->setObjectName(QString::fromUtf8("background"));
+        background->setGeometry(QRect(-5, -9, 1101, 571));
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
-        DetailsPage->raise();
+        UserPage->raise();
         Listings->raise();
+        DetailsPage->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -808,7 +813,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        Tabs->setCurrentIndex(0);
+        Tabs->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -883,7 +888,7 @@ public:
         SortBy->setItemText(2, QCoreApplication::translate("MainWindow", "Rating", nullptr));
         SortBy->setItemText(3, QCoreApplication::translate("MainWindow", "Distance", nullptr));
 
-        Refundable->setText(QCoreApplication::translate("MainWindow", "Two-way flight", nullptr));
+        Refundable->setText(QCoreApplication::translate("MainWindow", "Refundable", nullptr));
         Tabs->setTabText(Tabs->indexOf(Flights), QCoreApplication::translate("MainWindow", "Flights", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Select country", nullptr));
         HotelCountry->setItemText(0, QCoreApplication::translate("MainWindow", "Argentina", nullptr));
@@ -975,7 +980,6 @@ public:
         PricingInfo->setText(QCoreApplication::translate("MainWindow", "Pricing info", nullptr));
         Features->setText(QCoreApplication::translate("MainWindow", "Features", nullptr));
         SecondaryInfo->setText(QCoreApplication::translate("MainWindow", "Secondary", nullptr));
-        SecondaryInfo2->setText(QCoreApplication::translate("MainWindow", "Secondary 2", nullptr));
         Book->setText(QCoreApplication::translate("MainWindow", "Book now", nullptr));
         Hdaysnum->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
         Hdaysnum->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));

@@ -2,6 +2,7 @@
 #include "date.h"
 #include <QMessageBox>
 #include "user.h"
+#include <QDebug>
 
 hotellisting::hotellisting()
 {
@@ -84,14 +85,13 @@ bool hotellisting::verifyLoc(string l, string city)
     {
         if (city.length() > 1) 
         {
+            qDebug() <<"entered";
             vector<string> list = loc.getCities();
-            for (int i = 0; i < list.size(); i++) 
+            if (city.compare(list[getCityIndex()]) == 0)
             {
-                if (city.compare(list[i]) == 0) 
-                {
-                    return true;
-                }
+                return true;
             }
+
             return false;
         }
         else return true;
@@ -103,7 +103,7 @@ int hotellisting::getPricePerNight()
 {
     return pricePerNight;
 }
-int hotellisting::getHotelRating() 
+float hotellisting::getHotelRating()
 {
     return htl.getRating();
 }
