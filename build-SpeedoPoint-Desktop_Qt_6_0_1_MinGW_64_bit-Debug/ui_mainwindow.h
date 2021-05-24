@@ -604,7 +604,7 @@ public:
         PricingInfo->setFont(font2);
         Features = new QLabel(DetailsPage);
         Features->setObjectName(QString::fromUtf8("Features"));
-        Features->setGeometry(QRect(70, 230, 81, 181));
+        Features->setGeometry(QRect(70, 230, 111, 221));
         SecondaryInfo = new QLabel(DetailsPage);
         SecondaryInfo->setObjectName(QString::fromUtf8("SecondaryInfo"));
         SecondaryInfo->setGeometry(QRect(220, 220, 391, 221));

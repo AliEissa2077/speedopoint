@@ -270,7 +270,6 @@ void QtListing::setMainProg(MainWindow* m) {
 }
 int QtListing::getType() {
     if (hlisting != NULL) {
-        qDebug() << "yesy";
         return 1;
     }
     else if (flisting != NULL) {

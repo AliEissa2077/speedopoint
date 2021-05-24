@@ -1,0 +1,6 @@
+Ali Eissa:
+	-contributed to UML
+	-made the QT user interfaces
+	-Made all Qt related classes and functions (qtlisting, mainwindow, datastore(except constructor))
+	-debugging
+	-sorting algorithm (modified version of selection sort)

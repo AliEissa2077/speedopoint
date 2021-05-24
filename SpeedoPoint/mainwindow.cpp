@@ -87,6 +87,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     MainWindow::findChild<QVBoxLayout *>("testlist")->setAlignment(Qt::AlignTop);
 
+    QPushButton *Uback = MainWindow::findChild<QPushButton *>("UserPageBack");
+    connect(depbut, SIGNAL(released()), this, SLOT(UserBack()));
 
 }
 
@@ -608,6 +610,9 @@ void MainWindow::DepositAcc() {
 }
 void MainWindow::updateWallet() {
     MainWindow::findChild<QLabel *>("WalletAmount")->setText(QString::number(curUser->getWallet()->getAmount()));
+}
+void MainWindow::UserBack() {
+    MainWindow::findChild<QFrame *>("Listings")->raise();
 }
 
 
