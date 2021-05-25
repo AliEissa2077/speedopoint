@@ -5,13 +5,13 @@
 class cruisecompany {
 private:
 	std::string name;
-	int rating;
-	int safetyRating;
+	float rating;
+	float safetyRating;
 	int priceRange;
     int ratingcount;
 public:
 	cruisecompany();
-	cruisecompany(std::string name_, int rt, int srt, int range);
+	cruisecompany(std::string name_, float rt, float srt, int range);
 	void updateRating(int rt);
     std::string getName();
     int getRating();
