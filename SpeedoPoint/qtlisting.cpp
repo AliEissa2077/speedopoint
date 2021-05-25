@@ -31,7 +31,7 @@ QtListing::QtListing()
     widgetLayout->addWidget(testbut, Qt::AlignRight);
     //widgetLayout->addStretch();
     //widgetLayout->addStretch();
-    widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
+    widgetLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
     widget->setLayout(widgetLayout);
     //temp->setSizeHint(widget->sizeHint());
     item = temp;
@@ -51,7 +51,7 @@ QtListing::QtListing(flightlisting* inp, int index)
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepCityIndex()]  + " " + inp->getDepCountry().getName() + " To " + inp->getArrCountry().getCities()[inp->getArrCityIndex()]  + " " + inp->getArrCountry().getName());
+    QString secondaryt = "Price: " + QString::number(inp->getPriceperTraveller()) + " LE";
 
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -62,6 +62,7 @@ QtListing::QtListing(flightlisting* inp, int index)
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
     testbut->setText("Details");
+    testbut->setMaximumWidth(80);
 
     connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
 
@@ -72,12 +73,12 @@ QtListing::QtListing(flightlisting* inp, int index)
     widgetLayout->addSpacerItem(spacer1);
     widgetLayout->addWidget(tertiarytxt);
     widgetLayout->addSpacerItem(spacer2);
-    widgetLayout->addSpacerItem(spacer2);
+    //widgetLayout->addSpacerItem(spacer2);
     widgetLayout->addStretch();
     widgetLayout->addWidget(testbut, Qt::AlignRight);
     //widgetLayout->addStretch();
     //widgetLayout->addStretch();
-    widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
+    widgetLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
     widget->setLayout(widgetLayout);
     //temp->setSizeHint(widget->sizeHint());
     //item = temp;
@@ -148,6 +149,7 @@ QtListing::QtListing(cruise* inp, int index)
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
     testbut->setText("Details");
+    testbut->setMaximumWidth(80);
 
     connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
 
@@ -217,6 +219,7 @@ void QtListing::detailsButton() {
         secondary = QString::fromStdString("Time: " + flisting->getDepTime());
         pricing = QString::number(flisting->getPriceperTraveller()) + " LE Per Traveller";
         details = "Rating: " + QString::number(flisting->getAirlineRating());
+        qDebug() << " info set";
     }
     if (getType() == 3) {
         primary = QString::fromStdString(clisting->getCompany().getName());
@@ -259,7 +262,7 @@ void QtListing::detailsButton() {
 
     mainProg->SetCurrlisting(this);
 
-
+    qDebug() <<"done";
 }
 void QtListing::setReserv(reservation* x) {
     hreserv = x;
@@ -306,7 +309,7 @@ void QtListing::reservationDetails() {
     widLayout->addWidget(cancelRes);
     widLayout->setSizeConstraint(QLayout::SetFixedSize);
     confirm->setLayout(widLayout);
-    //invoice = confirm;
+    invoice = confirm;
     confirm->show();
 
 }
@@ -333,14 +336,15 @@ void QtListing::cancelReservation() {
         vector<reservation*>* reservs = hreserv->getUser()->getReservations();
         for(int i = 0; i < reservs->size(); i++) {
             if (reservs[0][i] == hreserv) {
-                reservs->erase(reservs->begin() + i);
-                //delete hreserv;
-                hreserv = NULL;
-                //delete invoice;
-                //invoice->hide();
-                //invoice = NULL;
-                qDebug() << "reserv cancel";
                 mainProg->updateUserP();
+                reservs->erase(reservs->begin() + i);
+                delete hreserv;
+                hreserv = NULL;
+                delete invoice;
+                //invoice->close();
+                invoice = NULL;
+                qDebug() << "reserv cancel";
+
                 return;
             }
         }

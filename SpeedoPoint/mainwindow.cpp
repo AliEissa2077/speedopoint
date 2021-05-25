@@ -298,11 +298,17 @@ void MainWindow::DisplayFlights() {
     QComboBox *arrctrySelect = MainWindow::findChild<QComboBox *>("FlightTo");
     QComboBox *cityarrselect = MainWindow::findChild<QComboBox *>("ToCitySelect");
 
-    QVBoxLayout* testlist = MainWindow::findChild<QVBoxLayout *>("flightlist");
+    QScrollArea * scrl = MainWindow::findChild<QScrollArea  *>("flightlist");
+    QVBoxLayout* testlist = new QVBoxLayout;
+    testlist->setAlignment(Qt::AlignTop);
+
+    QWidget *wid = scrl->widget();
+    if(wid)
+        wid->deleteLater();
 
     for (int i = 0; i < listings.size(); i++) {
-        testlist->removeWidget(listings[i]->getwidget());
-        listings[i]->getwidget()->setVisible(false);
+        //testlist->removeWidget(listings[i]->getwidget());
+        //listings[i]->getwidget()->setVisible(false);
     }
     vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), !MainWindow::findChild<QCheckBox *>("TwoWay")->isChecked());
 
@@ -335,6 +341,9 @@ void MainWindow::DisplayFlights() {
             testlist->addWidget(listtest->getwidget());
         }
     }
+     QWidget *scrollAreaWidget = new QWidget;
+     scrollAreaWidget->setLayout(testlist);
+    scrl->setWidget(scrollAreaWidget);
 }
 
 void MainWindow::DisplayHotels() {
@@ -351,39 +360,14 @@ void MainWindow::DisplayHotels() {
     qDebug() << htlcity->currentText();
     vector<Node<hotellisting*>*> mylist = progData->GetHotelsInLoc(ctrySelect->currentText().toStdString(), htlcity->currentText().toStdString(), persons->currentText().toInt(), pool->isChecked(), pets->isChecked(), beach->isChecked(), bkfast->isChecked(), dinner->isChecked());
 
-    //MainWindow::findChild<QListWidget *>("HotelListings")->clear();
-
-    //QListWidget* mListWidget = MainWindow::findChild<QListWidget *>("HotelListings");
-    //testlist
     QVBoxLayout* testlist = MainWindow::findChild<QVBoxLayout *>("testlist");
+    testlist->setAlignment(Qt::AlignTop);
 
-    //mListWidget->clear();
-
-    //QListWidgetItem *item = NULL;
     for (int i = 0; i < listings.size(); i++) {
-        //mListWidget->removeItemWidget(mListWidget->item(i));
-        //mListWidget->item(i)->setVisible(false);
-
-
-        //QWidget *item = testlist->wid(I)
         testlist->removeWidget(listings[i]->getwidget());
         listings[i]->getwidget()->setVisible(false);
-
-        //delete listings[i]->getwidget());
-        //listings[i]->setnull();
-        //delete listings[i];
-
-
-        //remove(mListWidget->takeItem(i))
-        //mListWidget->editItem(item);
-
-        //item = mListWidget->takeItem(0);
     }
 
-
-    //qDebug() << "testw " << mListWidget->count();
-    //qDebug() << pool->isChecked() << pets->isChecked() << beach->isChecked() << bkfast->isChecked() << dinner->isChecked();
-    //qDebug() << "test " << sort;
     if (sort > 0) {
         priority_queue<Node<hotellisting*>*, vector<Node<hotellisting*>*>, cmp<hotellisting>> queuetest;
         for (int n = 0; n < mylist.size(); n++) {
@@ -398,76 +382,21 @@ void MainWindow::DisplayHotels() {
             testlist->addWidget(listtest->getwidget());
             queuetest.pop();
         }
-        /*
-        int testval = 0;
-        while(testval < mylist.size()) {
-            min = mylist[0];
-            for (int n = 0; n < mylist.size(); n++) {
-                if (min != NULL) {
-                    qDebug() << min->priceRankIndex <<"to " << mylist[n]->priceRankIndex;
-                    if (sort == 1) {
-                        if (min->priceRankIndex > mylist[n]->priceRankIndex) {
-                            min = mylist[n];
-                            index = n;
-                        }
-                    }
-                    if (sort == 2) {
-                        if (min->ratingRankIndex > mylist[n]->ratingRankIndex) {
-                            min = mylist[n];
-                            index = n;
-                        }
-                    }
-                    if (sort == 3) {
-                        if (min->DistRankIndex > mylist[n]->DistRankIndex) {
-                            min = mylist[n];
-                            index = n;
-                        }
-                    }
-                }
-            }
-            qDebug() << "test " << mylist.size();
-            QtListing *listtest = new QtListing(min->data, min->initialIndex);  // adding an element to the list
-            listings.push_back(listtest);
-            listtest->setMainProg(this);
-            testlist->addWidget(listtest->getwidget());
-            min = NULL;
 
-            //mListWidget->insertItem(0, listtest->getitem());
-
-            //mListWidget->item(testval)->setSizeHint(listtest->getwidget()->sizeHint());
-            //mListWidget->setItemWidget(mListWidget->item(testval), listtest->getwidget());
-            testval++;
-            qDebug() << "test ";
-            //mylist.erase(mylist.begin() + index);
-        }*/
     }
     else {
         for (std::vector<int>::size_type n = 0; n < mylist.size(); n++) {
             if (mylist[n] != NULL) {
-                qDebug() << "thi is it ";
+
                 QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
                 listings.push_back(listtest);
                 listtest->setMainProg(this);
                 testlist->addWidget(listtest->getwidget());
-
-
-                //mListWidget->insertItem(0, listtest->getitem());
-                //mListWidget->item(n)->setSizeHint(listtest->getwidget()->sizeHint());
-
-                //mListWidget->item(n)->setSizeHint(listtest->getwidget()->sizeHint());
-                //mListWidget->setItemWidget(mListWidget->item(n), listtest->getwidget());
-
-
-                //delete mListWidget->takeItem(1);
-
-
-                //mListWidget->repaint();
-
             }
         }
 
     }
-    qDebug() << "testy ";
+
 }
 
 void MainWindow::DisplayCruises() {
@@ -625,7 +554,7 @@ void MainWindow::UserBack() {
     MainWindow::findChild<QFrame *>("Listings")->raise();
 }
 void MainWindow::updateUserP() {
-    UserBack();
+    UserOpen();
 }
 void MainWindow::UserOpen() {
     MainWindow::findChild<QFrame *>("UserPage")->raise();
@@ -639,22 +568,21 @@ void MainWindow::UserOpen() {
     MainWindow::findChild<QLabel *>("userWallet")->setText("Wallet: " + QString::number(curUser->getWallet()->getAmount()));
 
     QVBoxLayout* list = MainWindow::findChild<QVBoxLayout *>("reservations");
-    qDebug() << "resdel";
+
     for (int i = 0; i < madereservs.size(); i++) {
         list->removeWidget(madereservs[i]->getwidget());
         madereservs[i]->getwidget()->setVisible(false);
     }
-    qDebug() << "resdel";
 
 
     vector<flightticket*> tickets = *curUser->getTickets();
     vector<reservation*> reservs = *curUser->getReservations();
     vector<cruisereservation*> cruiseReservs = *curUser->getCruisereservations();
-    qDebug("got here");
     for (int i = 0 ; i < tickets.size(); i++) {
 
         QtListing *listtest = new QtListing(tickets[i]->getListing(), 0);  // adding an element to the list
         listtest->setReserv(tickets[i]);
+        listtest->setMainProg(this);
         QPushButton *tempbut = listtest->getwidget()->findChild<QPushButton *>();
         tempbut->setText("Invoice");
         disconnect(tempbut, SIGNAL(released()), listtest, SLOT(detailsButton()));
@@ -667,6 +595,7 @@ void MainWindow::UserOpen() {
 
         QtListing *listtest = new QtListing(reservs[i]->getListing(), 0);  // adding an element to the list
         listtest->setReserv(reservs[i]);
+        listtest->setMainProg(this);
         QPushButton *tempbut = listtest->getwidget()->findChild<QPushButton *>();
         tempbut->setText("Invoice");
         disconnect(tempbut, SIGNAL(released()), listtest, SLOT(detailsButton()));
@@ -679,6 +608,7 @@ void MainWindow::UserOpen() {
 
         QtListing *listtest = new QtListing(cruiseReservs[i]->getListing(), 0);  // adding an element to the list
         listtest->setReserv(cruiseReservs[i]);
+        listtest->setMainProg(this);
         QPushButton *tempbut = listtest->getwidget()->findChild<QPushButton *>();
         tempbut->setText("Invoice");
         disconnect(tempbut, SIGNAL(released()), listtest, SLOT(detailsButton()));

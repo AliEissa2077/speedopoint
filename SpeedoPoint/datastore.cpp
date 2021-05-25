@@ -510,7 +510,6 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
     while (curr != NULL) {
-        qDebug() << "got here";
         if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
         }

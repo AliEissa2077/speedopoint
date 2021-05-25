@@ -21,7 +21,7 @@ private:
     hotellisting* hlisting;
     cruise* clisting;
     flightlisting* flisting;
-    //QWidget* invoice;
+    QWidget* invoice;
 
     reservation* hreserv;
     cruisereservation* creserv;

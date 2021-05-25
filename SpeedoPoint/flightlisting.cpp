@@ -1,5 +1,6 @@
 #include "flightlisting.h"
 #include <QMessageBox>
+#include <QtDebug>
 
 
 flightlisting::flightlisting() {
@@ -169,7 +170,7 @@ int flightlisting::getArrCityIndex() {
 string flightlisting::getDepTime() {
     string result;
     result += to_string(dep.getHour()) + ":" + to_string(dep.getMinute());
-    result += " " + to_string(dep.getDay()) + "/" + to_string(dep.getMonth()) + "/" + to_string(dep.getYear()) + " ";
+    result += " at " + to_string(dep.getDay()) + "/" + to_string(dep.getMonth()) + "/" + to_string(dep.getYear()) + " ";
     return result;
 }
 string flightlisting::getArrTime() {
@@ -188,20 +189,25 @@ bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string lo
     while (curr->next != NULL) {
         curr = curr->next;
     }
-    if (locdep.compare(stops->getLoc().getName()) != 0 || locArrive.compare(curr->getLoc().getName()) != 0) {
+    qDebug() << QString::fromStdString(stops->getLoc().getName()) << "is true" << QString::fromStdString(locdep);
+    if (locdep.compare(stops->getLoc().getName()) != 0){// || locArrive.compare(curr->getLoc().getName()) != 0) {
         return false;
     }
+    return true;
     if (citydep.length() > 1) {
         if (locdep.compare(stops->getLoc().getCities()[stops->getIndex()]) != 0) {
             return false;
         }
     }
+    //qDebug() << "is true";
+
 
     if (cityArrive.length() > 1) {
         if (locdep.compare(curr->getLoc().getCities()[curr->getIndex()]) != 0) {
             return false;
         }
     }
+    qDebug() << "is true";
     return true;
 }
 bool flightlisting::isRefundable() {

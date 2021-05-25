@@ -678,7 +678,25 @@
          <height>351</height>
         </rect>
        </property>
-       <layout class="QVBoxLayout" name="flightlist"/>
+       <layout class="QVBoxLayout" name="flightlis1">
+        <item>
+         <widget class="QScrollArea" name="flightlist">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>847</width>
+             <height>347</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QWidget" name="Hotels">
@@ -1019,7 +1037,11 @@
          <height>351</height>
         </rect>
        </property>
-       <layout class="QVBoxLayout" name="testlist"/>
+       <layout class="QVBoxLayout" name="testlist">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+       </layout>
       </widget>
      </widget>
      <widget class="QWidget" name="Cruises">
@@ -2344,8 +2366,8 @@
    </widget>
    <zorder>LoginScreen</zorder>
    <zorder>DetailsPage</zorder>
-   <zorder>Listings</zorder>
    <zorder>UserPage</zorder>
+   <zorder>Listings</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

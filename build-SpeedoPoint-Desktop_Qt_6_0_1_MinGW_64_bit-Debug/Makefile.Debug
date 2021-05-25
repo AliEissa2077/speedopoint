@@ -996,7 +996,8 @@ debug/flightlisting.o: ../SpeedoPoint/flightlisting.cpp ../SpeedoPoint/flightlis
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QRect \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QSize \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QSizeF \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/QTransform
+		C:/Qt/6.0.1/mingw81_64/include/QtGui/QTransform \
+		C:/Qt/6.0.1/mingw81_64/include/QtCore/QtDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\flightlisting.o ..\SpeedoPoint\flightlisting.cpp
 
 debug/flightticket.o: ../SpeedoPoint/flightticket.cpp ../SpeedoPoint/flightticket.h \
@@ -1149,7 +1150,8 @@ debug/hotellisting.o: ../SpeedoPoint/hotellisting.cpp ../SpeedoPoint/hotellistin
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QRect \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QSize \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QSizeF \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/QTransform
+		C:/Qt/6.0.1/mingw81_64/include/QtGui/QTransform \
+		C:/Qt/6.0.1/mingw81_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\hotellisting.o ..\SpeedoPoint\hotellisting.cpp
 
 debug/main.o: ../SpeedoPoint/main.cpp ../SpeedoPoint/mainwindow.h \
@@ -1525,41 +1527,15 @@ debug/mainwindow.o: ../SpeedoPoint/mainwindow.cpp ../SpeedoPoint/mainwindow.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QLayout \
 		ui_mainwindow.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QCheckBox \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qcheckbox.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QComboBox \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qcombobox.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QGraphicsView \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/qpainter.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/qtextoption.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/qpen.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qscrollarea.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qgraphicsscene.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.0.1/mingw81_64/include/QtCore/QtDebug \
+		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QListWidget \
+		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QInputDialog \
+		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qinputdialog.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qlineedit.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtGui/qtextcursor.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QListWidget \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/qaction.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QTabWidget \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QVBoxLayout \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QWidget \
-		C:/Qt/6.0.1/mingw81_64/include/QtCore/QtDebug \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QInputDialog \
-		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qinputdialog.h \
+		C:/Qt/6.0.1/mingw81_64/include/QtGui/qpen.h \
+		C:/Qt/6.0.1/mingw81_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QDir \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/qdir.h \
@@ -1757,7 +1733,11 @@ debug/qtlisting.o: ../SpeedoPoint/qtlisting.cpp ../SpeedoPoint/qtlisting.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QMainWindow \
 		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qmainwindow.h \
 		../SpeedoPoint/datastore.h \
-		../SpeedoPoint/filesystem.h
+		../SpeedoPoint/filesystem.h \
+		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.0.1/mingw81_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.0.1/mingw81_64/include/QtCore/QtDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qtlisting.o ..\SpeedoPoint\qtlisting.cpp
 
 debug/reservation.o: ../SpeedoPoint/reservation.cpp ../SpeedoPoint/reservation.h \

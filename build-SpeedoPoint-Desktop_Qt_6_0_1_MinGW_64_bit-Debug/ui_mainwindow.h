@@ -21,6 +21,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -76,7 +77,9 @@ public:
     QComboBox *ToCitySelect;
     QCheckBox *Refundable;
     QWidget *verticalLayoutWidget_4;
-    QVBoxLayout *flightlist;
+    QVBoxLayout *flightlis1;
+    QScrollArea *flightlist;
+    QWidget *scrollAreaWidgetContents;
     QWidget *Hotels;
     QListWidget *HotelListings;
     QLabel *label_5;
@@ -427,9 +430,19 @@ public:
         verticalLayoutWidget_4 = new QWidget(Flights);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
         verticalLayoutWidget_4->setGeometry(QRect(170, 80, 851, 351));
-        flightlist = new QVBoxLayout(verticalLayoutWidget_4);
+        flightlis1 = new QVBoxLayout(verticalLayoutWidget_4);
+        flightlis1->setObjectName(QString::fromUtf8("flightlis1"));
+        flightlis1->setContentsMargins(0, 0, 0, 0);
+        flightlist = new QScrollArea(verticalLayoutWidget_4);
         flightlist->setObjectName(QString::fromUtf8("flightlist"));
-        flightlist->setContentsMargins(0, 0, 0, 0);
+        flightlist->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 847, 347));
+        flightlist->setWidget(scrollAreaWidgetContents);
+
+        flightlis1->addWidget(flightlist);
+
         Tabs->addTab(Flights, QString());
         Hotels = new QWidget();
         Hotels->setObjectName(QString::fromUtf8("Hotels"));
@@ -512,6 +525,7 @@ public:
         verticalLayoutWidget_2->setGeometry(QRect(140, 70, 891, 351));
         testlist = new QVBoxLayout(verticalLayoutWidget_2);
         testlist->setObjectName(QString::fromUtf8("testlist"));
+        testlist->setSizeConstraint(QLayout::SetFixedSize);
         testlist->setContentsMargins(0, 0, 0, 0);
         Tabs->addTab(Hotels, QString());
         Cruises = new QWidget();
@@ -859,8 +873,8 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
         DetailsPage->raise();
-        Listings->raise();
         UserPage->raise();
+        Listings->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
