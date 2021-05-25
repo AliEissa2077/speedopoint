@@ -25,6 +25,25 @@ dataStore::dataStore()
             string email;
             u >> username >> pwd >> email;
             user* user__ = new user(username, pwd, email);
+            string ptsfile("points.txt");
+            ifstream p(ptsfile);
+            if (p.is_open()) {
+                string pstring;
+                while (getline(p, pstring)) {
+                    stringstream sssp(pstring);
+                    string u_name;
+                    sssp >> u_name;
+                    int pts;
+                    for (auto x : users) {
+                        if (u_name == x->getName()) {
+                            sssp >> pts;
+                            x->updatePoints(pts);
+                        }
+                    }
+                    sssp >> pts;
+                }
+                p.close();
+            }
             users.push_back(user__);
         }
         u.close();
@@ -288,25 +307,6 @@ dataStore::dataStore()
         f.close();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     SortListings();
 
 
@@ -319,6 +319,17 @@ dataStore::dataStore()
     }
 }
 
+void dataStore::updatePoints() {
+    ofstream userpts("points.txt");
+    if (userpts.is_open()) {
+        for (user* x : users) {
+            string user_data = x->getName() + "\t" + to_string(x->getPoints());
+            userpts << user_data;
+        }
+        userpts.close();
+    }
+    
+}
 void dataStore::AddUser(user* u) {
     users.push_back(u);
 
