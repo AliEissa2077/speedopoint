@@ -28,8 +28,8 @@ dataStore::dataStore()
             string ptsfile("points.txt");
             ifstream p(ptsfile);
             if (p.is_open()) {
-                string ptstring;
-                while (getline(p, ptsring)) {
+                string pstring;
+                while (getline(p, pstring)) {
                     stringstream sssp(pstring);
                     string u_name;
                     sssp >> u_name;
@@ -319,12 +319,12 @@ dataStore::dataStore()
     }
 }
 
-void datastore::updatePoints() {
+void dataStore::updatePoints() {
     ofstream userpts("points.txt");
     if (userpts.is_open()) {
         for (user* x : users) {
-            string user_data = x->getName() + "\t" + x->getPoints();
-            userspts << user_data;
+            string user_data = x->getName() + "\t" + to_string(x->getPoints());
+            userpts << user_data;
         }
         userpts.close();
     }
