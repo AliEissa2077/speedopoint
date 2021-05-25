@@ -189,7 +189,7 @@ bool flightlisting::verifyFromLocs(string locdep, string citydep)
     if (locdep.compare(stops->getLoc().getName()) != 0) {
         return false;
     }
-    //return true;
+    return true;
     if (citydep.length() > 1) {
         if (locdep.compare(stops->getLoc().getCities()[stops->getIndex()]) != 0) {
             return false;
