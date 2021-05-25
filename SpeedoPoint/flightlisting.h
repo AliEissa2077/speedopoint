@@ -44,7 +44,7 @@ public:
     bool isOneW();
     bool isRefundable();
 
-    bool verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive);
+    bool verifyFromLocs(string locdep, string citydep);
 
 };
 

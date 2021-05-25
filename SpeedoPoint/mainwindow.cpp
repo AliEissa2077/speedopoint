@@ -303,6 +303,7 @@ void MainWindow::DisplayFlights() {
     testlist->setAlignment(Qt::AlignTop);
 
     QWidget *wid = scrl->widget();
+    listings.clear();
     if(wid)
         wid->deleteLater();
 

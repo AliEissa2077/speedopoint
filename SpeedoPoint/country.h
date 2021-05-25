@@ -5,13 +5,21 @@
 #include <string>
 #include <iostream>
 
+struct Coords {
+    int x = 0;
+    int y = 0;
+    Coords(int a, int b) : x(a) , y(b) {}
+};
+
 class country {
 private:
 	std::string name;
-	bool banned;
+    //std::vector<std::string> banned;
+    bool banned;
 	std::vector<std::string> cities;
-	int x_coordinate;
-	int y_coordinate;
+
+    std::vector<Coords> coords;
+
 
 public:
     country(){}
@@ -19,8 +27,7 @@ public:
 	void addCity(std::string city);
     std::string getName();
     std::vector<std::string> getCities();
-	int get_x_coordinate(int x);
-	int get_y_coordinate(int y);
+    std::vector<Coords> get_coordinates();
 };
 
 #endif COUNTRY_H

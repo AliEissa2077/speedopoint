@@ -9,36 +9,6 @@
 
 QtListing::QtListing()
 {
-    QListWidgetItem* temp = new QListWidgetItem();
-    QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel("I love QT!"); // primary text
-    QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    QLabel *secondarytxt =  new QLabel("Secondary"); // secondary text info
-    QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    QLabel *tertiarytxt =  new QLabel("Tertiary"); // tertiary text info
-    QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
-    QPushButton *testbut = new QPushButton();
-    testbut->setText("Details");
-    QHBoxLayout *widgetLayout = new QHBoxLayout();
-    widgetLayout->addWidget(widgetText);
-    widgetLayout->addSpacerItem(spacer);
-    widgetLayout->addWidget(secondarytxt);
-    widgetLayout->addSpacerItem(spacer1);
-    widgetLayout->addWidget(tertiarytxt);
-    widgetLayout->addSpacerItem(spacer2);
-    widgetLayout->addSpacerItem(spacer2);
-    widgetLayout->addStretch();
-    widgetLayout->addWidget(testbut, Qt::AlignRight);
-    //widgetLayout->addStretch();
-    //widgetLayout->addStretch();
-    widgetLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-    widget->setLayout(widgetLayout);
-    //temp->setSizeHint(widget->sizeHint());
-    item = temp;
-    wid = widget;
-
-
-
 
 }
 
@@ -46,6 +16,8 @@ QtListing::QtListing(flightlisting* inp, int index)
 {
     Ind = index;
     flisting = inp;
+    hlisting = NULL;
+    clisting = NULL;
     //QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
@@ -89,6 +61,8 @@ QtListing::QtListing(hotellisting* inp, int index)
 {
     Ind = index;
     hlisting = inp;
+    clisting = NULL;
+    flisting = NULL;
     //QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getHotel().getName())); // primary text
@@ -133,6 +107,8 @@ QtListing::QtListing(cruise* inp, int index)
 {
     Ind = index;
     clisting = inp;
+    hlisting = NULL;
+    flisting = NULL;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getCompany().getName())); // primary text
@@ -184,11 +160,14 @@ QtListing::QtListing(QWidget* source)
 
 void QtListing::detailsButton() {
     //set data to text boxes
+    qDebug() << "here!";
+    qDebug() << getType();
     QString primary;
     QString secondary;
     QString location;
     QString details;
     QString pricing;
+
     if (getType() == 1) {
         primary = QString::fromStdString(hlisting->getHotel().getName());
         location = QString::fromStdString(hlisting->getHotel().getCountry().getCities()[hlisting->getHotel().getIndex()] + ", " + hlisting->getHotel().getCountry().getName());
@@ -240,7 +219,7 @@ void QtListing::detailsButton() {
     mainProg->findChild<QFrame *>("DetailsPage")->raise();
 
     if (getType() == 1) {
-        qDebug() << "yesy";
+
         mainProg->findChild<QFrame *>("HReserve")->show();
         mainProg->findChild<QFrame *>("HReserve")->raise();
         mainProg->findChild<QFrame *>("FReserve")->hide();
