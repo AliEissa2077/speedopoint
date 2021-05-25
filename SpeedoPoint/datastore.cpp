@@ -510,6 +510,27 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
     while (curr != NULL) {
+        //check location and oneway,refund parameters
+        if (curr->data->verifyFromLocs(locdep, citydep) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
+            output.push_back(curr);
+        }
+        curr = curr->next;
+    }
+    /*for (int i = output.size() -1; i >= 0; i--)  {
+     * vector<string> banned = output[i]->data->getDepCountry().getBanned();
+        for (int n = 0 n < banned.size(); n++) {
+            if (banned[n].compare(output[i].getDepCountry()) == 0) {
+                output.pop_back();
+            }
+        }
+    }*/
+    return output;
+}
+/*
+vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew) {
+    Node<flightlisting*>* curr = FlightListingsHead;
+    vector<Node<flightlisting*>*> output;
+    while (curr != NULL) {
         if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
         }
@@ -517,6 +538,7 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     }
     return output;
 }
+*/
 
 vector<flightlisting*> dataStore::GetSortedFlights(int type) {
     Node<flightlisting*>* curr = FlightListingsHead; //1 price : 2 rating : 3 distance

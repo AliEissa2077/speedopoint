@@ -326,7 +326,7 @@ void MainWindow::DisplayFlights() {
         while (!queuetest.empty()) {
 
             QtListing *listtest = new QtListing(queuetest.top()->data, queuetest.top()->initialIndex);  // adding an element to the list
-            listings.push_back(listtest);
+            //listings.push_back(listtest);
             listtest->setMainProg(this);
             testlist->addWidget(listtest->getwidget());
             queuetest.pop();
@@ -336,7 +336,7 @@ void MainWindow::DisplayFlights() {
     else {
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
-            listings.push_back(listtest);
+            //listings.push_back(listtest);
             listtest->setMainProg(this);
             testlist->addWidget(listtest->getwidget());
         }

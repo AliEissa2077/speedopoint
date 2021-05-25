@@ -35,12 +35,6 @@ std::vector<std::string>country::getCities()
 	return cities;
 }
 
-int country:: get_x_coordinate(int x)
-{
-	return x;
-}
-
-int country::get_y_coordinate(int y)
-{
-	return y;
+std::vector<Coords> country::get_coordinates() {
+    return coords;
 }

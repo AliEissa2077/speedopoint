@@ -181,20 +181,15 @@ string flightlisting::getArrTime() {
     return result;
 }
 
-bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string locArrive, string cityArrive)
+bool flightlisting::verifyFromLocs(string locdep, string citydep)
 {
     if (stops == NULL) {
         return false;
     }
-    stop * curr = stops;
-    while (curr->next != NULL) {
-        curr = curr->next;
-    }
-    qDebug() << QString::fromStdString(stops->getLoc().getName()) << "is true" << QString::fromStdString(locdep);
-    if (locdep.compare(stops->getLoc().getName()) != 0){// || locArrive.compare(curr->getLoc().getName()) != 0) {
+    if (locdep.compare(stops->getLoc().getName()) != 0) {
         return false;
     }
-    return true;
+    //return true;
     if (citydep.length() > 1) {
         if (locdep.compare(stops->getLoc().getCities()[stops->getIndex()]) != 0) {
             return false;
@@ -202,13 +197,6 @@ bool flightlisting::verifyFromAndToLocs(string locdep, string citydep, string lo
     }
     //qDebug() << "is true";
 
-
-    if (cityArrive.length() > 1) {
-        if (locdep.compare(curr->getLoc().getCities()[curr->getIndex()]) != 0) {
-            return false;
-        }
-    }
-    qDebug() << "is true";
     return true;
 }
 bool flightlisting::isRefundable() {
@@ -219,7 +207,7 @@ bool flightlisting::isOneW() {
 }
 
 
-void dijkstra (int graph[x][y], int src) / *Method to implement shortest path algorithm*/
+/*void dijkstra (int graph[x][y], int src) //Method to implement shortest path algorithm
 {
     int dist [vertex];
     bool Dset[vertex];
@@ -228,13 +216,13 @@ void dijkstra (int graph[x][y], int src) / *Method to implement shortest path al
         dist[i] = INT_MAX;
         Dset[i] = false;
     }
-    dist[src] = 0; /*Initialize the distance of the source vertec to zero*/
+    dist[src] = 0; //Initialize the distance of the source vertec to zero
     for (int c = 0; c <vertex; c++)
     {
-        int u = minimumDist(dist, Dset); /*u is any vertex that is not yet included Dset and has minimum distance*/
-        Dset[u] = true; /*If the vertex with minimum distance found include it to Dset*/
+        int u = minimumDist(dist, Dset); //u is any vertex that is not yet included Dset and has minimum distance
+        Dset[u] = true; //If the vertex with minimum distance found include it to Dset
         for (int v = 0; v <vertex; v++)
-            /*Update dist[v] if not inDsetand their is a path from src to v through u that has distance minimum than current value of dist[v]*/
+            //Update dist[v] if not inDsetand their is a path from src to v through u that has distance minimum than current value of dist[v]
         {
             if (!Dset[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] <dist[v])
                 dist[v] =dist[u] + graph[u][v];
@@ -242,9 +230,9 @@ void dijkstra (int graph[x][y], int src) / *Method to implement shortest path al
     }
     cout<< "Vertex\t\tDistance from source"<<endl;
 
-    for (int i= 0; i < vertex; i++) /*will print the vertex with their distance from the source to the console */
+    for (int i= 0; i < vertex; i++) //will print the vertex with their distance from the source to the console
     {
         char c = 65 + i;
         cout << c << "\t\t"<<dist[i] <<endl;
     }
-}
+}*/
