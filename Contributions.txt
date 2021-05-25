@@ -6,6 +6,7 @@ Ali Eissa:
 	-sorting algorithm (modified version of selection sort)
 
 Sandra Eshra
+     - contributed to the UML
 Made implementation of the following classes
      - hotellisting.cpp
      - flightlisting.cpp
@@ -15,3 +16,4 @@ Made implementation of the following classes
      - cruiseReservation.cpp
      - cruisecompany.cpp
      - country.cpp
+     - dijkstra's algorithm in flighlisting.cpp
