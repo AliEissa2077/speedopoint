@@ -312,22 +312,6 @@ dataStore::dataStore()
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     SortListings();
 
 
@@ -340,6 +324,17 @@ dataStore::dataStore()
     }
 }
 
+void updatePoints() {
+    ofstream userpts("points.txt");
+    if (userpts.is_open()) {
+        for (pair<user, int> x : points) {
+            string user_data = x.first.getName() + "\t" + x.second;
+            userspts << user_data;
+        }
+        userpts.close();
+    }
+    
+}
 void dataStore::AddUser(user* u) {
     users.push_back(u);
 
