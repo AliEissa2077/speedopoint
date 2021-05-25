@@ -307,30 +307,6 @@ dataStore::dataStore()
         f.close();
     }
 
-
-    // load points
-
-    string pointsfile = "points.txt";
-    ifstream p(pointsfile);
-    if (p.is_open()) {
-        string pl;
-        while (getline(p, pl)) {
-            user u;
-            int pts;
-            string u_name;
-            pl >> u >> pts;
-            for (auto x : users) {
-                if (u_name == x->getName()) {
-                    u = *x;
-                }
-            }
-            pair<user, int> p1(u, pts);
-            points.push_back(p1);
-        }
-        p.close();
-    }
-
-
     SortListings();
 
 
