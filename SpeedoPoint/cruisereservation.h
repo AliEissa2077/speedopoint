@@ -18,6 +18,7 @@ private:
 public:
 	cruisereservation();
     cruisereservation(cruise* crs, payment pay, int ad, int child, user* user);
+    cruise* getListing();
 };
 
 

@@ -3,6 +3,8 @@
 #include "hotellisting.h"
 #include "cruise.h"
 #include "mainwindow.h"
+#include <QMessageBox>
+#include  <QtDebug>
 
 
 QtListing::QtListing()
@@ -101,7 +103,9 @@ QtListing::QtListing(hotellisting* inp, int index)
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
+
     testbut->setText("Details");
+    testbut->setMaximumWidth(80);
 
     QtListing::connect(testbut, SIGNAL(released()), this, SLOT(detailsButton()));
 
@@ -117,7 +121,7 @@ QtListing::QtListing(hotellisting* inp, int index)
     widgetLayout->addWidget(testbut, Qt::AlignRight);
 
     //widgetLayout->addStretch();
-    widgetLayout->setSizeConstraint(QLayout::SetFixedSize);
+    widgetLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
     widget->setLayout(widgetLayout);
     //temp->setSizeHint(widget->sizeHint());
     //item = temp;
@@ -255,6 +259,92 @@ void QtListing::detailsButton() {
 
     mainProg->SetCurrlisting(this);
 
+
+}
+void QtListing::setReserv(reservation* x) {
+    hreserv = x;
+}
+void QtListing::setReserv(flightticket* x) {
+    freserv = x;
+}
+void QtListing::setReserv(cruisereservation* x) {
+    creserv = x;
+}
+void QtListing::reservationDetails() {
+    QWidget* confirm = new QWidget();
+    QLabel* type = new QLabel;
+    QLabel* payed = new QLabel;
+    QLabel* adults = new QLabel;
+    QLabel* childs = new QLabel;
+    QLabel* dat = new QLabel;
+
+    if (getType() == 1) {
+        type->setText("Hotel Reservation");
+        payed->setText("For: " + QString::number(hreserv->getPaymentVal()) + " LE");
+        string temp = to_string(hreserv->getDate().getDay()) + "/" + to_string(hreserv->getDate().getMonth()) + "/" + to_string(hreserv->getDate().getYear());
+        dat->setText("Staring Date: " + QString::fromStdString(temp));
+        adults->setText("Adults: " + QString::number(hreserv->getAdults()));
+        childs->setText("Children: " + QString::number(hreserv->getChildren()));
+    }
+    if (getType() == 2) {
+        type->setText("Flight Ticket");
+    }
+    if (getType() == 3) {
+        type->setText("Cruise Reservation");
+    }
+    QPushButton* cancelRes = new QPushButton("Cancel Reservation");
+    QVBoxLayout* widLayout = new QVBoxLayout;
+
+    connect(cancelRes, SIGNAL(released()), this, SLOT(cancelReservation()));
+
+    widLayout->addWidget(type);
+    widLayout->addWidget(payed);
+    widLayout->addWidget(dat);
+    widLayout->addWidget(adults);
+    widLayout->addWidget(childs);
+    widLayout->addStretch();
+    widLayout->addWidget(cancelRes);
+    widLayout->setSizeConstraint(QLayout::SetFixedSize);
+    confirm->setLayout(widLayout);
+    //invoice = confirm;
+    confirm->show();
+
+}
+void QtListing::cancelReservation() {
+
+    QMessageBox* confirm = new QMessageBox(0);
+    QMessageBox::StandardButton reply1;
+    //confirm->exec();
+    QString s1 = "Are you sure you want to cancel your reservation?";
+    if (!hreserv->getListing()->getRefundable()) {
+        s1 += " It is not refundable.";
+    }
+    reply1 = QMessageBox::question(confirm, "Cancel?", s1,
+        QMessageBox::Yes | QMessageBox::No);
+    if (reply1 == QMessageBox::No) {
+        return;
+    }
+
+
+    if (getType() == 1) {
+        if (hreserv->getListing()->getRefundable()) {
+            hreserv->getUser()->getWallet()->deposit(hreserv->getPaymentVal());
+        }
+        vector<reservation*>* reservs = hreserv->getUser()->getReservations();
+        for(int i = 0; i < reservs->size(); i++) {
+            if (reservs[0][i] == hreserv) {
+                reservs->erase(reservs->begin() + i);
+                //delete hreserv;
+                hreserv = NULL;
+                //delete invoice;
+                //invoice->hide();
+                //invoice = NULL;
+                qDebug() << "reserv cancel";
+                mainProg->updateUserP();
+                return;
+            }
+        }
+    }
 
 }
 

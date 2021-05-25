@@ -19,12 +19,14 @@ public:
     void deleteListing();
     void updateWallet();
     int getSort() {return sort;}
+    void updateUserP();
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
     dataStore* progData;
     vector<QtListing *> listings;
+    vector<QtListing *> madereservs;
     int sort = 0;
     QtListing* currentListing;
     user* curUser;
@@ -52,6 +54,8 @@ private slots:
 
     void DepositAcc();
     void UserBack();
+    void UserOpen();
+    void updateInfo();
 
 };
 #endif // MAINWINDOW_H

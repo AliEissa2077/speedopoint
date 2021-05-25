@@ -16,3 +16,7 @@ cruisereservation::cruisereservation(cruise* crs, payment pay, int ad, int child
     acc = u;
 
 }
+
+cruise* cruisereservation::getListing() {
+    return cruze;
+}

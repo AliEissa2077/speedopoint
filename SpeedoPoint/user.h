@@ -36,6 +36,10 @@ public:
     string getEmail();
     string getPassword();
     wallet* getWallet();
+    void setEmail(std::string m);
+    std::vector<reservation*>* getReservations();
+    std::vector<flightticket*>* getTickets();
+    std::vector<cruisereservation*>* getCruisereservations();
 };
 
 #endif USER_H

@@ -6,11 +6,14 @@
 #include <string>
 //#include "user.h"
 #include "payment.h"
+//#include "flightlisting.h"
 
+class flightlisting;
 class user;
 
 class flightticket {
 private:
+    flightlisting* listing;
 	int adults;
 	int children;
 	bool one_way;
@@ -28,8 +31,9 @@ private:
 	int flight_duration;
 public:
 	flightticket();
-    flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user* account, float dur, payment pay);
+    flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user* account, float dur, payment pay, flightlisting* l);
     void setReturn(date d);
+    flightlisting* getListing();
 };
 
 

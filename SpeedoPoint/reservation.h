@@ -24,6 +24,13 @@ public:
     reservation(hotellisting* list, date start, int num, payment payment_, user* account, int adult, int child);
 
     hotellisting* getListing();
+    date getDate();
+    int getDaysnum();
+    int getAdults();
+    int getChildren();
+    float getPaymentVal();
+    user* getUser();
+
 };
 
 

@@ -88,7 +88,15 @@ MainWindow::MainWindow(QWidget *parent)
     MainWindow::findChild<QVBoxLayout *>("testlist")->setAlignment(Qt::AlignTop);
 
     QPushButton *Uback = MainWindow::findChild<QPushButton *>("UserPageBack");
-    connect(depbut, SIGNAL(released()), this, SLOT(UserBack()));
+    connect(Uback, SIGNAL(released()), this, SLOT(UserBack()));
+
+    QPushButton *Uopen = MainWindow::findChild<QPushButton *>("UserPageButton");
+    connect(Uopen, SIGNAL(released()), this, SLOT(UserOpen()));
+
+
+    QPushButton *updateI = MainWindow::findChild<QPushButton *>("updateInfo");
+    connect(updateI, SIGNAL(released()), this, SLOT(updateInfo()));
+
 
 }
 
@@ -488,8 +496,9 @@ void MainWindow::DisplayCruises() {
         while (!queuetest.empty()) {
 
             QtListing *listtest = new QtListing(queuetest.top()->data, queuetest.top()->initialIndex);  // adding an element to the list
-            listings.push_back(listtest);
+
             listtest->setMainProg(this);
+            listings.push_back(listtest);
             testlist->addWidget(listtest->getwidget());
             queuetest.pop();
         }
@@ -498,8 +507,10 @@ void MainWindow::DisplayCruises() {
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data,  mylist[n]->initialIndex);  // adding an element to the list
             listtest->setMainProg(this);
-            MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
-            MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
+            listings.push_back(listtest);
+            testlist->addWidget(listtest->getwidget());
+            //MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
+            //MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
     }
 }
@@ -600,8 +611,7 @@ void MainWindow::DepositAcc() {
 
     bool ok;
     QString text = QInputDialog::getText(this, tr("Deposit money"),
-                                         tr("Amount:"), QLineEdit::Normal,
-                                         QDir::home().dirName(), &ok);
+                                         tr("Amount:"), QLineEdit::Normal, "100", &ok);
     if (ok && !text.isEmpty())
         curUser->getWallet()->deposit(text.toFloat());
 
@@ -613,6 +623,74 @@ void MainWindow::updateWallet() {
 }
 void MainWindow::UserBack() {
     MainWindow::findChild<QFrame *>("Listings")->raise();
+}
+void MainWindow::updateUserP() {
+    UserBack();
+}
+void MainWindow::UserOpen() {
+    MainWindow::findChild<QFrame *>("UserPage")->raise();
+    //QLineEdit* username = MainWindow::findChild<QLineEdit *>("usernametxt");
+    MainWindow::findChild<QLineEdit *>("usernametxt")->setText(QString::fromStdString(curUser->getName()));
+    //QLineEdit* email = MainWindow::findChild<QLineEdit *>("emailtxt");
+    MainWindow::findChild<QLineEdit *>("emailtxt")->setText(QString::fromStdString(curUser->getEmail()));
+    //QLineEdit* pass = MainWindow::findChild<QLineEdit *>("passwordtxt");
+    MainWindow::findChild<QLineEdit *>("passwordtxt")->setText(QString::fromStdString(curUser->getPassword()));
+
+    MainWindow::findChild<QLabel *>("userWallet")->setText("Wallet: " + QString::number(curUser->getWallet()->getAmount()));
+
+    QVBoxLayout* list = MainWindow::findChild<QVBoxLayout *>("reservations");
+    qDebug() << "resdel";
+    for (int i = 0; i < madereservs.size(); i++) {
+        list->removeWidget(madereservs[i]->getwidget());
+        madereservs[i]->getwidget()->setVisible(false);
+    }
+    qDebug() << "resdel";
+
+
+    vector<flightticket*> tickets = *curUser->getTickets();
+    vector<reservation*> reservs = *curUser->getReservations();
+    vector<cruisereservation*> cruiseReservs = *curUser->getCruisereservations();
+    qDebug("got here");
+    for (int i = 0 ; i < tickets.size(); i++) {
+
+        QtListing *listtest = new QtListing(tickets[i]->getListing(), 0);  // adding an element to the list
+        listtest->setReserv(tickets[i]);
+        QPushButton *tempbut = listtest->getwidget()->findChild<QPushButton *>();
+        tempbut->setText("Invoice");
+        disconnect(tempbut, SIGNAL(released()), listtest, SLOT(detailsButton()));
+        connect(tempbut, SIGNAL(released()), listtest, SLOT(reservationDetails()));
+        list->addWidget(listtest->getwidget());
+        madereservs.push_back(listtest);
+
+    }
+    for (int i = 0 ; i < reservs.size(); i++) {
+
+        QtListing *listtest = new QtListing(reservs[i]->getListing(), 0);  // adding an element to the list
+        listtest->setReserv(reservs[i]);
+        QPushButton *tempbut = listtest->getwidget()->findChild<QPushButton *>();
+        tempbut->setText("Invoice");
+        disconnect(tempbut, SIGNAL(released()), listtest, SLOT(detailsButton()));
+        connect(tempbut, SIGNAL(released()), listtest, SLOT(reservationDetails()));
+        list->addWidget(listtest->getwidget());
+        madereservs.push_back(listtest);
+
+    }
+    for (int i = 0 ; i < cruiseReservs.size(); i++) {
+
+        QtListing *listtest = new QtListing(cruiseReservs[i]->getListing(), 0);  // adding an element to the list
+        listtest->setReserv(cruiseReservs[i]);
+        QPushButton *tempbut = listtest->getwidget()->findChild<QPushButton *>();
+        tempbut->setText("Invoice");
+        disconnect(tempbut, SIGNAL(released()), listtest, SLOT(detailsButton()));
+        connect(tempbut, SIGNAL(released()), listtest, SLOT(reservationDetails()));
+        list->addWidget(listtest->getwidget());
+        madereservs.push_back(listtest);
+    }
+}
+void MainWindow::updateInfo() {
+   curUser->setName(MainWindow::findChild<QLineEdit *>("usernametxt")->text().toStdString());
+   curUser->setPass(MainWindow::findChild<QLineEdit *>("passwordtxt")->text().toStdString());
+   curUser->setEmail(MainWindow::findChild<QLineEdit *>("emailtxt")->text().toStdString());
 }
 
 

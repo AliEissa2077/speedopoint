@@ -13,6 +13,9 @@ user::user(std::string usrname, std::string pwd, std::string email_) : username(
 void user::setName(std::string usrname) {
 	username = usrname;
 }
+void user::setEmail(std::string m) {
+    email = m;
+}
 void user::setPass(std::string pwd) {
 	password = pwd;
 }
@@ -58,4 +61,13 @@ string user::getPassword() {
 }
 wallet* user::getWallet() {
     return wallt;
+}
+std::vector<reservation*>* user::getReservations() {
+    return &reservations;
+}
+std::vector<flightticket*>* user::getTickets() {
+    return &tickets;
+}
+std::vector<cruisereservation*>* user::getCruisereservations() {
+    return &cruisereservations;
 }

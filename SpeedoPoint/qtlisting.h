@@ -21,10 +21,17 @@ private:
     hotellisting* hlisting;
     cruise* clisting;
     flightlisting* flisting;
+    //QWidget* invoice;
+
+    reservation* hreserv;
+    cruisereservation* creserv;
+    flightticket* freserv;
+
     int Ind;
 public:
     QListWidgetItem* item;
     QWidget* wid;
+
     QPushButton *butTest;
     QtListing();
     QtListing(hotellisting* inp, int index);
@@ -36,6 +43,9 @@ public:
     hotellisting* getHListing();
     flightlisting* getFListing();
     cruise* getCListing();
+    void setReserv(reservation* x);
+    void setReserv(flightticket* x);
+    void setReserv(cruisereservation* x);
 
     void setMainProg(MainWindow* m);
     int getIndex();
@@ -45,6 +55,8 @@ public:
 
 private slots:
     void detailsButton();
+    void reservationDetails();
+    void cancelReservation();
 };
 
 #endif // QTLISTING_H
