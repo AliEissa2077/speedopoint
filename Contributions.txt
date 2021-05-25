@@ -4,3 +4,14 @@ Ali Eissa:
 	-Made all Qt related classes and driver program functions (qtlisting, mainwindow, datastore(except constructor))
 	-debugging
 	-sorting algorithm (modified version of selection sort)
+
+Sandra Eshra
+Made implementation of the following classes
+     - hotellisting.cpp
+     - flightlisting.cpp
+     - date.cpp
+     - flightticket.cpp
+     - cruise.cpp
+     - cruiseReservation.cpp
+     - cruisecompany.cpp
+     - country.cpp
