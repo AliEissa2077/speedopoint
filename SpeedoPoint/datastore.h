@@ -31,7 +31,6 @@ class dataStore
 private:
     vector<user*> users;
     vector<country> countries;
-    vector<pair<user, int>> points;
     vector<hotel> hotels;
     vector<airline> airlines;
     vector<airport> airports;

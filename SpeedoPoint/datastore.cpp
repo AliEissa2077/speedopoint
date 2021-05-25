@@ -25,6 +25,25 @@ dataStore::dataStore()
             string email;
             u >> username >> pwd >> email;
             user* user__ = new user(username, pwd, email);
+            string ptsfile("points.txt");
+            ifstream p(ptsfile);
+            if (p.is_open()) {
+                string ptstring;
+                while (getline(p, ptsring)) {
+                    stringstream sssp(pstring);
+                    string u_name;
+                    sssp >> u_name;
+                    int pts;
+                    for (auto x : users) {
+                        if (u_name == x->getName()) {
+                            sssp >> pts;
+                            x->updatePoints(pts);
+                        }
+                    }
+                    sssp >> pts;
+                }
+                p.close();
+            }
             users.push_back(user__);
         }
         u.close();
@@ -324,11 +343,11 @@ dataStore::dataStore()
     }
 }
 
-void updatePoints() {
+void datastore::updatePoints() {
     ofstream userpts("points.txt");
     if (userpts.is_open()) {
-        for (pair<user, int> x : points) {
-            string user_data = x.first.getName() + "\t" + x.second;
+        for (user* x : users) {
+            string user_data = x->getName() + "\t" + x->getPoints();
             userspts << user_data;
         }
         userpts.close();
