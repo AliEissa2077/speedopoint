@@ -307,6 +307,40 @@ dataStore::dataStore()
         f.close();
     }
 
+    // cruise company
+    string ccompanyfile("cc.txt");
+    ifstream ccfile(ccompanyfile);
+    if (ccfile.is_open()) {
+        string ccline;
+        while (getline(ccfile, ccline)) {
+            string sscc(ccline);
+            string name;
+            float rt;
+            float srt;
+            int range;
+            sscc >> name >> rt >> srt >> range;
+            cruisecompany cc(name, rt, srt, range);
+            cruisecompanies.push_back(cc);
+        }
+        ccfile.close();
+    }
+
+
+    // cruises 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     SortListings();
 
 

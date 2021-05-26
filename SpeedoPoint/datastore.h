@@ -37,6 +37,7 @@ private:
     Node<hotellisting*>* HotelListingsHead;
     Node<flightlisting*>* FlightListingsHead;
     Node<cruise*>* CruiseListingsHead;
+    vector<cruisecompany> cruisecompanies;
 
     float countryDist(country a, country b);
     void dijkstra (vector<vector<int>> graph, int src);
