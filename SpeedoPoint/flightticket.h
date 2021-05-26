@@ -36,6 +36,10 @@ public:
     void setReturn(date d);
     flightlisting* getListing();
     user* getUser();
+    float getPaymentVal();
+    date getDate();
+    int getAdults();
+    int getChildren();
 };
 
 

@@ -25,6 +25,7 @@ private:
 	int arrivalCityIndex;
     stop* stops;
 	std::string suiteType;
+    bool refundable;
 public:
 	cruise();
     cruise(cruisecompany* c, date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type);
@@ -39,6 +40,8 @@ public:
     float subtract(date d, date f);
 
     bool verifyLoc(string loc, string city);
+    bool isRefundable();
+    date getStartDate();
 };
 
 #endif CRUISE_H

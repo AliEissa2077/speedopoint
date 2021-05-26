@@ -20,6 +20,11 @@ public:
 	cruisereservation();
     cruisereservation(cruise* crs, payment pay, int ad, int child, user* user);
     cruise* getListing();
+    user* getUser();
+    float getPaymentValue();
+    int getAdults();
+    int getChildren();
+    date getDate();
 };
 
 

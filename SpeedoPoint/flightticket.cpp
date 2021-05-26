@@ -29,5 +29,18 @@ flightlisting* flightticket::getListing() {
 }
 
 user* flightticket::getUser () {
-    return account;
+    return acc;
+}
+
+float flightticket::getPaymentVal() {
+    return paymnt.getValue();
+}
+date flightticket::getDate() {
+    return departure;
+}
+int flightticket::getAdults() {
+    return adults;
+}
+int flightticket::getChildren() {
+    return children;
 }

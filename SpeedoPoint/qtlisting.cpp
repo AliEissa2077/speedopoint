@@ -273,12 +273,23 @@ void QtListing::reservationDetails() {
     if (getType() == 2) {
         type->setText("Flight Ticket");
 
+        payed->setText("For: " + QString::number(freserv->getPaymentVal()) + " LE");
+        string temp = to_string(freserv->getDate().getDay()) + "/" + to_string(freserv->getDate().getMonth()) + "/" + to_string(freserv->getDate().getYear());
+        dat->setText("Departure Date: " + QString::fromStdString(temp));
+        adults->setText("Adults: " + QString::number(freserv->getAdults()));
+        childs->setText("Children: " + QString::number(freserv->getChildren()));
+
 
         rated = freserv->rated;
     }
     if (getType() == 3) {
         type->setText("Cruise Reservation");
 
+        payed->setText("For: " + QString::number(creserv->getPaymentValue()) + " LE");
+        string temp = to_string(creserv->getDate().getDay()) + "/" + to_string(creserv->getDate().getMonth()) + "/" + to_string(creserv->getDate().getYear());
+        dat->setText("Departure Date: " + QString::fromStdString(temp));
+        adults->setText("Adults: " + QString::number(creserv->getAdults()));
+        childs->setText("Children: " + QString::number(creserv->getChildren()));
 
         rated = creserv->rated;
     }
@@ -355,6 +366,26 @@ void QtListing::cancelReservation() {
                 reservs->erase(reservs->begin() + i);
                 delete freserv;
                 freserv = NULL;
+                delete invoice;
+                //invoice->close();
+                invoice = NULL;
+                qDebug() << "reserv cancel";
+
+                return;
+            }
+        }
+    }
+    if (getType() == 3) {
+        if (creserv->getListing()->isRefundable()) {
+            creserv->getUser()->getWallet()->deposit(creserv->getPaymentValue());
+        }
+        vector<cruisereservation*>* reservs = creserv->getUser()->getCruisereservations();
+        for(int i = 0; i < reservs->size(); i++) {
+            if (reservs[0][i] == creserv) {
+                mainProg->updateUserP();
+                reservs->erase(reservs->begin() + i);
+                delete creserv;
+                creserv = NULL;
                 delete invoice;
                 //invoice->close();
                 invoice = NULL;
