@@ -1553,6 +1553,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="text">
+       <string>5</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="Hyear">
       <property name="geometry">
@@ -1562,6 +1565,9 @@
         <width>51</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>2021</string>
       </property>
      </widget>
      <widget class="QComboBox" name="Hdaysnum">
@@ -1779,6 +1785,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="text">
+       <string>5</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="Fyear">
       <property name="geometry">
@@ -1788,6 +1797,9 @@
         <width>51</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>2021</string>
       </property>
      </widget>
      <widget class="QComboBox" name="Fadults">
@@ -1976,6 +1988,9 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="text">
+        <string>2021</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="FmonthR">
        <property name="geometry">
@@ -1985,6 +2000,9 @@
          <width>31</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="text">
+        <string>6</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_18">
@@ -2164,7 +2182,7 @@
      </property>
     </widget>
     <zorder>FReserve</zorder>
-    <zorder>HReserve</zorder>
+    <zorder>CReserve</zorder>
     <zorder>ProgramBackground_2</zorder>
     <zorder>Speedopointtxt_2</zorder>
     <zorder>DetailsBack</zorder>
@@ -2174,10 +2192,10 @@
     <zorder>Features</zorder>
     <zorder>SecondaryInfo</zorder>
     <zorder>Book</zorder>
-    <zorder>CReserve</zorder>
     <zorder>label_17</zorder>
     <zorder>WalletAmount</zorder>
     <zorder>deposit</zorder>
+    <zorder>HReserve</zorder>
    </widget>
    <widget class="QFrame" name="UserPage">
     <property name="geometry">
@@ -2229,18 +2247,22 @@
     <widget class="QWidget" name="verticalLayoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>480</x>
        <y>110</y>
-       <width>571</width>
+       <width>601</width>
        <height>431</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="reservations"/>
+     <layout class="QVBoxLayout" name="reservations">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+     </layout>
     </widget>
     <widget class="QLabel" name="reservTitle">
      <property name="geometry">
       <rect>
-       <x>510</x>
+       <x>490</x>
        <y>70</y>
        <width>191</width>
        <height>31</height>
@@ -2365,9 +2387,9 @@
     </widget>
    </widget>
    <zorder>LoginScreen</zorder>
-   <zorder>DetailsPage</zorder>
-   <zorder>UserPage</zorder>
    <zorder>Listings</zorder>
+   <zorder>UserPage</zorder>
+   <zorder>DetailsPage</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -20,6 +20,7 @@ private:
     payment paymnt;
     user* acc;
 public:
+    bool rated = false;
 	reservation();
     reservation(hotellisting* list, date start, int num, payment payment_, user* account, int adult, int child);
 

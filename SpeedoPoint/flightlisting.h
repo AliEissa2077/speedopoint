@@ -10,7 +10,7 @@
 class flightlisting {
 private:
     string code;
-    airline airlne;
+    airline* airlne;
     stop* stops;
 	int stopnum;
 	date dep;
@@ -25,7 +25,7 @@ private:
     bool oneway;
 public:
     flightlisting();
-    flightlisting(string code_, airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew);
+    flightlisting(string code_, airline* air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew);
     flightticket* reserve(user* acc, int adults, int children, date d);
     flightticket* reserve(user* acc, int adults, int children, date d, date d2);
     int getPriceperTraveller();
@@ -39,12 +39,13 @@ public:
     string getDepTime();
     string getArrTime();
     country getArrCountry();  // +1
-    airline getAirline();
+    airline* getAirline();
     float subtract(date d, date f);
     bool isOneW();
     bool isRefundable();
 
     bool verifyFromLocs(string locdep, string citydep);
+    void addStop(country c, int i);
 
 };
 

@@ -12,7 +12,7 @@ using namespace std;
 
 class hotellisting {
 private:
-    hotel htl;
+    hotel* htl;
 	country loc;
     int pricePerNight;
 	int cityIndex;
@@ -26,11 +26,11 @@ private:
 	std::string roomType;
 public:
 	hotellisting();
-    hotellisting(hotel hot, country location, int price, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
+    hotellisting(hotel* hot, country location, int price, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype);
     reservation* reserve(user* acc, date d, int days, int adults, int children);
     int getPricePerNight();
     float getHotelRating();
-    hotel getHotel();
+    hotel* getHotel();
     country getLoc();
     int getCityIndex();
     bool verifyLoc(string l, string city); // if city is empty then ignore it

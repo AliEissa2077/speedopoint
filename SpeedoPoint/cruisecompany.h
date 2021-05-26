@@ -11,8 +11,8 @@ private:
     int ratingcount;
 public:
 	cruisecompany();
-	cruisecompany(std::string name_, float rt, float srt, int range);
-	void updateRating(int rt);
+    cruisecompany(std::string name_, float rt, float srt, int range);
+    void updateRating(float rt);
     std::string getName();
     int getRating();
     int getPriceRange();

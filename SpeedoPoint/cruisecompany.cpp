@@ -5,7 +5,7 @@ cruisecompany::cruisecompany()
 
 }
 
-cruisecompany::cruisecompany(std::string name_, int rt, int srt, int range)
+cruisecompany::cruisecompany(std::string name_, float rt, float srt, int range)
 {
 	std::string name = name_;
 	rating = rt;
@@ -13,7 +13,7 @@ cruisecompany::cruisecompany(std::string name_, int rt, int srt, int range)
 	priceRange = range;
 }
 
-void cruisecompany::updateRating(int rt)
+void cruisecompany::updateRating(float rt)
 {
     ratingcount++;
     rating = ((rating *(ratingcount - 1)) + rt) / ratingcount;

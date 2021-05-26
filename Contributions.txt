@@ -2,8 +2,10 @@ Ali Eissa:
 	-contributed to UML
 	-made the QT user interfaces
 	-Made all Qt related classes and driver program functions (qtlisting, mainwindow, datastore(except constructor))
-	-debugging
+	-most of the debugging
 	-sorting algorithm (modified version of selection sort)
+	-Implemented the reserve functions in flightlisting, hotellisting, and cruise classes
+	-Modified the flightlisting search code to work with Dijkstra
 
 Sandra Eshra
      - contributed to the UML

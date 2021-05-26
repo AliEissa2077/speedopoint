@@ -6,6 +6,7 @@
 
 hotellisting::hotellisting()
 {
+    htl = new hotel;
 	cityIndex = -1;
 	area = -1;
 	wifi = false;
@@ -18,7 +19,7 @@ hotellisting::hotellisting()
 	roomType = "";
 }
 
-hotellisting::hotellisting(hotel hot, country location, int price, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype)
+hotellisting::hotellisting(hotel* hot, country location, int price, int index, int area_, bool wifi_, bool breakfast, int numPeople, bool refund, bool dinner_, bool pet, std::string roomtype): htl(hot), loc(location), cityIndex(index), area(area_), wifi(wifi_), bfast(breakfast), person(numPeople), refundable(refund), dinner(dinner_), pets(pet), roomType(roomtype)
 {
     htl = hot;
     loc = location;
@@ -39,10 +40,18 @@ hotellisting::hotellisting(hotel hot, country location, int price, int index, in
 
 reservation* hotellisting::reserve(user* acc, date d, int days, int adults, int children)
 {
+    if (acc->getWallet()->getAmount() < pricePerNight*(days)) {
+        QMessageBox* confirm = new QMessageBox(0);
+        QMessageBox::StandardButton reply1;
+        //confirm->exec();
+        reply1 = QMessageBox::information(confirm, "Insufficient funds", "Insufficient funds, make sure to deposit money into your wallet.",
+            QMessageBox::Ok);
+        return NULL;
+    }
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
     //confirm->exec();
-    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerNight*(days + 1)) + "LE" + " from Wallet: " + QString::number(acc->getWallet()->getAmount()),
+    reply1 = QMessageBox::question(confirm, "Confirm?", "Are you sure you want to pay " + QString::number(pricePerNight*(days)) + "LE" + " from Wallet: " + QString::number(acc->getWallet()->getAmount()),
         QMessageBox::Yes | QMessageBox::No);
     if (reply1 == QMessageBox::No) {
         return NULL;
@@ -64,15 +73,15 @@ reservation* hotellisting::reserve(user* acc, date d, int days, int adults, int 
         deduct = acc->redeem();
     }
 
-    if (deduct > pricePerNight*(days + 1)) {
-        deduct = pricePerNight*(days + 1);
+    if (deduct > pricePerNight*(days)) {
+        deduct = pricePerNight*(days);
     }
-    payment newp(pricePerNight*(days + 1) - deduct, 0, d, acc);
+    payment newp(pricePerNight*(days) - deduct, 0, d, acc);
 
-    acc->getWallet()->pay(pricePerNight*(days + 1) - deduct);
+    acc->getWallet()->pay(pricePerNight*(days) - deduct);
     reservation* result = new reservation(this, d, days, newp, acc, adults, children);
 
-    acc->updatePoints((pricePerNight*(days + 1) - deduct) / 4);
+    acc->updatePoints((pricePerNight*(days) - deduct) / 4);
     return result;
 
 
@@ -105,9 +114,9 @@ int hotellisting::getPricePerNight()
 }
 float hotellisting::getHotelRating()
 {
-    return htl.getRating();
+    return htl->getRating();
 }
-hotel hotellisting::getHotel()
+hotel* hotellisting::getHotel()
 {
     return htl;
 }

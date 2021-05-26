@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include <QMessageBox>
 #include  <QtDebug>
+#include <QInputDialog>
 
 
 QtListing::QtListing()
@@ -20,7 +21,7 @@ QtListing::QtListing(flightlisting* inp, int index)
     clisting = NULL;
     //QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getAirline()->getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QString secondaryt = "Price: " + QString::number(inp->getPriceperTraveller()) + " LE";
@@ -65,7 +66,7 @@ QtListing::QtListing(hotellisting* inp, int index)
     flisting = NULL;
     //QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getHotel().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getHotel()->getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QString secondaryt = QString::fromStdString(inp->getLoc().getCities()[inp->getCityIndex()]  + " " + inp->getLoc().getName() + " Price: " + to_string(inp->getPricePerNight()) + "LE ");
@@ -111,7 +112,7 @@ QtListing::QtListing(cruise* inp, int index)
     flisting = NULL;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
-    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getCompany().getName())); // primary text
+    QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getCompany()->getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepIndex()]  + " " + inp->getDepCountry().getName()  + " To: " + + " Price: " + inp->getArrCountry().getCities()[inp->getArrIndex()]  + " " + inp->getArrCountry().getName() + to_string(inp->getPricePerPerson()) + "LE ");
@@ -119,7 +120,7 @@ QtListing::QtListing(cruise* inp, int index)
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QString tertia = QString::fromStdString("Rating:" + to_string(inp->getCompany().getRating()));
+    QString tertia = QString::fromStdString("Rating:" + to_string(inp->getCompany()->getRating()));
 
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -169,15 +170,15 @@ void QtListing::detailsButton() {
     QString pricing;
 
     if (getType() == 1) {
-        primary = QString::fromStdString(hlisting->getHotel().getName());
-        location = QString::fromStdString(hlisting->getHotel().getCountry().getCities()[hlisting->getHotel().getIndex()] + ", " + hlisting->getHotel().getCountry().getName());
+        primary = QString::fromStdString(hlisting->getHotel()->getName());
+        location = QString::fromStdString(hlisting->getHotel()->getCountry().getCities()[hlisting->getHotel()->getIndex()] + ", " + hlisting->getHotel()->getCountry().getName());
         secondary = "Area: " + QString::number(hlisting->getArea()) + "Meters Square";
         pricing = QString::number(hlisting->getPricePerNight()) + " LE Per Night";
         details = "Pool: ";
-        details += hlisting->getHotel().getPool() ? "yes" : "no";
+        details += hlisting->getHotel()->getPool() ? "yes" : "no";
         details += '\n';
         details += "Beach: ";
-        details += hlisting->getHotel().getBeach() ? "yes" : "no";
+        details += hlisting->getHotel()->getBeach() ? "yes" : "no";
         details += '\n';
         details += "Pets Allowed: ";
         details += hlisting->getPets() ? "yes" : "no";
@@ -193,7 +194,7 @@ void QtListing::detailsButton() {
         details += '\n';
     }
     if (getType() == 2) {
-        primary = QString::fromStdString(flisting->getAirline().getName());
+        primary = QString::fromStdString(flisting->getAirline()->getName());
         location = QString::fromStdString(flisting->getDepCountry().getCities()[flisting->getDepCityIndex()] + ", " + flisting->getArrCountry().getName() + " To " + flisting->getArrCountry().getCities()[flisting->getArrCityIndex()] + ", " + flisting->getArrCountry().getName());
         secondary = QString::fromStdString("Time: " + flisting->getDepTime());
         pricing = QString::number(flisting->getPriceperTraveller()) + " LE Per Traveller";
@@ -201,13 +202,13 @@ void QtListing::detailsButton() {
         qDebug() << " info set";
     }
     if (getType() == 3) {
-        primary = QString::fromStdString(clisting->getCompany().getName());
+        primary = QString::fromStdString(clisting->getCompany()->getName());
         location = QString::fromStdString(clisting->getDepCountry().getCities()[clisting->getDepIndex()] + ", " + clisting->getDepCountry().getName() + " To " + clisting->getArrCountry().getCities()[clisting->getArrIndex()] + ", " + clisting->getArrCountry().getName());
         secondary = "Duration: " + QString::number(clisting->getDuration()) + " Days";
         pricing = QString::number(clisting->getPricePerPerson()) + " LE Per Traveller";
-        details = "Rating: " + QString::number(clisting->getCompany().getRating());
+        details = "Rating: " + QString::number(clisting->getCompany()->getRating());
         details += '\n';
-        details += "Safety Rating: " + QString::number(clisting->getCompany().getSafety());
+        details += "Safety Rating: " + QString::number(clisting->getCompany()->getSafety());
     }
     mainProg->findChild<QLabel *>("PrimaryText")->setText(primary);
     mainProg->findChild<QLabel *>("DetailInfo1")->setText(location);
@@ -267,16 +268,30 @@ void QtListing::reservationDetails() {
         dat->setText("Staring Date: " + QString::fromStdString(temp));
         adults->setText("Adults: " + QString::number(hreserv->getAdults()));
         childs->setText("Children: " + QString::number(hreserv->getChildren()));
+        rated = hreserv->rated;
     }
     if (getType() == 2) {
         type->setText("Flight Ticket");
+
+
+        rated = freserv->rated;
     }
     if (getType() == 3) {
         type->setText("Cruise Reservation");
+
+
+        rated = creserv->rated;
     }
     QPushButton* cancelRes = new QPushButton("Cancel Reservation");
+    QPushButton* giveRating = new QPushButton("Give Rating");
     QVBoxLayout* widLayout = new QVBoxLayout;
 
+    if (rated) {
+        giveRating->setEnabled(false);
+
+    }
+    qDebug() << "yes";
+    connect(giveRating, SIGNAL(released()), this, SLOT(rateReservation()));
     connect(cancelRes, SIGNAL(released()), this, SLOT(cancelReservation()));
 
     widLayout->addWidget(type);
@@ -285,6 +300,7 @@ void QtListing::reservationDetails() {
     widLayout->addWidget(adults);
     widLayout->addWidget(childs);
     widLayout->addStretch();
+    widLayout->addWidget(giveRating);
     widLayout->addWidget(cancelRes);
     widLayout->setSizeConstraint(QLayout::SetFixedSize);
     confirm->setLayout(widLayout);
@@ -328,6 +344,31 @@ void QtListing::cancelReservation() {
             }
         }
     }
+
+}
+void QtListing::rateReservation() {
+    bool ok;
+    QString text = QInputDialog::getText(mainProg, tr("Rate"), tr("Rating:(x/5)"), QLineEdit::Normal, "5", &ok);
+    if (ok && !text.isEmpty()) {
+        float v = text.toFloat();
+        if (v > 5) {
+            v = 5;
+        }
+        if (getType() == 1) {
+            hlisting->getHotel()->updateRating(v);
+            hreserv->rated = true;
+        }
+        if (getType() == 2) {
+            flisting->getAirline()->updateRating(v);
+            freserv->rated = true;
+        }
+        if (getType() == 3) {
+            clisting->getCompany()->updateRating(v);
+            creserv->rated = true;
+        }
+        invoice->close();
+    }
+
 
 }
 

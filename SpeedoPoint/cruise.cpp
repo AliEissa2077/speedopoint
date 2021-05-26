@@ -6,8 +6,9 @@ cruise::cruise()
 
 }
 
-cruise::cruise(date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type)
+cruise::cruise(cruisecompany* c, date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type)
 {
+    company = c;
 	start = start_;
 	end = end_;
 	std::string cruisemodel = model;
@@ -20,6 +21,15 @@ cruise::cruise(date start_, date end_, std::string model, int price, country dep
 
 }
 cruisereservation* cruise::reserve(user* acc, int adult, int child) {
+    if (acc->getWallet()->getAmount() < (pricePerPerson*adult + pricePerPerson/2 * child)) {
+        QMessageBox* confirm = new QMessageBox(0);
+        QMessageBox::StandardButton reply1;
+        //confirm->exec();
+        reply1 = QMessageBox::information(confirm, "Insufficient funds", "Insufficient funds, make sure to deposit money into your wallet.",
+            QMessageBox::Ok);
+        return NULL;
+    }
+
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
     //confirm->exec();
@@ -93,7 +103,7 @@ float cruise::subtract(date d, date f) {
         return var2 - var1;
 }
 
-cruisecompany cruise::getCompany()
+cruisecompany* cruise::getCompany()
 {
 	return company;
 }

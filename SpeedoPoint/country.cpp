@@ -1,10 +1,13 @@
 #include "country.h"
 
 
-
+country::country()
+{
+    name = " ";
+}
 country::country(std::string name_, bool ban)
 {
-	name = name_;
+    name = name_;
     //banned = ban;
 }
 

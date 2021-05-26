@@ -4,6 +4,7 @@
 #include <fstream>
 //#include <bits/stdc++.h>
 #include <sstream>
+#include <cmath>
 dataStore::dataStore()
 {
 
@@ -98,9 +99,9 @@ dataStore::dataStore()
                     ctry = x;
                 }
             }
-            hotel h1(name, ctry, index, range, pool);
+            hotel* h1 = new hotel(name, ctry, index, range, pool);
             for (int i = 0 ; i < 10; i++) {
-                h1.updateRating(rating);
+                h1->updateRating(rating);
             }
             hotels.push_back(h1);
         }
@@ -119,14 +120,14 @@ dataStore::dataStore()
             stringstream ss(line);
             string hname;
             ss >> hname;
-            hotel h;
+            hotel* h;
             for (auto x : hotels) {
-                if (hname == x.getName()) {
+                if (hname == x->getName()) {
                     h = x;
                 }
             }
-            country ctry = h.getCountry();
-            int index = h.getIndex();
+            country ctry = h->getCountry();
+            int index = h->getIndex();
             int area;
             int price;
             bool wifi;
@@ -185,8 +186,8 @@ dataStore::dataStore()
             int range;
             float srt;
             ssa >> name >> range >> srt;
-            airline airline(name, range, srt);
-            airlines.push_back(airline); // add vector named airlines type airline to header
+            airline* airlne = new airline(name, range, srt);
+            airlines.push_back(airlne); // add vector named airlines type airline to header
         }
         afile.close();
     }
@@ -258,18 +259,19 @@ dataStore::dataStore()
                         if (stps == NULL) {
                             date dt;
                             stps = new stop(ct, index, aport, dt);
+                            qDebug() << "country " << QString::fromStdString(ct.getName());
                         }
                         else {
-                            date dt;
-                            stps->add_stop(ct, index, aport, dt);
+                            //date dt;
+                            //stps->add_stop(ct, index, aport, dt);  OLD import
                         }
                     }
                 }
             }
             ssf >> al;
-            airline airln;
+            airline* airln;
             for (auto x : airlines) {
-                if (x.getName() == al) {
+                if (x->getName() == al) {
                     airln = x;
                 }
             }
@@ -313,13 +315,13 @@ dataStore::dataStore()
     if (ccfile.is_open()) {
         string ccline;
         while (getline(ccfile, ccline)) {
-            string sscc(ccline);
+            stringstream sscc(ccline);
             string name;
             float rt;
             float srt;
             int range;
             sscc >> name >> rt >> srt >> range;
-            cruisecompany cc(name, rt, srt, range);
+            cruisecompany* cc = new cruisecompany(name, rt, srt, range);
             cruisecompanies.push_back(cc);
         }
         ccfile.close();
@@ -493,7 +495,7 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
         if (curr->data->verifyLoc(loc, city) && curr->data->getMaxPersons() >= persons) {
             bool valid = true;
             if (pool) {
-                if (!curr->data->getHotel().getPool()) {
+                if (!curr->data->getHotel()->getPool()) {
                     valid = false;
                 }
             }
@@ -503,7 +505,7 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
                 }
             }
             if (beach) {
-                if (!curr->data->getHotel().getBeach()) {
+                if (!curr->data->getHotel()->getBeach()) {
                     valid = false;
                 }
             }
@@ -540,7 +542,9 @@ vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
     return output;
 }
 float dataStore::countryDist(country a, country b) {
-
+    float result;
+    result = sqrt(pow(a.get_coordinates().x - b.get_coordinates().x ,2) + pow(a.get_coordinates().y - b.get_coordinates().y ,2));
+    return result;
 }
 
 vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew) {
@@ -548,17 +552,27 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     vector<Node<flightlisting*>*> output;
     country source;
     int cityindex;
-    while (curr != NULL) {
+    int iteration = 0;
+    while (curr != NULL && iteration < 4) {
         //check location and oneway,refund parameters
         if (curr->data->verifyFromLocs(locdep, citydep) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
             source = curr->data->getDepCountry();
             cityindex = curr->data->getDepCityIndex();
+            iteration++;
         }
         curr = curr->next;
     }
+    if (source.getName().length() <= 1) {
+        return output;
+    }
     vector<vector<country>> cts;
+    vector<vector<float>> dists;
     vector<country> c1;
+    vector <float> d1;
+    d1.push_back(0);
+    dists.push_back(d1);
+
     c1.push_back(source);
     cts.push_back(c1);
 
@@ -566,10 +580,14 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
         bool found = false;
         for (int n = 0 ; n < source.getBanned().size(); n++) {
             if (source.getBanned()[n].compare(countries[i].getName()) == 0) {
-                found = true;
+                //found = true;
             }
         }
         if (!found) {
+            vector <float> d;
+            d.push_back(countryDist(countries[i], source));
+            dists.push_back(d);
+
             vector<country> c;
             c.push_back(countries[i]);
             cts.push_back(c);
@@ -579,26 +597,35 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
         for (int i = 0 ; i < countries.size(); i++) {
             bool found = false;
             for (int n = 0 ; n < cts[x][0].getBanned().size(); n++) {
-                if (cts[i][0].getBanned()[n].compare(countries[i].getName()) == 0) {
+                if (cts[x][0].getBanned()[n].compare(countries[i].getName()) == 0) {
                     found = true;
+                    dists[x].push_back(0);
                 }
             }
             if (!found) {
+                dists[x].push_back(countryDist(countries[i], cts[x][0]));
                 cts[x].push_back(countries[i]);
             }
         }
     }
 
-
-
-    /*for (int i = output.size() -1; i >= 0; i--)  {
-     * vector<string> banned = output[i]->data->getDepCountry().getBanned();
-        for (int n = 0 n < banned.size(); n++) {
-            if (banned[n].compare(output[i].getDepCountry()) == 0) {
-                output.pop_back();
+    vector<vector<Coords>> out;
+    vector<Coords> t;
+    for (int i = 0; i < dists.size(); i++) {
+        out.push_back(t);
+    }
+    float* dist = dijkstra(dists, 0, out);
+    for (int i = 0 ; i < out.size(); i++) {
+        if (output[i]) {
+            for (int n = 0; n < out[i].size(); n++) {
+                output[i]->data->addStop(cts[out[i][n].x][out[i][n].y], 0);
+                qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
             }
         }
-    }*/
+    }
+
+
+    qDebug() << "returned";
     return output;
 }
 /*
@@ -815,7 +842,7 @@ bool dataStore::UserExists(string email) {
 
 int V;
 
-int dataStore::minDistance(int dist[], bool sptSet[])
+int dataStore::minDistance(float dist[], bool sptSet[])
 {
     // Initialize min value
     int min = INT_MAX, min_index;
@@ -826,10 +853,10 @@ int dataStore::minDistance(int dist[], bool sptSet[])
 
     return min_index;
 }
-void dataStore::dijkstra (vector<vector<int>> graph, int src) //Method to implement shortest path algorithm
+float* dataStore::dijkstra (vector<vector<float>> graph, int src, vector<vector<Coords>> out) //Method to implement shortest path algorithm
 {
     V = graph.size();
-    int dist [graph.size()];
+    float dist [graph.size()];
     bool Dset[graph.size()];
     for (int i= 0; i < graph.size(); i++)
     {
@@ -841,18 +868,22 @@ void dataStore::dijkstra (vector<vector<int>> graph, int src) //Method to implem
     {
         int u = minDistance(dist, Dset); //u is any vertex that is not yet included Dset and has minimum distance
         Dset[u] = true; //If the vertex with minimum distance found include it to Dset
-        for (int v = 0; v <graph.size(); v++)
+        for (int v = 0; v < graph[c].size(); v++)
             //Update dist[v] if not inDsetand their is a path from src to v through u that has distance minimum than current value of dist[v]
         {
-            if (!Dset[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] <dist[v])
+            if (!Dset[v] && graph[u][v] && abs(dist[u] - INT_MAX) > 100 && dist[u] + graph[u][v] <dist[v]) {
                 dist[v] =dist[u] + graph[u][v];
+                Coords temp(u, v);
+                out[v].push_back(temp);
+            }
         }
     }
-    cout<< "Vertex\t\tDistance from source"<<endl;
+    qDebug() << "Vertex\t\tDistance from source";
 
     for (int i= 0; i < graph.size(); i++) //will print the vertex with their distance from the source to the console
     {
         char c = 65 + i;
-        cout << c << "\t\t"<<dist[i] <<endl;
+        qDebug() << c << "\t\t"<<dist[i];
     }
+    return dist;
 }

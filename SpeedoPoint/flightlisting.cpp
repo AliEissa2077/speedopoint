@@ -7,7 +7,7 @@
 flightlisting::flightlisting() {
 
 }
-flightlisting::flightlisting(string code_, airline air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew)
+flightlisting::flightlisting(string code_, airline* air, stop* stp, int sptnum, date departure, date arrival, int price, std::string cabin_, std::string planeModel, int carryOn, int CheckedW, int additionalWPrice, bool ref, bool onew)
 {
     code = code_;
 	airlne = air;
@@ -28,6 +28,7 @@ flightlisting::flightlisting(string code_, airline air, stop* stp, int sptnum, d
 
 flightticket* flightlisting::reserve(user* acc, int adults, int children, date d)
 {
+
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
     //confirm->exec();
@@ -64,6 +65,15 @@ flightticket* flightlisting::reserve(user* acc, int adults, int children, date d
     return result;
 }
 flightticket* flightlisting::reserve(user* acc, int adults, int children, date d, date d2) {
+    if (acc->getWallet()->getAmount() < (pricepertraveller*adults + pricepertraveller/2 * children)) {
+        QMessageBox* confirm = new QMessageBox(0);
+        QMessageBox::StandardButton reply1;
+        //confirm->exec();
+        reply1 = QMessageBox::information(confirm, "Insufficient funds", "Insufficient funds, make sure to deposit money into your wallet.",
+            QMessageBox::Ok);
+        return NULL;
+    }
+
     QMessageBox* confirm = new QMessageBox(0);
     QMessageBox::StandardButton reply1;
     //confirm->exec();
@@ -109,7 +119,7 @@ int flightlisting::getPriceperTraveller()
 
 int flightlisting::getAirlineRating()
 {
-    return airlne.getRating();
+    return airlne->getRating();
 }
 
 float flightlisting::CalculateFlightDur() {
@@ -153,7 +163,7 @@ country flightlisting::getArrCountry() // +1
     return curr->getLoc();
 
 }
-airline flightlisting::getAirline() {
+airline* flightlisting::getAirline() {
     return airlne;
 }
 
@@ -205,46 +215,7 @@ bool flightlisting::isRefundable() {
 bool flightlisting::isOneW() {
     return oneway;
 }
-int V;
-
-int minDistance(int dist[], bool sptSet[])
-{
-    // Initialize min value
-    int min = INT_MAX, min_index;
-
-    for (int v = 0; v < V; v++)
-        if (sptSet[v] == false && dist[v] <= min)
-            min = dist[v], min_index = v;
-
-    return min_index;
-}
-void dijkstra (vector<vector<int>> graph, int src) //Method to implement shortest path algorithm
-{
-    V = graph.size();
-    int dist [graph.size()];
-    bool Dset[graph.size()];
-    for (int i= 0; i < graph.size(); i++)
-    {
-        dist[i] = INT_MAX;
-        Dset[i] = false;
-    }
-    dist[src] = 0; //Initialize the distance of the source vertec to zero
-    for (int c = 0; c <graph.size(); c++)
-    {
-        int u = minDistance(dist, Dset); //u is any vertex that is not yet included Dset and has minimum distance
-        Dset[u] = true; //If the vertex with minimum distance found include it to Dset
-        for (int v = 0; v <graph.size(); v++)
-            //Update dist[v] if not inDsetand their is a path from src to v through u that has distance minimum than current value of dist[v]
-        {
-            if (!Dset[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] <dist[v])
-                dist[v] =dist[u] + graph[u][v];
-        }
-    }
-    cout<< "Vertex\t\tDistance from source"<<endl;
-
-    for (int i= 0; i < graph.size(); i++) //will print the vertex with their distance from the source to the console
-    {
-        char c = 65 + i;
-        cout << c << "\t\t"<<dist[i] <<endl;
-    }
+void flightlisting::addStop(country c, int i) {
+    date d;
+    stops->add_stop(c, i, stops->getAirport(), d);
 }

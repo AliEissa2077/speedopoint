@@ -22,6 +22,7 @@ private:
     cruise* clisting;
     flightlisting* flisting;
     QWidget* invoice;
+    bool rated = false;
 
     reservation* hreserv;
     cruisereservation* creserv;
@@ -57,6 +58,7 @@ private slots:
     void detailsButton();
     void reservationDetails();
     void cancelReservation();
+    void rateReservation();
 };
 
 #endif // QTLISTING_H

@@ -807,7 +807,7 @@ public:
         deposit->setObjectName(QString::fromUtf8("deposit"));
         deposit->setGeometry(QRect(910, 40, 61, 31));
         FReserve->raise();
-        HReserve->raise();
+        CReserve->raise();
         ProgramBackground_2->raise();
         Speedopointtxt_2->raise();
         DetailsBack->raise();
@@ -817,10 +817,10 @@ public:
         Features->raise();
         SecondaryInfo->raise();
         Book->raise();
-        CReserve->raise();
         label_17->raise();
         WalletAmount->raise();
         deposit->raise();
+        HReserve->raise();
         UserPage = new QFrame(centralwidget);
         UserPage->setObjectName(QString::fromUtf8("UserPage"));
         UserPage->setGeometry(QRect(0, -1, 1091, 551));
@@ -835,13 +835,14 @@ public:
         Speedopointtxt_3->setFont(font1);
         verticalLayoutWidget_6 = new QWidget(UserPage);
         verticalLayoutWidget_6->setObjectName(QString::fromUtf8("verticalLayoutWidget_6"));
-        verticalLayoutWidget_6->setGeometry(QRect(510, 110, 571, 431));
+        verticalLayoutWidget_6->setGeometry(QRect(480, 110, 601, 431));
         reservations = new QVBoxLayout(verticalLayoutWidget_6);
         reservations->setObjectName(QString::fromUtf8("reservations"));
+        reservations->setSizeConstraint(QLayout::SetDefaultConstraint);
         reservations->setContentsMargins(0, 0, 0, 0);
         reservTitle = new QLabel(UserPage);
         reservTitle->setObjectName(QString::fromUtf8("reservTitle"));
-        reservTitle->setGeometry(QRect(510, 70, 191, 31));
+        reservTitle->setGeometry(QRect(490, 70, 191, 31));
         reservTitle->setFont(font2);
         Emaillabel = new QLabel(UserPage);
         Emaillabel->setObjectName(QString::fromUtf8("Emaillabel"));
@@ -872,9 +873,9 @@ public:
         updateInfo->setGeometry(QRect(110, 390, 93, 28));
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
-        DetailsPage->raise();
-        UserPage->raise();
         Listings->raise();
+        UserPage->raise();
+        DetailsPage->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -1054,6 +1055,8 @@ public:
         Features->setText(QCoreApplication::translate("MainWindow", "Features", nullptr));
         SecondaryInfo->setText(QCoreApplication::translate("MainWindow", "Secondary", nullptr));
         Book->setText(QCoreApplication::translate("MainWindow", "Book now", nullptr));
+        Hmonth->setText(QCoreApplication::translate("MainWindow", "5", nullptr));
+        Hyear->setText(QCoreApplication::translate("MainWindow", "2021", nullptr));
         Hdaysnum->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
         Hdaysnum->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));
         Hdaysnum->setItemText(2, QCoreApplication::translate("MainWindow", "3", nullptr));
@@ -1080,6 +1083,8 @@ public:
         label_2->setText(QCoreApplication::translate("MainWindow", "Number of Days", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Number of Adults", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Number of Children", nullptr));
+        Fmonth->setText(QCoreApplication::translate("MainWindow", "5", nullptr));
+        Fyear->setText(QCoreApplication::translate("MainWindow", "2021", nullptr));
         Fadults->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
         Fadults->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));
         Fadults->setItemText(2, QCoreApplication::translate("MainWindow", "3", nullptr));
@@ -1098,6 +1103,8 @@ public:
         label_15->setText(QCoreApplication::translate("MainWindow", "Number of Adults", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "Number of Children", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "Departure time H:m", nullptr));
+        FyearR->setText(QCoreApplication::translate("MainWindow", "2021", nullptr));
+        FmonthR->setText(QCoreApplication::translate("MainWindow", "6", nullptr));
         label_18->setText(QCoreApplication::translate("MainWindow", "Return Date ", nullptr));
         Cadults->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
         Cadults->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));

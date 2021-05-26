@@ -7,7 +7,7 @@ user::user() {
 	email = "";
 }
 user::user(std::string usrname, std::string pwd, std::string email_) : username(usrname), password(pwd), email(email_) {
-	points = 0;
+    points = 0;
     wallt = new wallet(0);
 }
 void user::setName(std::string usrname) {

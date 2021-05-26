@@ -1,4 +1,5 @@
 #include "hotel.h"
+#include <QtDebug>
 
 hotel::hotel() {
 	name = "";

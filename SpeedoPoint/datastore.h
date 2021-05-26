@@ -31,17 +31,17 @@ class dataStore
 private:
     vector<user*> users;
     vector<country> countries;
-    vector<hotel> hotels;
-    vector<airline> airlines;
+    vector<hotel*> hotels;
+    vector<airline*> airlines;
     vector<airport> airports;
     Node<hotellisting*>* HotelListingsHead;
     Node<flightlisting*>* FlightListingsHead;
     Node<cruise*>* CruiseListingsHead;
-    vector<cruisecompany> cruisecompanies;
+    vector<cruisecompany*> cruisecompanies;
 
     float countryDist(country a, country b);
-    void dijkstra (vector<vector<int>> graph, int src);
-    int minDistance(int dist[], bool sptSet[]);
+    float* dijkstra (vector<vector<float>> graph, int src, vector<vector<Coords>> out);
+    int minDistance(float dist[], bool sptSet[]);
 
 public:
     dataStore();
