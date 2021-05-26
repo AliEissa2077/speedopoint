@@ -429,16 +429,19 @@ public:
         Refundable->setGeometry(QRect(30, 110, 111, 31));
         verticalLayoutWidget_4 = new QWidget(Flights);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(170, 80, 851, 351));
+        verticalLayoutWidget_4->setGeometry(QRect(170, 80, 861, 351));
         flightlis1 = new QVBoxLayout(verticalLayoutWidget_4);
         flightlis1->setObjectName(QString::fromUtf8("flightlis1"));
+        flightlis1->setSizeConstraint(QLayout::SetMinAndMaxSize);
         flightlis1->setContentsMargins(0, 0, 0, 0);
         flightlist = new QScrollArea(verticalLayoutWidget_4);
         flightlist->setObjectName(QString::fromUtf8("flightlist"));
+        flightlist->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
         flightlist->setWidgetResizable(true);
+        flightlist->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 847, 347));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 857, 347));
         flightlist->setWidget(scrollAreaWidgetContents);
 
         flightlis1->addWidget(flightlist);
@@ -873,9 +876,9 @@ public:
         updateInfo->setGeometry(QRect(110, 390, 93, 28));
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
-        Listings->raise();
         UserPage->raise();
         DetailsPage->raise();
+        Listings->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -886,7 +889,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        Tabs->setCurrentIndex(1);
+        Tabs->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

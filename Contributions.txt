@@ -19,3 +19,15 @@ Made implementation of the following classes
      - cruisecompany.cpp
      - country.cpp
      - dijkstra's algorithm in flighlisting.cpp
+
+Yaseen Shawkat 
+- Contributed to UML
+Implemented: 
+- wallet class
+-flightticket class 
+- payment class
+- user class
+- reservation class 
+- airport class 
+ 
+-Database (text files)

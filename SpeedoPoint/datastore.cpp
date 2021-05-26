@@ -707,19 +707,19 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     qDebug() << "returned";
     return output;
 }
-/*
+/* OLD flights search
 vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew) {
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
     while (curr != NULL) {
-        if (curr->data->verifyFromAndToLocs(locdep, citydep, locArrive, cityArrive) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
+        if (curr->data->verifyFromLocs(locdep, citydep) && curr->data->getArrCountry().getName().compare(locArrive) == 0 && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
         }
         curr = curr->next;
     }
     return output;
-}
-*/
+}*/
+
 
 vector<flightlisting*> dataStore::GetSortedFlights(int type) {
     Node<flightlisting*>* curr = FlightListingsHead; //1 price : 2 rating : 3 distance

@@ -27,3 +27,20 @@ void flightticket::setReturn(date d) {
 flightlisting* flightticket::getListing() {
     return listing;
 }
+
+user* flightticket::getUser () {
+    return acc;
+}
+
+float flightticket::getPaymentVal() {
+    return paymnt.getValue();
+}
+date flightticket::getDate() {
+    return departure;
+}
+int flightticket::getAdults() {
+    return adults;
+}
+int flightticket::getChildren() {
+    return children;
+}

@@ -108,6 +108,9 @@ cruisecompany* cruise::getCompany()
 {
 	return company;
 }
+bool cruise::isRefundable () {
+    return refundable;
+}
 
 bool cruise::verifyLoc(string loc, string city)
 {
@@ -124,4 +127,7 @@ bool cruise::verifyLoc(string loc, string city)
 		else return true;
 	}
 	else { return false; }
+}
+date cruise::getStartDate() {
+    return start;
 }
