@@ -24,7 +24,7 @@ private:
 
 public:
     country();
-	country(std::string name_, bool ban);
+	country(std::string name_, bool ban, Coords cds);
 	void addCity(std::string city);
     std::string getName();
     std::vector<std::string> getCities();
