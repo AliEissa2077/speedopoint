@@ -1,4 +1,5 @@
 #include "stop.h"
+#include <QDebug>
 country stop::getLoc()
 {
 	return loc;
@@ -21,7 +22,7 @@ date stop::getTime()
 }
 
 
-stop::stop(country location, int index,, date dt)
+stop::stop(country location, int index, date dt)
 {
 	loc = location;
 	cityIndex = index;
@@ -30,6 +31,7 @@ stop::stop(country location, int index,, date dt)
 }
 
 void stop::add_stop(country location, int index, date dt) {
+    qDebug() << "yessir";
     stop* newone = new stop(location, index, dt);
     stop* curr = this;
     while (curr->next != NULL) {

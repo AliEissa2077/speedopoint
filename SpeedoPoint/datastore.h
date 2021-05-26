@@ -41,7 +41,7 @@ private:
     vector<cruise*> cruises;
 
     float countryDist(country a, country b);
-    float* dijkstra (vector<vector<float>> graph, int src, vector<vector<Coords>> out);
+    float* dijkstra (vector<vector<float>> graph, int src, vector<vector<Coords>> &out);
     int minDistance(float dist[], bool sptSet[]);
 
 public:

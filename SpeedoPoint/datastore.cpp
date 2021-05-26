@@ -392,7 +392,7 @@ dataStore::dataStore()
                         int indx;
                         date dt;
                         if (stps == NULL) {
-                            stps = new stop(scountry, indx, dt)
+                            stps = new stop(scountry, indx, dt);
                         }
                         else {
                             stps->add_stop(scountry, indx, dt);
@@ -404,8 +404,8 @@ dataStore::dataStore()
             }
             string suite;
             ssc >> suite;
-            cruise* cruise = new cruise(code, company, dep, arr, model, price, depc, arrc, index, stps, suite);
-            cruises.push_back(cruise);
+            cruise* cr = new cruise(code, company, dep, arr, model, price, depc, arrc, index, stps, suite);
+            cruises.push_back(cr);
         }
         cfile.close();
     }
@@ -632,12 +632,15 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     country source;
     int cityindex;
     int iteration = 0;
+
     while (curr != NULL && iteration < 4) {
         //check location and oneway,refund parameters
-        if (curr->data->verifyFromLocs(locdep, citydep) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
+        qDebug() << curr->data->verifyFromLocs(locdep, citydep) << onew << "onew";
+        if (curr->data->verifyFromLocs(locdep, citydep) &&  curr->data->isOneW() == onew) {
             output.push_back(curr);
             source = curr->data->getDepCountry();
             cityindex = curr->data->getDepCityIndex();
+            qDebug() << "found some";
             iteration++;
         }
         curr = curr->next;
@@ -662,7 +665,7 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
                 //found = true;
             }
         }
-        if (!found) {
+        if (!found && countries[i].getName().compare(source.getName()) != 0) {
             vector <float> d;
             d.push_back(countryDist(countries[i], source));
             dists.push_back(d);
@@ -695,16 +698,20 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
     }
     float* dist = dijkstra(dists, 0, out);
     for (int i = 0 ; i < out.size(); i++) {
-        if (output[i]) {
+        if (output[i]->data) {
             for (int n = 0; n < out[i].size(); n++) {
-                output[i]->data->addStop(cts[out[i][n].x][out[i][n].y], 0);
-                qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                if (cts[out[i][n].x][out[i][n].y].getName().length() > 1) {
+                    //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                    output[i]->data->addStop(cts[out[i][n].x][out[i][n].y], 0);
+                    qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                }
             }
         }
+
     }
 
+    qDebug() << "got here";
 
-    qDebug() << "returned";
     return output;
 }
 /* OLD flights search
@@ -932,7 +939,7 @@ int dataStore::minDistance(float dist[], bool sptSet[])
 
     return min_index;
 }
-float* dataStore::dijkstra (vector<vector<float>> graph, int src, vector<vector<Coords>> out) //Method to implement shortest path algorithm
+float* dataStore::dijkstra (vector<vector<float>> graph, int src, vector<vector<Coords>> &out) //Method to implement shortest path algorithm
 {
     V = graph.size();
     float dist [graph.size()];

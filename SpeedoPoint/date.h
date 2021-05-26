@@ -11,7 +11,7 @@ private:
 	int hour;
 	int minute;
 public:
-    date(){}
+    date();
     date(int d, int m, int y);
 	date(int d, int m, int y, int h, int min);
     float operator-(float inp) {

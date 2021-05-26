@@ -1,21 +1,21 @@
-Argentina      0             Buenos Aires   Mendoza       Cordoba       
-Austria        0             Vienna         Graz          Linz          
-Bahamas        0             Nassau         Freeport      March Harbour 
-Bahrain        1             Manama         Hamad Town    Riffa         
-Belgium        0             Brussels       Bruges        Ghent         
-Bolivia        0             Sucre          Potosi        La Paz        
-Brazil         1             Brasilia       Manaus        Sau Paulo     
-Canada         0             Ottawa         Toronto       Montreal     
-Chile          0             Santiago       Valparaiso    Arica        
-Costa Rica    0             San Jose       Cartago       Jaco         
-Egypt         1             Cairo          Alexandria    Shobra       
-Estonia       0             Tallinn        Tartu         Narva         
-Finland       0             Helsinki       Tampere       Espoo         
-France        1             Paris          Marseille     Strasbourg   
-Germany       1             Berlin         Munich        Cologne       
-Greece        0             Athens         Thessaloniki  Chania        
-Italy         0             Rome           Venice        Florence     
-Japan         0             Tokyo          Kyoto         Osaka         
-Niger         0             Niamey         Zinder        Agadez        
-Palestine     1             Gaza           Khan Yunis    Jabalia      
+Argentina      0            1000 7 BuenosAires   Mendoza       Cordoba      
+Austria        0             1100 7 Vienna         Graz          Linz          
+Bahamas        0            1200 8  Nassau         Freeport      MarchHarbour  
+Bahrain        1             1200 8 Manama         HamadTown    Riffa        
+Belgium        0             1300 8 Brussels       Bruges        Ghent           
+Bolivia        0             1200 9 Sucre          Potosi        La Paz         
+Brazil         1             899 5 Brasilia       Manaus        Sau Paulo      
+Canada         0             1400 9 Ottawa         Toronto       Montreal       
+Chile          0             1250 7 Santiago       Valparaiso    Arica         
+CostaRica     0             767 4 SanJose       Cartago       Jaco          
+Egypt         1             969 10 Cairo          Alexandria    Shobra        
+Estonia       0             1020 9 Tallinn        Tartu         Narva          
+Finland       0             1095 10 Helsinki       Tampere       Espoo          
+France        1             450 4 Paris          Marseille     Strasbourg     
+Germany       1             600 6 Berlin         Munich        Cologne      
+Greece        0             1350 8 Athens         Thessaloniki  Chania         
+Italy         0             1150 9 Rome           Venice        Florence    
+Japan         0             1450 10 Tokyo          Kyoto         Osaka          
+Niger         0             650 9 Niamey         Zinder        Agadez         
+Palestine     1             2000 5 Gaza           KhanYunis    Jabalia                              
 

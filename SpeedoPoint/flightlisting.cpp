@@ -217,5 +217,5 @@ bool flightlisting::isOneW() {
 }
 void flightlisting::addStop(country c, int i) {
     date d;
-    stops->add_stop(c, i, stops->getAirport(), d);
+    stops->add_stop(c, i, d); //used to have airline
 }
