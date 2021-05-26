@@ -35,6 +35,7 @@ public:
     flightticket(int ad, int child, bool oneway, date dep, date arr, airport f, airport t, std::string tictype, bool refund, user* account, float dur, payment pay, flightlisting* l);
     void setReturn(date d);
     flightlisting* getListing();
+    user* getUser();
 };
 
 

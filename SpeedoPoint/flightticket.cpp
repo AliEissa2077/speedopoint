@@ -27,3 +27,7 @@ void flightticket::setReturn(date d) {
 flightlisting* flightticket::getListing() {
     return listing;
 }
+
+user* flightticket::getUser () {
+    return account;
+}

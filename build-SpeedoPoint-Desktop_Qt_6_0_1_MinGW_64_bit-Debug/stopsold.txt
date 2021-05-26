@@ -1,0 +1,20 @@
+i34 2 Austria 0 ViennaInternationalAirport Egypt 1 CairoInternationalAirport
+i35 1 Egypt 1 CairoInternationalAirport     
+e57 1 Egypt 1 CairoInternationalAirport   
+e63 1 Egypt 1 CairoInternationalAirport 
+e60 1 Egypt 1 CairoInternationalAirport
+f90 1 Egypt 1 CairoInternationalAirport 
+f30 1 Egypt 1 CairoInternationalAirport
+e46 0 Egypt 1 CairoInternationalAirport
+n54 1 Egypt 1 CairoInternationalAirport
+n55 1 Egypt 1 CairoInternationalAirport
+n98 1 Egypt 1 CairoInternationalAirport
+b48 1 Egypt 1 CairoInternationalAirport
+b58 1 Egypt 1 CairoInternationalAirport
+b68 1 Egypt 1 CairoInternationalAirport
+w24 1 Egypt 1 CairoInternationalAirport
+w67 0 Egypt 1 CairoInternationalAirport
+u49 0 Egypt 1 CairoInternationalAirport
+q91 0 Egypt 1 CairoInternationalAirport
+n54 0 Egypt 1 CairoInternationalAirport
+e69 0 Egypt 1 CairoInternationalAirport

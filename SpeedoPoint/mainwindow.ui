@@ -295,7 +295,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Flights">
       <attribute name="title">
@@ -674,22 +674,31 @@
         <rect>
          <x>170</x>
          <y>80</y>
-         <width>851</width>
+         <width>861</width>
          <height>351</height>
         </rect>
        </property>
-       <layout class="QVBoxLayout" name="flightlis1">
+       <layout class="QVBoxLayout" name="flightlis1" stretch="0">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetMinAndMaxSize</enum>
+        </property>
         <item>
          <widget class="QScrollArea" name="flightlist">
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+          </property>
           <property name="widgetResizable">
            <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignHCenter|Qt::AlignTop</set>
           </property>
           <widget class="QWidget" name="scrollAreaWidgetContents">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>847</width>
+             <width>857</width>
              <height>347</height>
             </rect>
            </property>
@@ -2387,9 +2396,9 @@
     </widget>
    </widget>
    <zorder>LoginScreen</zorder>
-   <zorder>Listings</zorder>
    <zorder>UserPage</zorder>
    <zorder>DetailsPage</zorder>
+   <zorder>Listings</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

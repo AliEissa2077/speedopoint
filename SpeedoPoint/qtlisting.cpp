@@ -344,6 +344,26 @@ void QtListing::cancelReservation() {
             }
         }
     }
+    if (getType() == 2) {
+        if (freserv->getListing()->isRefundable()) {
+            freserv->getUser()->getWallet()->deposit(freserv->getPaymentVal());
+        }
+        vector<flightticket*>* reservs = freserv->getUser()->getTickets();
+        for(int i = 0; i < reservs->size(); i++) {
+            if (reservs[0][i] == freserv) {
+                mainProg->updateUserP();
+                reservs->erase(reservs->begin() + i);
+                delete freserv;
+                freserv = NULL;
+                delete invoice;
+                //invoice->close();
+                invoice = NULL;
+                qDebug() << "reserv cancel";
+
+                return;
+            }
+        }
+    }
 
 }
 void QtListing::rateReservation() {
