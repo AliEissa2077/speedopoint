@@ -64,9 +64,12 @@ dataStore::dataStore()
             string c1;
             string c2;
             string c3;
-            ss >> name >> banned >> c1 >> c2 >> c3;
+            float x;
+            float y;
+            ss >> name >> banned >> x >> y>> c1 >> c2 >> c3;
+            Coords cds(x, y);
             string city;
-            country country__(name, banned);
+            country country__(name, banned, cds);
             country__.addCity(c1);
             country__.addCity(c2);
             country__.addCity(c3);

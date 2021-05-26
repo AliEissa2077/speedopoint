@@ -5,9 +5,10 @@ country::country()
 {
     name = " ";
 }
-country::country(std::string name_, bool ban)
+country::country(std::string name_, bool ban, Coords cds)
 {
     name = name_;
+	coords = cds;
     //banned = ban;
 }
 
