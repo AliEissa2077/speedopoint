@@ -391,6 +391,7 @@ dataStore::dataStore()
                         }
                         int indx;
                         date dt;
+                        sscs >> index;
                         if (stps == NULL) {
                             stps = new stop(scountry, indx, dt)
                         }
