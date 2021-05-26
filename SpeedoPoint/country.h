@@ -8,17 +8,18 @@
 struct Coords {
     int x = 0;
     int y = 0;
+    Coords() : x(0), y(0){}
     Coords(int a, int b) : x(a) , y(b) {}
 };
 
 class country {
 private:
 	std::string name;
-    //std::vector<std::string> banned;
-    bool banned;
+    std::vector<std::string> banned;
+    //bool banned;
 	std::vector<std::string> cities;
 
-    std::vector<Coords> coords;
+    Coords coords;
 
 
 public:
@@ -27,7 +28,9 @@ public:
 	void addCity(std::string city);
     std::string getName();
     std::vector<std::string> getCities();
-    std::vector<Coords> get_coordinates();
+    Coords get_coordinates();
+    void setBanned(std::vector<std::string> b);
+    std::vector<std::string> getBanned();
 };
 
 #endif COUNTRY_H

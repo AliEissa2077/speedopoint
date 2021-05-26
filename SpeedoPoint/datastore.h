@@ -38,6 +38,10 @@ private:
     Node<flightlisting*>* FlightListingsHead;
     Node<cruise*>* CruiseListingsHead;
 
+    float countryDist(country a, country b);
+    void dijkstra (vector<vector<int>> graph, int src);
+    int minDistance(int dist[], bool sptSet[]);
+
 public:
     dataStore();
     dataStore(fileSystem filesy);

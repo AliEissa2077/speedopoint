@@ -505,17 +505,58 @@ vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
     }
     return output;
 }
+float dataStore::countryDist(country a, country b) {
+
+}
 
 vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew) {
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
+    country source;
+    int cityindex;
     while (curr != NULL) {
         //check location and oneway,refund parameters
         if (curr->data->verifyFromLocs(locdep, citydep) && curr->data->isRefundable() == ref && curr->data->isOneW() == onew) {
             output.push_back(curr);
+            source = curr->data->getDepCountry();
+            cityindex = curr->data->getDepCityIndex();
         }
         curr = curr->next;
     }
+    vector<vector<country>> cts;
+    vector<country> c1;
+    c1.push_back(source);
+    cts.push_back(c1);
+
+    for (int i = 0 ; i < countries.size(); i++) {
+        bool found = false;
+        for (int n = 0 ; n < source.getBanned().size(); n++) {
+            if (source.getBanned()[n].compare(countries[i].getName()) == 0) {
+                found = true;
+            }
+        }
+        if (!found) {
+            vector<country> c;
+            c.push_back(countries[i]);
+            cts.push_back(c);
+        }
+    }
+    for (int x = 0; x < cts.size(); x++) {
+        for (int i = 0 ; i < countries.size(); i++) {
+            bool found = false;
+            for (int n = 0 ; n < cts[x][0].getBanned().size(); n++) {
+                if (cts[i][0].getBanned()[n].compare(countries[i].getName()) == 0) {
+                    found = true;
+                }
+            }
+            if (!found) {
+                cts[x].push_back(countries[i]);
+            }
+        }
+    }
+
+
+
     /*for (int i = output.size() -1; i >= 0; i--)  {
      * vector<string> banned = output[i]->data->getDepCountry().getBanned();
         for (int n = 0 n < banned.size(); n++) {
@@ -736,4 +777,48 @@ bool dataStore::UserExists(string email) {
         }
     }
     return false;
+}
+
+int V;
+
+int dataStore::minDistance(int dist[], bool sptSet[])
+{
+    // Initialize min value
+    int min = INT_MAX, min_index;
+
+    for (int v = 0; v < V; v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
+
+    return min_index;
+}
+void dataStore::dijkstra (vector<vector<int>> graph, int src) //Method to implement shortest path algorithm
+{
+    V = graph.size();
+    int dist [graph.size()];
+    bool Dset[graph.size()];
+    for (int i= 0; i < graph.size(); i++)
+    {
+        dist[i] = INT_MAX;
+        Dset[i] = false;
+    }
+    dist[src] = 0; //Initialize the distance of the source vertec to zero
+    for (int c = 0; c <graph.size(); c++)
+    {
+        int u = minDistance(dist, Dset); //u is any vertex that is not yet included Dset and has minimum distance
+        Dset[u] = true; //If the vertex with minimum distance found include it to Dset
+        for (int v = 0; v <graph.size(); v++)
+            //Update dist[v] if not inDsetand their is a path from src to v through u that has distance minimum than current value of dist[v]
+        {
+            if (!Dset[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] <dist[v])
+                dist[v] =dist[u] + graph[u][v];
+        }
+    }
+    cout<< "Vertex\t\tDistance from source"<<endl;
+
+    for (int i= 0; i < graph.size(); i++) //will print the vertex with their distance from the source to the console
+    {
+        char c = 65 + i;
+        cout << c << "\t\t"<<dist[i] <<endl;
+    }
 }

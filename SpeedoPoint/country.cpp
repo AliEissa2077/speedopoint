@@ -5,7 +5,7 @@
 country::country(std::string name_, bool ban)
 {
 	name = name_;
-	banned = ban;
+    //banned = ban;
 }
 
 void country:: addCity(std::string city)
@@ -35,6 +35,13 @@ std::vector<std::string>country::getCities()
 	return cities;
 }
 
-std::vector<Coords> country::get_coordinates() {
+Coords country::get_coordinates() {
     return coords;
+}
+void country::setBanned(std::vector<std::string> b) {
+    banned = b;
+}
+
+std::vector<std::string> country::getBanned() {
+    return banned;
 }

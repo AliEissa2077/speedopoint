@@ -205,23 +205,35 @@ bool flightlisting::isRefundable() {
 bool flightlisting::isOneW() {
     return oneway;
 }
+int V;
 
-
-/*void dijkstra (int graph[x][y], int src) //Method to implement shortest path algorithm
+int minDistance(int dist[], bool sptSet[])
 {
-    int dist [vertex];
-    bool Dset[vertex];
-    for (int i= 0; i < vertex; i++)
+    // Initialize min value
+    int min = INT_MAX, min_index;
+
+    for (int v = 0; v < V; v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
+
+    return min_index;
+}
+void dijkstra (vector<vector<int>> graph, int src) //Method to implement shortest path algorithm
+{
+    V = graph.size();
+    int dist [graph.size()];
+    bool Dset[graph.size()];
+    for (int i= 0; i < graph.size(); i++)
     {
         dist[i] = INT_MAX;
         Dset[i] = false;
     }
     dist[src] = 0; //Initialize the distance of the source vertec to zero
-    for (int c = 0; c <vertex; c++)
+    for (int c = 0; c <graph.size(); c++)
     {
-        int u = minimumDist(dist, Dset); //u is any vertex that is not yet included Dset and has minimum distance
+        int u = minDistance(dist, Dset); //u is any vertex that is not yet included Dset and has minimum distance
         Dset[u] = true; //If the vertex with minimum distance found include it to Dset
-        for (int v = 0; v <vertex; v++)
+        for (int v = 0; v <graph.size(); v++)
             //Update dist[v] if not inDsetand their is a path from src to v through u that has distance minimum than current value of dist[v]
         {
             if (!Dset[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] <dist[v])
@@ -230,9 +242,9 @@ bool flightlisting::isOneW() {
     }
     cout<< "Vertex\t\tDistance from source"<<endl;
 
-    for (int i= 0; i < vertex; i++) //will print the vertex with their distance from the source to the console
+    for (int i= 0; i < graph.size(); i++) //will print the vertex with their distance from the source to the console
     {
         char c = 65 + i;
         cout << c << "\t\t"<<dist[i] <<endl;
     }
-}*/
+}
