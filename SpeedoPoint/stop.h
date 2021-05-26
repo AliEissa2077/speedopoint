@@ -17,10 +17,11 @@ public:
     stop* next;
 	stop();
     stop(country location, int index, airport airl, date dt);
-    void add_stop(country locatiuon, int index, airport airl, date dt);
+    void add_stop(country location, int index, date dt);
     date getTime();
     airport getAirport();
     int getIndex();
+    void setAirport(airport air);
     country getLoc();
 };
 

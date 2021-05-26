@@ -261,7 +261,8 @@ dataStore::dataStore()
                         }
                         if (stps == NULL) {
                             date dt;
-                            stps = new stop(ct, index, aport, dt);
+                            stps = new stop(ct, index, dt);
+                            stps->setAirport(aport);
                             qDebug() << "country " << QString::fromStdString(ct.getName());
                         }
                         else {
@@ -332,7 +333,82 @@ dataStore::dataStore()
 
 
     // cruises 
+    string cruisefile("cruises.txt");
+    ifstream cfile(cruisefile);
+    if(cfile.is_open()) {
+        string cline;
+        while (getline(cfile, cline)) {
+            stringstream ssc(cline);
+            string code;
+            string cc;
+            cruisecompany* company;
+            ssc >> code >> cc;
+            for (auto x : cruisecompanies) {
+                if (x->getName() == cc) {
+                    company = x;
+                }
+            }
+            int depy, depm, depd, deph, depmin, arry, arrm, arrd, arrh, arrmin;
+            ssc >> depy >> depm >> depd >> deph >> depmin >> arry >> arrm >> arrd >> arrh >> arrmin;
 
+            date dep(depd, depm, depy, deph, depmin);
+            date arr(arrd, arrm, arry, arrh, arrm);
+            string model;
+            int price;
+            
+            string c1;
+            string c2;
+            ssc >> model >> price >> c1 >> c2;
+            country depc, arrc;
+            for (auto x : countries) {
+                if (x.getName() == c1) {
+                    depc = x;
+                }
+                if (x.getName() == c2) {
+                    arrc = x;
+                }
+            }
+            int index;
+            ssc >> index;
+            stop* stps = NULL;
+            string cstopfile = "cstops.txt";
+            ifstream s(cstopfile);
+            string sline;
+            while (getline(s, sline)) {
+                stringstream sscs(sline);
+                string cruisecode;
+                int stpnum;
+                sscs >> cruisecode;
+                if (code == cruisecode) {
+                    sscs >> stpnum;
+                    for (int i = 0; i < stpnum; i++) {
+                        string ctry;
+                        country scountry;
+                        for (auto x : countries) {
+                            if (ctry == x.getName()) {
+                                scountry = x;
+                            }
+                        }
+                        int indx;
+                        date dt;
+                        if (stps == NULL) {
+                            stps = new stop(scountry, indx, dt)
+                        }
+                        else {
+                            stps->add_stop(scountry, indx, dt);
+                        }
+
+                    }
+                }
+                s.close();
+            }
+            string suite;
+            ssc >> suite;
+            cruise* cruise = new cruise(code, company, dep, arr, model, price, depc, arrc, index, stps, suite);
+            cruises.push_back(cruise);
+        }
+        cfile.close();
+    }
 
 
 

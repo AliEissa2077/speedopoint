@@ -14,6 +14,7 @@
 
 class cruise {
 private:
+    string code;
 	date start;
 	date end;
 	std::string cruiseModel;
@@ -27,7 +28,7 @@ private:
 	std::string suiteType;
 public:
 	cruise();
-    cruise(cruisecompany* c, date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type);
+    cruise(string cd, cruisecompany* c, date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type);
     cruisereservation* reserve(user* acc, int adult, int child);
     int getPricePerPerson();
     int getDuration();
