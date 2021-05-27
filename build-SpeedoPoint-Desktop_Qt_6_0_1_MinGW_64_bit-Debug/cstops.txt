@@ -1,25 +1,20 @@
-0876 ArgentinianCruises 2021 5 28 09 30 2021 6 2 01 50 AmericanSkier 1300 Argentina Argentina 1 Deluxe
-0638 AustriaBoating 2021 5 29 08 45 2021 6 4 02 15 AndreeRosenqvist 1300 Austria Austria 0 Economy  
-0876 BahamasTours 2021 6 25 07 30 2021 6 29 03 30 Bayliner 1400 bahamas Brazil 1 Elite
-2036 BahrainThree 2021 7 5 06 45 2021 7 9 02 45 Beneteau 1500 Bahrain Palestine 0 deluxe
-0345 BelguickBoat 2021 8 2 02 30 2021 8 10 05 30 BostonWhaler 1200 Belgium Bolivia 1 Economy
-2020 BoliviCruises 2021 8 2 03 45 2021 8 5 08 15 CarterMarine 1000 Bolivia Belgium 0 Deluxe
-2021 BraziliaWaters 2021 5 30 12 30 2021 6 4 03 30 CarverMarine 980 Brazil Bahamas 1 Deluxe
-2987 CanadianRiver 2021 6 7 13 45 2021 6 14 06 45 AmericanSkier 1255 Canada Greece 0 Economy
-0908 ChillBoating 2021 6 3 14 30 2021 6 10 08 30 AndreeRosenqvist 1500 Chile Costarica 1 Elite
-0637 CostaSeas 2021 6 8 15 45 2021 6 15 06 15 Bayliner 1000 CostaRica Egypt 0 Deluxe
-0237 EgyCruise 2021 6 5 16 30 2021 6 17 04 30 Beneteau 700 Egypt Palestine 2 Elite
-0564 EstoWaters 2021 7 12 17 45 2021 7 19 05 45 BostonWhaler 1400 Estonia Finland 1 Economy
-0475 FineWater 2021 7 14 22 30 2021 7 16 12 30 CarterMarine 1200 Finland Estonia 0 Elite
-9807 BaguetteBoat 2021 8 1 14 45 2021 8 4 13 15 CarverMarine 1300 France Greece 1 Economy
-9085 HeilBoating 2021 6 10 19 30 2021 6 15 14 30 AmericanSkier 1600 Germany Egypt 0 Deluxe
-7060 GreecyWaters 2021 6 13 22 45 2021 6 18 15 45 AndreeRosenqvist 1900 Greece Palestine 2 Elite
-5060 ItalianFloat 2021 6 11 21 30 2021 6 19 16 30 Bayliner 1950 Italy Bahamas 1 Elite
-7093 DriftBoating 2021 5 28 20 45 2021 6 3 18 15 Beneteau 1340 Japan Egypt 2 Deluxe
-1234 NigerWaters 2021 5 30 20 30 2021 6 7 16 30 BostonWhaler 500 Niger Greece 1 Economy
-4321 PalestinianCruise 2021 6 16 45 2021 6 20 13 45 CarterMarine 450 Palestine Egypt 2 Deluxe
-
-
-cruise code ->  cruisecompany name -> departure year - > departure month -> departure day -> dep hour -> dep min -> arrival year -> 
-arrival month -> arrival day -> arrival hour -> arrival min -> cruise model -> price range -> 
-departure country -> arrival country -> arrival city index -> suite type
+0876 1 Canada 1
+0638 1 Germany 2 
+0877 2 Egypt 2 Japan 1
+2036 1 Greece 1
+0345 1 Argentina 2
+2020 2 Niger 1
+2021 1 Egypt 2
+2987 1 Bahamas 0
+0908 2 CostaRica 0 Bolivia
+0637 1 Bolivia 0
+0237 1 Austria 2
+0564 2 Bahrain 0 Brazil 1
+0475 1 Austria
+9807 1 Finland 1
+9085 2 Bolivia 2 Belgium 1
+7060 1 Palestine 0
+5060 1 Bahamas 0 
+7093 2 Greece 0 Italy 0
+1234 1 Egypt 1
+4321 1 Egypt 1

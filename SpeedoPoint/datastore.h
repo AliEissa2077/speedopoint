@@ -60,6 +60,9 @@ public:
     vector<Node<cruise*>*> GetCruisesInLoc(string loc, string city);
     vector<Node<flightlisting*>*> GetFlightsInLoc(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew);
 
+    vector<Node<flightlisting*>*> GetShortest(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew, bool dest);
+    vector<Node<flightlisting*>*> GetShortestOfAll(string locdep, string citydep, bool onew);
+
     vector<flightlisting*> GetSortedFlights(int type);
     vector<cruise*> GetSortedCruises(int type);
     vector<hotellisting*> GetSortedHotels(int type);

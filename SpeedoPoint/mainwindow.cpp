@@ -311,8 +311,22 @@ void MainWindow::DisplayFlights() {
         //testlist->removeWidget(listings[i]->getwidget());
         //listings[i]->getwidget()->setVisible(false);
     }
-    vector<Node<flightlisting*>*> mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), !MainWindow::findChild<QCheckBox *>("TwoWay")->isChecked());
 
+    vector<Node<flightlisting*>*> mylist;
+    //if (MainWindow::findChild<QCheckBox *>("Shortest")->isChecked()) {
+        bool dest = true;
+        if (!MainWindow::findChild<QCheckBox *>("Shortest")->isChecked()) {
+            dest = false;
+        }
+        bool test = true;
+        if ( MainWindow::findChild<QCheckBox *>("TwoWay")->checkState () == Qt::Checked) {
+            test = false;
+        }
+        mylist = progData->GetShortest(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), test, dest);
+    //}
+    //else {
+        //mylist = progData->GetFlightsInLoc(ctrySelect->currentText().toStdString(), citydepselect->currentText().toStdString(), arrctrySelect->currentText().toStdString(), cityarrselect->currentText().toStdString(), MainWindow::findChild<QCheckBox *>("Refundable")->isChecked(), !MainWindow::findChild<QCheckBox *>("TwoWay")->isChecked());
+    //}
     if (mylist.empty()) {
         return;
     }

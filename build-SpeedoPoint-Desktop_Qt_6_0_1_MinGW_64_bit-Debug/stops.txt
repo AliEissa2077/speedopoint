@@ -1,4 +1,4 @@
-i34 2 Austria 0 ViennaInternationalAirport Egypt 1 CairoInternationalAirport
+i34 2 Austria 0 ViennaInternationalAirport 
 i35 1 Bahamas 1 PindlingInternationalAirport      
 e57 1 Germany 0 BerlinInternationalAirport  
 e63 1 Bahrain 0 BahrainInternationalAirport
@@ -18,3 +18,4 @@ u49 1 Greece 0 AthensInternationalAirport
 q91 1 Italy 2 FiumicinoInternationalAirport 
 n54 1 Niger 2 HamaniInternationalAirport
 e69 1 Palestine 1 YasserInternationalAirport
+

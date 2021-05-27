@@ -193,7 +193,6 @@ string flightlisting::getArrTime() {
 
 bool flightlisting::verifyFromLocs(string locdep, string citydep)
 {
-    qDebug() << QString::fromStdString(stops->getLoc().getName());
     if (stops == NULL) {
         return false;
     }
@@ -222,4 +221,33 @@ void flightlisting::addStop(country c, int i) {
         stops = new stop(c, i, d);
     }
     stops->add_stop(c, i, d); //used to have airline
+}
+stop* flightlisting::RevstopAt(int x) {
+    stop * curr = stops;
+    int count  = 0;
+    while (curr->next != NULL) {
+        curr = curr->next;
+        count++;
+    }
+    curr = stops;
+    for (int i = 1; i < count - x; i++) {
+        curr = curr->next;
+    }
+    return curr;
+}
+int flightlisting::getstopsCount() {
+    stop * curr = stops;
+    int count  = 0;
+    while (curr->next != NULL) {
+        curr = curr->next;
+        count++;
+    }
+    return count;
+}
+void flightlisting::addStop(stop* s) {
+    stop* curr = stops;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = s;
 }

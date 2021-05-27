@@ -728,7 +728,8 @@ debug/cruise.o: ../SpeedoPoint/cruise.cpp ../SpeedoPoint/cruise.h \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QRect \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QSize \
 		C:/Qt/6.0.1/mingw81_64/include/QtCore/QSizeF \
-		C:/Qt/6.0.1/mingw81_64/include/QtGui/QTransform
+		C:/Qt/6.0.1/mingw81_64/include/QtGui/QTransform \
+		C:/Qt/6.0.1/mingw81_64/include/QtCore/QtDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\cruise.o ..\SpeedoPoint\cruise.cpp
 
 debug/cruiseReservation.o: ../SpeedoPoint/cruiseReservation.cpp ../SpeedoPoint/cruisereservation.h \

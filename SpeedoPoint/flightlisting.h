@@ -46,6 +46,9 @@ public:
 
     bool verifyFromLocs(string locdep, string citydep);
     void addStop(country c, int i);
+    stop* RevstopAt(int x); //reverse stop index
+    int getstopsCount();
+    void addStop(stop* s);
 
 };
 

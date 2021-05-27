@@ -335,7 +335,6 @@ dataStore::dataStore()
 
 
     // cruises 
-    Iindex = 0;
     string cruisefile("cruises.txt");
     ifstream cfile(cruisefile);
     if(cfile.is_open()) {
@@ -394,7 +393,7 @@ dataStore::dataStore()
                         }
                         int indx = 0;
                         date dt;
-                        sscs >> indx;
+                        sscs >> index;
                         if (stps == NULL) {
                             stps = new stop(scountry, indx, dt);
                         }
@@ -409,27 +408,7 @@ dataStore::dataStore()
             string suite;
             ssc >> suite;
             cruise* cr = new cruise(code, company, dep, arr, model, price, depc, arrc, index, stps, suite);
-
-            if (CruiseListingsHead == NULL) {
-                CruiseListingsHead = new Node<cruise*>;
-                CruiseListingsHead->data = cr;
-                CruiseListingsHead->initialIndex = Iindex;
-                CruiseListingsHead->next = NULL;
-                Iindex++;
-            }
-            else {
-                Node<cruise*>* curr = CruiseListingsHead;
-                while (curr->next != NULL) {
-                    curr = curr->next;
-                }
-                curr->next = new Node<cruise*>;
-                curr->next->data = cr;
-                curr->next->initialIndex = Iindex;
-                curr->next->next = NULL;
-                Iindex++;
-            }
-
-            //cruises.push_back(cr);
+            cruises.push_back(cr);
         }
         cfile.close();
     }
@@ -636,13 +615,8 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
 vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
     Node<cruise*>* curr = CruiseListingsHead;
     vector<Node<cruise*>*> output;
-    qDebug() << "added";
     while (curr != NULL) {
-        if (curr->data) {
-            qDebug() << "exists";
-        }
         if (curr->data->verifyLoc(loc, city)) {
-            qDebug() << "added";
             output.push_back(curr);
         }
         curr = curr->next;
@@ -656,46 +630,6 @@ float dataStore::countryDist(country a, country b) {
 }
 
 vector<Node<flightlisting*>*> dataStore::GetShortest(string locdep, string citydep, string locArrive, string cityArrive, bool ref, bool onew, bool dest) { // bool dest is if there is a specified destination
-    qDebug() << "before";
-    vector<Node<flightlisting*>*> arr1 = GetShortestOfAll(locdep, citydep, onew);
-    vector<Node<flightlisting*>*> arr2 = GetShortestOfAll(locArrive, cityArrive, onew);
-qDebug() << "before";
-    for (int i = 0 ; i < arr1.size(); i++) {
-        for (int n = 0 ; n < arr2.size(); n++) {
-            if (arr1[i]->data->getArrCountry().getName().compare(arr2[n]->data->getArrCountry().getName()) == 0) {
-
-                for (int x = 1; x < arr2[n]->data->getstopsCount(); x++) {
-                    qDebug() << "did it";
-                    arr1[i]->data->addStop(arr2[n]->data->RevstopAt(x)); //push the rev stop at from arr2
-                }
-            }
-        }
-    }
-    qDebug() << "before";
-    for (int i = 0; i < arr1.size() ; i ++) {
-        Node<flightlisting*>* temp = arr1[i];
-        if (temp->data->getArrCountry().getName().compare(locArrive) != 0) {
-            //qDebug() << "deleted";
-            arr1.erase(arr1.begin() + i);
-            //delete temp;
-        }
-    }
-    for (int i = 0; i < arr1.size() ; i ++) {
-        Node<flightlisting*>* temp = arr1[i];
-        if (temp->data->getArrCountry().getName().compare(locArrive) != 0) {
-            //qDebug() << "deleted";
-            arr1.erase(arr1.begin() + i);
-        }
-    }
-    if (arr1.size() > 0) {
-        if (arr1[0]->data->getArrCountry().getName().compare(locArrive) != 0) {
-            arr1.erase(arr1.begin());
-        }
-    }
-
-    return arr1;
-}
-vector<Node<flightlisting*>*> dataStore::GetShortestOfAll(string locdep, string citydep, bool onew) {
     Node<flightlisting*>* curr = FlightListingsHead;
     vector<Node<flightlisting*>*> output;
     country source;
@@ -704,12 +638,10 @@ vector<Node<flightlisting*>*> dataStore::GetShortestOfAll(string locdep, string 
 
     while (curr != NULL) {
         //check location and oneway,refund parameters
-        //qDebug() << curr->data->isOneW();
-        if ((curr->data->verifyFromLocs(locdep, citydep)) && (curr->data->isOneW() + onew > 0)) {
+        if ((curr->data->verifyFromLocs(locdep, citydep)) && (curr->data->isOneW() * onew > 0)) {
             output.push_back(curr);
             source = curr->data->getDepCountry();
             cityindex = curr->data->getDepCityIndex();
-            //qDebug() << "got here";
             //qDebug() << "found some";
             //iteration++;
         }
@@ -758,7 +690,6 @@ vector<Node<flightlisting*>*> dataStore::GetShortestOfAll(string locdep, string 
             if (!found) {
                 dists[x].push_back(countryDist(countries[i], cts[x][0]));
                 cts[x].push_back(countries[i]);
-                //qDebug() << QString::fromStdString(countries[i].getName());
             }
         }
     }
@@ -774,15 +705,137 @@ vector<Node<flightlisting*>*> dataStore::GetShortestOfAll(string locdep, string 
 
     for (int i = 0 ; i < out.size(); i++) {
         if (output.size() > i) {
-            qDebug() << "output: " << QString::fromStdString(output[i]->data->getDepCountry().getName());
             for (int n = 0; n < out[i].size(); n++) {
                 if (out[i][n].x < cts.size()) {
                     if (out[i][n].y < cts[out[i][n].x].size()) {
-                    qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                    //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
 
                     if (output[i]->data == NULL) {
                     }
+                    output[i]->data->addStop(cts[out[i][n].x][out[i][n].y], 0);
+                    //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                    }
+                }
+            }
+        }
+    }
+    output.erase(output.begin());
+    for (int i = 0 ; i < cts.size(); i++) {
+        if (cts[i][0].getName().compare(locArrive) == 0) {
+            vector<country> temp = cts[0];
+            cts[0] = cts[i];
+            cts[i] = temp;
+        }
+    }
 
+    if (dest) {
+        for (int i = 0; i < output.size() ; i ++) {
+            Node<flightlisting*>* temp = output[i];
+            if (temp->data->getArrCountry().getName().compare(locArrive) != 0) {
+                qDebug() << "deleted";
+                output.erase(output.begin() + i);
+                //delete temp;
+            }
+             qDebug() << QString::fromStdString(temp->data->getArrCountry().getName());
+        }
+        for (int i = 0; i < output.size() ; i ++) {
+            Node<flightlisting*>* temp = output[i];
+            if (temp->data->getArrCountry().getName().compare(locArrive) != 0) {
+                qDebug() << "deleted";
+                output.erase(output.begin() + i);
+            }
+             qDebug() << QString::fromStdString(temp->data->getArrCountry().getName());
+        }
+    }
+    //output.erase(output.begin() + 0);
+    qDebug() << "looped" << output.size();
+    qDebug() << QString::fromStdString(locArrive);
+
+    return output;
+}
+vector<Node<flightlisting*>*> dataStore::GetShortestOfAll(string locdep, string citydep, bool onew) {
+    Node<flightlisting*>* curr = FlightListingsHead;
+    vector<Node<flightlisting*>*> output;
+    country source;
+    int cityindex;
+    //int iteration = 0;
+
+    while (curr != NULL) {
+        //check location and oneway,refund parameters
+        if ((curr->data->verifyFromLocs(locdep, citydep)) && (curr->data->isOneW() * onew > 0)) {
+            output.push_back(curr);
+            source = curr->data->getDepCountry();
+            cityindex = curr->data->getDepCityIndex();
+            //qDebug() << "found some";
+            //iteration++;
+        }
+        curr = curr->next;
+    }
+    if (source.getName().length() <= 1) {
+        qDebug() << "returned";
+        return output;
+    }
+    vector<vector<country>> cts;
+    vector<vector<float>> dists;
+    vector<country> c1;
+    vector <float> d1;
+    d1.push_back(0);
+    dists.push_back(d1);
+
+    c1.push_back(source);
+    cts.push_back(c1);
+
+    for (int i = 0 ; i < countries.size(); i++) {
+        bool found = false;
+        for (int n = 0 ; n < source.getBanned().size(); n++) {
+            if (source.getBanned()[n].compare(countries[i].getName()) == 0) {
+                //found = true;
+            }
+        }
+        if (!found && countries[i].getName().compare(source.getName()) != 0) {
+            vector <float> d;
+            d.push_back(countryDist(countries[i], source));
+            dists.push_back(d);
+
+            vector<country> c;
+            c.push_back(countries[i]);
+            cts.push_back(c);
+        }
+    }
+    for (int x = 0; x < cts.size(); x++) {
+        for (int i = 0 ; i < countries.size(); i++) {
+            bool found = false;
+            for (int n = 0 ; n < cts[x][0].getBanned().size(); n++) {
+                if (cts[x][0].getBanned()[n].compare(countries[i].getName()) == 0) {
+                    found = true;
+                    dists[x].push_back(0);
+                }
+            }
+            if (!found) {
+                dists[x].push_back(countryDist(countries[i], cts[x][0]));
+                cts[x].push_back(countries[i]);
+            }
+        }
+    }
+
+    vector<vector<Coords>> out;
+    vector<Coords> t;
+    for (int i = 0; i < dists.size(); i++) {
+        out.push_back(t);
+    }
+    float* dist = dijkstra(dists, 0, out);
+
+
+
+    for (int i = 0 ; i < out.size(); i++) {
+        if (output.size() > i) {
+            for (int n = 0; n < out[i].size(); n++) {
+                if (out[i][n].x < cts.size()) {
+                    if (out[i][n].y < cts[out[i][n].x].size()) {
+                    //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+
+                    if (output[i]->data == NULL) {
+                    }
                     output[i]->data->addStop(cts[out[i][n].x][out[i][n].y], 0);
                     //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
                     }
@@ -1043,12 +1096,12 @@ float* dataStore::dijkstra (vector<vector<float>> graph, int src, vector<vector<
             }
         }
     }
-    //qDebug() << "Vertex\t\tDistance from source";
+    qDebug() << "Vertex\t\tDistance from source";
 
     for (int i= 0; i < graph.size(); i++) //will print the vertex with their distance from the source to the console
     {
         char c = 65 + i;
-        //qDebug() << c << "\t\t"<<dist[i];
+        qDebug() << c << "\t\t"<<dist[i];
     }
     return dist;
 }

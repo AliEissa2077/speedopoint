@@ -80,6 +80,7 @@ public:
     QVBoxLayout *flightlis1;
     QScrollArea *flightlist;
     QWidget *scrollAreaWidgetContents;
+    QCheckBox *Shortest;
     QWidget *Hotels;
     QListWidget *HotelListings;
     QLabel *label_5;
@@ -402,6 +403,7 @@ public:
         TwoWay = new QCheckBox(Flights);
         TwoWay->setObjectName(QString::fromUtf8("TwoWay"));
         TwoWay->setGeometry(QRect(740, 20, 111, 31));
+        TwoWay->setChecked(false);
         SearchFlights = new QPushButton(Flights);
         SearchFlights->setObjectName(QString::fromUtf8("SearchFlights"));
         SearchFlights->setGeometry(QRect(900, 20, 93, 31));
@@ -426,7 +428,7 @@ public:
         ToCitySelect->setGeometry(QRect(630, 20, 91, 31));
         Refundable = new QCheckBox(Flights);
         Refundable->setObjectName(QString::fromUtf8("Refundable"));
-        Refundable->setGeometry(QRect(30, 110, 111, 31));
+        Refundable->setGeometry(QRect(10, 140, 111, 31));
         verticalLayoutWidget_4 = new QWidget(Flights);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
         verticalLayoutWidget_4->setGeometry(QRect(170, 80, 861, 351));
@@ -446,6 +448,9 @@ public:
 
         flightlis1->addWidget(flightlist);
 
+        Shortest = new QCheckBox(Flights);
+        Shortest->setObjectName(QString::fromUtf8("Shortest"));
+        Shortest->setGeometry(QRect(10, 110, 161, 31));
         Tabs->addTab(Flights, QString());
         Hotels = new QWidget();
         Hotels->setObjectName(QString::fromUtf8("Hotels"));
@@ -879,8 +884,8 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
         UserPage->raise();
-        Listings->raise();
         DetailsPage->raise();
+        Listings->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));
@@ -967,6 +972,7 @@ public:
         SortBy->setItemText(3, QCoreApplication::translate("MainWindow", "Distance", nullptr));
 
         Refundable->setText(QCoreApplication::translate("MainWindow", "Refundable", nullptr));
+        Shortest->setText(QCoreApplication::translate("MainWindow", "Shortest Flight to dest", nullptr));
         Tabs->setTabText(Tabs->indexOf(Flights), QCoreApplication::translate("MainWindow", "Flights", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Select country", nullptr));
         HotelCountry->setItemText(0, QCoreApplication::translate("MainWindow", "Argentina", nullptr));

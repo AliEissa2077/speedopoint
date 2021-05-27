@@ -1,9 +1,10 @@
 #include "cruise.h"
 #include <QMessageBox>
+#include <QtDebug>
 
 cruise::cruise()
 {
-
+    stops = NULL;
 }
 
 cruise::cruise(string cd, cruisecompany* c, date start_, date end_, std::string model, int price, country dep, country arr, int index, stop* stp, std::string type)
@@ -114,6 +115,10 @@ bool cruise::isRefundable () {
 
 bool cruise::verifyLoc(string loc, string city)
 {
+    if (!stops) {
+        qDebug() << "nope";
+        return false;
+    }
     if (loc.compare(stops->getLoc().getName()) == 0)
 	{
 		if (city.length() > 1)
@@ -122,7 +127,7 @@ bool cruise::verifyLoc(string loc, string city)
             {
                 return true;
             }
-			return false;
+            return true;
 		}
 		else return true;
 	}
