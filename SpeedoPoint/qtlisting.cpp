@@ -106,22 +106,24 @@ QtListing::QtListing(hotellisting* inp, int index)
 
 QtListing::QtListing(cruise* inp, int index)
 {
+    qDebug() <<"listhere";
     Ind = index;
     clisting = inp;
     hlisting = NULL;
     flisting = NULL;
     QListWidgetItem* temp = new QListWidgetItem();
     QWidget *widget = new QWidget();
+    qDebug() <<"bfirst";
     QLabel *widgetText =  new QLabel(QString::fromStdString(inp->getCompany()->getName())); // primary text
     QSpacerItem *spacer = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
-
+qDebug() <<"first";
     QString secondaryt = QString::fromStdString(inp->getDepCountry().getCities()[inp->getDepIndex()]  + " " + inp->getDepCountry().getName()  + " To: " + + " Price: " + inp->getArrCountry().getCities()[inp->getArrIndex()]  + " " + inp->getArrCountry().getName() + to_string(inp->getPricePerPerson()) + "LE ");
-
+qDebug() <<"sec";
     QLabel *secondarytxt =  new QLabel(secondaryt); // secondary text info
     QSpacerItem *spacer1 = new QSpacerItem(20,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QString tertia = QString::fromStdString("Rating:" + to_string(inp->getCompany()->getRating()));
-
+qDebug() <<"tert";
     QLabel *tertiarytxt =  new QLabel(tertia); // tertiary text info
     QSpacerItem *spacer2 = new QSpacerItem(140,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     QPushButton *testbut = new QPushButton();
@@ -147,6 +149,7 @@ QtListing::QtListing(cruise* inp, int index)
     temp->setSizeHint(widget->sizeHint());
     item = temp;
     wid = widget;
+    qDebug() <<"listhere";
 }
 
 QtListing::QtListing(QWidget* source)

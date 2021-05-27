@@ -425,11 +425,12 @@ void MainWindow::DisplayCruises() {
     vector<Node<cruise*>*> mylist = progData->GetCruisesInLoc(ctrySelect->currentText().toStdString(), crzcity->currentText().toStdString());
 
     QVBoxLayout* testlist = MainWindow::findChild<QVBoxLayout *>("cruiselist");
-
+qDebug() <<"here";
     for (int i = 0; i < listings.size(); i++) {
         testlist->removeWidget(listings[i]->getwidget());
         listings[i]->getwidget()->setVisible(false);
     }
+    qDebug() <<"here";
 
     if (sort > 0) {
         priority_queue<Node<cruise*>*, vector<Node<cruise*>*>, cmp<cruise>> queuetest;
@@ -448,6 +449,7 @@ void MainWindow::DisplayCruises() {
         }
     }
     else {
+        qDebug() <<"here";
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data,  mylist[n]->initialIndex);  // adding an element to the list
             listtest->setMainProg(this);
@@ -456,6 +458,7 @@ void MainWindow::DisplayCruises() {
             //MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
             //MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
         }
+        qDebug() <<"here";
     }
 }
 

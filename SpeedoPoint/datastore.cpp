@@ -328,6 +328,7 @@ dataStore::dataStore()
             int range;
             sscc >> name >> rt >> srt >> range;
             cruisecompany* cc = new cruisecompany(name, rt, srt, range);
+            qDebug() << QString::fromStdString(name) << " n";
             cruisecompanies.push_back(cc);
         }
         ccfile.close();
@@ -347,9 +348,11 @@ dataStore::dataStore()
             cruisecompany* company;
             ssc >> code >> cc;
             for (auto x : cruisecompanies) {
-                if (x->getName() == cc) {
+                if (x->getName().compare(cc) == 0) {
                     company = x;
+
                 }
+                qDebug() << QString::fromStdString(x->getName());
             }
             int depy, depm, depd, deph, depmin, arry, arrm, arrd, arrh, arrmin;
             ssc >> depy >> depm >> depd >> deph >> depmin >> arry >> arrm >> arrd >> arrh >> arrmin;
@@ -405,8 +408,8 @@ dataStore::dataStore()
 
                     }
                 }
-                s.close();
-            }
+
+            }s.close();
             string suite;
             ssc >> suite;
             cruise* cr = new cruise(code, company, dep, arr, model, price, depc, arrc, index, stps, suite);
@@ -637,7 +640,7 @@ vector<Node<hotellisting*>*> dataStore::GetHotelsInLoc(string loc, string city, 
 vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
     Node<cruise*>* curr = CruiseListingsHead;
     vector<Node<cruise*>*> output;
-    qDebug() << "added";
+
     while (curr != NULL) {
         if (curr->data) {
             qDebug() << "exists";
@@ -648,6 +651,7 @@ vector<Node<cruise*>*> dataStore::GetCruisesInLoc(string loc, string city) {
         }
         curr = curr->next;
     }
+    qDebug() << "returned";
     return output;
 }
 float dataStore::countryDist(country a, country b) {
