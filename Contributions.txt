@@ -6,6 +6,7 @@ Ali Eissa:
 	-sorting algorithm (modified version of selection sort)
 	-Implemented the reserve functions in flightlisting, hotellisting, and cruise classes
 	-Modified the flightlisting search code to work with Dijkstra
+	-made the user page + canceling reservations + rating update systems
 
 Sandra Eshra
      - contributed to the UML
