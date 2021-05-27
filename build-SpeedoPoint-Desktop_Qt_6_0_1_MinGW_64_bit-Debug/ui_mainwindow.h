@@ -845,7 +845,7 @@ public:
         Speedopointtxt_3->setFont(font1);
         verticalLayoutWidget_6 = new QWidget(UserPage);
         verticalLayoutWidget_6->setObjectName(QString::fromUtf8("verticalLayoutWidget_6"));
-        verticalLayoutWidget_6->setGeometry(QRect(480, 110, 601, 431));
+        verticalLayoutWidget_6->setGeometry(QRect(360, 110, 721, 431));
         reservations = new QVBoxLayout(verticalLayoutWidget_6);
         reservations->setObjectName(QString::fromUtf8("reservations"));
         reservations->setSizeConstraint(QLayout::SetDefaultConstraint);
@@ -883,9 +883,9 @@ public:
         updateInfo->setGeometry(QRect(110, 390, 93, 28));
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
-        UserPage->raise();
         DetailsPage->raise();
         Listings->raise();
+        UserPage->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));

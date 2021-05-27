@@ -26,6 +26,8 @@ private:
     Ui::MainWindow *ui;
     dataStore* progData;
     vector<QtListing *> listings;
+    vector<QtListing *> listingsf;
+    vector<QtListing *> listingsc;
     vector<QtListing *> madereservs;
     int sort = 0;
     QtListing* currentListing;

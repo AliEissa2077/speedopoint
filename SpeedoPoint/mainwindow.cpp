@@ -303,11 +303,11 @@ void MainWindow::DisplayFlights() {
     testlist->setAlignment(Qt::AlignTop);
 
     QWidget *wid = scrl->widget();
-    listings.clear();
+    listingsf.clear();
     if(wid)
         wid->deleteLater();
 
-    for (int i = 0; i < listings.size(); i++) {
+    for (int i = 0; i < listingsf.size(); i++) {
         //testlist->removeWidget(listings[i]->getwidget());
         //listings[i]->getwidget()->setVisible(false);
     }
@@ -341,7 +341,7 @@ void MainWindow::DisplayFlights() {
         while (!queuetest.empty()) {
 
             QtListing *listtest = new QtListing(queuetest.top()->data, queuetest.top()->initialIndex);  // adding an element to the list
-            listings.push_back(listtest);
+            listingsf.push_back(listtest);
             listtest->setMainProg(this);
             testlist->addWidget(listtest->getwidget());
             queuetest.pop();
@@ -351,7 +351,7 @@ void MainWindow::DisplayFlights() {
     else {
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data, mylist[n]->initialIndex);  // adding an element to the list
-            listings.push_back(listtest);
+            listingsf.push_back(listtest);
             listtest->setMainProg(this);
             testlist->addWidget(listtest->getwidget());
         }
@@ -426,9 +426,9 @@ void MainWindow::DisplayCruises() {
 
     QVBoxLayout* testlist = MainWindow::findChild<QVBoxLayout *>("cruiselist");
 qDebug() <<"here";
-    for (int i = 0; i < listings.size(); i++) {
-        testlist->removeWidget(listings[i]->getwidget());
-        listings[i]->getwidget()->setVisible(false);
+    for (int i = 0; i < listingsc.size(); i++) {
+        testlist->removeWidget(listingsc[i]->getwidget());
+        listingsc[i]->getwidget()->setVisible(false);
     }
     qDebug() <<"here";
 
@@ -443,7 +443,7 @@ qDebug() <<"here";
             QtListing *listtest = new QtListing(queuetest.top()->data, queuetest.top()->initialIndex);  // adding an element to the list
 
             listtest->setMainProg(this);
-            listings.push_back(listtest);
+            listingsc.push_back(listtest);
             testlist->addWidget(listtest->getwidget());
             queuetest.pop();
         }
@@ -453,7 +453,7 @@ qDebug() <<"here";
         for (int n = 0; n < mylist.size(); n++) {
             QtListing *listtest = new QtListing(mylist[n]->data,  mylist[n]->initialIndex);  // adding an element to the list
             listtest->setMainProg(this);
-            listings.push_back(listtest);
+            listingsc.push_back(listtest);
             testlist->addWidget(listtest->getwidget());
             //MainWindow::findChild<QListWidget *>("CruiseListings")->insertItem(0, listtest->getitem());
             //MainWindow::findChild<QListWidget *>("CruiseListings")->setItemWidget(listtest->getitem(), listtest->getwidget());
