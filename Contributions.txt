@@ -31,3 +31,9 @@ Implemented:
 - airport class 
  
 -Database (text files)
+
+Kholy:
+	-UML design
+	- Made header files and updated appropriate functions and attributes for program to function 
+	- file system, reading and writing to and from files and storing data in appropriate structures.
+	- worked on user class, airline classes 
