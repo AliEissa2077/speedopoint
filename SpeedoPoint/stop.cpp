@@ -29,6 +29,9 @@ stop::stop(country location, int index, date dt)
     time = dt;
     next = NULL;
 }
+stop::stop() {
+    next = NULL;
+}
 
 void stop::add_stop(country location, int index, date dt) {
     qDebug() << "yessir";
@@ -42,6 +45,8 @@ void stop::add_stop(country location, int index, date dt) {
 void stop::setAirport(airport air) {
     aPort = air;
 }
-
+stop::~stop() {
+    delete next;
+}
 
 

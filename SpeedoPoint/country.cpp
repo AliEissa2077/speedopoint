@@ -5,6 +5,12 @@ country::country()
 {
     name = " ";
 }
+country::country(const country &p1) {
+    name = p1.name;
+    coords = p1.coords;
+    banned  = p1.banned;
+    cities = p1.cities;
+}
 country::country(std::string name_, bool ban, Coords cds)
 {
     name = name_;

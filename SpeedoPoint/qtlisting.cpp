@@ -195,7 +195,7 @@ void QtListing::detailsButton() {
     }
     if (getType() == 2) {
         primary = QString::fromStdString(flisting->getAirline()->getName());
-        location = QString::fromStdString(flisting->getDepCountry().getCities()[flisting->getDepCityIndex()] + ", " + flisting->getArrCountry().getName() + " To " + flisting->getArrCountry().getCities()[flisting->getArrCityIndex()] + ", " + flisting->getArrCountry().getName());
+        location = QString::fromStdString(flisting->getDepCountry().getCities()[flisting->getDepCityIndex()] + ", " + flisting->getDepCountry().getName() + " To " + flisting->getArrCountry().getCities()[flisting->getArrCityIndex()] + ", " + flisting->getArrCountry().getName());
         secondary = QString::fromStdString("Time: " + flisting->getDepTime());
         pricing = QString::number(flisting->getPriceperTraveller()) + " LE Per Traveller";
         details = "Rating: " + QString::number(flisting->getAirlineRating());

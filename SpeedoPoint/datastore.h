@@ -24,6 +24,7 @@ struct Node {
   int DistRankIndex = 20;
   Node *next = NULL;
   Node* prev = NULL;
+  Node() : next(NULL) , prev(NULL) {}
 };
 //djikistra, sorting, updating rating, cancelation, invoices, user page
 class dataStore

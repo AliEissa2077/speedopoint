@@ -1453,7 +1453,7 @@
       <rect>
        <x>70</x>
        <y>160</y>
-       <width>171</width>
+       <width>401</width>
        <height>16</height>
       </rect>
      </property>
@@ -1491,6 +1491,9 @@
      <property name="text">
       <string>Features</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
     <widget class="QLabel" name="SecondaryInfo">
      <property name="geometry">
@@ -1508,6 +1511,9 @@
      </property>
      <property name="text">
       <string>Secondary</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
     <widget class="QPushButton" name="Book">
@@ -2397,8 +2403,8 @@
    </widget>
    <zorder>LoginScreen</zorder>
    <zorder>UserPage</zorder>
-   <zorder>DetailsPage</zorder>
    <zorder>Listings</zorder>
+   <zorder>DetailsPage</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

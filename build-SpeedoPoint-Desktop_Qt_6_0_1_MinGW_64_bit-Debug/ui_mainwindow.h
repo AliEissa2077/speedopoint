@@ -631,7 +631,7 @@ public:
         PrimaryText->setFont(font4);
         DetailInfo1 = new QLabel(DetailsPage);
         DetailInfo1->setObjectName(QString::fromUtf8("DetailInfo1"));
-        DetailInfo1->setGeometry(QRect(70, 160, 171, 16));
+        DetailInfo1->setGeometry(QRect(70, 160, 401, 16));
         PricingInfo = new QLabel(DetailsPage);
         PricingInfo->setObjectName(QString::fromUtf8("PricingInfo"));
         PricingInfo->setGeometry(QRect(610, 130, 141, 31));
@@ -639,12 +639,14 @@ public:
         Features = new QLabel(DetailsPage);
         Features->setObjectName(QString::fromUtf8("Features"));
         Features->setGeometry(QRect(70, 230, 111, 221));
+        Features->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         SecondaryInfo = new QLabel(DetailsPage);
         SecondaryInfo->setObjectName(QString::fromUtf8("SecondaryInfo"));
         SecondaryInfo->setGeometry(QRect(220, 220, 391, 221));
         QFont font5;
         font5.setPointSize(10);
         SecondaryInfo->setFont(font5);
+        SecondaryInfo->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         Book = new QPushButton(DetailsPage);
         Book->setObjectName(QString::fromUtf8("Book"));
         Book->setGeometry(QRect(890, 130, 101, 41));
@@ -877,8 +879,8 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         LoginScreen->raise();
         UserPage->raise();
-        DetailsPage->raise();
         Listings->raise();
+        DetailsPage->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1098, 26));

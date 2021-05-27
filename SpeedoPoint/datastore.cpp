@@ -267,7 +267,7 @@ dataStore::dataStore()
                         }
                         else {
                             //date dt;
-                            //stps->add_stop(ct, index, aport, dt);  OLD import
+                            //stps->add_stop(ct, index, dt);//  OLD import
                         }
                     }
                 }
@@ -287,6 +287,7 @@ dataStore::dataStore()
             date dep(depd, depm, depy, deph, depmin);
             date arr(arrd, arrm, arry, arrh, arrm);
             //string code = "codetest";
+            //qDebug() << QString::fromStdString(stps->getLoc().getName()) << "Ct";
             flightlisting* flist = new flightlisting(code, airln, stps, stpnum, dep, arr, price, cabin, plane_model, carryon, checkedW, additionalw, refundable, oneway);
 
             // add it to linked list
@@ -295,6 +296,7 @@ dataStore::dataStore()
                 FlightListingsHead = new Node<flightlisting*>;
                 FlightListingsHead->data = flist;
                 FlightListingsHead->initialIndex = Iindex;
+                FlightListingsHead->next = NULL;
                 Iindex++;
             }
             else {
@@ -389,7 +391,7 @@ dataStore::dataStore()
                                 scountry = x;
                             }
                         }
-                        int indx;
+                        int indx = 0;
                         date dt;
                         sscs >> index;
                         if (stps == NULL) {
@@ -430,7 +432,7 @@ dataStore::dataStore()
     //qDebug() << "here";
     Node<hotellisting*>* curr = HotelListingsHead;
     while (curr != NULL) {
-        qDebug() << curr->data->getHotelRating();
+        //qDebug() << curr->data->getHotelRating();
         curr = curr->next;
     }
 }
@@ -636,17 +638,18 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
 
     while (curr != NULL && iteration < 4) {
         //check location and oneway,refund parameters
-        qDebug() << curr->data->verifyFromLocs(locdep, citydep) << onew << "onew";
-        if (curr->data->verifyFromLocs(locdep, citydep) &&  curr->data->isOneW() == onew) {
+        //qDebug() << curr->data->verifyFromLocs(locdep, citydep) << onew << "onew" << curr->data->isOneW();
+        if ((curr->data->verifyFromLocs(locdep, citydep)) && (curr->data->isOneW() * onew > 0)) {
             output.push_back(curr);
             source = curr->data->getDepCountry();
             cityindex = curr->data->getDepCityIndex();
-            qDebug() << "found some";
+            //qDebug() << "found some";
             iteration++;
         }
         curr = curr->next;
     }
     if (source.getName().length() <= 1) {
+        qDebug() << "returned";
         return output;
     }
     vector<vector<country>> cts;
@@ -698,13 +701,21 @@ vector<Node<flightlisting*>*> dataStore::GetFlightsInLoc(string locdep, string c
         out.push_back(t);
     }
     float* dist = dijkstra(dists, 0, out);
+
+
+
     for (int i = 0 ; i < out.size(); i++) {
-        if (output[i]->data) {
+        if (output.size() > i) {
             for (int n = 0; n < out[i].size(); n++) {
-                if (cts[out[i][n].x][out[i][n].y].getName().length() > 1) {
+                if (out[i][n].x < cts.size()) {
+                    if (out[i][n].y < cts[out[i][n].x].size()) {
                     //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+
+                    if (output[i]->data == NULL) {
+                    }
                     output[i]->data->addStop(cts[out[i][n].x][out[i][n].y], 0);
-                    qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                    //qDebug() << "cts: " << QString::fromStdString(cts[out[i][n].x][out[i][n].y].getName());
+                    }
                 }
             }
         }

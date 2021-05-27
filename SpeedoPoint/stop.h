@@ -24,6 +24,7 @@ public:
     int getIndex();
     void setAirport(airport air);
     country getLoc();
+    ~stop();
 };
 
 #endif STOP_H

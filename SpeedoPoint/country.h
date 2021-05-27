@@ -24,6 +24,7 @@ private:
 
 public:
     country();
+    country(const country &p1);
 	country(std::string name_, bool ban, Coords cds);
 	void addCity(std::string city);
     std::string getName();

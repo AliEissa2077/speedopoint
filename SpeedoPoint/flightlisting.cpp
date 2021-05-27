@@ -193,6 +193,7 @@ string flightlisting::getArrTime() {
 
 bool flightlisting::verifyFromLocs(string locdep, string citydep)
 {
+    qDebug() << QString::fromStdString(stops->getLoc().getName());
     if (stops == NULL) {
         return false;
     }
@@ -205,7 +206,7 @@ bool flightlisting::verifyFromLocs(string locdep, string citydep)
             return false;
         }
     }
-    //qDebug() << "is true";
+
 
     return true;
 }
@@ -217,5 +218,8 @@ bool flightlisting::isOneW() {
 }
 void flightlisting::addStop(country c, int i) {
     date d;
+    if (stops == NULL) {
+        stops = new stop(c, i, d);
+    }
     stops->add_stop(c, i, d); //used to have airline
 }
