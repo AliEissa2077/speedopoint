@@ -387,6 +387,7 @@ dataStore::dataStore()
                     for (int i = 0; i < stpnum; i++) {
                         string ctry;
                         country scountry;
+                        sscs >> ctry;
                         for (auto x : countries) {
                             if (ctry == x.getName()) {
                                 scountry = x;
